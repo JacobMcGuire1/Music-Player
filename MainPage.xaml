@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="Music_thing.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Music_thing"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="TEST" x:Name="NavView" Grid.Row="0">
+                <NavigationView.MenuItems>
+                    <NavigationViewItemHeader Content="Your Music"/>
+                    <NavigationViewItem Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
+                    <NavigationViewItem Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
+                    <NavigationViewItem Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
+                    <NavigationViewItem Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
+                    <NavigationViewItem Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                </NavigationView.MenuItems>
+
+                <NavigationView.AutoSuggestBox>
+                    <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find"/>
+                </NavigationView.AutoSuggestBox>
+
+
+                <Frame x:Name="ContentFrame" Margin="0,0,0,0">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+
+            </NavigationView>
+
+            <!--<MediaTransportControls Height="100" Grid.Row="1"/>-->
+
+            <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Grid.Row="1" >
+                <MediaPlayerElement.TransportControls>
+                    <MediaTransportControls IsNextTrackButtonVisible="True"
+                                            IsPreviousTrackButtonVisible="True"
+                                            IsFullWindowButtonVisible="False"
+                                            
+                    />
+                </MediaPlayerElement.TransportControls>
+            </MediaPlayerElement>
+
+            <!--
+            <MediaPlayerElement x:Name="MPE" Height="100" Grid.Row="1">
+                <MediaPlayerElement.TransportControls>
+                    <MediaTransportControls />
+                </MediaPlayerElement.TransportControls>
+            </MediaPlayerElement>-->
+
+        </Grid>
+
+
+    </Grid>
+
+</Page>

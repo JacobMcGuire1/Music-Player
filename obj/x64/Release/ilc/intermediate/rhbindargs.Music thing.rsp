@@ -1,0 +1,16 @@
+﻿/osver:6.2
+/appcontainer
+"/runtime:mrt100_app"
+/eh:clr
+/pdb
+"/nativeLink:C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.native.compiler\2.1.8\tools\x64\ilc\lib\Native\vmath.lib"
+/customImports
+/methodBodyFolding
+"C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\MDIL\Music thing.mdilexe"
+"/i:C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\MDIL"
+"/out:C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Native\Music thing.exe"
+"/pdbAltPath:C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc"
+"/res:C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Native.res"
+"/i:C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.native.sharedlibrary\2.1.8\tools\SharedLibrary\ret\MDIL"
+/shimexe
+"/classlib:SharedLibrary"
