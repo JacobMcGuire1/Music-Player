@@ -17,7 +17,7 @@ namespace Music_thing
         public string Album { get; set; }
         public TimeSpan Duration { get; set; }
         public uint Year { get; set; }
-        public uint TrackNumber { get; set; }
+        public int TrackNumber { get; set; }
         public uint Bitrate { get; set; }
         public StorageFile File { get; set; }
 

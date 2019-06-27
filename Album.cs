@@ -35,10 +35,18 @@ namespace Music_thing
         public List<int> AddSong(int songid)
         {
             Songids.Add(songid);
+            OrderByTrack();
             return Songids;
         }
 
         //Function to sort songs by track number.
+        public void OrderByTrack()
+        {
+            //Need to add disk number support
+            //Songids = Songids.OrderBy(x => SongListStorage.SongDict[x].TrackNumber) as List<int>;
+
+            Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
+        }
 
     }
 

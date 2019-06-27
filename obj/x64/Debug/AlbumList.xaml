@@ -15,7 +15,9 @@
                     <Button x:ConnectionId='3' x:Name="albumbutton"                                             >
                         <!--Need to add play and add to playlist buttons-->
                         <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                            <TextBlock x:ConnectionId='4'                      VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                            <TextBlock x:ConnectionId='4'                      VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
+                            <TextBlock x:ConnectionId='5'                        VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                            <TextBlock x:ConnectionId='6'                     VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
                 </DataTemplate>

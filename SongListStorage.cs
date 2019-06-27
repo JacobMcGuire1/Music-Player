@@ -191,7 +191,7 @@ namespace Music_thing
                             Artist = musicProperties.Artist,
                             Year = musicProperties.Year,
                             Duration = musicProperties.Duration,
-                            TrackNumber = musicProperties.TrackNumber,
+                            TrackNumber = (int)musicProperties.TrackNumber,
                             File = item as StorageFile
                         };
 

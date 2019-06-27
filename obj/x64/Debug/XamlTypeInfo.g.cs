@@ -686,7 +686,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private void set_14_Song_TrackNumber(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
-            that.TrackNumber = (global::System.UInt32)Value;
+            that.TrackNumber = (global::System.Int32)Value;
         }
         private object get_15_Song_Bitrate(object instance)
         {
@@ -827,7 +827,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 break;
             case "Music_thing.Song.TrackNumber":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrackNumber", "UInt32");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrackNumber", "Int32");
                 xamlMember.Getter = get_14_Song_TrackNumber;
                 xamlMember.Setter = set_14_Song_TrackNumber;
                 break;
