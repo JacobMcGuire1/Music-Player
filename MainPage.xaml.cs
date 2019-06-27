@@ -37,6 +37,8 @@ namespace Music_thing
 
             SongListStorage.GetSongList();
 
+            //SongListStorage.FindArtists();
+
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
 
             
@@ -87,6 +89,13 @@ namespace Music_thing
                         break;
                 }
             }
+        }
+
+        public void ViewAlbum(String albumkey, Album album)
+        {
+            //AlbumPage.ChangeAlbum
+            ContentFrame.Navigate(typeof(AlbumPage));
+            NavView.Header = album.name;
         }
 
         public enum MediaState

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +23,28 @@ namespace Music_thing
     /// </summary>
     public sealed partial class AlbumList : Page
     {
+        public ObservableCollection<Album> Albums { get; }
+        = new ObservableCollection<Album>();
+
         public AlbumList()
         {
             this.InitializeComponent();
+
+            Albums = SongListStorage.Albums;
+        }
+
+        private void Albumbutton_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+
+            //Song song = ((Button)sender).Tag as Song;
+
+            String albumkey = (string)(((Button)sender).Tag);
+
+            this.Frame.Navigate(typeof(AlbumPage), albumkey);
+
+            //Media.Instance.addSong(song);
         }
     }
 }

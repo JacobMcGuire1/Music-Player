@@ -497,3 +497,512 @@ C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermed
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.WindowsRuntime.UI.Xaml.index.txt
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\rhbindargs.Music thing.rsp
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\System.Private.Music thing.Generated.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\App.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\AlbumList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ArtistList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\MainPage.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\NowPlaying.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\RecentlyPlayed.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\SettingsPage.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\SongList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Music thing.xr.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Music thing.exe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\resources.pri
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\AppxManifest.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Adapters.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\AssemblyInfo.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\LockScreenLogo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\SplashScreen.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square150x150Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\StoreLogo.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Wide310x150Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\clrcompression.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Data.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\DotNetNative.debugger-services-def.json
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Helpers.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\ImplTypes.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.exe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.xr.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\PInvoke.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\resources.pri
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\SafeTypes.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\SharedStubs.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Music thing.build.appxrecipe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\clrcompression.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Microsoft.CSharp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Microsoft.VisualBasic.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\Microsoft.Win32.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.AppContext.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Buffers.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Collections.Concurrent.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Collections.Immutable.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Collections.NonGeneric.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Collections.Specialized.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Collections.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.Annotations.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.Composition.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.DataAnnotations.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.EventBasedAsync.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.TypeConverter.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ComponentModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Configuration.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Console.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Core.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Data.Common.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Data.SqlClient.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Data.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.Contracts.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.Debug.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.DiagnosticSource.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.FileVersionInfo.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.Process.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.StackTrace.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.TextWriterTraceListener.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.Tools.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.TraceSource.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Diagnostics.Tracing.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Drawing.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Drawing.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Dynamic.Runtime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Globalization.Calendars.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Globalization.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Globalization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.Compression.FileSystem.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.Compression.ZipFile.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.Compression.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.FileSystem.DriveInfo.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.FileSystem.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.FileSystem.Watcher.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.FileSystem.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.IsolatedStorage.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.MemoryMappedFiles.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.Pipes.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.Ports.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.UnmanagedMemoryStream.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.IO.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Linq.Expressions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Linq.Parallel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Linq.Queryable.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Http.Rtc.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Http.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.HttpListener.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Mail.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.NameResolution.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.NetworkInformation.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Ping.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Requests.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.ServicePoint.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.Sockets.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.WebClient.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.WebHeaderCollection.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.WebProxy.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.WebSockets.Client.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.WebSockets.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Net.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Numerics.Vectors.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Numerics.Vectors.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Numerics.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ObjectModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.DataContractSerialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.Reflection.Metadata.Ecma335.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.ServiceModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.Uri.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.Xml.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Private.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Context.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.DispatchProxy.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Emit.ILGeneration.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Emit.Lightweight.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Emit.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Metadata.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.TypeExtensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Reflection.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Resources.Reader.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Resources.ResourceManager.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Resources.Writer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.CompilerServices.VisualC.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Handles.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.InteropServices.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.InteropServices.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Numerics.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Serialization.Formatters.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Serialization.Json.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Serialization.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Serialization.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.Serialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.WindowsRuntime.UI.Xaml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Runtime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.AccessControl.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Claims.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.Algorithms.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.Cng.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.Csp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.Encoding.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Cryptography.X509Certificates.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Principal.Windows.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.Principal.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.SecureString.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.Duplex.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.Http.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.NetTcp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.Web.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ServiceProcess.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Text.Encoding.CodePages.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Text.Encoding.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Text.Encoding.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Text.RegularExpressions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Overlapped.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Tasks.Dataflow.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Tasks.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Tasks.Parallel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Tasks.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Thread.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.ThreadPool.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.Timer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Threading.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Transactions.Local.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Transactions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.ValueTuple.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Web.HttpUtility.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Web.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Windows.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.ReaderWriter.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.Serialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.XDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.XPath.XDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.XPath.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.XmlDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.XmlSerializer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\System.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\WindowsBase.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\mscorlib.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\netstandard.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\Music thing.csprojAssemblyReference.cache
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\App.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\App.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\AlbumList.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\AlbumList.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ArtistList.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ArtistList.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\MainPage.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\MainPage.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\NowPlaying.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\NowPlaying.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\RecentlyPlayed.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\RecentlyPlayed.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SettingsPage.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SettingsPage.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SongList.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SongList.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\XamlTypeInfo.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\App.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\AlbumList.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ArtistList.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\MainPage.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\NowPlaying.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\RecentlyPlayed.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SettingsPage.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SongList.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\App.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\AlbumList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ArtistList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\MainPage.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\NowPlaying.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\RecentlyPlayed.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SettingsPage.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\SongList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\XamlSaveStateFile.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\Music thing.csproj.CoreCompileInputs.cache
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\Music thing.csproj.CopyComplete
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\Music thing.exe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ResourceHandlingTask.state
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\priconfig.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\priconfig.xml.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\unfiltered.layout.resfiles
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\unfiltered.layout.resfiles.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\filtered.layout.resfiles
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\filtered.layout.resfiles.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\excluded.layout.resfiles
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\excluded.layout.resfiles.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\resources.resfiles
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\resources.resfiles.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\pri.resfiles
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\pri.resfiles.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\qualifiers.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\qualifiers.txt.intermediate
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\MultipleQualifiersPerDimensionFound.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ProjectArchitectures.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Properties\Default.rd.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Music thing.xr.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\AppxManifest.xml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Music thing.exe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Microsoft.CSharp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Microsoft.VisualBasic.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Microsoft.Win32.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.AppContext.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Buffers.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Collections.Concurrent.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Collections.Immutable.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Collections.NonGeneric.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Collections.Specialized.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Collections.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.Annotations.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.Composition.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.DataAnnotations.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.EventBasedAsync.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.TypeConverter.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ComponentModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Configuration.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Console.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Core.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Data.Common.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Data.SqlClient.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Data.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.Contracts.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.Debug.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.DiagnosticSource.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.FileVersionInfo.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.Process.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.StackTrace.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.TextWriterTraceListener.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.Tools.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.TraceSource.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Diagnostics.Tracing.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Drawing.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Drawing.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Dynamic.Runtime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Globalization.Calendars.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Globalization.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Globalization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.Compression.FileSystem.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.Compression.ZipFile.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.Compression.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.FileSystem.DriveInfo.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.FileSystem.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.FileSystem.Watcher.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.FileSystem.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.IsolatedStorage.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.MemoryMappedFiles.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.Pipes.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.Ports.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.UnmanagedMemoryStream.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.IO.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Linq.Expressions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Linq.Parallel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Linq.Queryable.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Http.Rtc.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Http.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.HttpListener.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Mail.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.NameResolution.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.NetworkInformation.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Ping.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Requests.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.ServicePoint.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.Sockets.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.WebClient.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.WebHeaderCollection.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.WebProxy.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.WebSockets.Client.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.WebSockets.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Net.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Numerics.Vectors.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Numerics.Vectors.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Numerics.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ObjectModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.DataContractSerialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.Reflection.Metadata.Ecma335.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.ServiceModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.Uri.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.Xml.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Private.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Context.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.DispatchProxy.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Emit.ILGeneration.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Emit.Lightweight.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Emit.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Metadata.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.TypeExtensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Reflection.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Resources.Reader.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Resources.ResourceManager.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Resources.Writer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.CompilerServices.VisualC.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Handles.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.InteropServices.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.InteropServices.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Numerics.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Serialization.Formatters.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Serialization.Json.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Serialization.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Serialization.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.Serialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.WindowsRuntime.UI.Xaml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.WindowsRuntime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Runtime.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.AccessControl.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Claims.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.Algorithms.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.Cng.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.Csp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.Encoding.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Cryptography.X509Certificates.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Principal.Windows.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.Principal.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.SecureString.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.Duplex.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.Http.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.NetTcp.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.Primitives.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.Security.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.Web.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceModel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ServiceProcess.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Text.Encoding.CodePages.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Text.Encoding.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Text.Encoding.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Text.RegularExpressions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Overlapped.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Tasks.Dataflow.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Tasks.Extensions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Tasks.Parallel.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Tasks.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Thread.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.ThreadPool.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.Timer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Threading.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Transactions.Local.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Transactions.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.ValueTuple.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Web.HttpUtility.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Web.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Windows.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.Linq.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.ReaderWriter.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.Serialization.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.XDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.XPath.XDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.XPath.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.XmlDocument.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.XmlSerializer.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.Xml.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\System.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\WindowsBase.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\mscorlib.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\netstandard.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\WinMetadata\Windows.winmd
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\resources.pri
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\clrcompression.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\LockScreenLogo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\SplashScreen.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\Square150x150Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\Square44x44Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\StoreLogo.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Assets\Wide310x150Logo.scale-200.png
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc.Music thing.rsp
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\BuildInfo\BuildInfo.rc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\BuildInfo\BuildInfo.res
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\BuildInfo\BuildInfo.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\gkargs.rsp
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.closure.csv
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.csv
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.forwarders.csv
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.ilexe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.ilexe.ILTransformTask.repro
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.McgInterop.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.McgInterop.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.metadata
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.reflectionlog.csv
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\Music thing.res
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Numerics.Vectors.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Numerics.Vectors.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.DeveloperExperience.AppX.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.DeveloperExperience.AppX.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.Music thing.Generated.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.Music thing.Generated.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.StackTraceGenerator.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.StackTraceGenerator.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.WinRTInterop.CoreLib.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Private.WinRTInterop.CoreLib.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.InteropServices.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.InteropServices.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.InteropServices.WindowsRuntime.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.InteropServices.WindowsRuntime.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.WindowsRuntime.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.WindowsRuntime.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.WindowsRuntime.UI.Xaml.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Runtime.WindowsRuntime.UI.Xaml.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Text.Encoding.CodePages.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Text.Encoding.CodePages.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\MDIL\Music thing.mdilexe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\MDIL\Music thing.mdilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\MDIL\Music thing.rsp
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop.rsp
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\Adapters.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\AssemblyInfo.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\Data.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\Helpers.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\ImplTypes.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\PInvoke.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\SafeTypes.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Music thing.McgInterop\SharedStubs.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Native.res
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Native\DotNetNative.debugger-services-def.json
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Native\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\PreMergeILTransformed\Music thing.exe
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\PreMergeILTransformed\Music thing.pdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Numerics.Vectors.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Numerics.Vectors.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Private.DeveloperExperience.AppX.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Private.DeveloperExperience.AppX.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.InteropServices.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.InteropServices.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.InteropServices.WindowsRuntime.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.InteropServices.WindowsRuntime.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.WindowsRuntime.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.WindowsRuntime.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.WindowsRuntime.UI.Xaml.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Runtime.WindowsRuntime.UI.Xaml.index.txt
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\rhbindargs.Music thing.rsp
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\System.Private.Music thing.Generated.dll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Threading.Thread.ildll
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\ILTransformed\System.Threading.Thread.ilpdb
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Threading.Thread.0.rsrc
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\intermediate\Resources\System.Threading.Thread.index.txt

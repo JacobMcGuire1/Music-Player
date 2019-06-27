@@ -5,6 +5,7 @@ mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 System.AppContext, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 System.Collections, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Collections.Concurrent, Version=4.0.14.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 System.Diagnostics.Debug, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
@@ -40,5 +41,8 @@ System.Runtime.WindowsRuntime, Version=4.0.14.0, Culture=neutral, PublicKeyToken
 System.Runtime.WindowsRuntime.UI.Xaml, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 System.Security.Principal, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 System.Threading, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading.Tasks, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading.Thread, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35

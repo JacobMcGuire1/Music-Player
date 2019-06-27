@@ -34,7 +34,7 @@ namespace Music_thing
 
             Playlist = SongListStorage.PlaylistRepresentation;
 
-            ListViewPlayList
+            //ListViewPlayList
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)

@@ -95,12 +95,17 @@
     <Compile Include="AlbumList.xaml.cs">
       <DependentUpon>AlbumList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlbumPage.xaml.cs">
+      <DependentUpon>AlbumPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ArtistList.xaml.cs">
       <DependentUpon>ArtistList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Artist.cs" />
+    <Compile Include="Album.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -129,8 +134,9 @@
     <None Include="Music thing_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Antibiotics.mp3" />
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Properties\Default.rd.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
@@ -145,6 +151,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AlbumList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlbumPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

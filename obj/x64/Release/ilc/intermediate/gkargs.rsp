@@ -1,7 +1,7 @@
-﻿"C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Music thing.exe"
-/Lib:"C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in"
-/Lib:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.native.compiler\2.1.8\tools\x64\ilc\lib\Private"
-/WinMD:"C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\WinMetadata\Windows.winmd"
-/VSTelemetrySessionSettings:"{"IsOptedIn":true,"HostName":"Dev14","AppInsightsInstrumentationKey":"f144292e-e3b2-4011-ac90-20e5c03fbce5","AsimovInstrumentationKey":"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70","AppId":1001,"UserId":"e9c6d694-c716-48e1-9c40-34563c7b5f9e","Id":"2145880b-83d8-4716-b4b7-49af5fbf1f23","ProcessStartTime":636722830465499121}"
-/RdXmlPath:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.net.native.compiler\2.1.8\tools\LibraryXML"
+﻿"E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\Music thing.exe"
+/Lib:"E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in"
+/Lib:"C:\Users\jacob\.nuget\packages\runtime.win10-x64.microsoft.net.native.compiler\2.1.8\tools\x64\ilc\lib\Private"
+/WinMD:"E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\ilc\in\WinMetadata\Windows.winmd"
+/VSTelemetrySessionSettings:"{"IsOptedIn":true,"HostName":"Dev14","AppInsightsInstrumentationKey":"f144292e-e3b2-4011-ac90-20e5c03fbce5","AsimovInstrumentationKey":"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70","AppId":1001,"UserId":"f2bf9dee-46ec-4d3e-b2b2-7bac81c4bc8c","Id":"956fd7bc-5762-4dc8-9628-b5a0fb85b9d5","ProcessStartTime":636971528392459821}"
+/RdXmlPath:"C:\Users\jacob\.nuget\packages\microsoft.net.native.compiler\2.1.8\tools\LibraryXML"
 /RunOnlyPreDR

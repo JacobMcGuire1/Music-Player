@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +23,27 @@ namespace Music_thing
     /// </summary>
     public sealed partial class ArtistList : Page
     {
+
+        public ObservableCollection<Artist> Artists { get; }
+        = new ObservableCollection<Artist>();
+
         public ArtistList()
         {
             this.InitializeComponent();
+
+            //Artists = SongListStorage.Artists;
+
+            //Artists.Add(new Artist() { name = "Steve" });
+
+            Artists = SongListStorage.Artists;
+
+            //string coiun = Artists.ToString();
+
+            //foreach (String name in SongListStorage.Artists)
+            //{
+            //    Artists.Add(new Artist() { name = name });
+            //}
         }
+
     }
 }

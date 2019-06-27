@@ -35,8 +35,6 @@ namespace Music_thing
         public ObservableCollection<Song> Songs { get; }
         = new ObservableCollection<Song>();
 
-        MainPage mainPage = new MainPage();
-
         public SongList()
         {
             this.InitializeComponent();
@@ -51,23 +49,13 @@ namespace Music_thing
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
 
-            //var song = (((Button)sender).Tag) as StorageFile;
-
-            //Song song = ((Button)sender).Tag as Song;
-
-            //String songasstring = ((Button)sender).Tag.ToString();
-
-            //int song = int.Parse(songasstring);
-
-            //int song = (((Button)sender).Tag.ToString);
-
             int song = (int)((Button)sender).Tag;
 
             Media.Instance.playSong(song);
         }
 
 
-        private async void GetFiles(StorageFolder folder)
+        /*private async void GetFiles(StorageFolder folder)
         {
             StorageFolder fold = folder;
 
@@ -105,7 +93,7 @@ namespace Music_thing
             }
 
             //listView.ItemsSource = files;
-        }
+        }*/
 
         private void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
