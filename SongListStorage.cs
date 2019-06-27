@@ -115,7 +115,7 @@ namespace Music_thing
 
                 });
                 
-                Thread.Sleep(3000);
+                Thread.Sleep(10000); //update rate of the lists used for the ui
             }
             
         }
