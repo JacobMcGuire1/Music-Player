@@ -16,6 +16,8 @@ namespace Music_thing
 
         public string key { get; set; }
 
+        public int year { get; set; }
+
         public List<int> Songids { get; set; }
         = new List<int>();
 

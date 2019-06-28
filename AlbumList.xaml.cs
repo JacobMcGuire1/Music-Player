@@ -23,8 +23,10 @@ namespace Music_thing
     /// </summary>
     public sealed partial class AlbumList : Page
     {
-        public ObservableCollection<Album> Albums { get; }
+        public ObservableCollection<Album> Albums { get; set; }
         = new ObservableCollection<Album>();
+
+        public Artist artist;
 
         public AlbumList()
         {
@@ -35,7 +37,7 @@ namespace Music_thing
 
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
+            //Button b = (Button)sender;
             //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
 
             //Song song = ((Button)sender).Tag as Song;
@@ -45,6 +47,34 @@ namespace Music_thing
             this.Frame.Navigate(typeof(AlbumPage), albumkey);
 
             //Media.Instance.addSong(song);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            String artistid = e.Parameter as string;
+            //Artist artist = SongListStorage.ArtistDict[key];
+            ChangeArtist(artistid);
+        }
+
+        public void ChangeArtist(string artistid)
+        {
+            //this.artist = artist;
+            if (artistid != null)
+            {
+                Artist artist = SongListStorage.ArtistDict[artistid];
+                this.artist = artist;
+                Albums.Clear();
+                foreach (string albumid in artist.Albums)
+                {
+                    Albums.Add(SongListStorage.AlbumDict[albumid]);
+                }
+            }
+            else
+            {
+                this.artist = null;
+                Albums = SongListStorage.Albums;
+            }
+            
         }
     }
 }

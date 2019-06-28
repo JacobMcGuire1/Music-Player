@@ -10,6 +10,19 @@ namespace Music_thing
     public class Artist
     {
         public string name { get; set; }
+        public int year { get; set; }
+        public List<String> Albums = new List<String>();
+
+        public bool AddAlbum(string albumkey)
+        {
+            if (!Albums.Contains(albumkey)){
+                Albums.Add(albumkey);
+                return true;
+            }
+            return false;
+        }
+
+        //Add functions to order albums by year etc.
 
     }
 

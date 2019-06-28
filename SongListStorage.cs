@@ -37,7 +37,7 @@ namespace Music_thing
         public static ConcurrentDictionary<int, Song> SongDict = new ConcurrentDictionary<int, Song>();
 
         //Artist name is the key
-        public static ConcurrentDictionary<String, List<int>> ArtistDict = new ConcurrentDictionary<String, List<int>>();
+        public static ConcurrentDictionary<String, Artist> ArtistDict = new ConcurrentDictionary<String, Artist>();
 
         //Key is artistname + albumname
         public static ConcurrentDictionary<String, Album> AlbumDict = new ConcurrentDictionary<String, Album>();
@@ -101,9 +101,9 @@ namespace Music_thing
 
                 
                     Artists.Clear(); //need ti fux clearfing
-                    foreach (String artist in ArtistDict.Keys)
+                    foreach (Artist artist in ArtistDict.Values)
                     {
-                        Artists.Add(new Artist() { name = artist });
+                        Artists.Add(artist);
                     }
 
                     Albums.Clear();
@@ -192,6 +192,7 @@ namespace Music_thing
                             Year = musicProperties.Year,
                             Duration = musicProperties.Duration,
                             TrackNumber = (int)musicProperties.TrackNumber,
+                            //DiscNumber = musicProperties.,
                             File = item as StorageFile
                         };
 
@@ -207,7 +208,7 @@ namespace Music_thing
                    
 
                     //Add artist
-                    AddArtist(id, song);
+                    //AddArtist(id, song);
                     //Add album
                     AddAlbum(id, song);
 
@@ -223,7 +224,7 @@ namespace Music_thing
             }
         }
 
-        public static void AddArtist(int id, Song song)
+        /*public static void AddArtist(int id, Song song)
         {
             string artist;
             if (song.AlbumArtist != "")
@@ -241,20 +242,20 @@ namespace Music_thing
             };
 
             ArtistDict.AddOrUpdate(artist, ids, (key, existingvalue) => ExtendIDList(existingvalue, id));
-        }
+        }*/
 
         public static void AddAlbum(int id, Song song)
         {
-            string artist;
+            string artistname;
             string albumname;
 
             if (song.AlbumArtist != "")
             {
-                artist = song.AlbumArtist;
+                artistname = song.AlbumArtist;
             }
             else
             {
-                artist = song.Artist;
+                artistname = song.Artist;
             }
 
             if (song.Album == "")
@@ -266,11 +267,11 @@ namespace Music_thing
                 albumname = song.Album;
             }
 
-            String key = String.Concat(artist, albumname);
+            String key = String.Concat(artistname, albumname);
 
             Album album = new Album()
             {
-                artist = artist,
+                artist = artistname,
                 name = albumname,
                 key = key,
                 Songids = new List<int> { id }
@@ -280,6 +281,22 @@ namespace Music_thing
             //ids.Add(id);
 
             AlbumDict.AddOrUpdate(key, album, (key2, existingalbum) => AddSongToAlbum(existingalbum, id));///ExtendIDList(existingvalue, id));
+
+            //Add to the artist
+
+            Artist artist = new Artist()
+            {
+                name = artistname,
+                Albums = new List<String> { key }
+            };
+
+            ArtistDict.AddOrUpdate(artistname, artist, (albumname2, existingartist) => AddAlbumToArtist(existingartist, key));
+        }
+
+        public static Artist AddAlbumToArtist(Artist existingartist, string albumkey)
+        {
+            existingartist.AddAlbum(albumkey);
+            return existingartist;
         }
 
         public static Album AddSongToAlbum(Album existingalbum, int songid)

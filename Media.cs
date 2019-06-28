@@ -67,6 +67,19 @@ namespace Music_thing
 
         }
 
+        public void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
+        {
+            Playlist.Items.Clear(); //Clears the playlist
+            foreach (Song song in Songs)
+            {
+                //Media.Instance.
+                addSong(song.id);
+                
+            }
+            Playlist.MoveTo((uint)Pos - 1);
+
+        }
+
         public void addSong(int song)
         {
             var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[song].File));

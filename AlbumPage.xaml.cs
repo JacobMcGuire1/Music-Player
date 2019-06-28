@@ -45,12 +45,20 @@ namespace Music_thing
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
+            //Button b = (Button)sender;
+            //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
 
-            int song = (int)((Button)sender).Tag;
+            int songid = (int)((Button)sender).Tag;
 
-            Media.Instance.playSong(song);
+            /*foreach (Song song in Songs)
+            {
+                Media.Instance.
+                Media.Instance.addSong(song.id);
+            }
+
+            Media.Instance.playSong(song);*/
+
+            Media.Instance.PlayPlaylist(Songs, songid);
         }
 
         private void addToPlaylistButton_Click(object sender, RoutedEventArgs e)

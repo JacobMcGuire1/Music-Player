@@ -45,5 +45,13 @@ namespace Music_thing
             //}
         }
 
+        private void Artistbutton_Click(object sender, RoutedEventArgs e)
+        {
+            string artistid = (string)((Button)sender).Tag;
+
+            //e.Parameter = 
+
+            this.Frame.Navigate(typeof(AlbumList), artistid);
+        }
     }
 }

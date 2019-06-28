@@ -198,8 +198,8 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeNameTable[5] = "Object";
             _typeNameTable[6] = "Music_thing.Album";
             _typeNameTable[7] = "String";
-            _typeNameTable[8] = "System.Collections.Generic.List`1<Int32>";
-            _typeNameTable[9] = "Int32";
+            _typeNameTable[8] = "Int32";
+            _typeNameTable[9] = "System.Collections.Generic.List`1<Int32>";
             _typeNameTable[10] = "Music_thing.AlbumPage";
             _typeNameTable[11] = "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>";
             _typeNameTable[12] = "System.Collections.ObjectModel.Collection`1<Music_thing.Song>";
@@ -227,8 +227,8 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeTable[5] = typeof(global::System.Object);
             _typeTable[6] = typeof(global::Music_thing.Album);
             _typeTable[7] = typeof(global::System.String);
-            _typeTable[8] = typeof(global::System.Collections.Generic.List<global::System.Int32>);
-            _typeTable[9] = typeof(global::System.Int32);
+            _typeTable[8] = typeof(global::System.Int32);
+            _typeTable[9] = typeof(global::System.Collections.Generic.List<global::System.Int32>);
             _typeTable[10] = typeof(global::Music_thing.AlbumPage);
             _typeTable[11] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>);
             _typeTable[12] = typeof(global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>);
@@ -284,7 +284,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private object Activate_3_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Album>(); }
         private object Activate_4_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Album>(); }
         private object Activate_6_Album() { return new global::Music_thing.Album(); }
-        private object Activate_8_List() { return new global::System.Collections.Generic.List<global::System.Int32>(); }
+        private object Activate_9_List() { return new global::System.Collections.Generic.List<global::System.Int32>(); }
         private object Activate_10_AlbumPage() { return new global::Music_thing.AlbumPage(); }
         private object Activate_11_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>(); }
         private object Activate_12_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>(); }
@@ -310,7 +310,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             var newItem = (global::Music_thing.Album)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_8_List(object instance, object item)
+        private void VectorAdd_9_List(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.Int32>)instance;
             var newItem = (global::System.Int32)item;
@@ -391,6 +391,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 userType.AddMemberName("name");
                 userType.AddMemberName("artist");
                 userType.AddMemberName("key");
+                userType.AddMemberName("year");
                 userType.AddMemberName("Songids");
                 userType.SetIsLocalType();
                 xamlType = userType;
@@ -400,15 +401,15 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  System.Collections.Generic.List`1<Int32>
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.CollectionAdd = VectorAdd_8_List;
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
+            case 8:   //  Int32
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  Int32
-                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+            case 9:   //  System.Collections.Generic.List`1<Int32>
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.CollectionAdd = VectorAdd_9_List;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
                 break;
 
             case 10:   //  Music_thing.AlbumPage
@@ -498,6 +499,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.Activator = Activate_21_Artist;
                 userType.AddMemberName("name");
+                userType.AddMemberName("year");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -548,6 +550,11 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             var that = (global::Music_thing.AlbumList)instance;
             return that.Albums;
         }
+        private void set_0_AlbumList_Albums(object instance, object Value)
+        {
+            var that = (global::Music_thing.AlbumList)instance;
+            that.Albums = (global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Album>)Value;
+        }
         private object get_1_Album_name(object instance)
         {
             var that = (global::Music_thing.Album)instance;
@@ -578,157 +585,177 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             var that = (global::Music_thing.Album)instance;
             that.key = (global::System.String)Value;
         }
-        private object get_4_Album_Songids(object instance)
+        private object get_4_Album_year(object instance)
+        {
+            var that = (global::Music_thing.Album)instance;
+            return that.year;
+        }
+        private void set_4_Album_year(object instance, object Value)
+        {
+            var that = (global::Music_thing.Album)instance;
+            that.year = (global::System.Int32)Value;
+        }
+        private object get_5_Album_Songids(object instance)
         {
             var that = (global::Music_thing.Album)instance;
             return that.Songids;
         }
-        private void set_4_Album_Songids(object instance, object Value)
+        private void set_5_Album_Songids(object instance, object Value)
         {
             var that = (global::Music_thing.Album)instance;
             that.Songids = (global::System.Collections.Generic.List<global::System.Int32>)Value;
         }
-        private object get_5_AlbumPage_Songs(object instance)
+        private object get_6_AlbumPage_Songs(object instance)
         {
             var that = (global::Music_thing.AlbumPage)instance;
             return that.Songs;
         }
-        private void set_5_AlbumPage_Songs(object instance, object Value)
+        private void set_6_AlbumPage_Songs(object instance, object Value)
         {
             var that = (global::Music_thing.AlbumPage)instance;
             that.Songs = (global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>)Value;
         }
-        private object get_6_Song_id(object instance)
+        private object get_7_Song_id(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.id;
         }
-        private void set_6_Song_id(object instance, object Value)
+        private void set_7_Song_id(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.id = (global::System.Int32)Value;
         }
-        private object get_7_Song_FileName(object instance)
+        private object get_8_Song_FileName(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.FileName;
         }
-        private void set_7_Song_FileName(object instance, object Value)
+        private void set_8_Song_FileName(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.FileName = (global::System.String)Value;
         }
-        private object get_8_Song_Title(object instance)
+        private object get_9_Song_Title(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Title;
         }
-        private void set_8_Song_Title(object instance, object Value)
+        private void set_9_Song_Title(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_9_Song_Artist(object instance)
+        private object get_10_Song_Artist(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Artist;
         }
-        private void set_9_Song_Artist(object instance, object Value)
+        private void set_10_Song_Artist(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Artist = (global::System.String)Value;
         }
-        private object get_10_Song_AlbumArtist(object instance)
+        private object get_11_Song_AlbumArtist(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.AlbumArtist;
         }
-        private void set_10_Song_AlbumArtist(object instance, object Value)
+        private void set_11_Song_AlbumArtist(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.AlbumArtist = (global::System.String)Value;
         }
-        private object get_11_Song_Album(object instance)
+        private object get_12_Song_Album(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Album;
         }
-        private void set_11_Song_Album(object instance, object Value)
+        private void set_12_Song_Album(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Album = (global::System.String)Value;
         }
-        private object get_12_Song_Duration(object instance)
+        private object get_13_Song_Duration(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Duration;
         }
-        private void set_12_Song_Duration(object instance, object Value)
+        private void set_13_Song_Duration(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Duration = (global::System.TimeSpan)Value;
         }
-        private object get_13_Song_Year(object instance)
+        private object get_14_Song_Year(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Year;
         }
-        private void set_13_Song_Year(object instance, object Value)
+        private void set_14_Song_Year(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Year = (global::System.UInt32)Value;
         }
-        private object get_14_Song_TrackNumber(object instance)
+        private object get_15_Song_TrackNumber(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.TrackNumber;
         }
-        private void set_14_Song_TrackNumber(object instance, object Value)
+        private void set_15_Song_TrackNumber(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.TrackNumber = (global::System.Int32)Value;
         }
-        private object get_15_Song_Bitrate(object instance)
+        private object get_16_Song_Bitrate(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Bitrate;
         }
-        private void set_15_Song_Bitrate(object instance, object Value)
+        private void set_16_Song_Bitrate(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Bitrate = (global::System.UInt32)Value;
         }
-        private object get_16_Song_File(object instance)
+        private object get_17_Song_File(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.File;
         }
-        private void set_16_Song_File(object instance, object Value)
+        private void set_17_Song_File(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.File = (global::Windows.Storage.StorageFile)Value;
         }
-        private object get_17_ArtistList_Artists(object instance)
+        private object get_18_ArtistList_Artists(object instance)
         {
             var that = (global::Music_thing.ArtistList)instance;
             return that.Artists;
         }
-        private object get_18_Artist_name(object instance)
+        private object get_19_Artist_name(object instance)
         {
             var that = (global::Music_thing.Artist)instance;
             return that.name;
         }
-        private void set_18_Artist_name(object instance, object Value)
+        private void set_19_Artist_name(object instance, object Value)
         {
             var that = (global::Music_thing.Artist)instance;
             that.name = (global::System.String)Value;
         }
-        private object get_19_NowPlaying_Playlist(object instance)
+        private object get_20_Artist_year(object instance)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            return that.year;
+        }
+        private void set_20_Artist_year(object instance, object Value)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            that.year = (global::System.Int32)Value;
+        }
+        private object get_21_NowPlaying_Playlist(object instance)
         {
             var that = (global::Music_thing.NowPlaying)instance;
             return that.Playlist;
         }
-        private object get_20_SongList_Songs(object instance)
+        private object get_22_SongList_Songs(object instance)
         {
             var that = (global::Music_thing.SongList)instance;
             return that.Songs;
@@ -745,7 +772,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.AlbumList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Albums", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Album>");
                 xamlMember.Getter = get_0_AlbumList_Albums;
-                xamlMember.SetIsReadOnly();
+                xamlMember.Setter = set_0_AlbumList_Albums;
                 break;
             case "Music_thing.Album.name":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
@@ -765,106 +792,118 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlMember.Getter = get_3_Album_key;
                 xamlMember.Setter = set_3_Album_key;
                 break;
+            case "Music_thing.Album.year":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "year", "Int32");
+                xamlMember.Getter = get_4_Album_year;
+                xamlMember.Setter = set_4_Album_year;
+                break;
             case "Music_thing.Album.Songids":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songids", "System.Collections.Generic.List`1<Int32>");
-                xamlMember.Getter = get_4_Album_Songids;
-                xamlMember.Setter = set_4_Album_Songids;
+                xamlMember.Getter = get_5_Album_Songids;
+                xamlMember.Setter = set_5_Album_Songids;
                 break;
             case "Music_thing.AlbumPage.Songs":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.AlbumPage");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songs", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
-                xamlMember.Getter = get_5_AlbumPage_Songs;
-                xamlMember.Setter = set_5_AlbumPage_Songs;
+                xamlMember.Getter = get_6_AlbumPage_Songs;
+                xamlMember.Setter = set_6_AlbumPage_Songs;
                 break;
             case "Music_thing.Song.id":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "id", "Int32");
-                xamlMember.Getter = get_6_Song_id;
-                xamlMember.Setter = set_6_Song_id;
+                xamlMember.Getter = get_7_Song_id;
+                xamlMember.Setter = set_7_Song_id;
                 break;
             case "Music_thing.Song.FileName":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "FileName", "String");
-                xamlMember.Getter = get_7_Song_FileName;
-                xamlMember.Setter = set_7_Song_FileName;
+                xamlMember.Getter = get_8_Song_FileName;
+                xamlMember.Setter = set_8_Song_FileName;
                 break;
             case "Music_thing.Song.Title":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.Getter = get_8_Song_Title;
-                xamlMember.Setter = set_8_Song_Title;
+                xamlMember.Getter = get_9_Song_Title;
+                xamlMember.Setter = set_9_Song_Title;
                 break;
             case "Music_thing.Song.Artist":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Artist", "String");
-                xamlMember.Getter = get_9_Song_Artist;
-                xamlMember.Setter = set_9_Song_Artist;
+                xamlMember.Getter = get_10_Song_Artist;
+                xamlMember.Setter = set_10_Song_Artist;
                 break;
             case "Music_thing.Song.AlbumArtist":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "AlbumArtist", "String");
-                xamlMember.Getter = get_10_Song_AlbumArtist;
-                xamlMember.Setter = set_10_Song_AlbumArtist;
+                xamlMember.Getter = get_11_Song_AlbumArtist;
+                xamlMember.Setter = set_11_Song_AlbumArtist;
                 break;
             case "Music_thing.Song.Album":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Album", "String");
-                xamlMember.Getter = get_11_Song_Album;
-                xamlMember.Setter = set_11_Song_Album;
+                xamlMember.Getter = get_12_Song_Album;
+                xamlMember.Setter = set_12_Song_Album;
                 break;
             case "Music_thing.Song.Duration":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Duration", "TimeSpan");
-                xamlMember.Getter = get_12_Song_Duration;
-                xamlMember.Setter = set_12_Song_Duration;
+                xamlMember.Getter = get_13_Song_Duration;
+                xamlMember.Setter = set_13_Song_Duration;
                 break;
             case "Music_thing.Song.Year":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Year", "UInt32");
-                xamlMember.Getter = get_13_Song_Year;
-                xamlMember.Setter = set_13_Song_Year;
+                xamlMember.Getter = get_14_Song_Year;
+                xamlMember.Setter = set_14_Song_Year;
                 break;
             case "Music_thing.Song.TrackNumber":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrackNumber", "Int32");
-                xamlMember.Getter = get_14_Song_TrackNumber;
-                xamlMember.Setter = set_14_Song_TrackNumber;
+                xamlMember.Getter = get_15_Song_TrackNumber;
+                xamlMember.Setter = set_15_Song_TrackNumber;
                 break;
             case "Music_thing.Song.Bitrate":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Bitrate", "UInt32");
-                xamlMember.Getter = get_15_Song_Bitrate;
-                xamlMember.Setter = set_15_Song_Bitrate;
+                xamlMember.Getter = get_16_Song_Bitrate;
+                xamlMember.Setter = set_16_Song_Bitrate;
                 break;
             case "Music_thing.Song.File":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "File", "Windows.Storage.StorageFile");
-                xamlMember.Getter = get_16_Song_File;
-                xamlMember.Setter = set_16_Song_File;
+                xamlMember.Getter = get_17_Song_File;
+                xamlMember.Setter = set_17_Song_File;
                 break;
             case "Music_thing.ArtistList.Artists":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.ArtistList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Artists", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>");
-                xamlMember.Getter = get_17_ArtistList_Artists;
+                xamlMember.Getter = get_18_ArtistList_Artists;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Music_thing.Artist.name":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Artist");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "name", "String");
-                xamlMember.Getter = get_18_Artist_name;
-                xamlMember.Setter = set_18_Artist_name;
+                xamlMember.Getter = get_19_Artist_name;
+                xamlMember.Setter = set_19_Artist_name;
+                break;
+            case "Music_thing.Artist.year":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Artist");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "year", "Int32");
+                xamlMember.Getter = get_20_Artist_year;
+                xamlMember.Setter = set_20_Artist_year;
                 break;
             case "Music_thing.NowPlaying.Playlist":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.NowPlaying");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Playlist", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
-                xamlMember.Getter = get_19_NowPlaying_Playlist;
+                xamlMember.Getter = get_21_NowPlaying_Playlist;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Music_thing.SongList.Songs":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.SongList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songs", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
-                xamlMember.Getter = get_20_SongList_Songs;
+                xamlMember.Getter = get_22_SongList_Songs;
                 xamlMember.SetIsReadOnly();
                 break;
             }
