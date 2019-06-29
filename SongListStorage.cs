@@ -15,13 +15,13 @@ namespace Music_thing
 {
     public static class SongListStorage
     {
-        public static ObservableCollection<Song> Songs { get; }
+        public static ObservableCollection<Song> Songs { get; set; }
         = new ObservableCollection<Song>();
 
-        public static ObservableCollection<Artist> Artists { get; }
+        public static ObservableCollection<Artist> Artists { get; set; }
         = new ObservableCollection<Artist>();
 
-        public static ObservableCollection<Album> Albums { get; }
+        public static ObservableCollection<Album> Albums { get; set; }
         = new ObservableCollection<Album>();
 
         public static int currentid;
@@ -43,6 +43,73 @@ namespace Music_thing
         public static ConcurrentDictionary<String, Album> AlbumDict = new ConcurrentDictionary<String, Album>();
 
         public static HashSet<int> SongsInCollection = new HashSet<int>();
+
+        public static void UpdateAndOrderArtists()
+        {
+            if (Artists.Count != ArtistDict.Count) //Won't work if an artist has been removed and another has been added.
+            {
+                List<string> Artistkeys = new List<string>(); // ArtistDict.Keys as List<string>;
+                foreach (string key in ArtistDict.Keys)
+                {
+                    Artistkeys.Add(key);
+                }
+                if (Artistkeys != null)
+                {
+                    Artistkeys.Sort();//((x, y) => );
+                    ObservableCollection<Artist> NewArtists = new ObservableCollection<Artist>();
+                    foreach (string artistkey in Artistkeys)
+                    {
+                        NewArtists.Add(ArtistDict[artistkey]);
+                    }
+                    Artists = NewArtists;
+                }
+            }
+        }
+
+        public static void UpdateAndOrderAlbums()
+        {
+            if (Albums.Count != AlbumDict.Count)
+            {
+                List<string> Albumkeys = new List<string>(); // ArtistDict.Keys as List<string>;
+                foreach (string key in AlbumDict.Keys)
+                {
+                    Albumkeys.Add(key);
+                }
+                if (Albumkeys != null)
+                {
+                    Albumkeys.Sort();//((x, y) => );
+                    ObservableCollection<Album> Newalbums = new ObservableCollection<Album>();
+                    foreach (string albumkey in Albumkeys)
+                    {
+                        Newalbums.Add(AlbumDict[albumkey]);
+                    }
+                    Albums = Newalbums;
+                }
+            }
+        }
+
+        public static void UpdateAndOrderSongs()
+        {
+            if (Songs.Count != SongDict.Count)
+            {
+                List<int> Songkeys = new List<int>(); // ArtistDict.Keys as List<string>;
+                foreach (int key in SongDict.Keys)
+                {
+                    Songkeys.Add(key);
+                }
+                if (Songkeys != null)
+                {
+                    Songkeys.Sort();//((x, y) => );
+                    Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
+                    ObservableCollection<Song> Newsongs = new ObservableCollection<Song>();
+                    foreach (int songkey in Songkeys)
+                    {
+                        Newsongs.Add(SongDict[songkey]);
+                    }
+                    Songs = Newsongs;
+                }
+            }
+        }
 
 
         public  static void GetSongList()
@@ -89,7 +156,7 @@ namespace Music_thing
                 //Songs.Clear(); //Need to update rather than clear (use a set of ids to compare the difference to the dict.). DONE?!
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    foreach (KeyValuePair<int, Song> item in SongDict)
+                    /*foreach (KeyValuePair<int, Song> item in SongDict)
                     {
                         if (!SongsInCollection.Contains(item.Key))
                         {
@@ -97,20 +164,23 @@ namespace Music_thing
                             SongsInCollection.Add(item.Key);
                                 //Songs.Add(item.Value);
                         }
-                    }
+                    }*/
+                    UpdateAndOrderSongs();
 
-                
-                    Artists.Clear(); //need ti fux clearfing
+
+                    /*Artists.Clear(); //need ti fux clearfing
                     foreach (Artist artist in ArtistDict.Values)
                     {
                         Artists.Add(artist);
-                    }
+                    }*/
+                    UpdateAndOrderArtists();
 
-                    Albums.Clear();
-                    foreach (Album album in AlbumDict.Values)
-                    {
-                        Albums.Add(album);
-                    }
+                    //Albums.Clear();
+                    // foreach (Album album in AlbumDict.Values)
+                    // {
+                    //   Albums.Add(album);
+                    // }
+                    UpdateAndOrderAlbums();
 
 
                 });
@@ -195,6 +265,7 @@ namespace Music_thing
                             //DiscNumber = musicProperties.,
                             File = item as StorageFile
                         };
+                    song.SetAlbumArt();
 
                     int id = 0;                  
                     Boolean Added = false;

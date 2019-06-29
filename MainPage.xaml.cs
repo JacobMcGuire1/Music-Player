@@ -91,13 +91,6 @@ namespace Music_thing
             }
         }
 
-        public void ViewAlbum(String albumkey, Album album)
-        {
-            //AlbumPage.ChangeAlbum
-            ContentFrame.Navigate(typeof(AlbumPage));
-            NavView.Header = album.name;
-        }
-
         public enum MediaState
         {
             Stopped, Playing, Paused

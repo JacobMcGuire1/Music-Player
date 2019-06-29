@@ -46,5 +46,10 @@ namespace Music_thing
         {
 
         }
+
+        private void Removebutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

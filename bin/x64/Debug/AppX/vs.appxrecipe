@@ -30,13 +30,13 @@
     <AppXManifest Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-06-28T15:50:53.953</Modified>
+      <Modified>2019-06-29T23:18:33.719</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.exe">
       <PackagePath>entrypoint\Music thing.exe</PackagePath>
-      <Modified>2019-06-28T15:50:53.402</Modified>
+      <Modified>2019-06-29T23:18:33.356</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.1.7\runtimes\win10-x64\nativeassets\uap10.0.15138\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -734,43 +734,43 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.xr.xml">
       <PackagePath>Music thing.xr.xml</PackagePath>
-      <Modified>2019-06-27T01:35:29.310</Modified>
+      <Modified>2019-06-29T00:22:34.189</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.070</Modified>
+      <Modified>2019-06-29T23:18:33.157</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumList.xbf">
       <PackagePath>AlbumList.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.071</Modified>
+      <Modified>2019-06-29T23:18:33.158</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumPage.xbf">
       <PackagePath>AlbumPage.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.078</Modified>
+      <Modified>2019-06-29T23:18:33.158</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf">
       <PackagePath>ArtistList.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.085</Modified>
+      <Modified>2019-06-29T23:18:33.158</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.089</Modified>
+      <Modified>2019-06-29T23:18:33.158</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\NowPlaying.xbf">
       <PackagePath>NowPlaying.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.096</Modified>
+      <Modified>2019-06-29T23:18:33.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf">
       <PackagePath>RecentlyPlayed.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.096</Modified>
+      <Modified>2019-06-29T23:18:33.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf">
       <PackagePath>SettingsPage.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.103</Modified>
+      <Modified>2019-06-29T23:18:33.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\SongList.xbf">
       <PackagePath>SongList.xbf</PackagePath>
-      <Modified>2019-06-28T15:50:53.105</Modified>
+      <Modified>2019-06-29T23:18:33.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -782,7 +782,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Core\Music thing.exe">
       <PackagePath>Music thing.exe</PackagePath>
-      <Modified>2019-06-28T15:50:53.944</Modified>
+      <Modified>2019-06-29T23:18:33.714</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

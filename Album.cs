@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
 {
@@ -17,6 +18,8 @@ namespace Music_thing
         public string key { get; set; }
 
         public int year { get; set; }
+
+        public BitmapImage albumart;
 
         public List<int> Songids { get; set; }
         = new List<int>();
@@ -37,6 +40,7 @@ namespace Music_thing
         public List<int> AddSong(int songid)
         {
             Songids.Add(songid);
+            SetAlbumArt(songid);
             OrderByTrack();
             return Songids;
         }
@@ -48,6 +52,15 @@ namespace Music_thing
             //Songids = Songids.OrderBy(x => SongListStorage.SongDict[x].TrackNumber) as List<int>;
 
             Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
+        }
+
+        public void SetAlbumArt(int songid)
+        {
+            Song song = SongListStorage.SongDict[songid];
+            if (albumart != null)
+            {
+                albumart = song.AlbumArt;
+            }
         }
 
     }

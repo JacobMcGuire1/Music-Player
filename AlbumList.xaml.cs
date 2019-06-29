@@ -32,7 +32,11 @@ namespace Music_thing
         {
             this.InitializeComponent();
 
-            Albums = SongListStorage.Albums;
+            if (artist != null)
+            {
+                Albums = SongListStorage.Albums;
+            }
+            
         }
 
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +72,7 @@ namespace Music_thing
                 {
                     Albums.Add(SongListStorage.AlbumDict[albumid]);
                 }
+                
             }
             else
             {
@@ -75,6 +80,13 @@ namespace Music_thing
                 Albums = SongListStorage.Albums;
             }
             
+        }
+
+        private void playalbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            string albumid = (string)((Button)sender).Tag;
+            Album album = SongListStorage.AlbumDict[albumid];
+            Media.Instance.PlayPlaylist(album.ObserveSongs(), 1); //mb 1
         }
     }
 }
