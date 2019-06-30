@@ -24,7 +24,7 @@ namespace Music_thing
         public uint Bitrate { get; set; }
         public StorageFile File { get; set; }
 
-        public BitmapImage AlbumArt { get; set; }
+        //public BitmapImage AlbumArt { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -32,7 +32,7 @@ namespace Music_thing
             return false;
         }
 
-        public async void SetAlbumArt()
+        /*public async void SetAlbumArt()
         {
             var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
             //var result = task.WaitAndUnwrapException();
@@ -51,7 +51,7 @@ namespace Music_thing
                 }
               
             //}
-        }
+        }*/
 
     }
 

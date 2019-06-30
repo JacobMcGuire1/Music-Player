@@ -26,6 +26,8 @@ namespace Music_thing
         public ObservableCollection<Song> Songs { get; set; }
         = new ObservableCollection<Song>();
 
+        public string CurrentAlbum;
+
         public AlbumPage()
         {
             this.InitializeComponent();
@@ -34,6 +36,12 @@ namespace Music_thing
         public void ChangeAlbum(Album album)
         {
             Songs = album.ObserveSongs();
+            CurrentAlbum = album.key;
+        }
+
+        public ImageSource GetAlbumArt()
+        {
+            return SongListStorage.AlbumDict[CurrentAlbum].albumart;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

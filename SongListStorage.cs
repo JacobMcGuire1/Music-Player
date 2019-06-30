@@ -265,7 +265,7 @@ namespace Music_thing
                             //DiscNumber = musicProperties.,
                             File = item as StorageFile
                         };
-                    song.SetAlbumArt();
+                   // song.SetAlbumArt();
 
                     int id = 0;                  
                     Boolean Added = false;

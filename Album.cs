@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -19,7 +20,8 @@ namespace Music_thing
 
         public int year { get; set; }
 
-        public BitmapImage albumart;
+        //public BitmapImage albumart;
+        public Windows.UI.Xaml.Media.ImageSource albumart;
 
         public List<int> Songids { get; set; }
         = new List<int>();
@@ -39,8 +41,11 @@ namespace Music_thing
 
         public List<int> AddSong(int songid)
         {
+           // if (Songids.Count != 0) //fix
+           // {
+                SetAlbumArt(songid);
+           // }
             Songids.Add(songid);
-            SetAlbumArt(songid);
             OrderByTrack();
             return Songids;
         }
@@ -54,14 +59,42 @@ namespace Music_thing
             Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
         }
 
-        public void SetAlbumArt(int songid)
+        public async void SetAlbumArt(int songid)
         {
             Song song = SongListStorage.SongDict[songid];
-            if (albumart != null)
+            if (albumart == null)
             {
-                albumart = song.AlbumArt;
+                var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    //ImageControl.Source = bitmapImage;
+                    albumart = bitmapImage;
+                }
             }
         }
+
+        /*public async void SetAlbumArt()
+        {
+            var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
+            //var result = task.WaitAndUnwrapException();
+            //using (StorageItemThumbnail thumbnail = File.GetThumbnailAsync(ThumbnailMode.MusicView, 300).Wait() )
+            //{
+            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+            {
+                var bitmapImage = new BitmapImage();
+                bitmapImage.SetSource(thumbnail);
+                //ImageControl.Source = bitmapImage;
+                AlbumArt = bitmapImage;
+            }
+            else
+            {
+                AlbumArt = null;
+            }
+
+            //}
+        }*/
 
     }
 
