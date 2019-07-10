@@ -15,13 +15,13 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <NavigationView x:ConnectionId='2'                                             Header="TEST" x:Name="NavView" Grid.Row="0">
-                <NavigationView.MenuItems>
+                <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
-                    <NavigationViewItem x:ConnectionId='4' Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
-                    <NavigationViewItem x:ConnectionId='5' Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
-                    <NavigationViewItem x:ConnectionId='6' Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
-                    <NavigationViewItem x:ConnectionId='7' Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
-                    <NavigationViewItem x:ConnectionId='8' Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItem x:ConnectionId='4'                         Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
+                    <NavigationViewItem x:ConnectionId='5'                         Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
+                    <NavigationViewItem x:ConnectionId='6'                         Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
+                    <NavigationViewItem x:ConnectionId='7'                         Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
+                    <NavigationViewItem x:ConnectionId='8'                         Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>

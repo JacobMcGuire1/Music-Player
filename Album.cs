@@ -21,7 +21,7 @@ namespace Music_thing
         public int year { get; set; }
 
         //public BitmapImage albumart;
-        public Windows.UI.Xaml.Media.ImageSource albumart;
+        public Windows.UI.Xaml.Media.ImageSource albumart200;
 
         public List<int> Songids { get; set; }
         = new List<int>();
@@ -62,7 +62,7 @@ namespace Music_thing
         public async void SetAlbumArt(int songid)
         {
             Song song = SongListStorage.SongDict[songid];
-            if (albumart == null)
+            if (albumart200 == null)
             {
                 var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
@@ -70,8 +70,12 @@ namespace Music_thing
                     var bitmapImage = new BitmapImage();
                     bitmapImage.SetSource(thumbnail);
                     //ImageControl.Source = bitmapImage;
-                    albumart = bitmapImage;
+                    bitmapImage.DecodePixelHeight = 200;
+                    bitmapImage.DecodePixelWidth = 200;
+                    albumart200 = bitmapImage;
                 }
+
+                //using (var )
             }
         }
 

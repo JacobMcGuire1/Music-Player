@@ -27,6 +27,8 @@ namespace Music_thing
 
         public int currentid;
 
+        String currentpage;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -34,6 +36,8 @@ namespace Music_thing
             PageGateway.MainPage = this;
 
             currentid = 0;
+
+            
 
             SongListStorage.GetSongList();
 
@@ -64,6 +68,8 @@ namespace Music_thing
             else
             {
                 NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+
+                currentpage = item.Tag.ToString(); //Probs remove
 
                 switch (item.Tag.ToString())
                 {
@@ -99,6 +105,34 @@ namespace Music_thing
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        //MAKE THIS ONLY HAPPEN WHEN THE SELECTION DOESN'T CHANGE
+        private void NavView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            switch (currentpage)
+            {
+                case "songs":
+                    ContentFrame.Navigate(typeof(SongList));
+                    NavView.Header = "Songs";
+                    break;
+                case "artists":
+                    ContentFrame.Navigate(typeof(ArtistList));
+                    NavView.Header = "Artists";
+                    break;
+                case "albums":
+                    ContentFrame.Navigate(typeof(AlbumList));
+                    NavView.Header = "Albums";
+                    break;
+                case "nowPlaying":
+                    ContentFrame.Navigate(typeof(NowPlaying));
+                    NavView.Header = "Now Playing";
+                    break;
+                case "recentlyPlayed":
+                    ContentFrame.Navigate(typeof(RecentlyPlayed));
+                    NavView.Header = "Recently Played";
+                    break;
+            }
         }
     }
 }

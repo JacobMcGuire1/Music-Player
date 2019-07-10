@@ -41,7 +41,7 @@ namespace Music_thing
 
         public ImageSource GetAlbumArt()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].albumart;
+            return SongListStorage.AlbumDict[CurrentAlbum].albumart200;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
