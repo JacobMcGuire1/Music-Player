@@ -41,7 +41,27 @@ namespace Music_thing
 
         public ImageSource GetAlbumArt()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].albumart200;
+            return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
+        }
+
+        public string GetAlbumName()
+        {
+            return SongListStorage.AlbumDict[CurrentAlbum].name;
+        }
+
+        public string GetArtistName()
+        {
+            return SongListStorage.AlbumDict[CurrentAlbum].artist;
+        }
+
+        public string GetYear()
+        {
+            int year = SongListStorage.AlbumDict[CurrentAlbum].year;
+            if (year == 0)
+            {
+                return "Unknown Year";
+            }
+            return year.ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

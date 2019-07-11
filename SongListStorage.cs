@@ -345,6 +345,7 @@ namespace Music_thing
                 artist = artistname,
                 name = albumname,
                 key = key,
+                year = (int)song.Year,
                 Songids = new List<int> { id }
             };
 

@@ -20,7 +20,7 @@
                         <TextBlock Text="{x:Bind Album}" VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
                         <TextBlock Text="{x:Bind Artist}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
                         <TextBlock Text="{x:Bind Year}" VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind Duration}" VerticalAlignment="Center" Width="100"/>
+                        <TextBlock Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="100"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

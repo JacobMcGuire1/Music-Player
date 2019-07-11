@@ -39,17 +39,39 @@
 
             </NavigationView>
 
-            <!--<MediaTransportControls Height="100" Grid.Row="1"/>-->
+            <!--
 
-            <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Grid.Row="1" >
-                <MediaPlayerElement.TransportControls>
-                    <MediaTransportControls IsNextTrackButtonVisible="True"
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock Text="TESTNOWPLAYINGSONG" Width="400"></TextBlock>
+                <MediaPlayerElement Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"
                                             IsFullWindowButtonVisible="False"
                                             
                     />
-                </MediaPlayerElement.TransportControls>
-            </MediaPlayerElement>
+                    </MediaPlayerElement.TransportControls>
+                </MediaPlayerElement>
+            </StackPanel>-->
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="now playing." FontSize="24"/>
+
+                <MediaPlayerElement Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsNextTrackButtonVisible="True"
+                                            IsPreviousTrackButtonVisible="True"
+                                            IsFullWindowButtonVisible="False"
+                                            
+                    />
+                    </MediaPlayerElement.TransportControls>
+                </MediaPlayerElement>
+            </Grid>
+
 
             <!--
             <MediaPlayerElement x:Name="MPE" Height="100" Grid.Row="1">

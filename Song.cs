@@ -32,6 +32,14 @@ namespace Music_thing
             return false;
         }
 
+        public string GetDuration()
+        {
+            //Double dur = Duration.TotalSeconds / 100;
+            //dur.ToString("N2");
+            //return dur.ToString("N2").Replace('.', ':');
+            return Duration.ToString(@"mm\:ss");
+        }
+
         /*public async void SetAlbumArt()
         {
             var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);

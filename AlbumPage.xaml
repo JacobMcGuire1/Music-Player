@@ -5,6 +5,7 @@
     xmlns:local="using:Music_thing"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,24 +14,67 @@
         <!--<DataTemplate x:DataType="local:Album">
             
         </DataTemplate>-->
-        <Image Width="400" Height="400" Source="{x:Bind GetAlbumArt()}"/>
-        <ListView x:Name="ListViewSongs" Margin="20,20,20,0" ItemsSource="{x:Bind Songs}">
-            
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Song">
-                    <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                        <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind TrackNumber}"/>
-                        <Button x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
-                        <TextBlock Text="{x:Bind id}" VerticalAlignment="Center" Width="75" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind Album}" VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind Artist}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind Year}" VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="100"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!--<ListBox Height="50" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <Image Width="400" Height="40" Source="{x:Bind GetAlbumArt()}"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+            </ListBox>-->
+                <StackPanel Orientation="Horizontal" Margin="20,20,20,20">
+                    <Image Width="250" Height="250" Source="{x:Bind GetAlbumArt()}"/>
+                    <StackPanel>
+                        <TextBlock Padding="16" FontSize="37" Margin="0,-25,0,0" Text="{x:Bind GetAlbumName()}"/>
+                        <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetArtistName()}"/>
+                        <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetYear()}"/>
                     </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                </StackPanel>
+                <controls:TabView x:Name="Tabs" 
+                          CanCloseTabs="True"
+                          IsCloseButtonOverlay="False"
+                          CanDragItems="True"
+                          CanReorderItems="True"
+                          AllowDrop="True" >
+                    <controls:TabView.Resources>
+                        <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
+                        <x:Double x:Key="TabViewItemHeaderMinWidth">90</x:Double>
+                        <x:Double x:Key="TabViewItemHeaderMaxWidth">200</x:Double>
+                    </controls:TabView.Resources>
+                    <controls:TabViewItem Header="Original Album" IsClosable="False">
+                        <ListView x:Name="ListViewSongs" Margin="20,20,20,0" ItemsSource="{x:Bind Songs}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local:Song">
+                                    <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0">
+                                        <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind TrackNumber}"/>
+                                        <Button x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
+                                        <TextBlock Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="100"/>
+                                        <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
+                                        <TextBlock Text="{x:Bind Artist}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                                        <TextBlock Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </controls:TabViewItem>
+                    <controls:TabViewItem Header="Custom Album Version">
+                        <TextBlock Padding="16">A 2nd Tab.</TextBlock>
+                    </controls:TabViewItem>
+                    <Button>New Flavour</Button>
+                </controls:TabView>
+            </StackPanel>
+        </ScrollViewer>
+
+
 
     </Grid>
 </Page>

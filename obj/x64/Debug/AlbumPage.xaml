@@ -5,6 +5,7 @@
     xmlns:local="using:Music_thing"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,24 +14,66 @@
         <!--<DataTemplate x:DataType="local:Album">
             
         </DataTemplate>-->
-        <Image x:ConnectionId='2' Width="400" Height="400"                                />
-        <ListView x:ConnectionId='3' x:Name="ListViewSongs" Margin="20,20,20,0"                             >
-            
-            <ListView.ItemTemplate>
-                <DataTemplate                        >
-                    <StackPanel x:ConnectionId='4' Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                        <Button x:ConnectionId='5' x:Name="playButton"                           FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0"                           />
-                        <Button x:ConnectionId='6' x:Name="addToPlaylistButton"                                    FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0"                  />
-                        <TextBlock x:ConnectionId='7'                    VerticalAlignment="Center" Width="75" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='8'                       VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='9'                       VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='10'                        VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='11'                      VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='12'                             VerticalAlignment="Center" Width="100"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!--<ListBox Height="50" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <Image Width="400" Height="40" Source="{x:Bind GetAlbumArt()}"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+                <ListBoxItem Content="aaaaaaaaaaa"/>
+            </ListBox>-->
+                <StackPanel Orientation="Horizontal" Margin="20,20,20,20">
+                    <Image x:ConnectionId='11' Width="250" Height="250"                                />
+                    <StackPanel>
+                        <TextBlock x:ConnectionId='12' Padding="16" FontSize="37" Margin="0,-25,0,0"                               />
+                        <TextBlock x:ConnectionId='13' Padding="16" FontSize="15" Margin="2,-30,0,0"                                />
+                        <TextBlock x:ConnectionId='14' Padding="16" FontSize="15" Margin="2,-30,0,0"                          />
                     </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                </StackPanel>
+                <controls:TabView x:ConnectionId='2' x:Name="Tabs" 
+                          CanCloseTabs="True"
+                          IsCloseButtonOverlay="False"
+                          CanDragItems="True"
+                          CanReorderItems="True"
+                          AllowDrop="True">
+                    <controls:TabView.Resources>
+                        <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
+                        <x:Double x:Key="TabViewItemHeaderMinWidth">90</x:Double>
+                        <x:Double x:Key="TabViewItemHeaderMaxWidth">200</x:Double>
+                    </controls:TabView.Resources>
+                    <controls:TabViewItem Header="Original Album" IsClosable="False">
+                        <ListView x:ConnectionId='3' x:Name="ListViewSongs" Margin="20,20,20,0"                             >
+                            <ListView.ItemTemplate>
+                                <DataTemplate                        >
+                                    <StackPanel x:ConnectionId='4' Orientation="Horizontal" Height="44" Margin="0,0,0,0">
+                                        <Button x:ConnectionId='5' x:Name="playButton"                           FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0"                           />
+                                        <Button x:ConnectionId='6' x:Name="addToPlaylistButton"                                    FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0"                  />
+                                        <TextBlock x:ConnectionId='7'                             VerticalAlignment="Center" Width="100"/>
+                                        <TextBlock x:ConnectionId='8'                       VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
+                                        <TextBlock x:ConnectionId='9'                        VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                                        <TextBlock x:ConnectionId='10'                               VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </controls:TabViewItem>
+                    <controls:TabViewItem Header="Custom Album Version">
+                        <TextBlock Padding="16">A 2nd Tab.</TextBlock>
+                    </controls:TabViewItem>
+                </controls:TabView>
+            </StackPanel>
+        </ScrollViewer>
+
+
 
     </Grid>
 </Page>

@@ -23,6 +23,8 @@ namespace Music_thing
         //public BitmapImage albumart;
         public Windows.UI.Xaml.Media.ImageSource albumart200;
 
+        public Windows.UI.Xaml.Media.ImageSource albumart250;
+
         public List<int> Songids { get; set; }
         = new List<int>();
 
@@ -59,21 +61,36 @@ namespace Music_thing
             Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
         }
 
+
         public async void SetAlbumArt(int songid)
         {
             Song song = SongListStorage.SongDict[songid];
             if (albumart200 == null)
             {
-                var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
+                var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
                     var bitmapImage = new BitmapImage();
                     bitmapImage.SetSource(thumbnail);
                     //ImageControl.Source = bitmapImage;
+
                     bitmapImage.DecodePixelHeight = 200;
                     bitmapImage.DecodePixelWidth = 200;
                     albumart200 = bitmapImage;
                 }
+
+                thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    //ImageControl.Source = bitmapImage;
+
+                    bitmapImage.DecodePixelHeight = 250;
+                    bitmapImage.DecodePixelWidth = 250;
+                    albumart250 = bitmapImage;
+                }
+
 
                 //using (var )
             }
