@@ -117,6 +117,18 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
+                var userXamlType = xamlType as global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
+                }
                 if (xamlType != null)
                 {
                     _xamlTypeCacheByName.Add(xamlType.FullName, xamlType);
@@ -143,6 +155,18 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 if(typeIndex != -1)
                 {
                     xamlType = CreateXamlType(typeIndex);
+                }
+                var userXamlType = xamlType as global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
                 }
                 if (xamlType != null)
                 {
@@ -189,7 +213,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[26];
+            _typeNameTable = new string[52];
             _typeNameTable[0] = "Music_thing.AlbumList";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -198,26 +222,52 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeNameTable[5] = "Object";
             _typeNameTable[6] = "Music_thing.Album";
             _typeNameTable[7] = "String";
-            _typeNameTable[8] = "System.Collections.Generic.List`1<Int32>";
-            _typeNameTable[9] = "Int32";
-            _typeNameTable[10] = "Music_thing.ArtistList";
-            _typeNameTable[11] = "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>";
-            _typeNameTable[12] = "System.Collections.ObjectModel.Collection`1<Music_thing.Artist>";
-            _typeNameTable[13] = "Music_thing.Artist";
-            _typeNameTable[14] = "Music_thing.MainPage";
-            _typeNameTable[15] = "Music_thing.NowPlaying";
-            _typeNameTable[16] = "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>";
-            _typeNameTable[17] = "System.Collections.ObjectModel.Collection`1<Music_thing.Song>";
-            _typeNameTable[18] = "Music_thing.Song";
-            _typeNameTable[19] = "TimeSpan";
-            _typeNameTable[20] = "System.ValueType";
-            _typeNameTable[21] = "UInt32";
-            _typeNameTable[22] = "Windows.Storage.StorageFile";
-            _typeNameTable[23] = "Music_thing.RecentlyPlayed";
-            _typeNameTable[24] = "Music_thing.SettingsPage";
-            _typeNameTable[25] = "Music_thing.SongList";
+            _typeNameTable[8] = "Int32";
+            _typeNameTable[9] = "System.Collections.Generic.List`1<Int32>";
+            _typeNameTable[10] = "Microsoft.Toolkit.Uwp.UI.Controls.TabView";
+            _typeNameTable[11] = "Windows.UI.Xaml.Controls.ListViewBase";
+            _typeNameTable[12] = "Windows.UI.Xaml.Controls.ItemsControl";
+            _typeNameTable[13] = "Boolean";
+            _typeNameTable[14] = "Windows.UI.Xaml.DataTemplate";
+            _typeNameTable[15] = "Double";
+            _typeNameTable[16] = "Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode";
+            _typeNameTable[17] = "System.Enum";
+            _typeNameTable[18] = "System.ValueType";
+            _typeNameTable[19] = "Windows.UI.Xaml.Controls.ColumnDefinition";
+            _typeNameTable[20] = "Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem";
+            _typeNameTable[21] = "Windows.UI.Xaml.Controls.ListViewItem";
+            _typeNameTable[22] = "Windows.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[23] = "Windows.UI.Xaml.Controls.IconElement";
+            _typeNameTable[24] = "Music_thing.AlbumPage";
+            _typeNameTable[25] = "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>";
+            _typeNameTable[26] = "System.Collections.ObjectModel.Collection`1<Music_thing.Song>";
+            _typeNameTable[27] = "Music_thing.Song";
+            _typeNameTable[28] = "TimeSpan";
+            _typeNameTable[29] = "UInt32";
+            _typeNameTable[30] = "Windows.Storage.StorageFile";
+            _typeNameTable[31] = "Music_thing.ArtistList";
+            _typeNameTable[32] = "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>";
+            _typeNameTable[33] = "System.Collections.ObjectModel.Collection`1<Music_thing.Artist>";
+            _typeNameTable[34] = "Music_thing.Artist";
+            _typeNameTable[35] = "Music_thing.MainPage";
+            _typeNameTable[36] = "Music_thing.NowPlaying";
+            _typeNameTable[37] = "Music_thing.RecentlyPlayed";
+            _typeNameTable[38] = "Music_thing.SettingsPage";
+            _typeNameTable[39] = "Music_thing.SongList";
+            _typeNameTable[40] = "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid";
+            _typeNameTable[41] = "Windows.UI.Xaml.Controls.Grid";
+            _typeNameTable[42] = "Windows.UI.Xaml.Controls.Panel";
+            _typeNameTable[43] = "Windows.UI.Xaml.Controls.Orientation";
+            _typeNameTable[44] = "System.Nullable`1<Boolean>";
+            _typeNameTable[45] = "Windows.UI.Xaml.FrameworkElement";
+            _typeNameTable[46] = "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool";
+            _typeNameTable[47] = "Windows.UI.Xaml.Markup.MarkupExtension";
+            _typeNameTable[48] = "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice";
+            _typeNameTable[49] = "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter";
+            _typeNameTable[50] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[51] = "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToVisibilityConverter";
 
-            _typeTable = new global::System.Type[26];
+            _typeTable = new global::System.Type[52];
             _typeTable[0] = typeof(global::Music_thing.AlbumList);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -226,24 +276,50 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeTable[5] = typeof(global::System.Object);
             _typeTable[6] = typeof(global::Music_thing.Album);
             _typeTable[7] = typeof(global::System.String);
-            _typeTable[8] = typeof(global::System.Collections.Generic.List<global::System.Int32>);
-            _typeTable[9] = typeof(global::System.Int32);
-            _typeTable[10] = typeof(global::Music_thing.ArtistList);
-            _typeTable[11] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Artist>);
-            _typeTable[12] = typeof(global::System.Collections.ObjectModel.Collection<global::Music_thing.Artist>);
-            _typeTable[13] = typeof(global::Music_thing.Artist);
-            _typeTable[14] = typeof(global::Music_thing.MainPage);
-            _typeTable[15] = typeof(global::Music_thing.NowPlaying);
-            _typeTable[16] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>);
-            _typeTable[17] = typeof(global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>);
-            _typeTable[18] = typeof(global::Music_thing.Song);
-            _typeTable[19] = typeof(global::System.TimeSpan);
-            _typeTable[20] = typeof(global::System.ValueType);
-            _typeTable[21] = typeof(global::System.UInt32);
-            _typeTable[22] = typeof(global::Windows.Storage.StorageFile);
-            _typeTable[23] = typeof(global::Music_thing.RecentlyPlayed);
-            _typeTable[24] = typeof(global::Music_thing.SettingsPage);
-            _typeTable[25] = typeof(global::Music_thing.SongList);
+            _typeTable[8] = typeof(global::System.Int32);
+            _typeTable[9] = typeof(global::System.Collections.Generic.List<global::System.Int32>);
+            _typeTable[10] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.TabView);
+            _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.ListViewBase);
+            _typeTable[12] = typeof(global::Windows.UI.Xaml.Controls.ItemsControl);
+            _typeTable[13] = typeof(global::System.Boolean);
+            _typeTable[14] = typeof(global::Windows.UI.Xaml.DataTemplate);
+            _typeTable[15] = typeof(global::System.Double);
+            _typeTable[16] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode);
+            _typeTable[17] = typeof(global::System.Enum);
+            _typeTable[18] = typeof(global::System.ValueType);
+            _typeTable[19] = typeof(global::Windows.UI.Xaml.Controls.ColumnDefinition);
+            _typeTable[20] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem);
+            _typeTable[21] = typeof(global::Windows.UI.Xaml.Controls.ListViewItem);
+            _typeTable[22] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
+            _typeTable[23] = typeof(global::Windows.UI.Xaml.Controls.IconElement);
+            _typeTable[24] = typeof(global::Music_thing.AlbumPage);
+            _typeTable[25] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>);
+            _typeTable[26] = typeof(global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>);
+            _typeTable[27] = typeof(global::Music_thing.Song);
+            _typeTable[28] = typeof(global::System.TimeSpan);
+            _typeTable[29] = typeof(global::System.UInt32);
+            _typeTable[30] = typeof(global::Windows.Storage.StorageFile);
+            _typeTable[31] = typeof(global::Music_thing.ArtistList);
+            _typeTable[32] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Artist>);
+            _typeTable[33] = typeof(global::System.Collections.ObjectModel.Collection<global::Music_thing.Artist>);
+            _typeTable[34] = typeof(global::Music_thing.Artist);
+            _typeTable[35] = typeof(global::Music_thing.MainPage);
+            _typeTable[36] = typeof(global::Music_thing.NowPlaying);
+            _typeTable[37] = typeof(global::Music_thing.RecentlyPlayed);
+            _typeTable[38] = typeof(global::Music_thing.SettingsPage);
+            _typeTable[39] = typeof(global::Music_thing.SongList);
+            _typeTable[40] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid);
+            _typeTable[41] = typeof(global::Windows.UI.Xaml.Controls.Grid);
+            _typeTable[42] = typeof(global::Windows.UI.Xaml.Controls.Panel);
+            _typeTable[43] = typeof(global::Windows.UI.Xaml.Controls.Orientation);
+            _typeTable[44] = typeof(global::System.Nullable<global::System.Boolean>);
+            _typeTable[45] = typeof(global::Windows.UI.Xaml.FrameworkElement);
+            _typeTable[46] = typeof(global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool);
+            _typeTable[47] = typeof(global::Windows.UI.Xaml.Markup.MarkupExtension);
+            _typeTable[48] = typeof(global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice);
+            _typeTable[49] = typeof(global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter);
+            _typeTable[50] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[51] = typeof(global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToVisibilityConverter);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -282,19 +358,27 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private object Activate_3_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Album>(); }
         private object Activate_4_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Album>(); }
         private object Activate_6_Album() { return new global::Music_thing.Album(); }
-        private object Activate_8_List() { return new global::System.Collections.Generic.List<global::System.Int32>(); }
-        private object Activate_10_ArtistList() { return new global::Music_thing.ArtistList(); }
-        private object Activate_11_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Artist>(); }
-        private object Activate_12_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Artist>(); }
-        private object Activate_13_Artist() { return new global::Music_thing.Artist(); }
-        private object Activate_14_MainPage() { return new global::Music_thing.MainPage(); }
-        private object Activate_15_NowPlaying() { return new global::Music_thing.NowPlaying(); }
-        private object Activate_16_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>(); }
-        private object Activate_17_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>(); }
-        private object Activate_18_Song() { return new global::Music_thing.Song(); }
-        private object Activate_23_RecentlyPlayed() { return new global::Music_thing.RecentlyPlayed(); }
-        private object Activate_24_SettingsPage() { return new global::Music_thing.SettingsPage(); }
-        private object Activate_25_SongList() { return new global::Music_thing.SongList(); }
+        private object Activate_9_List() { return new global::System.Collections.Generic.List<global::System.Int32>(); }
+        private object Activate_10_TabView() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.TabView(); }
+        private object Activate_20_TabViewItem() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem(); }
+        private object Activate_24_AlbumPage() { return new global::Music_thing.AlbumPage(); }
+        private object Activate_25_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>(); }
+        private object Activate_26_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Song>(); }
+        private object Activate_27_Song() { return new global::Music_thing.Song(); }
+        private object Activate_31_ArtistList() { return new global::Music_thing.ArtistList(); }
+        private object Activate_32_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Artist>(); }
+        private object Activate_33_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Artist>(); }
+        private object Activate_34_Artist() { return new global::Music_thing.Artist(); }
+        private object Activate_35_MainPage() { return new global::Music_thing.MainPage(); }
+        private object Activate_36_NowPlaying() { return new global::Music_thing.NowPlaying(); }
+        private object Activate_37_RecentlyPlayed() { return new global::Music_thing.RecentlyPlayed(); }
+        private object Activate_38_SettingsPage() { return new global::Music_thing.SettingsPage(); }
+        private object Activate_39_SongList() { return new global::Music_thing.SongList(); }
+        private object Activate_40_UniformGrid() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid(); }
+        private object Activate_46_NullableBool() { return new global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool(); }
+        private object Activate_48_OnDevice() { return new global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice(); }
+        private object Activate_49_DoubleToObjectConverter() { return new global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter(); }
+        private object Activate_51_DoubleToVisibilityConverter() { return new global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToVisibilityConverter(); }
         private void VectorAdd_3_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Album>)instance;
@@ -307,34 +391,34 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             var newItem = (global::Music_thing.Album)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_8_List(object instance, object item)
+        private void VectorAdd_9_List(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.Int32>)instance;
             var newItem = (global::System.Int32)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_11_ObservableCollection(object instance, object item)
-        {
-            var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Artist>)instance;
-            var newItem = (global::Music_thing.Artist)item;
-            collection.Add(newItem);
-        }
-        private void VectorAdd_12_Collection(object instance, object item)
-        {
-            var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Artist>)instance;
-            var newItem = (global::Music_thing.Artist)item;
-            collection.Add(newItem);
-        }
-        private void VectorAdd_16_ObservableCollection(object instance, object item)
+        private void VectorAdd_25_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Song>)instance;
             var newItem = (global::Music_thing.Song)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_17_Collection(object instance, object item)
+        private void VectorAdd_26_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Song>)instance;
             var newItem = (global::Music_thing.Song)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_32_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Artist>)instance;
+            var newItem = (global::Music_thing.Artist)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_33_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Music_thing.Artist>)instance;
+            var newItem = (global::Music_thing.Artist)item;
             collection.Add(newItem);
         }
 
@@ -387,6 +471,8 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 userType.Activator = Activate_6_Album;
                 userType.AddMemberName("name");
                 userType.AddMemberName("artist");
+                userType.AddMemberName("key");
+                userType.AddMemberName("year");
                 userType.AddMemberName("Songids");
                 userType.SetIsLocalType();
                 xamlType = userType;
@@ -396,79 +482,125 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  System.Collections.Generic.List`1<Int32>
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.CollectionAdd = VectorAdd_8_List;
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
-                break;
-
-            case 9:   //  Int32
+            case 8:   //  Int32
                 xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  Music_thing.ArtistList
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_10_ArtistList;
-                userType.AddMemberName("Artists");
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 11:   //  System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Music_thing.Artist>"));
-                userType.CollectionAdd = VectorAdd_11_ObservableCollection;
+            case 9:   //  System.Collections.Generic.List`1<Int32>
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.CollectionAdd = VectorAdd_9_List;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 12:   //  System.Collections.ObjectModel.Collection`1<Music_thing.Artist>
+            case 10:   //  Microsoft.Toolkit.Uwp.UI.Controls.TabView
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ListViewBase"));
+                userType.Activator = Activate_10_TabView;
+                userType.AddMemberName("CanCloseTabs");
+                userType.AddMemberName("IsCloseButtonOverlay");
+                userType.AddMemberName("TabStartHeader");
+                userType.AddMemberName("TabStartHeaderTemplate");
+                userType.AddMemberName("TabActionHeader");
+                userType.AddMemberName("TabActionHeaderTemplate");
+                userType.AddMemberName("TabEndHeader");
+                userType.AddMemberName("TabEndHeaderTemplate");
+                userType.AddMemberName("ItemHeaderTemplate");
+                userType.AddMemberName("SelectedTabWidth");
+                userType.AddMemberName("TabWidthBehavior");
+                userType.AddMemberName("IgnoreColumn");
+                userType.AddMemberName("ConstrainColumn");
+                xamlType = userType;
+                break;
+
+            case 11:   //  Windows.UI.Xaml.Controls.ListViewBase
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  Windows.UI.Xaml.Controls.ItemsControl
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  Boolean
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 14:   //  Windows.UI.Xaml.DataTemplate
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 15:   //  Double
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 16:   //  Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Actual", global::Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode.Actual);
+                userType.AddEnumValue("Compact", global::Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode.Compact);
+                userType.AddEnumValue("Equal", global::Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode.Equal);
+                xamlType = userType;
+                break;
+
+            case 17:   //  System.Enum
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                xamlType = userType;
+                break;
+
+            case 18:   //  System.ValueType
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_12_Collection;
-                userType.CollectionAdd = VectorAdd_12_Collection;
                 xamlType = userType;
                 break;
 
-            case 13:   //  Music_thing.Artist
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_13_Artist;
-                userType.AddMemberName("name");
-                userType.SetIsLocalType();
+            case 19:   //  Windows.UI.Xaml.Controls.ColumnDefinition
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 20:   //  Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ListViewItem"));
+                userType.Activator = Activate_20_TabViewItem;
+                userType.AddMemberName("Header");
+                userType.AddMemberName("IsClosable");
+                userType.AddMemberName("Icon");
+                userType.AddMemberName("HeaderTemplate");
                 xamlType = userType;
                 break;
 
-            case 14:   //  Music_thing.MainPage
+            case 21:   //  Windows.UI.Xaml.Controls.ListViewItem
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 22:   //  Windows.UI.Xaml.Controls.ContentControl
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 23:   //  Windows.UI.Xaml.Controls.IconElement
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 24:   //  Music_thing.AlbumPage
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_14_MainPage;
+                userType.Activator = Activate_24_AlbumPage;
+                userType.AddMemberName("Songs");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 15:   //  Music_thing.NowPlaying
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_15_NowPlaying;
-                userType.AddMemberName("Playlist");
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 16:   //  System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>
+            case 25:   //  System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Music_thing.Song>"));
-                userType.CollectionAdd = VectorAdd_16_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_25_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 17:   //  System.Collections.ObjectModel.Collection`1<Music_thing.Song>
+            case 26:   //  System.Collections.ObjectModel.Collection`1<Music_thing.Song>
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_17_Collection;
-                userType.CollectionAdd = VectorAdd_17_Collection;
+                userType.Activator = Activate_26_Collection;
+                userType.CollectionAdd = VectorAdd_26_Collection;
                 xamlType = userType;
                 break;
 
-            case 18:   //  Music_thing.Song
+            case 27:   //  Music_thing.Song
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_18_Song;
+                userType.Activator = Activate_27_Song;
                 userType.AddMemberName("id");
                 userType.AddMemberName("FileName");
                 userType.AddMemberName("Title");
@@ -484,57 +616,242 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 19:   //  TimeSpan
+            case 28:   //  TimeSpan
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 20:   //  System.ValueType
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                xamlType = userType;
-                break;
-
-            case 21:   //  UInt32
+            case 29:   //  UInt32
                 xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 22:   //  Windows.Storage.StorageFile
+            case 30:   //  Windows.Storage.StorageFile
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 23:   //  Music_thing.RecentlyPlayed
+            case 31:   //  Music_thing.ArtistList
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_23_RecentlyPlayed;
+                userType.Activator = Activate_31_ArtistList;
+                userType.AddMemberName("Artists");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 24:   //  Music_thing.SettingsPage
-                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_24_SettingsPage;
+            case 32:   //  System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Music_thing.Artist>"));
+                userType.CollectionAdd = VectorAdd_32_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 33:   //  System.Collections.ObjectModel.Collection`1<Music_thing.Artist>
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_33_Collection;
+                userType.CollectionAdd = VectorAdd_33_Collection;
+                xamlType = userType;
+                break;
+
+            case 34:   //  Music_thing.Artist
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_34_Artist;
+                userType.AddMemberName("name");
+                userType.AddMemberName("year");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 25:   //  Music_thing.SongList
+            case 35:   //  Music_thing.MainPage
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_25_SongList;
+                userType.Activator = Activate_35_MainPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 36:   //  Music_thing.NowPlaying
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_36_NowPlaying;
+                userType.AddMemberName("Playlist");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 37:   //  Music_thing.RecentlyPlayed
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_37_RecentlyPlayed;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 38:   //  Music_thing.SettingsPage
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_38_SettingsPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 39:   //  Music_thing.SongList
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_39_SongList;
                 userType.AddMemberName("Songs");
                 userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 40:   //  Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Grid"));
+                userType.Activator = Activate_40_UniformGrid;
+                userType.AddMemberName("Columns");
+                userType.AddMemberName("FirstColumn");
+                userType.AddMemberName("Orientation");
+                userType.AddMemberName("Rows");
+                userType.AddMemberName("AutoLayout");
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 41:   //  Windows.UI.Xaml.Controls.Grid
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 42:   //  Windows.UI.Xaml.Controls.Panel
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 43:   //  Windows.UI.Xaml.Controls.Orientation
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 44:   //  System.Nullable`1<Boolean>
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 45:   //  Windows.UI.Xaml.FrameworkElement
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 46:   //  Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Markup.MarkupExtension"));
+                userType.Activator = Activate_46_NullableBool;
+                userType.AddMemberName("Value");
+                userType.AddMemberName("IsNull");
+                userType.SetIsBindable();
+                userType.SetIsMarkupExtension();
+                xamlType = userType;
+                break;
+
+            case 47:   //  Windows.UI.Xaml.Markup.MarkupExtension
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 48:   //  Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Markup.MarkupExtension"));
+                userType.Activator = Activate_48_OnDevice;
+                userType.AddMemberName("Default");
+                userType.AddMemberName("Desktop");
+                userType.AddMemberName("Holographic");
+                userType.AddMemberName("IoT");
+                userType.AddMemberName("Team");
+                userType.AddMemberName("Xbox");
+                userType.SetIsBindable();
+                userType.SetIsMarkupExtension();
+                xamlType = userType;
+                break;
+
+            case 49:   //  Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_49_DoubleToObjectConverter;
+                userType.AddMemberName("TrueValue");
+                userType.AddMemberName("FalseValue");
+                userType.AddMemberName("NullValue");
+                userType.AddMemberName("GreaterThan");
+                userType.AddMemberName("LessThan");
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 50:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 51:   //  Microsoft.Toolkit.Uwp.UI.Converters.DoubleToVisibilityConverter
+                userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter"));
+                userType.Activator = Activate_51_DoubleToVisibilityConverter;
+                userType.SetIsBindable();
                 xamlType = userType;
                 break;
             }
             return xamlType;
         }
 
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> _otherProviders;
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> OtherProviders
+        {
+            get
+            {
+                if(_otherProviders == null)
+                {
+                    var otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
+                    global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
+                    provider = new global::Microsoft.Toolkit.Uwp.UI.Controls.Microsoft_Toolkit_Uwp_UI_Controls_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    _otherProviders = otherProviders;
+                }
+                return _otherProviders;
+            }
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForName(string typeName)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(typeName);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForType(global::System.Type type)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(type);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
 
         private object get_0_AlbumList_Albums(object instance)
         {
             var that = (global::Music_thing.AlbumList)instance;
             return that.Albums;
+        }
+        private void set_0_AlbumList_Albums(object instance, object Value)
+        {
+            var that = (global::Music_thing.AlbumList)instance;
+            that.Albums = (global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Album>)Value;
         }
         private object get_1_Album_name(object instance)
         {
@@ -556,150 +873,534 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             var that = (global::Music_thing.Album)instance;
             that.artist = (global::System.String)Value;
         }
-        private object get_3_Album_Songids(object instance)
+        private object get_3_Album_key(object instance)
+        {
+            var that = (global::Music_thing.Album)instance;
+            return that.key;
+        }
+        private void set_3_Album_key(object instance, object Value)
+        {
+            var that = (global::Music_thing.Album)instance;
+            that.key = (global::System.String)Value;
+        }
+        private object get_4_Album_year(object instance)
+        {
+            var that = (global::Music_thing.Album)instance;
+            return that.year;
+        }
+        private void set_4_Album_year(object instance, object Value)
+        {
+            var that = (global::Music_thing.Album)instance;
+            that.year = (global::System.Int32)Value;
+        }
+        private object get_5_Album_Songids(object instance)
         {
             var that = (global::Music_thing.Album)instance;
             return that.Songids;
         }
-        private void set_3_Album_Songids(object instance, object Value)
+        private void set_5_Album_Songids(object instance, object Value)
         {
             var that = (global::Music_thing.Album)instance;
             that.Songids = (global::System.Collections.Generic.List<global::System.Int32>)Value;
         }
-        private object get_4_ArtistList_Artists(object instance)
+        private object get_6_TabView_CanCloseTabs(object instance)
         {
-            var that = (global::Music_thing.ArtistList)instance;
-            return that.Artists;
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.CanCloseTabs;
         }
-        private object get_5_Artist_name(object instance)
+        private void set_6_TabView_CanCloseTabs(object instance, object Value)
         {
-            var that = (global::Music_thing.Artist)instance;
-            return that.name;
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.CanCloseTabs = (global::System.Boolean)Value;
         }
-        private void set_5_Artist_name(object instance, object Value)
+        private object get_7_TabView_IsCloseButtonOverlay(object instance)
         {
-            var that = (global::Music_thing.Artist)instance;
-            that.name = (global::System.String)Value;
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.IsCloseButtonOverlay;
         }
-        private object get_6_NowPlaying_Playlist(object instance)
+        private void set_7_TabView_IsCloseButtonOverlay(object instance, object Value)
         {
-            var that = (global::Music_thing.NowPlaying)instance;
-            return that.Playlist;
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.IsCloseButtonOverlay = (global::System.Boolean)Value;
         }
-        private object get_7_Song_id(object instance)
+        private object get_8_TabView_TabStartHeader(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabStartHeader;
+        }
+        private void set_8_TabView_TabStartHeader(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabStartHeader = (global::System.Object)Value;
+        }
+        private object get_9_TabView_TabStartHeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabStartHeaderTemplate;
+        }
+        private void set_9_TabView_TabStartHeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabStartHeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_10_TabView_TabActionHeader(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabActionHeader;
+        }
+        private void set_10_TabView_TabActionHeader(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabActionHeader = (global::System.Object)Value;
+        }
+        private object get_11_TabView_TabActionHeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabActionHeaderTemplate;
+        }
+        private void set_11_TabView_TabActionHeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabActionHeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_12_TabView_TabEndHeader(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabEndHeader;
+        }
+        private void set_12_TabView_TabEndHeader(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabEndHeader = (global::System.Object)Value;
+        }
+        private object get_13_TabView_TabEndHeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabEndHeaderTemplate;
+        }
+        private void set_13_TabView_TabEndHeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabEndHeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_14_TabView_ItemHeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.ItemHeaderTemplate;
+        }
+        private void set_14_TabView_ItemHeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.ItemHeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_15_TabView_SelectedTabWidth(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.SelectedTabWidth;
+        }
+        private void set_15_TabView_SelectedTabWidth(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.SelectedTabWidth = (global::System.Double)Value;
+        }
+        private object get_16_TabView_TabWidthBehavior(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            return that.TabWidthBehavior;
+        }
+        private void set_16_TabView_TabWidthBehavior(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabView)instance;
+            that.TabWidthBehavior = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode)Value;
+        }
+        private object get_17_TabView_IgnoreColumn(object instance)
+        {
+            return global::Microsoft.Toolkit.Uwp.UI.Controls.TabView.GetIgnoreColumn((global::Windows.UI.Xaml.Controls.ColumnDefinition)instance);
+        }
+        private void set_17_TabView_IgnoreColumn(object instance, object Value)
+        {
+            global::Microsoft.Toolkit.Uwp.UI.Controls.TabView.SetIgnoreColumn((global::Windows.UI.Xaml.Controls.ColumnDefinition)instance, (global::System.Boolean)Value);
+        }
+        private object get_18_TabView_ConstrainColumn(object instance)
+        {
+            return global::Microsoft.Toolkit.Uwp.UI.Controls.TabView.GetConstrainColumn((global::Windows.UI.Xaml.Controls.ColumnDefinition)instance);
+        }
+        private void set_18_TabView_ConstrainColumn(object instance, object Value)
+        {
+            global::Microsoft.Toolkit.Uwp.UI.Controls.TabView.SetConstrainColumn((global::Windows.UI.Xaml.Controls.ColumnDefinition)instance, (global::System.Boolean)Value);
+        }
+        private object get_19_TabViewItem_Header(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            return that.Header;
+        }
+        private void set_19_TabViewItem_Header(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            that.Header = (global::System.Object)Value;
+        }
+        private object get_20_TabViewItem_IsClosable(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            return that.IsClosable;
+        }
+        private void set_20_TabViewItem_IsClosable(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            that.IsClosable = (global::System.Boolean)Value;
+        }
+        private object get_21_TabViewItem_Icon(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            return that.Icon;
+        }
+        private void set_21_TabViewItem_Icon(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            that.Icon = (global::Windows.UI.Xaml.Controls.IconElement)Value;
+        }
+        private object get_22_TabViewItem_HeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            return that.HeaderTemplate;
+        }
+        private void set_22_TabViewItem_HeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem)instance;
+            that.HeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_23_AlbumPage_Songs(object instance)
+        {
+            var that = (global::Music_thing.AlbumPage)instance;
+            return that.Songs;
+        }
+        private void set_23_AlbumPage_Songs(object instance, object Value)
+        {
+            var that = (global::Music_thing.AlbumPage)instance;
+            that.Songs = (global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Song>)Value;
+        }
+        private object get_24_Song_id(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.id;
         }
-        private void set_7_Song_id(object instance, object Value)
+        private void set_24_Song_id(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.id = (global::System.Int32)Value;
         }
-        private object get_8_Song_FileName(object instance)
+        private object get_25_Song_FileName(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.FileName;
         }
-        private void set_8_Song_FileName(object instance, object Value)
+        private void set_25_Song_FileName(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.FileName = (global::System.String)Value;
         }
-        private object get_9_Song_Title(object instance)
+        private object get_26_Song_Title(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Title;
         }
-        private void set_9_Song_Title(object instance, object Value)
+        private void set_26_Song_Title(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_10_Song_Artist(object instance)
+        private object get_27_Song_Artist(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Artist;
         }
-        private void set_10_Song_Artist(object instance, object Value)
+        private void set_27_Song_Artist(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Artist = (global::System.String)Value;
         }
-        private object get_11_Song_AlbumArtist(object instance)
+        private object get_28_Song_AlbumArtist(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.AlbumArtist;
         }
-        private void set_11_Song_AlbumArtist(object instance, object Value)
+        private void set_28_Song_AlbumArtist(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.AlbumArtist = (global::System.String)Value;
         }
-        private object get_12_Song_Album(object instance)
+        private object get_29_Song_Album(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Album;
         }
-        private void set_12_Song_Album(object instance, object Value)
+        private void set_29_Song_Album(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Album = (global::System.String)Value;
         }
-        private object get_13_Song_Duration(object instance)
+        private object get_30_Song_Duration(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Duration;
         }
-        private void set_13_Song_Duration(object instance, object Value)
+        private void set_30_Song_Duration(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Duration = (global::System.TimeSpan)Value;
         }
-        private object get_14_Song_Year(object instance)
+        private object get_31_Song_Year(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Year;
         }
-        private void set_14_Song_Year(object instance, object Value)
+        private void set_31_Song_Year(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Year = (global::System.UInt32)Value;
         }
-        private object get_15_Song_TrackNumber(object instance)
+        private object get_32_Song_TrackNumber(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.TrackNumber;
         }
-        private void set_15_Song_TrackNumber(object instance, object Value)
+        private void set_32_Song_TrackNumber(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
-            that.TrackNumber = (global::System.UInt32)Value;
+            that.TrackNumber = (global::System.Int32)Value;
         }
-        private object get_16_Song_Bitrate(object instance)
+        private object get_33_Song_Bitrate(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.Bitrate;
         }
-        private void set_16_Song_Bitrate(object instance, object Value)
+        private void set_33_Song_Bitrate(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.Bitrate = (global::System.UInt32)Value;
         }
-        private object get_17_Song_File(object instance)
+        private object get_34_Song_File(object instance)
         {
             var that = (global::Music_thing.Song)instance;
             return that.File;
         }
-        private void set_17_Song_File(object instance, object Value)
+        private void set_34_Song_File(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
             that.File = (global::Windows.Storage.StorageFile)Value;
         }
-        private object get_18_SongList_Songs(object instance)
+        private object get_35_ArtistList_Artists(object instance)
+        {
+            var that = (global::Music_thing.ArtistList)instance;
+            return that.Artists;
+        }
+        private object get_36_Artist_name(object instance)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            return that.name;
+        }
+        private void set_36_Artist_name(object instance, object Value)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            that.name = (global::System.String)Value;
+        }
+        private object get_37_Artist_year(object instance)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            return that.year;
+        }
+        private void set_37_Artist_year(object instance, object Value)
+        {
+            var that = (global::Music_thing.Artist)instance;
+            that.year = (global::System.Int32)Value;
+        }
+        private object get_38_NowPlaying_Playlist(object instance)
+        {
+            var that = (global::Music_thing.NowPlaying)instance;
+            return that.Playlist;
+        }
+        private object get_39_SongList_Songs(object instance)
         {
             var that = (global::Music_thing.SongList)instance;
             return that.Songs;
+        }
+        private object get_40_UniformGrid_Columns(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Columns;
+        }
+        private void set_40_UniformGrid_Columns(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Columns = (global::System.Int32)Value;
+        }
+        private object get_41_UniformGrid_FirstColumn(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.FirstColumn;
+        }
+        private void set_41_UniformGrid_FirstColumn(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.FirstColumn = (global::System.Int32)Value;
+        }
+        private object get_42_UniformGrid_Orientation(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Orientation;
+        }
+        private void set_42_UniformGrid_Orientation(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Orientation = (global::Windows.UI.Xaml.Controls.Orientation)Value;
+        }
+        private object get_43_UniformGrid_Rows(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Rows;
+        }
+        private void set_43_UniformGrid_Rows(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Rows = (global::System.Int32)Value;
+        }
+        private object get_44_UniformGrid_AutoLayout(object instance)
+        {
+            return global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.GetAutoLayout((global::Windows.UI.Xaml.FrameworkElement)instance);
+        }
+        private void set_44_UniformGrid_AutoLayout(object instance, object Value)
+        {
+            global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.SetAutoLayout((global::Windows.UI.Xaml.FrameworkElement)instance, (global::System.Nullable<global::System.Boolean>)Value);
+        }
+        private object get_45_NullableBool_Value(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            return that.Value;
+        }
+        private void set_45_NullableBool_Value(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            that.Value = (global::System.Boolean)Value;
+        }
+        private object get_46_NullableBool_IsNull(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            return that.IsNull;
+        }
+        private void set_46_NullableBool_IsNull(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            that.IsNull = (global::System.Boolean)Value;
+        }
+        private object get_47_OnDevice_Default(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.Default;
+        }
+        private void set_47_OnDevice_Default(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.Default = (global::System.Object)Value;
+        }
+        private object get_48_OnDevice_Desktop(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.Desktop;
+        }
+        private void set_48_OnDevice_Desktop(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.Desktop = (global::System.Object)Value;
+        }
+        private object get_49_OnDevice_Holographic(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.Holographic;
+        }
+        private void set_49_OnDevice_Holographic(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.Holographic = (global::System.Object)Value;
+        }
+        private object get_50_OnDevice_IoT(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.IoT;
+        }
+        private void set_50_OnDevice_IoT(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.IoT = (global::System.Object)Value;
+        }
+        private object get_51_OnDevice_Team(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.Team;
+        }
+        private void set_51_OnDevice_Team(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.Team = (global::System.Object)Value;
+        }
+        private object get_52_OnDevice_Xbox(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            return that.Xbox;
+        }
+        private void set_52_OnDevice_Xbox(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice)instance;
+            that.Xbox = (global::System.Object)Value;
+        }
+        private object get_53_DoubleToObjectConverter_TrueValue(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            return that.TrueValue;
+        }
+        private void set_53_DoubleToObjectConverter_TrueValue(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            that.TrueValue = (global::System.Object)Value;
+        }
+        private object get_54_DoubleToObjectConverter_FalseValue(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            return that.FalseValue;
+        }
+        private void set_54_DoubleToObjectConverter_FalseValue(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            that.FalseValue = (global::System.Object)Value;
+        }
+        private object get_55_DoubleToObjectConverter_NullValue(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            return that.NullValue;
+        }
+        private void set_55_DoubleToObjectConverter_NullValue(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            that.NullValue = (global::System.Object)Value;
+        }
+        private object get_56_DoubleToObjectConverter_GreaterThan(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            return that.GreaterThan;
+        }
+        private void set_56_DoubleToObjectConverter_GreaterThan(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            that.GreaterThan = (global::System.Double)Value;
+        }
+        private object get_57_DoubleToObjectConverter_LessThan(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            return that.LessThan;
+        }
+        private void set_57_DoubleToObjectConverter_LessThan(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter)instance;
+            that.LessThan = (global::System.Double)Value;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
@@ -713,7 +1414,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.AlbumList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Albums", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Album>");
                 xamlMember.Getter = get_0_AlbumList_Albums;
-                xamlMember.SetIsReadOnly();
+                xamlMember.Setter = set_0_AlbumList_Albums;
                 break;
             case "Music_thing.Album.name":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
@@ -727,101 +1428,368 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlMember.Getter = get_2_Album_artist;
                 xamlMember.Setter = set_2_Album_artist;
                 break;
+            case "Music_thing.Album.key":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "key", "String");
+                xamlMember.Getter = get_3_Album_key;
+                xamlMember.Setter = set_3_Album_key;
+                break;
+            case "Music_thing.Album.year":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "year", "Int32");
+                xamlMember.Getter = get_4_Album_year;
+                xamlMember.Setter = set_4_Album_year;
+                break;
             case "Music_thing.Album.Songids":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songids", "System.Collections.Generic.List`1<Int32>");
-                xamlMember.Getter = get_3_Album_Songids;
-                xamlMember.Setter = set_3_Album_Songids;
+                xamlMember.Getter = get_5_Album_Songids;
+                xamlMember.Setter = set_5_Album_Songids;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.CanCloseTabs":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "CanCloseTabs", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_TabView_CanCloseTabs;
+                xamlMember.Setter = set_6_TabView_CanCloseTabs;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.IsCloseButtonOverlay":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "IsCloseButtonOverlay", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_TabView_IsCloseButtonOverlay;
+                xamlMember.Setter = set_7_TabView_IsCloseButtonOverlay;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabStartHeader":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabStartHeader", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_TabView_TabStartHeader;
+                xamlMember.Setter = set_8_TabView_TabStartHeader;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabStartHeaderTemplate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabStartHeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_TabView_TabStartHeaderTemplate;
+                xamlMember.Setter = set_9_TabView_TabStartHeaderTemplate;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabActionHeader":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabActionHeader", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_10_TabView_TabActionHeader;
+                xamlMember.Setter = set_10_TabView_TabActionHeader;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabActionHeaderTemplate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabActionHeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_11_TabView_TabActionHeaderTemplate;
+                xamlMember.Setter = set_11_TabView_TabActionHeaderTemplate;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabEndHeader":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabEndHeader", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_12_TabView_TabEndHeader;
+                xamlMember.Setter = set_12_TabView_TabEndHeader;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabEndHeaderTemplate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabEndHeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_13_TabView_TabEndHeaderTemplate;
+                xamlMember.Setter = set_13_TabView_TabEndHeaderTemplate;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.ItemHeaderTemplate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "ItemHeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_14_TabView_ItemHeaderTemplate;
+                xamlMember.Setter = set_14_TabView_ItemHeaderTemplate;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.SelectedTabWidth":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "SelectedTabWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_15_TabView_SelectedTabWidth;
+                xamlMember.Setter = set_15_TabView_SelectedTabWidth;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.TabWidthBehavior":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TabWidthBehavior", "Microsoft.Toolkit.Uwp.UI.Controls.TabWidthMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_16_TabView_TabWidthBehavior;
+                xamlMember.Setter = set_16_TabView_TabWidthBehavior;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.IgnoreColumn":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "IgnoreColumn", "Boolean");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.Controls.ColumnDefinition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_17_TabView_IgnoreColumn;
+                xamlMember.Setter = set_17_TabView_IgnoreColumn;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabView.ConstrainColumn":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabView");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "ConstrainColumn", "Boolean");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.Controls.ColumnDefinition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_18_TabView_ConstrainColumn;
+                xamlMember.Setter = set_18_TabView_ConstrainColumn;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem.Header":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Header", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_19_TabViewItem_Header;
+                xamlMember.Setter = set_19_TabViewItem_Header;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem.IsClosable":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "IsClosable", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_20_TabViewItem_IsClosable;
+                xamlMember.Setter = set_20_TabViewItem_IsClosable;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem.Icon":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Icon", "Windows.UI.Xaml.Controls.IconElement");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_21_TabViewItem_Icon;
+                xamlMember.Setter = set_21_TabViewItem_Icon;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem.HeaderTemplate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_22_TabViewItem_HeaderTemplate;
+                xamlMember.Setter = set_22_TabViewItem_HeaderTemplate;
+                break;
+            case "Music_thing.AlbumPage.Songs":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.AlbumPage");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songs", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
+                xamlMember.Getter = get_23_AlbumPage_Songs;
+                xamlMember.Setter = set_23_AlbumPage_Songs;
+                break;
+            case "Music_thing.Song.id":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "id", "Int32");
+                xamlMember.Getter = get_24_Song_id;
+                xamlMember.Setter = set_24_Song_id;
+                break;
+            case "Music_thing.Song.FileName":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "FileName", "String");
+                xamlMember.Getter = get_25_Song_FileName;
+                xamlMember.Setter = set_25_Song_FileName;
+                break;
+            case "Music_thing.Song.Title":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.Getter = get_26_Song_Title;
+                xamlMember.Setter = set_26_Song_Title;
+                break;
+            case "Music_thing.Song.Artist":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Artist", "String");
+                xamlMember.Getter = get_27_Song_Artist;
+                xamlMember.Setter = set_27_Song_Artist;
+                break;
+            case "Music_thing.Song.AlbumArtist":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "AlbumArtist", "String");
+                xamlMember.Getter = get_28_Song_AlbumArtist;
+                xamlMember.Setter = set_28_Song_AlbumArtist;
+                break;
+            case "Music_thing.Song.Album":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Album", "String");
+                xamlMember.Getter = get_29_Song_Album;
+                xamlMember.Setter = set_29_Song_Album;
+                break;
+            case "Music_thing.Song.Duration":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Duration", "TimeSpan");
+                xamlMember.Getter = get_30_Song_Duration;
+                xamlMember.Setter = set_30_Song_Duration;
+                break;
+            case "Music_thing.Song.Year":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Year", "UInt32");
+                xamlMember.Getter = get_31_Song_Year;
+                xamlMember.Setter = set_31_Song_Year;
+                break;
+            case "Music_thing.Song.TrackNumber":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrackNumber", "Int32");
+                xamlMember.Getter = get_32_Song_TrackNumber;
+                xamlMember.Setter = set_32_Song_TrackNumber;
+                break;
+            case "Music_thing.Song.Bitrate":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Bitrate", "UInt32");
+                xamlMember.Getter = get_33_Song_Bitrate;
+                xamlMember.Setter = set_33_Song_Bitrate;
+                break;
+            case "Music_thing.Song.File":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "File", "Windows.Storage.StorageFile");
+                xamlMember.Getter = get_34_Song_File;
+                xamlMember.Setter = set_34_Song_File;
                 break;
             case "Music_thing.ArtistList.Artists":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.ArtistList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Artists", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Artist>");
-                xamlMember.Getter = get_4_ArtistList_Artists;
+                xamlMember.Getter = get_35_ArtistList_Artists;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Music_thing.Artist.name":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Artist");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "name", "String");
-                xamlMember.Getter = get_5_Artist_name;
-                xamlMember.Setter = set_5_Artist_name;
+                xamlMember.Getter = get_36_Artist_name;
+                xamlMember.Setter = set_36_Artist_name;
+                break;
+            case "Music_thing.Artist.year":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Artist");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "year", "Int32");
+                xamlMember.Getter = get_37_Artist_year;
+                xamlMember.Setter = set_37_Artist_year;
                 break;
             case "Music_thing.NowPlaying.Playlist":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.NowPlaying");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Playlist", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
-                xamlMember.Getter = get_6_NowPlaying_Playlist;
+                xamlMember.Getter = get_38_NowPlaying_Playlist;
                 xamlMember.SetIsReadOnly();
-                break;
-            case "Music_thing.Song.id":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "id", "Int32");
-                xamlMember.Getter = get_7_Song_id;
-                xamlMember.Setter = set_7_Song_id;
-                break;
-            case "Music_thing.Song.FileName":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "FileName", "String");
-                xamlMember.Getter = get_8_Song_FileName;
-                xamlMember.Setter = set_8_Song_FileName;
-                break;
-            case "Music_thing.Song.Title":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.Getter = get_9_Song_Title;
-                xamlMember.Setter = set_9_Song_Title;
-                break;
-            case "Music_thing.Song.Artist":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Artist", "String");
-                xamlMember.Getter = get_10_Song_Artist;
-                xamlMember.Setter = set_10_Song_Artist;
-                break;
-            case "Music_thing.Song.AlbumArtist":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "AlbumArtist", "String");
-                xamlMember.Getter = get_11_Song_AlbumArtist;
-                xamlMember.Setter = set_11_Song_AlbumArtist;
-                break;
-            case "Music_thing.Song.Album":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Album", "String");
-                xamlMember.Getter = get_12_Song_Album;
-                xamlMember.Setter = set_12_Song_Album;
-                break;
-            case "Music_thing.Song.Duration":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Duration", "TimeSpan");
-                xamlMember.Getter = get_13_Song_Duration;
-                xamlMember.Setter = set_13_Song_Duration;
-                break;
-            case "Music_thing.Song.Year":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Year", "UInt32");
-                xamlMember.Getter = get_14_Song_Year;
-                xamlMember.Setter = set_14_Song_Year;
-                break;
-            case "Music_thing.Song.TrackNumber":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrackNumber", "UInt32");
-                xamlMember.Getter = get_15_Song_TrackNumber;
-                xamlMember.Setter = set_15_Song_TrackNumber;
-                break;
-            case "Music_thing.Song.Bitrate":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Bitrate", "UInt32");
-                xamlMember.Getter = get_16_Song_Bitrate;
-                xamlMember.Setter = set_16_Song_Bitrate;
-                break;
-            case "Music_thing.Song.File":
-                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "File", "Windows.Storage.StorageFile");
-                xamlMember.Getter = get_17_Song_File;
-                xamlMember.Setter = set_17_Song_File;
                 break;
             case "Music_thing.SongList.Songs":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.SongList");
                 xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songs", "System.Collections.ObjectModel.ObservableCollection`1<Music_thing.Song>");
-                xamlMember.Getter = get_18_SongList_Songs;
+                xamlMember.Getter = get_39_SongList_Songs;
                 xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Columns":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Columns", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_40_UniformGrid_Columns;
+                xamlMember.Setter = set_40_UniformGrid_Columns;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.FirstColumn":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "FirstColumn", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_41_UniformGrid_FirstColumn;
+                xamlMember.Setter = set_41_UniformGrid_FirstColumn;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Orientation":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Orientation", "Windows.UI.Xaml.Controls.Orientation");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_42_UniformGrid_Orientation;
+                xamlMember.Setter = set_42_UniformGrid_Orientation;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Rows":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Rows", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_43_UniformGrid_Rows;
+                xamlMember.Setter = set_43_UniformGrid_Rows;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.AutoLayout":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "AutoLayout", "System.Nullable`1<Boolean>");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.FrameworkElement");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_44_UniformGrid_AutoLayout;
+                xamlMember.Setter = set_44_UniformGrid_AutoLayout;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool.Value":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Value", "Boolean");
+                xamlMember.Getter = get_45_NullableBool_Value;
+                xamlMember.Setter = set_45_NullableBool_Value;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool.IsNull":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "IsNull", "Boolean");
+                xamlMember.Getter = get_46_NullableBool_IsNull;
+                xamlMember.Setter = set_46_NullableBool_IsNull;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.Default":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Default", "Object");
+                xamlMember.Getter = get_47_OnDevice_Default;
+                xamlMember.Setter = set_47_OnDevice_Default;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.Desktop":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Desktop", "Object");
+                xamlMember.Getter = get_48_OnDevice_Desktop;
+                xamlMember.Setter = set_48_OnDevice_Desktop;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.Holographic":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Holographic", "Object");
+                xamlMember.Getter = get_49_OnDevice_Holographic;
+                xamlMember.Setter = set_49_OnDevice_Holographic;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.IoT":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "IoT", "Object");
+                xamlMember.Getter = get_50_OnDevice_IoT;
+                xamlMember.Setter = set_50_OnDevice_IoT;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.Team":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Team", "Object");
+                xamlMember.Getter = get_51_OnDevice_Team;
+                xamlMember.Setter = set_51_OnDevice_Team;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice.Xbox":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.Markup.OnDevice");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Xbox", "Object");
+                xamlMember.Getter = get_52_OnDevice_Xbox;
+                xamlMember.Setter = set_52_OnDevice_Xbox;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter.TrueValue":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "TrueValue", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_53_DoubleToObjectConverter_TrueValue;
+                xamlMember.Setter = set_53_DoubleToObjectConverter_TrueValue;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter.FalseValue":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "FalseValue", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_54_DoubleToObjectConverter_FalseValue;
+                xamlMember.Setter = set_54_DoubleToObjectConverter_FalseValue;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter.NullValue":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "NullValue", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_55_DoubleToObjectConverter_NullValue;
+                xamlMember.Setter = set_55_DoubleToObjectConverter_NullValue;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter.GreaterThan":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "GreaterThan", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_56_DoubleToObjectConverter_GreaterThan;
+                xamlMember.Setter = set_56_DoubleToObjectConverter_GreaterThan;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter.LessThan":
+                userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Converters.DoubleToObjectConverter");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "LessThan", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_57_DoubleToObjectConverter_LessThan;
+                xamlMember.Setter = set_57_DoubleToObjectConverter_LessThan;
                 break;
             }
             return xamlMember;

@@ -15,13 +15,13 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <NavigationView x:ConnectionId='2'                                             Header="TEST" x:Name="NavView" Grid.Row="0">
-                <NavigationView.MenuItems>
+                <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
-                    <NavigationViewItem x:ConnectionId='4' Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
-                    <NavigationViewItem x:ConnectionId='5' Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
-                    <NavigationViewItem x:ConnectionId='6' Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
-                    <NavigationViewItem x:ConnectionId='7' Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
-                    <NavigationViewItem x:ConnectionId='8' Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItem x:ConnectionId='4'                         Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
+                    <NavigationViewItem x:ConnectionId='5'                         Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
+                    <NavigationViewItem x:ConnectionId='6'                         Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
+                    <NavigationViewItem x:ConnectionId='7'                         Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
+                    <NavigationViewItem x:ConnectionId='8'                         Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>
@@ -39,17 +39,39 @@
 
             </NavigationView>
 
-            <!--<MediaTransportControls Height="100" Grid.Row="1"/>-->
+            <!--
 
-            <MediaPlayerElement x:ConnectionId='3' x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Grid.Row="1" >
-                <MediaPlayerElement.TransportControls>
-                    <MediaTransportControls IsNextTrackButtonVisible="True"
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock Text="TESTNOWPLAYINGSONG" Width="400"></TextBlock>
+                <MediaPlayerElement Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"
                                             IsFullWindowButtonVisible="False"
                                             
                     />
-                </MediaPlayerElement.TransportControls>
-            </MediaPlayerElement>
+                    </MediaPlayerElement.TransportControls>
+                </MediaPlayerElement>
+            </StackPanel>-->
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="now playing." FontSize="24"/>
+
+                <MediaPlayerElement x:ConnectionId='3' Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsNextTrackButtonVisible="True"
+                                            IsPreviousTrackButtonVisible="True"
+                                            IsFullWindowButtonVisible="False"
+                                            
+                    />
+                    </MediaPlayerElement.TransportControls>
+                </MediaPlayerElement>
+            </Grid>
+
 
             <!--
             <MediaPlayerElement x:Name="MPE" Height="100" Grid.Row="1">

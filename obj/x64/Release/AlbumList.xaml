@@ -9,15 +9,52 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListView x:ConnectionId='2' x:Name="ListViewArtists" Margin="20,20,20,0"                              >
-            <ListView.ItemTemplate>
-                <DataTemplate                          >
-                    <StackPanel x:ConnectionId='3' Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                        <TextBlock x:ConnectionId='4'                      VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                    </StackPanel>
+        <!--
+        <ListView x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Albums}">
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="local:Album" >
+                    <Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}">
+                        <StackPanel Orientation="Horizontal" Height="200" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                            <Image Width="200" Source="{x:Bind albumart200}"/>
+                            <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind key}"/>
+                            <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" Width="600" Margin="0,0,5,0"/>
+                            <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" Width="600" Margin="0,0,5,0"/>
+                            
+                        </StackPanel>
+                    </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        -->
+
+        <GridView x:ConnectionId='2'                              >
+            <GridView.ItemTemplate>
+                <DataTemplate x:Name="IconTextTemplate"                         >
+                    <Button x:ConnectionId='3' x:Name="albumbutton"                                             >
+                        <!--Need to add play and add to playlist buttons-->
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" Height="275">
+                            <Image x:ConnectionId='4' Width="200"                              />
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <Button x:ConnectionId='5' x:Name="playalbumButton"                                FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0"                   />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock x:ConnectionId='6'                      VerticalAlignment="Center" FontSize="15" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                    <TextBlock x:ConnectionId='7'                        VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            
+
+
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid  Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
 
 
 
