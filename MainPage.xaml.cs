@@ -75,23 +75,23 @@ namespace Music_thing
                 {
                     case "songs":
                         ContentFrame.Navigate(typeof(SongList));
-                        NavView.Header = "Songs";
+                        //NavView.Header = "Songs";
                         break;
                     case "artists":
                         ContentFrame.Navigate(typeof(ArtistList));
-                        NavView.Header = "Artists";
+                        //NavView.Header = "Artists";
                         break;
                     case "albums":
                         ContentFrame.Navigate(typeof(AlbumList));
-                        NavView.Header = "Albums";
+                        //NavView.Header = "Albums";
                         break;
                     case "nowPlaying":
                         ContentFrame.Navigate(typeof(NowPlaying));
-                        NavView.Header = "Now Playing";
+                        //NavView.Header = "Now Playing";
                         break;
                     case "recentlyPlayed":
                         ContentFrame.Navigate(typeof(RecentlyPlayed));
-                        NavView.Header = "Recently Played";
+                        //NavView.Header = "Recently Played";
                         break;
                 }
             }
@@ -114,23 +114,23 @@ namespace Music_thing
             {
                 case "songs":
                     ContentFrame.Navigate(typeof(SongList));
-                    NavView.Header = "Songs";
+                    //NavView.Header = "Songs";
                     break;
                 case "artists":
                     ContentFrame.Navigate(typeof(ArtistList));
-                    NavView.Header = "Artists";
+                    //NavView.Header = "Artists";
                     break;
                 case "albums":
                     ContentFrame.Navigate(typeof(AlbumList));
-                    NavView.Header = "Albums";
+                    //NavView.Header = "Albums";
                     break;
                 case "nowPlaying":
                     ContentFrame.Navigate(typeof(NowPlaying));
-                    NavView.Header = "Now Playing";
+                    //NavView.Header = "Now Playing";
                     break;
                 case "recentlyPlayed":
                     ContentFrame.Navigate(typeof(RecentlyPlayed));
-                    NavView.Header = "Recently Played";
+                    //NavView.Header = "Recently Played";
                     break;
             }
         }

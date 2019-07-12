@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Music_thing.NowPlaying"
+    x:Class="Music_thing.AlbumSongList"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Music_thing"
@@ -8,19 +8,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ListView x:Name="ListViewPlayList" Margin="20,20,0,0" ItemsSource="{x:Bind Playlist}">
+    <ListView x:Name="ListViewSongs" Margin="20,20,20,0" ItemsSource="{x:Bind Songs}">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="local:Song">
                 <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                    <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind id}"/>
+                    <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind TrackNumber}"/>
                     <Button x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
-                    <Button x:Name="removebutton" Click="Removebutton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE738;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
-                    <!--TextBlock Text="{x:Bind id}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/-->
+                    <TextBlock Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="100"/>
                     <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
-                    <TextBlock Text="{x:Bind Album}" VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
                     <TextBlock Text="{x:Bind Artist}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                    <TextBlock Text="{x:Bind Year}" VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
-                    <TextBlock Text="{x:Bind Duration}" VerticalAlignment="Center" Width="100"/>
+                    <TextBlock Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                    <Button x:Name="removeFromFlavourButton" Click="RemoveFromFlavourButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE894;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>

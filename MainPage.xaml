@@ -14,7 +14,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="TEST" x:Name="NavView" Grid.Row="0">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
@@ -28,8 +28,8 @@
                     <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find"/>
                 </NavigationView.AutoSuggestBox>
 
-
-                <Frame x:Name="ContentFrame" Margin="0,0,0,0">
+    
+                <Frame x:Name="ContentFrame" Margin="0,32,0,0">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition/>
@@ -56,8 +56,9 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="now playing." FontSize="24"/>
 

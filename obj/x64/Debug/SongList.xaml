@@ -15,12 +15,12 @@
                     <StackPanel x:ConnectionId='3' Orientation="Horizontal" Height="44" Margin="0,0,0,0">
                         <Button x:ConnectionId='4' x:Name="playButton"                           FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0"                  />
                         <Button x:ConnectionId='5' x:Name="addToPlaylistButton"                                    FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0"                  />
-                        <TextBlock x:ConnectionId='6'                    VerticalAlignment="Center" Width="75" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='7'                       VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='8'                       VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='9'                        VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='10'                      VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
-                        <TextBlock x:ConnectionId='11'                               VerticalAlignment="Center" Width="100"/>
+                        <!--TextBlock Text="{x:Bind id}" VerticalAlignment="Center" Width="75" Margin="0,0,5,0"/-->
+                        <TextBlock x:ConnectionId='6'                       VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
+                        <TextBlock x:ConnectionId='7'                       VerticalAlignment="Center" Width="350" Margin="0,0,5,0"/>
+                        <TextBlock x:ConnectionId='8'                        VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
+                        <TextBlock x:ConnectionId='9'                      VerticalAlignment="Center" Width="100" Margin="0,0,5,0"/>
+                        <TextBlock x:ConnectionId='10'                               VerticalAlignment="Center" Width="100"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

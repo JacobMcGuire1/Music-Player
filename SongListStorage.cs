@@ -42,6 +42,8 @@ namespace Music_thing
         //Key is artistname + albumname
         public static ConcurrentDictionary<String, Album> AlbumDict = new ConcurrentDictionary<String, Album>();
 
+        public static ConcurrentDictionary<String, List<List<int>>> AlbumFlavours = new ConcurrentDictionary<String, List<List<int>>>();
+
         public static HashSet<int> SongsInCollection = new HashSet<int>();
 
         public static void UpdateAndOrderArtists()

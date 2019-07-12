@@ -750,3 +750,8 @@ E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Xaml.Interactivity.pri.xml
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_636340393040000000.json
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Robmikh.CompositionSurfaceFactory.winmd_636421332520000000.json
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.g.i.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.g.cs
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xaml
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xbf
+E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf

@@ -38,38 +38,40 @@
                         <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetYear()}"/>
                     </StackPanel>
                 </StackPanel>
-                <controls:TabView x:Name="Tabs" 
+                <controls:TabView x:Name="SongVersionTabs" 
                           CanCloseTabs="True"
                           IsCloseButtonOverlay="False"
                           CanDragItems="True"
                           CanReorderItems="True"
+                          ItemsSource="{x:Bind TabItems}"
                           AllowDrop="True" >
                     <controls:TabView.Resources>
                         <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
                         <x:Double x:Key="TabViewItemHeaderMinWidth">90</x:Double>
                         <x:Double x:Key="TabViewItemHeaderMaxWidth">200</x:Double>
                     </controls:TabView.Resources>
-                    <controls:TabViewItem Header="Original Album" IsClosable="False">
-                        <ListView x:Name="ListViewSongs" Margin="20,20,20,0" ItemsSource="{x:Bind Songs}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local:Song">
-                                    <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0">
-                                        <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind TrackNumber}"/>
-                                        <Button x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind id}"/>
-                                        <TextBlock Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="100"/>
-                                        <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/>
-                                        <TextBlock Text="{x:Bind Artist}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
-                                        <TextBlock Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="250" Margin="0,0,5,0"/>
 
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </controls:TabViewItem>
                     <controls:TabViewItem Header="Custom Album Version">
                         <TextBlock Padding="16">A 2nd Tab.</TextBlock>
                     </controls:TabViewItem>
-                    <Button>New Flavour</Button>
+
+                    <controls:TabView.TabActionHeader>
+                        <Button x:Name="NewTabButton"
+                            Width="32"
+                            Height="{StaticResource TabViewItemHeaderMinHeight}"
+                            Margin="-1,0,0,0"
+                            BorderThickness="1"
+                            Background="Transparent"
+                            Click="NewTabButton_Click"
+                            Style="{StaticResource ButtonRevealStyle}">
+                            <Viewbox MaxWidth="16"
+                                MaxHeight="16">
+                                <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE710;" />
+                            </Viewbox>
+                        </Button>
+
+                    </controls:TabView.TabActionHeader>
                 </controls:TabView>
             </StackPanel>
         </ScrollViewer>

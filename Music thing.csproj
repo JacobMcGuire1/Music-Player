@@ -98,6 +98,9 @@
     <Compile Include="AlbumPage.xaml.cs">
       <DependentUpon>AlbumPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlbumSongList.xaml.cs">
+      <DependentUpon>AlbumSongList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlbumPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlbumSongList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

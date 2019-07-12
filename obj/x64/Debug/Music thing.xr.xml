@@ -33,6 +33,9 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Background" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
@@ -74,28 +77,41 @@
       <RootProperty Name="IsCloseButtonOverlay" />
       <RootProperty Name="CanDragItems" />
       <RootProperty Name="CanReorderItems" />
+      <RootProperty Name="ItemsSource" />
       <RootProperty Name="AllowDrop" />
       <RootProperty Name="Resources" />
       <RootProperty Name="Items" />
+      <RootProperty Name="TabActionHeader" />
     </RootType>
     <RootType FullName="System.Double" />
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem">
       <RootProperty Name="Header" />
-      <RootProperty Name="IsClosable" />
       <RootProperty Name="Content" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Viewbox">
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="MaxHeight" />
+      <RootProperty Name="Child" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.FontIcon">
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Glyph" />
+    </RootType>
+    <RootType FullName="Music_thing.AlbumPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="ItemTemplate" />
     </RootType>
-    <RootType FullName="Music_thing.AlbumPage" />
+    <RootType FullName="Music_thing.AlbumSongList" />
     <RootType FullName="Music_thing.ArtistList" />
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
       <RootProperty Name="Header" />
+      <RootProperty Name="AlwaysShowHeader" />
       <RootProperty Name="MenuItems" />
       <RootProperty Name="AutoSuggestBox" />
       <RootProperty Name="Content" />

@@ -118,6 +118,9 @@
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumPage.xbf">
       <PackagePath>AlbumPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf">
+      <PackagePath>AlbumSongList.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf">
       <PackagePath>ArtistList.xbf</PackagePath>
     </AppxPackagedFile>
