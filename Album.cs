@@ -35,6 +35,21 @@ namespace Music_thing
             foreach (int songid in Songids)
             {
                 Song song = SongListStorage.SongDict[songid];
+                song.isFlavour = false; //MB REMOVE
+                Songs.Add(song);
+            }
+
+            return Songs;
+        }
+
+        public ObservableCollection<Song> ObserveSongsForFlavour()
+        {
+            ObservableCollection<Song> Songs = new ObservableCollection<Song>();
+
+            foreach (int songid in Songids)
+            {
+                Song song = SongListStorage.SongDict[songid];
+                song.isFlavour = true;
                 Songs.Add(song);
             }
 

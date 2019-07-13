@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -169,15 +170,38 @@ namespace Music_thing
             
         }
 
-        private void CreateAlbumVersion()
+        private async void CreateAlbumVersion()
         {
+            
             TabViewItem newtab = new TabViewItem();
             newtab.Header = "New Album Version";
+
+            ContentDialog nameFlavourDialog = new ContentDialog()
+            {
+                Title = "Name your flavour",
+                CloseButtonText = "Ok"
+            };
+
+            TextBox textBox = new TextBox()
+            {
+                
+            };
+
+            nameFlavourDialog.Content = textBox;
+
+
+            await nameFlavourDialog.ShowAsync();
+
+            string flavourname = textBox.Text;
+
+            newtab.Header = flavourname;
 
             /*//Thickness listmargin = new Thickness(20, 20, 20, 0);
             ListView listview = new ListView() {
                 Margin = new Thickness(20, 20, 20, 0),
                 ItemsSource = "{x:Bind Songs}"  };
+
+
 
             //listview.ItemTemplate
 

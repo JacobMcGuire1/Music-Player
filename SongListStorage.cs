@@ -264,6 +264,7 @@ namespace Music_thing
                             Year = musicProperties.Year,
                             Duration = musicProperties.Duration,
                             TrackNumber = (int)musicProperties.TrackNumber,
+                            isFlavour = false, //MAY NEED TO REMOVE
                             //DiscNumber = musicProperties.,
                             File = item as StorageFile
                         };

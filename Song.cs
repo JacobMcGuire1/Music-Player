@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -20,7 +21,10 @@ namespace Music_thing
         public TimeSpan Duration { get; set; }
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
-        
+
+
+        public bool isFlavour { get; set; }
+
         public uint Bitrate { get; set; }
         public StorageFile File { get; set; }
 
@@ -38,6 +42,18 @@ namespace Music_thing
             //dur.ToString("N2");
             //return dur.ToString("N2").Replace('.', ':');
             return Duration.ToString(@"mm\:ss");
+        }
+
+        public Visibility CheckIfFlavour()
+        {
+            if (isFlavour)
+            {
+                return 0;
+            }
+            else
+            {
+                return (Visibility)1;
+            }
         }
 
         /*public async void SetAlbumArt()

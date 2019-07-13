@@ -26,9 +26,16 @@ namespace Music_thing
         public ObservableCollection<Song> Songs { get; set; }
         = new ObservableCollection<Song>();
 
+        public bool removebuttonvisible = false;
+
         public AlbumSongList()
         {
             this.InitializeComponent();
+        }
+
+        public bool GetRemoveButtonVisibility()
+        {
+            return removebuttonvisible;
         }
 
         //arg is a struct containing album id and an int representing which flavour of the album this is.
@@ -41,6 +48,9 @@ namespace Music_thing
             if (args.flavour == -1)
             {
                 Songs = SongListStorage.AlbumDict[albumid].ObserveSongs();
+                removebuttonvisible = true;
+
+                
             }
             else
             {
@@ -48,7 +58,7 @@ namespace Music_thing
                 {
                     Songids = SongListStorage.AlbumFlavours[albumid][args.flavour]
                 };
-                Songs = album.ObserveSongs();
+                Songs = album.ObserveSongsForFlavour();
             }
             
 
