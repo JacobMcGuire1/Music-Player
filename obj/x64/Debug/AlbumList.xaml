@@ -30,7 +30,7 @@
         <GridView x:ConnectionId='2'                              >
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="IconTextTemplate"                         >
-                    <Button x:ConnectionId='3' x:Name="albumbutton"                                             >
+                    <Button x:ConnectionId='3' x:Name="albumbutton"                                              Background="Transparent">
                         <!--Need to add play and add to playlist buttons-->
                         <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" Height="275">
                             <Image x:ConnectionId='4' Width="200"                              />

@@ -22,13 +22,16 @@
                     <NavigationViewItem x:ConnectionId='6'                         Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
                     <NavigationViewItem x:ConnectionId='7'                         Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
                     <NavigationViewItem x:ConnectionId='8'                         Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>
                     <AutoSuggestBox x:ConnectionId='9' x:Name="SearchBox" QueryIcon="Find"/>
                 </NavigationView.AutoSuggestBox>
+                
+                
 
-    
+
                 <Frame x:ConnectionId='10' x:Name="ContentFrame" Margin="0,32,0,0">
                     <Frame.ContentTransitions>
                         <TransitionCollection>

@@ -89,7 +89,7 @@ namespace Music_thing
         {
             //Add original album tab
             Frame frameO = new Frame();
-            Args argsO = new Args() { id = CurrentAlbum, flavour = -1 };
+            Args argsO = new Args() { id = CurrentAlbum, flavourid = -1 };
             
             frameO.Navigate(typeof(AlbumSongList), argsO);
             TabViewItem newtabO = new TabViewItem();
@@ -99,18 +99,21 @@ namespace Music_thing
 
             TabItems.Add(newtabO);
 
-            if (SongListStorage.AlbumFlavours.ContainsKey(CurrentAlbum))
+            if (SongListStorage.AlbumFlavourDict.ContainsKey(CurrentAlbum))
             {
-                for (int i = 0; i < SongListStorage.AlbumFlavours[CurrentAlbum].Count; i++)
+                for (int i = 0; i < SongListStorage.AlbumFlavourDict[CurrentAlbum].Count; i++)
                 {
                     Frame frame = new Frame();
-                    frame.SetValue(FrameworkElement.NameProperty, "needtoputalbumversionidhere"); //probably not needed
-                    Args args = new Args() { id = CurrentAlbum, flavour = SongListStorage.AlbumFlavours[CurrentAlbum].Count - 1 };
+                    //frame.SetValue(FrameworkElement.NameProperty, "needtoputalbumversionidhere"); //probably not needed
+                    Flavour flavourobj = SongListStorage.AlbumFlavourDict[CurrentAlbum][i];
+                    Args args = new Args() { id = CurrentAlbum, flavourid = i };
                     frame.Navigate(typeof(AlbumSongList), args);
 
-                    TabViewItem newtab = new TabViewItem();
-                    newtab.Header = "Existing flavour " + i.ToString(); //Need to add support for flavour names
-                    newtab.Content = frame;
+                    TabViewItem newtab = new TabViewItem
+                    {
+                        Header = flavourobj.name,
+                        Content = frame
+                    };
 
                     TabItems.Add(newtab);
                 }
@@ -150,7 +153,7 @@ namespace Music_thing
         public struct Args
         {
             public String id;
-            public int flavour;
+            public int flavourid;
         };
 
         private void NewTabButton_Click(object sender, RoutedEventArgs e)
@@ -172,7 +175,7 @@ namespace Music_thing
 
         private async void CreateAlbumVersion()
         {
-            
+
             TabViewItem newtab = new TabViewItem();
             newtab.Header = "New Album Version";
 
@@ -184,7 +187,7 @@ namespace Music_thing
 
             TextBox textBox = new TextBox()
             {
-                
+
             };
 
             nameFlavourDialog.Content = textBox;
@@ -213,15 +216,20 @@ namespace Music_thing
             //frame.ContentTransitions = new Windows.UI.Xaml.Media.Animation.TransitionCollection();
             //frame.ContentTransitions.Add(new NavigationThemeTransition());
 
-            List<int> songids = SongListStorage.AlbumDict[CurrentAlbum].Songids;
+            Flavour flavour = new Flavour()
+            {
+                name = flavourname,
+                Songids = new List<int>(SongListStorage.AlbumDict[CurrentAlbum].Songids)
+            };
+
             //List<List<int>> flavours = SongListStorage.AlbumFlavours[CurrentAlbum];
-            List<List<int>> flavours = new List<List<int>>();
-            flavours.Add(songids);
+            List<Flavour> flavours = new List<Flavour>();
+            flavours.Add(flavour);
             //flavours.Add(songids);
+            
+            SongListStorage.AlbumFlavourDict.AddOrUpdate(CurrentAlbum, flavours, (CurrentAlbum2, existingflavours) => AddNewFlavour(existingflavours, flavour));
 
-            SongListStorage.AlbumFlavours.AddOrUpdate(CurrentAlbum, flavours, (CurrentAlbum2, existingflavours) => AddNewFlavour(existingflavours, songids));
-
-            Args args = new Args() { id = CurrentAlbum, flavour = SongListStorage.AlbumFlavours[CurrentAlbum].Count - 1 };
+            Args args = new Args() { id = CurrentAlbum, flavourid = SongListStorage.AlbumFlavourDict[CurrentAlbum].Count - 1 };
 
             frame.Navigate(typeof(AlbumSongList), args);
             newtab.Content = frame;
@@ -245,9 +253,9 @@ namespace Music_thing
 
         }
 
-        private List<List<int>> AddNewFlavour(List<List<int>> existingflavours, List<int> songids)
+        private List<Flavour> AddNewFlavour(List<Flavour> existingflavours, Flavour newflavour)
         {
-            existingflavours.Add(songids);
+            existingflavours.Add(newflavour);
             return existingflavours;
         }
     }

@@ -42,7 +42,7 @@ namespace Music_thing
             return Songs;
         }
 
-        public ObservableCollection<Song> ObserveSongsForFlavour()
+        /*public ObservableCollection<Song> ObserveSongsForFlavour()
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
 
@@ -54,7 +54,7 @@ namespace Music_thing
             }
 
             return Songs;
-        }
+        }*/
 
         public List<int> AddSong(int songid)
         {

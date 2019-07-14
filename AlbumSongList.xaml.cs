@@ -26,16 +26,13 @@ namespace Music_thing
         public ObservableCollection<Song> Songs { get; set; }
         = new ObservableCollection<Song>();
 
-        public bool removebuttonvisible = false;
+        public string albumid;
+
+        public int flavourid;
 
         public AlbumSongList()
         {
             this.InitializeComponent();
-        }
-
-        public bool GetRemoveButtonVisibility()
-        {
-            return removebuttonvisible;
         }
 
         //arg is a struct containing album id and an int representing which flavour of the album this is.
@@ -43,24 +40,22 @@ namespace Music_thing
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             AlbumPage.Args args = (AlbumPage.Args)e.Parameter;
-            String albumid =  args.id;
-            //Artist artist = SongListStorage.ArtistDict[key];
-            if (args.flavour == -1)
+            albumid =  args.id;
+            flavourid = args.flavourid;
+            
+            if (args.flavourid == -1)
             {
                 Songs = SongListStorage.AlbumDict[albumid].ObserveSongs();
-                removebuttonvisible = true;
-
-                
             }
             else
             {
-                Album album = new Album()
-                {
-                    Songids = SongListStorage.AlbumFlavours[albumid][args.flavour]
-                };
-                Songs = album.ObserveSongsForFlavour();
+                Songs = SongListStorage.AlbumFlavourDict[albumid][flavourid].ObserveSongs();
+                addSongButton.Visibility = (Visibility)0;
+                addSongText.Visibility = (Visibility)0;
             }
+
             
+
 
         }
 
@@ -96,7 +91,25 @@ namespace Music_thing
 
         private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)
         {
+            int TrackNumber = (int)((Button)sender).Tag;
 
+            //Can maybe do this in a way that doesn't clear the list.
+
+            Songs.Clear();
+
+            ObservableCollection<Song> NewSongs = SongListStorage.AlbumFlavourDict[albumid][flavourid].RemoveSong(TrackNumber);
+
+            foreach (Song song in NewSongs)
+            {
+                Songs.Add(song);
+            }
+
+
+        }
+
+        private void AddSongButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Put the flavour in the panel on the left to allow songs to be dragged onto it.
         }
     }
 }

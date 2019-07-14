@@ -47,6 +47,9 @@ namespace Music_thing
 
             
 
+
+
+
         }
 
         /*public async void testSong()
@@ -61,6 +64,7 @@ namespace Music_thing
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingsPage));
