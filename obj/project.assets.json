@@ -19170,11 +19170,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\OneDrive\\Documents\\Visual Studio\\source\\repos\\Music thing\\Music thing\\Music thing.csproj",
+      "projectUniqueName": "C:\\Users\\jacob\\source\\repos\\Music thing\\Music thing\\Music thing.csproj",
       "projectName": "Music thing",
-      "projectPath": "E:\\OneDrive\\Documents\\Visual Studio\\source\\repos\\Music thing\\Music thing\\Music thing.csproj",
+      "projectPath": "C:\\Users\\jacob\\source\\repos\\Music thing\\Music thing\\Music thing.csproj",
       "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-      "outputPath": "E:\\OneDrive\\Documents\\Visual Studio\\source\\repos\\Music thing\\Music thing\\obj\\",
+      "outputPath": "C:\\Users\\jacob\\source\\repos\\Music thing\\Music thing\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

@@ -10,22 +10,22 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>21f31632-803c-45d6-aefa-e47dba16a131</PackageIdentityName>
     <PackageIdentityPublisher>CN=jacob</PackageIdentityPublisher>
-    <IntermediateOutputPath>E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.exe">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.exe">
       <PackagePath>entrypoint\Music thing.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
@@ -76,67 +76,67 @@
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\win2d.uwp\1.21.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.xr.xml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.xr.xml">
       <PackagePath>Music thing.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumList.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumList.xbf">
       <PackagePath>AlbumList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumPage.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumPage.xbf">
       <PackagePath>AlbumPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf">
       <PackagePath>AlbumSongList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf">
       <PackagePath>ArtistList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\NowPlaying.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\NowPlaying.xbf">
       <PackagePath>NowPlaying.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf">
       <PackagePath>RecentlyPlayed.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf">
       <PackagePath>SettingsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\SongList.xbf">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SongList.xbf">
       <PackagePath>SongList.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
@@ -250,10 +250,10 @@
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\microsoft.toolkit.uwp.ui.controls\5.1.1\lib\uap10.0.16299\Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\Core\Music thing.exe">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\Music thing.exe">
       <PackagePath>Music thing.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

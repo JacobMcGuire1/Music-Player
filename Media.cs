@@ -18,13 +18,13 @@ namespace Music_thing
 
         public MediaPlaybackList Playlist = new MediaPlaybackList();
 
-        
 
-        
+
+
 
         //public Song CurrentSong;
 
-        static Media(){}
+        static Media() { }
 
         private Media()
         {
@@ -34,7 +34,20 @@ namespace Music_thing
 
             Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
 
+            mediaPlayer.Volume = 0.001;
+
+            mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
+
             //CurrentSong = new StorageFile();
+        }
+
+        private void MediaPlayer_VolumeChanged(MediaPlayer sender, object args)
+        {
+            if (!((mediaPlayer.Volume * 1000.0) % 10.0 == 3.0))
+            {
+                mediaPlayer.Volume = mediaPlayer.Volume / 10.0 + 0.003;
+            }
+            
         }
 
         private void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
@@ -52,7 +65,7 @@ namespace Music_thing
                 return instance;
             }
         }
-    
+
 
         public void playSong(int song)
         {
@@ -74,7 +87,7 @@ namespace Music_thing
             {
                 //Media.Instance.
                 addSong(song.id);
-                
+
             }
             Playlist.MoveTo((uint)Pos - 1);
 
@@ -89,6 +102,8 @@ namespace Music_thing
             //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
         }
 
+
+        
 
 
 
