@@ -25,8 +25,8 @@ namespace Music_thing
         public MediaPlaybackList Playlist = new MediaPlaybackList();
 
         public ImageSource currentart; //Might need a placeholder one
-        public string currenttitle = "None";
-        public string currentartist = "None";
+        public string currenttitle = "";
+        public string currentartist = "";
 
         private bool hasFixedvol = true;
 
@@ -58,8 +58,14 @@ namespace Music_thing
 
             //Code for placeholder album art:
             //Uri imgpath = new Uri("Assets/StoreLogo.png");
-           // BitmapImage bitmapImage = new BitmapImage(imgpath);
-           // Currentart = bitmapImage;
+            //BitmapImage bitmapImage = new BitmapImage(imgpath);
+            
+
+            BitmapImage bitmapImage =
+                     new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/StoreLogo.png"));
+
+            Currentart = bitmapImage;
+            NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
         }

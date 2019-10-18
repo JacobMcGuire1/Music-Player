@@ -45,14 +45,16 @@
       <RootProperty Name="Orientation" />
       <RootProperty Name="Margin" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="MinHeight" />
       <RootProperty Name="Height" />
       <RootProperty Name="Children" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Width" />
-      <RootProperty Name="Source" />
       <RootProperty Name="Height" />
+      <RootProperty Name="Source" />
       <RootProperty Name="Stretch" />
       <RootProperty Name="Visibility" />
     </RootType>

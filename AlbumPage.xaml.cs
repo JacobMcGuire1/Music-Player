@@ -219,6 +219,8 @@ namespace Music_thing
             Flavour flavour = new Flavour()
             {
                 name = flavourname,
+                albumname = SongListStorage.AlbumDict[CurrentAlbum].name,
+                artist = SongListStorage.AlbumDict[CurrentAlbum].artist,
                 Songids = new List<int>(SongListStorage.AlbumDict[CurrentAlbum].Songids)
             };
 

@@ -34,7 +34,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" >
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
@@ -86,15 +86,14 @@
                 <StackPanel Orientation="Horizontal">
                     <Image Height="100" Width="100" Source="{x:Bind MediaProxy.Currentart, Mode=TwoWay}"/>
 
-                    <!--Image Height="100" Width="100" Source="Assets/StoreLogo.png"/-->
-                    <!--TextBlock Text="{x:Bind MediaProxy.plswork, Mode=TwoWay}" FontSize="24"/-->
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{x:Bind MediaProxy.Currenttitle, Mode=TwoWay}" FontSize="20"/>
+                    <StackPanel Orientation="Vertical" Padding="5,0,0,0">
+                        <TextBlock Text="{x:Bind MediaProxy.Currenttitle, Mode=TwoWay}" FontSize="20" Margin="0,25,0,0"/>
                         <TextBlock Text="{x:Bind MediaProxy.Currentartist, Mode=TwoWay}" FontSize="16"/>
                     </StackPanel>
                     
-                    <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html-->
-                    <!--TextBlock Text="{x:Bind local:Media.Instance.Currenttitle, Mode=OneTime}" FontSize="24"/-->
+                    <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html
+                    V IMPORTANT-->
+                    
                 </StackPanel>
                 
 

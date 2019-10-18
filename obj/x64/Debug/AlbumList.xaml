@@ -32,8 +32,8 @@
                 <DataTemplate x:Name="IconTextTemplate"                         >
                     <Button x:ConnectionId='3' x:Name="albumbutton"                                              Background="Transparent">
                         <!--Need to add play and add to playlist buttons-->
-                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" Height="275">
-                            <Image x:ConnectionId='4' Width="200"                              />
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinHeight="275" Height="Auto">
+                            <Image x:ConnectionId='4' Width="200" Height="200"                              />
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <Button x:ConnectionId='5' x:Name="playalbumButton"                                FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0"                   />
                                 <StackPanel Orientation="Vertical">

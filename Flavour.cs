@@ -9,11 +9,14 @@ namespace Music_thing
 {
     public class Flavour : Album
     {
+        public string albumname;
 
+        public bool pinned = false;
         
         public new ObservableCollection<Song> ObserveSongs()
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
+
 
             /*foreach (int songid in Songids)
             {

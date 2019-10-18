@@ -110,6 +110,7 @@ namespace Music_thing
         private void AddSongButton_Click(object sender, RoutedEventArgs e)
         {
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
+            SongListStorage.AlbumFlavourDict[albumid][flavourid].pinned = true;
         }
     }
 }

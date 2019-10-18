@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,6 +46,8 @@ namespace Music_thing
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
 
+            LoadPinnedFlavours();
+
         }
 
         public Media MediaProxy { get { return Media.Instance; } }
@@ -59,8 +62,49 @@ namespace Music_thing
             //mediaPlayerElement.Play();
         }*/
 
+        private void LoadPinnedFlavours()
+        {
+
+            //navigationViewItem.Content = "TEst";
+
+            
+            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
+            {
+                if (menuitem.Name.Equals("Flavour"))
+                {
+                    menuitem.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            var flavourlists = SongListStorage.AlbumFlavourDict.Values;
+            foreach (List<Flavour> flavourlist in flavourlists)
+            {
+                foreach (Flavour flavour in flavourlist)
+                {
+                    if (flavour.pinned)
+                    {
+                        NavigationViewItem navigationViewItem = new NavigationViewItem();
+                        navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
+                        navigationViewItem.Name = "Flavour";
+
+                        //The details needed to reference the corresponding flavour.
+                        var dict = new Dictionary<String, String>();
+                        dict.Add("albumkey", flavour.artist + flavour.albumname);
+                        dict.Add("flavourname", flavour.name);
+                        navigationViewItem.Tag = dict;
+
+                        //navigationViewItem.Tapped = 
+
+                        NavView.MenuItems.Add(navigationViewItem);
+                    }
+                }
+                
+            }
+        }
+
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            LoadPinnedFlavours();
             
             if (args.IsSettingsSelected)
             {
@@ -70,32 +114,47 @@ namespace Music_thing
             {
                 NavigationViewItem item = args.SelectedItem as NavigationViewItem;
 
-                currentpage = item.Tag.ToString(); //Probs remove
-
-                switch (item.Tag.ToString())
+                if (item.Name.Equals("Flavour"))
                 {
-                    case "songs":
-                        ContentFrame.Navigate(typeof(SongList));
-                        //NavView.Header = "Songs";
-                        break;
-                    case "artists":
-                        ContentFrame.Navigate(typeof(ArtistList));
-                        //NavView.Header = "Artists";
-                        break;
-                    case "albums":
-                        ContentFrame.Navigate(typeof(AlbumList));
-                        //NavView.Header = "Albums";
-                        break;
-                    case "nowPlaying":
-                        ContentFrame.Navigate(typeof(NowPlaying));
-                        //NavView.Header = "Now Playing";
-                        break;
-                    case "recentlyPlayed":
-                        ContentFrame.Navigate(typeof(RecentlyPlayed));
-                        //NavView.Header = "Recently Played";
-                        break;
+                    HandleFlavourClick(item);
                 }
+                else
+                {
+                    currentpage = item.Tag.ToString(); //Probs remove
+
+                    switch (item.Tag.ToString())
+                    {
+                        case "songs":
+                            ContentFrame.Navigate(typeof(SongList));
+                            //NavView.Header = "Songs";
+                            break;
+                        case "artists":
+                            ContentFrame.Navigate(typeof(ArtistList));
+                            //NavView.Header = "Artists";
+                            break;
+                        case "albums":
+                            ContentFrame.Navigate(typeof(AlbumList));
+                            //NavView.Header = "Albums";
+                            break;
+                        case "nowPlaying":
+                            ContentFrame.Navigate(typeof(NowPlaying));
+                            //NavView.Header = "Now Playing";
+                            break;
+                        case "recentlyPlayed":
+                            ContentFrame.Navigate(typeof(RecentlyPlayed));
+                            //NavView.Header = "Recently Played";
+                            break;
+                    }
+                }
+
+                
             }
+        }
+
+        private void HandleFlavourClick(NavigationViewItem item)
+        {
+            var dict = (Dictionary <String, String>)item.Tag;
+            ContentFrame.Navigate(typeof(AlbumPage), dict["albumkey"]);
         }
 
         public enum MediaState
