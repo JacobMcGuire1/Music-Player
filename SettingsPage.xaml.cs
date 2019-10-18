@@ -26,5 +26,12 @@ namespace Music_thing
         {
             this.InitializeComponent();
         }
+
+        private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Media.Instance.globalVol = (int)e.NewValue;
+
+            Media.Instance.VolChanged();
+        }
     }
 }

@@ -9,6 +9,38 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel Width="300" Margin="120">
 
+            <TextBlock Text="Global Volume Modifier:" Margin="0,0,0,5"/>
+            <Slider x:Name="globalvol" 
+                Minimum="0" 
+                Maximum="100"
+                ValueChanged="Globalvol_ValueChanged"/>
+
+            <!--TextBlock Text="Slider with ValueChanged event handler:" Margin="0,25,0,0"/>
+            <Slider x:Name="slider2"  
+            Minimum="0" 
+            Maximum="10"
+            TickFrequency="2"
+            TickPlacement="BottomRight"
+            ValueChanged="slider2_ValueChanged" />
+            <TextBlock x:Name="textBlock1"
+               Margin="0,0,0,10"
+               Text="Current value: 0" />
+
+            <TextBlock Text="Slider with vertical orientation:" Margin="0,25,0,5"/>
+            <Slider x:Name="slider3" 
+            Minimum="0" 
+            Maximum="10"
+            Height="100"
+            TickFrequency="5"
+            Orientation="Vertical"/>
+
+            <TextBlock Text="Slider with reversed direction:" Margin="0,25,0,0"/>
+            <Slider x:Name="slider4"  
+            Minimum="0" 
+            Maximum="10"
+            IsDirectionReversed="true"/-->
+        </StackPanel>
     </Grid>
 </Page>

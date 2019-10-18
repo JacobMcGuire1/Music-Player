@@ -7,6 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="MediaPlayerElementStyle1" TargetType="MediaPlayerElement">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MediaPlayerElement">
+                        <Grid x:Name="LayoutRoot">
+                            <Border Background="Transparent"/>
+                            <Image x:Name="PosterImage" Stretch="{TemplateBinding Stretch}" Source="{TemplateBinding PosterSource}" Visibility="Collapsed"/>
+                            <MediaPlayerPresenter x:Name="MediaPlayerPresenter" IsFullWindow="{TemplateBinding IsFullWindow}" MediaPlayer="{TemplateBinding MediaPlayer}" Stretch="{TemplateBinding Stretch}"/>
+                            <ContentPresenter x:Name="TransportControlsPresenter" Visibility="{TemplateBinding AreTransportControlsEnabled}"/>
+                            <Grid x:Name="TimedTextSourcePresenter"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid >
@@ -63,9 +83,22 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="now playing." FontSize="24"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="100" Width="100" Source="{x:Bind MediaProxy.Currentart, Mode=TwoWay}"/>
 
-                <MediaPlayerElement Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <!--Image Height="100" Width="100" Source="Assets/StoreLogo.png"/-->
+                    <!--TextBlock Text="{x:Bind MediaProxy.plswork, Mode=TwoWay}" FontSize="24"/-->
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{x:Bind MediaProxy.Currenttitle, Mode=TwoWay}" FontSize="20"/>
+                        <TextBlock Text="{x:Bind MediaProxy.Currentartist, Mode=TwoWay}" FontSize="16"/>
+                    </StackPanel>
+                    
+                    <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html-->
+                    <!--TextBlock Text="{x:Bind local:Media.Instance.Currenttitle, Mode=OneTime}" FontSize="24"/-->
+                </StackPanel>
+                
+
+                <MediaPlayerElement Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"

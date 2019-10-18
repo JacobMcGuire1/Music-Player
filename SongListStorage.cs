@@ -68,6 +68,22 @@ namespace Music_thing
             }
         }
 
+        public static Windows.UI.Xaml.Media.ImageSource GetCurrentSongArt()
+        {
+            return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart200; //Change back to 100
+            
+        }
+
+        public static string GetCurrentSongName()
+        {
+            return PlaylistRepresentation[CurrentPlaceInPlaylist].Title;
+        }
+
+        public static string GetCurrentArtistName()
+        {
+            return PlaylistRepresentation[CurrentPlaceInPlaylist].Artist;
+        }
+
         public static void UpdateAndOrderAlbums()
         {
             if (Albums.Count != AlbumDict.Count)

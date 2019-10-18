@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:ConnectionId='1'
     x:Class="Music_thing.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,6 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="MediaPlayerElementStyle1" TargetType="MediaPlayerElement">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MediaPlayerElement">
+                        <Grid x:Name="LayoutRoot">
+                            <Border Background="Transparent"/>
+                            <Image x:Name="PosterImage" Stretch="{TemplateBinding Stretch}" Source="{TemplateBinding PosterSource}" Visibility="Collapsed"/>
+                            <MediaPlayerPresenter x:Name="MediaPlayerPresenter" IsFullWindow="{TemplateBinding IsFullWindow}" MediaPlayer="{TemplateBinding MediaPlayer}" Stretch="{TemplateBinding Stretch}"/>
+                            <ContentPresenter x:Name="TransportControlsPresenter" Visibility="{TemplateBinding AreTransportControlsEnabled}"/>
+                            <Grid x:Name="TimedTextSourcePresenter"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid >
@@ -17,22 +37,22 @@
             <NavigationView x:ConnectionId='2'                                             Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
-                    <NavigationViewItem x:ConnectionId='4'                         Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
-                    <NavigationViewItem x:ConnectionId='5'                         Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
-                    <NavigationViewItem x:ConnectionId='6'                         Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
-                    <NavigationViewItem x:ConnectionId='7'                         Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
-                    <NavigationViewItem x:ConnectionId='8'                         Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItem x:ConnectionId='7'                         Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
+                    <NavigationViewItem x:ConnectionId='8'                         Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
+                    <NavigationViewItem x:ConnectionId='9'                         Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
+                    <NavigationViewItem x:ConnectionId='10'                         Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
+                    <NavigationViewItem x:ConnectionId='11'                         Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>
-                    <AutoSuggestBox x:ConnectionId='9' x:Name="SearchBox" QueryIcon="Find"/>
+                    <AutoSuggestBox x:ConnectionId='12' x:Name="SearchBox" QueryIcon="Find"/>
                 </NavigationView.AutoSuggestBox>
                 
                 
 
 
-                <Frame x:ConnectionId='10' x:Name="ContentFrame" Margin="0,32,0,0">
+                <Frame x:ConnectionId='13' x:Name="ContentFrame" Margin="0,32,0,0">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition/>
@@ -63,9 +83,22 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="now playing." FontSize="24"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:ConnectionId='4' Height="100" Width="100"                                                     />
 
-                <MediaPlayerElement x:ConnectionId='3' Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                    <!--Image Height="100" Width="100" Source="Assets/StoreLogo.png"/-->
+                    <!--TextBlock Text="{x:Bind MediaProxy.plswork, Mode=TwoWay}" FontSize="24"/-->
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:ConnectionId='5'                                                      FontSize="24"/>
+                        <TextBlock x:ConnectionId='6'                                                       FontSize="24"/>
+                    </StackPanel>
+                    
+                    <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html-->
+                    <!--TextBlock Text="{x:Bind local:Media.Instance.Currenttitle, Mode=OneTime}" FontSize="24"/-->
+                </StackPanel>
+                
+
+                <MediaPlayerElement x:ConnectionId='3' Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"

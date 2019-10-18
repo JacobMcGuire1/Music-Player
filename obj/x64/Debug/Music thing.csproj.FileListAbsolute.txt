@@ -1,71 +1,3 @@
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\App.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\MainPage.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SongList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.xr.xml
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.exe
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.pdb
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\resources.pri
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AppxManifest.xml
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\AppxManifest.xml
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\Music thing.exe
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.build.appxrecipe
-C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\System.Runtime.dll
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csprojAssemblyReference.cache
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.g.i.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\XamlTypeInfo.g.cs
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.xaml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.xbf
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\XamlSaveStateFile.xml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csproj.CoreCompileInputs.cache
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csproj.CopyComplete
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.exe
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.pdb
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ResourceHandlingTask.state
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\priconfig.xml
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\priconfig.xml.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\unfiltered.layout.resfiles
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\unfiltered.layout.resfiles.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\filtered.layout.resfiles
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\filtered.layout.resfiles.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\excluded.layout.resfiles
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\excluded.layout.resfiles.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\resources.resfiles
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\resources.resfiles.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\pri.resfiles
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\pri.resfiles.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\qualifiers.txt
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\qualifiers.txt.intermediate
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
-C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ProjectArchitectures.txt
 D:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.i.cs
 D:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.cs
 D:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.g.i.cs
@@ -506,21 +438,68 @@ E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xaml
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xbf
 E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csprojAssemblyReference.cache
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.g.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumPage.g.i.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumPage.g.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.g.i.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.g.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\NowPlaying.g.i.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\NowPlaying.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\XamlTypeInfo.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.xaml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumPage.xaml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.xaml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\NowPlaying.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\App.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumList.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumPage.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\AlbumSongList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ArtistList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MainPage.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\NowPlaying.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\RecentlyPlayed.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SettingsPage.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SongList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\XamlSaveStateFile.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csproj.CoreCompileInputs.cache
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\App.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumList.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumPage.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AlbumSongList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ArtistList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\MainPage.xbf
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\NowPlaying.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SongList.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.xr.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.exe
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.pdb
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\resources.pri
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\AppxManifest.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\AppxManifest.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Core\Music thing.exe
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Music thing.build.appxrecipe
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ColorCode.Core.dll
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ColorCode.Core.pdb
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\ColorCode.UWP.dll
@@ -544,8 +523,28 @@ C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Robmikh.Compos
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Robmikh.CompositionSurfaceFactory.pdb
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Robmikh.CompositionSurfaceFactory.pri
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Robmikh.CompositionSurfaceFactory.winmd
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\System.Runtime.dll
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Microsoft.Graphics.Canvas.dll
 C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\Microsoft.Graphics.Canvas.winmd
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.csproj.CopyComplete
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.exe
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Music thing.pdb
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ResourceHandlingTask.state
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\priconfig.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\priconfig.xml.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\unfiltered.layout.resfiles
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\unfiltered.layout.resfiles.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\filtered.layout.resfiles
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\filtered.layout.resfiles.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\excluded.layout.resfiles
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\excluded.layout.resfiles.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\resources.resfiles
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\resources.resfiles.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\pri.resfiles
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\pri.resfiles.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\qualifiers.txt
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\qualifiers.txt.intermediate
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Robmikh.CompositionSurfaceFactory.pri.xml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ColorCode.UWP.pri.xml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Toolkit.Uwp.pri.xml
@@ -554,5 +553,6 @@ C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Tool
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Toolkit.Uwp.UI.Controls.pri.xml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Xaml.Interactions.pri.xml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Xaml.Interactivity.pri.xml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_636340393040000000.json
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Robmikh.CompositionSurfaceFactory.winmd_636421332520000000.json

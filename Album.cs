@@ -25,6 +25,8 @@ namespace Music_thing
 
         public Windows.UI.Xaml.Media.ImageSource albumart250;
 
+        public Windows.UI.Xaml.Media.ImageSource albumart100;
+
         public List<int> Songids { get; set; }
         = new List<int>();
 
@@ -104,6 +106,18 @@ namespace Music_thing
                     bitmapImage.DecodePixelHeight = 250;
                     bitmapImage.DecodePixelWidth = 250;
                     albumart250 = bitmapImage;
+                }
+
+                thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 100);
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    //ImageControl.Source = bitmapImage;
+
+                    bitmapImage.DecodePixelHeight = 100;
+                    bitmapImage.DecodePixelWidth = 100;
+                    albumart100 = bitmapImage;
                 }
 
 

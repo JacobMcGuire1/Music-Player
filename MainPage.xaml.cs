@@ -45,12 +45,9 @@ namespace Music_thing
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
 
-            
-
-
-
-
         }
+
+        public Media MediaProxy { get { return Media.Instance; } }
 
         /*public async void testSong()
         {
@@ -64,7 +61,7 @@ namespace Music_thing
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-
+            
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingsPage));
