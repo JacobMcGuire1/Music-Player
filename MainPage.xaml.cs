@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
@@ -86,6 +87,9 @@ namespace Music_thing
                         NavigationViewItem navigationViewItem = new NavigationViewItem();
                         navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
                         navigationViewItem.Name = "Flavour";
+                        navigationViewItem.AllowDrop = true;
+                        navigationViewItem.Drop += NavigationViewItem_Drop;
+                        navigationViewItem.DragOver += NavigationViewItem_DragOver;
 
                         //The details needed to reference the corresponding flavour.
                         var dict = new Dictionary<String, String>();
@@ -100,6 +104,25 @@ namespace Music_thing
                 }
                 
             }
+        }
+
+        private void NavigationViewItem_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = (e.DataView.Contains(StandardDataFormats.Text)) ? DataPackageOperation.Copy : DataPackageOperation.None;
+        }
+
+        private async void NavigationViewItem_Drop(object sender, DragEventArgs e)
+        {
+            var task = e.DataView.GetTextAsync();
+            String songid = await task;
+            var send = (NavigationViewItem)sender;
+            var dict = (Dictionary<String, String>)send.Tag;
+            String albumkey = dict["albumkey"];
+            String flavourname = dict["flavourname"];
+
+            Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
+            flavour.AddSong(Int32.Parse(songid));
+            //LoadPinnedFlavours();
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -194,5 +217,6 @@ namespace Music_thing
                     break;
             }
         }
+
     }
 }

@@ -34,14 +34,14 @@ namespace Music_thing
 
                 Song newSong = new Song()
                 {
-                    id = 0, //Remove this id
+                    id = song.id, //Remove this id
                     Title = song.Title,
                     Album = song.Album,
                     AlbumArtist = song.AlbumArtist,
                     Artist = song.Artist,
                     Year = song.Year,
                     Duration = song.Duration,
-                    TrackNumber = i,
+                    TrackNumber = i + 1,
                     isFlavour = true, //MAY NEED TO REMOVE
                     File = song.File
                 };
@@ -49,7 +49,7 @@ namespace Music_thing
                 Songs.Add(newSong);
             }
 
-            OrderByTrack();
+            OrderByTrack(); //Should get rid of this
 
             return Songs;
         }
@@ -66,6 +66,20 @@ namespace Music_thing
             }
             
             return ObserveSongs();
+        }
+
+        public new List<int> AddSong(int songid)
+        {
+            Songids.Add(songid);
+            return Songids;
+        }
+
+        public void ReorderSongs(ObservableCollection<Song> Songs)
+        {
+            for (int i = 0; i < Songs.Count; i++)
+            {
+                Songids[i] = Songs[i].id;
+            }
         }
 
     }

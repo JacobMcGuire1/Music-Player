@@ -402,6 +402,19 @@ namespace Music_thing
             return ids;
         }
 
+        public static Flavour GetFlavourByName(String albumkey, String flavourname)
+        {
+            List<Flavour> flavours = AlbumFlavourDict[albumkey];
+            foreach (Flavour flavour in flavours)
+            {
+                if (flavour.name == flavourname) // TODO: Must make flavour names unique
+                {
+                    return flavour;
+                }
+            }
+            return null;
+        }
+
         /*private static async Task oldGetFiles(StorageFolder folder)
         {
             StorageFolder fold = folder;

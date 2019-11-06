@@ -16,20 +16,6 @@
         </DataTemplate>-->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-
-                <!--<ListBox Height="50" >
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBoxItem Content="aaaaaaaaaaa"/>
-                <Image Width="400" Height="40" Source="{x:Bind GetAlbumArt()}"/>
-                <ListBoxItem Content="aaaaaaaaaaa"/>
-                <ListBoxItem Content="aaaaaaaaaaa"/>
-                <ListBoxItem Content="aaaaaaaaaaa"/>
-                <ListBoxItem Content="aaaaaaaaaaa"/>
-            </ListBox>-->
                 <StackPanel Orientation="Horizontal" Margin="20,20,20,20">
                     <Image x:ConnectionId='4' Width="250" Height="250"                                />
                     <StackPanel>

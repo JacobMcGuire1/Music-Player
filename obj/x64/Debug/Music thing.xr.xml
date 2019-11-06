@@ -48,8 +48,11 @@
       <RootProperty Name="MinHeight" />
       <RootProperty Name="Height" />
       <RootProperty Name="Children" />
+      <RootProperty Name="CanDrag" />
+      <RootProperty Name="Tag" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
+      <RootEvent Name="DragStarting" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Width" />
@@ -111,7 +114,10 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="CanDragItems" />
+      <RootProperty Name="CanReorderItems" />
       <RootProperty Name="ItemTemplate" />
+      <RootEvent Name="Drop" />
     </RootType>
     <RootType FullName="Music_thing.AlbumSongList" />
     <RootType FullName="Music_thing.ArtistList" />
@@ -156,6 +162,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
       <RootProperty Name="Header" />
       <RootProperty Name="AlwaysShowHeader" />
+      <RootProperty Name="AllowDrop" />
       <RootProperty Name="MenuItems" />
       <RootProperty Name="AutoSuggestBox" />
       <RootProperty Name="Content" />

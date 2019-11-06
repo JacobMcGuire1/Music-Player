@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -35,6 +36,15 @@ namespace Music_thing
             this.InitializeComponent();
         }
 
+        private void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
+            flavour.ReorderSongs(Songs);
+            //Songs.Clear();
+            //Songs = flavour.ObserveSongs();
+            //Songs.CollectionChanged += Songs_CollectionChanged;
+        }
+
         //arg is a struct containing album id and an int representing which flavour of the album this is.
         //Original album is -1.
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,7 +59,11 @@ namespace Music_thing
             }
             else
             {
+                ListViewSongs.CanReorderItems = true;
+                ListViewSongs.AllowDrop = true;
+                ListViewSongs.Drop += ListViewSongs_Drop;
                 Songs = SongListStorage.AlbumFlavourDict[albumid][flavourid].ObserveSongs();
+                Songs.CollectionChanged += Songs_CollectionChanged;
                 addSongButton.Visibility = (Visibility)0;
                 addSongText.Visibility = (Visibility)0;
             }
@@ -58,6 +72,14 @@ namespace Music_thing
 
 
         }
+
+        private void ListViewSongs_Drop(object sender, DragEventArgs e)
+        {
+            Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
+            flavour.ReorderSongs(Songs);
+        }
+
+        
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
@@ -112,5 +134,13 @@ namespace Music_thing
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
             SongListStorage.AlbumFlavourDict[albumid][flavourid].pinned = true;
         }
+
+        private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            StackPanel send = (StackPanel)sender;
+            args.Data.SetText((String)send.Tag.ToString());
+            args.Data.RequestedOperation = DataPackageOperation.Copy;
+        }
+
     }
 }
