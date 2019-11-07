@@ -46,7 +46,7 @@
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>
-                    <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find"/>
+                    <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" TextChanged="SearchBox_TextChanged" SuggestionChosen="SearchBox_SuggestionChosen" QuerySubmitted="SearchBox_QuerySubmitted"/>
                 </NavigationView.AutoSuggestBox>
                 
                 

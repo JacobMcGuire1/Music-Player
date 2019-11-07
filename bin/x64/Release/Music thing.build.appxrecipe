@@ -10,181 +10,181 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>21f31632-803c-45d6-aefa-e47dba16a131</PackageIdentityName>
     <PackageIdentityPublisher>CN=jacob</PackageIdentityPublisher>
-    <IntermediateOutputPath>E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\obj\x64\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Release\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\AppX</LayoutDir>
+    <LayoutDir>C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\clrcompression.dll">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Graphics.Canvas.dll">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Graphics.Canvas.dll">
       <PackagePath>Microsoft.Graphics.Canvas.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Graphics.Canvas.winmd">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\BladeView\BladeView.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\BladeView\BladeView.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\BladeView\BladeView.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\CameraPreview\CameraPreview.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\CameraPreview\CameraPreview.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\CameraPreview\CameraPreview.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Carousel\Carousel.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Carousel\Carousel.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\Carousel\Carousel.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\DropShadowPanel\DropShadowPanel.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\DropShadowPanel\DropShadowPanel.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\DropShadowPanel\DropShadowPanel.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Expander\Expander.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Expander\Expander.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\Expander\Expander.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\GridSplitter\GridSplitter.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\GridSplitter\GridSplitter.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\GridSplitter\GridSplitter.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedContentControl\HeaderedContentControl.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedContentControl\HeaderedContentControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\HeaderedContentControl\HeaderedContentControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedItemsControl\HeaderedItemsControl.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedItemsControl\HeaderedItemsControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\HeaderedItemsControl\HeaderedItemsControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedTextBlock\HeaderedTextBlock.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\HeaderedTextBlock\HeaderedTextBlock.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\HeaderedTextBlock\HeaderedTextBlock.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropper.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropper.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropper.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropperThumb.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropperThumb.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\ImageCropper\ImageCropperThumb.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageEx\ImageEx.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ImageEx\ImageEx.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\ImageEx\ImageEx.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\InAppNotification.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\InAppNotification.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\InAppNotification.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\MSEdgeNotificationStyle.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\MSEdgeNotificationStyle.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\MSEdgeNotificationStyle.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\VSCodeNotificationStyle.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\VSCodeNotificationStyle.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\InAppNotification\Styles\VSCodeNotificationStyle.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InfiniteCanvas\InfiniteCanvas.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\InfiniteCanvas\InfiniteCanvas.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\InfiniteCanvas\InfiniteCanvas.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\LayoutTransformControl\LayoutTransformControl.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\LayoutTransformControl\LayoutTransformControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\LayoutTransformControl\LayoutTransformControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Loading\Loading.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Loading\Loading.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\Loading\Loading.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\MarkdownTextBlock\MarkdownTextBlock.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\MarkdownTextBlock\MarkdownTextBlock.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\MarkdownTextBlock\MarkdownTextBlock.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\MasterDetailsView\MasterDetailsView.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\MasterDetailsView\MasterDetailsView.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\MasterDetailsView\MasterDetailsView.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Menu\Menu.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Menu\Menu.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\Menu\Menu.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\OrbitView\OrbitView.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\OrbitView\OrbitView.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\OrbitView\OrbitView.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RadialGauge\RadialGauge.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RadialGauge\RadialGauge.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\RadialGauge\RadialGauge.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RadialProgressBar\RadialProgressBar.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RadialProgressBar\RadialProgressBar.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\RadialProgressBar\RadialProgressBar.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RangeSelector\RangeSelector.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RangeSelector\RangeSelector.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\RangeSelector\RangeSelector.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RemoteDevicePicker\RemoteDevicePicker.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RemoteDevicePicker\RemoteDevicePicker.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\RemoteDevicePicker\RemoteDevicePicker.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RotatorTile\RotatorTile.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\RotatorTile\RotatorTile.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\RotatorTile\RotatorTile.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ScrollHeader\ScrollHeader.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\ScrollHeader\ScrollHeader.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\ScrollHeader\ScrollHeader.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TabView\TabView.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TabView\TabView.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TabView\TabView.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\Symbols\Symbols.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\Symbols\Symbols.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\Symbols\Symbols.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\TextToolbar.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\TextToolbar.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\TextToolbar.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarButton.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarButton.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarButton.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarSeparator.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarSeparator.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TextToolbar\ToolbarItems\ToolbarSeparator.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Themes\Generic.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\Themes\Generic.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\Themes\Generic.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.dll">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.dll">
       <PackagePath>Music thing.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.exe">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.exe">
       <PackagePath>Music thing.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.pdb">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Music thing.pdb">
       <PackagePath>Music thing.pdb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\resources.pri">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.dll">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.dll">
       <PackagePath>Robmikh.CompositionSurfaceFactory.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.pdb">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.pdb">
       <PackagePath>Robmikh.CompositionSurfaceFactory.pdb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\OneDrive\Documents\Visual Studio\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.winmd">
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Release\ilc\Robmikh.CompositionSurfaceFactory.winmd">
       <PackagePath>Robmikh.CompositionSurfaceFactory.winmd</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

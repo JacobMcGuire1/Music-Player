@@ -22,6 +22,7 @@
                         <TextBlock Padding="16" FontSize="37" Margin="0,-25,0,0" Text="{x:Bind GetAlbumName()}"/>
                         <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetArtistName()}"/>
                         <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetYear()}"/>
+                        
                     </StackPanel>
                 </StackPanel>
                 <controls:TabView x:Name="SongVersionTabs" 
@@ -29,8 +30,10 @@
                           IsCloseButtonOverlay="False"
                           CanDragItems="True"
                           CanReorderItems="True"
-                          ItemsSource="{x:Bind TabItems}"
-                          AllowDrop="True" >
+                                  AllowDrop="True"
+                          >
+                          <!--ItemsSource="{x:Bind TabItems}"-->
+                          
                     <controls:TabView.Resources>
                         <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
                         <x:Double x:Key="TabViewItemHeaderMinWidth">90</x:Double>

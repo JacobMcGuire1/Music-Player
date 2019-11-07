@@ -82,7 +82,7 @@ namespace Music_thing
         public async void SetAlbumArt(int songid)
         {
             Song song = SongListStorage.SongDict[songid];
-            if (albumart200 == null)
+            if (albumart200 == null || SongListStorage.SongDict[songid].TrackNumber == 1)
             {
                 var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)

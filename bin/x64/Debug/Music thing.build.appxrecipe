@@ -133,6 +133,9 @@
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\RecentlyPlayed.xbf">
       <PackagePath>RecentlyPlayed.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SearchResultsPage.xbf">
+      <PackagePath>SearchResultsPage.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SettingsPage.xbf">
       <PackagePath>SettingsPage.xbf</PackagePath>
     </AppxPackagedFile>

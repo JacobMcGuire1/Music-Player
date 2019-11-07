@@ -46,7 +46,7 @@
                 </NavigationView.MenuItems>
 
                 <NavigationView.AutoSuggestBox>
-                    <AutoSuggestBox x:ConnectionId='12' x:Name="SearchBox" QueryIcon="Find"/>
+                    <AutoSuggestBox x:ConnectionId='12' x:Name="SearchBox" QueryIcon="Find"                                                                                                                            />
                 </NavigationView.AutoSuggestBox>
                 
                 

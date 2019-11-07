@@ -89,7 +89,6 @@
       <RootProperty Name="IsCloseButtonOverlay" />
       <RootProperty Name="CanDragItems" />
       <RootProperty Name="CanReorderItems" />
-      <RootProperty Name="ItemsSource" />
       <RootProperty Name="AllowDrop" />
       <RootProperty Name="Resources" />
       <RootProperty Name="Items" />
@@ -187,6 +186,9 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
       <RootProperty Name="QueryIcon" />
+      <RootEvent Name="TextChanged" />
+      <RootEvent Name="SuggestionChosen" />
+      <RootEvent Name="QuerySubmitted" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Frame">
       <RootProperty Name="Margin" />
@@ -197,6 +199,7 @@
     <RootType FullName="Music_thing.MainPage" />
     <RootType FullName="Music_thing.NowPlaying" />
     <RootType FullName="Music_thing.RecentlyPlayed" />
+    <RootType FullName="Music_thing.SearchResultsPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="Minimum" />
       <RootProperty Name="Maximum" />

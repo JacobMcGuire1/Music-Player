@@ -177,7 +177,8 @@ namespace Music_thing
         private void HandleFlavourClick(NavigationViewItem item)
         {
             var dict = (Dictionary <String, String>)item.Tag;
-            ContentFrame.Navigate(typeof(AlbumPage), dict["albumkey"]);
+            //ContentFrame.Navigate(typeof(AlbumPage), dict["albumkey"]);
+            ContentFrame.Navigate(typeof(AlbumPage), dict);
         }
 
         public enum MediaState
@@ -218,5 +219,29 @@ namespace Music_thing
             }
         }
 
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var results = SongListStorage.SearchSongs(SearchBox.Text);
+                var textresults = new List<String>();
+                foreach(Song song in results)
+                {
+                    textresults.Add(song.Title);
+                }
+                SearchBox.ItemsSource = textresults;
+            }
+        }
+
+        private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+
+        }
+
+        private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+
+        }
     }
 }

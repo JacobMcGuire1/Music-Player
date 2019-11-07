@@ -70,7 +70,7 @@ namespace Music_thing
 
         public static Windows.UI.Xaml.Media.ImageSource GetCurrentSongArt()
         {
-            return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart200; //Change back to 100
+            return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart100; //Change back to 100
             
         }
 
@@ -170,34 +170,10 @@ namespace Music_thing
         {
             while (true)
             {
-
-                //Songs.Clear(); //Need to update rather than clear (use a set of ids to compare the difference to the dict.). DONE?!
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    /*foreach (KeyValuePair<int, Song> item in SongDict)
-                    {
-                        if (!SongsInCollection.Contains(item.Key))
-                        {
-                            Songs.Add(item.Value);
-                            SongsInCollection.Add(item.Key);
-                                //Songs.Add(item.Value);
-                        }
-                    }*/
                     UpdateAndOrderSongs();
-
-
-                    /*Artists.Clear(); //need ti fux clearfing
-                    foreach (Artist artist in ArtistDict.Values)
-                    {
-                        Artists.Add(artist);
-                    }*/
                     UpdateAndOrderArtists();
-
-                    //Albums.Clear();
-                    // foreach (Album album in AlbumDict.Values)
-                    // {
-                    //   Albums.Add(album);
-                    // }
                     UpdateAndOrderAlbums();
 
 
@@ -206,71 +182,30 @@ namespace Music_thing
                 Thread.Sleep(10000); //update rate of the lists used for the ui
             }
             
-        }
-
-        /*public static void FindArtists()
-        {
-            foreach(Song song in Songs)
-            {
-                string artist;
-                if (song.AlbumArtist != "")
-                {
-                    artist = song.AlbumArtist;
-                }
-                else
-                {
-                    artist = song.Artist;
-                }
-
-                
-
-                if (!ArtistDict.ContainsKey(artist))
-                {
-                    List<int> ids = new List<int>();
-                    ids.Add(song.id);
-                    ArtistDict.TryAdd(artist, ids);
-
-                    //Add to observable collection of artists //Do this in the other thread now
-                    //Artists.Add(artist);
-                }
-                else
-                {
-                    List<int> ids = ArtistDict[artist];
-                    ids.Add(song.id);
-                    //ArtistDict.Remove(artist);
-                    ArtistDict.TryUpdate(artist, ids);
-                }
-                //ArtistDict.Add(artist, song.id);
-            }
-
-            foreach(String artist in ArtistDict.Keys)
-            {
-
-            }
-        }*/
-
-        
+        }        
 
         private static async Task GetFiles(StorageFolder folder)
         {
-            StorageFolder fold = folder;
-
-            var items = await fold.GetItemsAsync();
-
-            Random rnd = new Random();
-
-            Regex songreg = new Regex(@"^audio/");
-
-            foreach (var item in items)
+            if (folder != null)
             {
-                if (item.GetType() == typeof(StorageFile) && songreg.IsMatch(((StorageFile)item).ContentType))
+                StorageFolder fold = folder;
+
+                var items = await fold.GetItemsAsync();
+
+                Random rnd = new Random();
+
+                Regex songreg = new Regex(@"^audio/");
+
+                foreach (var item in items)
                 {
+                    if (item.GetType() == typeof(StorageFile) && songreg.IsMatch(((StorageFile)item).ContentType))
+                    {
 
-                    MusicProperties musicProperties = await (item as StorageFile).Properties.GetMusicPropertiesAsync();
+                        MusicProperties musicProperties = await (item as StorageFile).Properties.GetMusicPropertiesAsync();
 
-                    //if (musicProperties.Title != "")
-                    //{
-                    Song song = new Song()
+                        //if (musicProperties.Title != "")
+                        //{
+                        Song song = new Song()
                         {
                             id = 0, //Remove this id
                             Title = musicProperties.Title,
@@ -284,34 +219,39 @@ namespace Music_thing
                             //DiscNumber = musicProperties.,
                             File = item as StorageFile
                         };
-                   // song.SetAlbumArt();
+                        // song.SetAlbumArt();
 
-                    int id = 0;                  
-                    Boolean Added = false;
-                    while (!Added)
-                    {
-                        id = rnd.Next(0, 214740);
-                        song.id = id;
-                        Added = SongDict.TryAdd(id, song);
-                        //id = rnd.Next(0, 214740);
+                        int id = 0;
+                        Boolean Added = false;
+                        while (!Added)
+                        {
+                            id = rnd.Next(0, 214740);
+                            song.id = id;
+                            Added = SongDict.TryAdd(id, song);
+                            //id = rnd.Next(0, 214740);
+                        }
+
+
+                        //Add artist
+                        //AddArtist(id, song);
+                        //Add album
+                        AddAlbum(id, song);
+
+
+                        //}
+                        //else
+                        //{
+                        //this.Songs.Add(new Song() { Title = item.Path.ToString() });
+                        //}
                     }
-                   
-
-                    //Add artist
-                    //AddArtist(id, song);
-                    //Add album
-                    AddAlbum(id, song);
+                    else
+                        GetFiles(item as StorageFolder);
 
 
-                    //}
-                    //else
-                    //{
-                    //this.Songs.Add(new Song() { Title = item.Path.ToString() });
-                    //}
                 }
-                else
-                    GetFiles(item as StorageFolder);
+
             }
+            
         }
 
         /*public static void AddArtist(int id, Song song)
@@ -365,8 +305,10 @@ namespace Music_thing
                 name = albumname,
                 key = key,
                 year = (int)song.Year,
-                Songids = new List<int> { id }
+                Songids = new List<int>()//Replaced with use of AddSong Songids = new List<int> { id }
             };
+
+            album.AddSong(id);
 
             //List<int> ids = new List<int>();
             //ids.Add(id);
@@ -413,6 +355,20 @@ namespace Music_thing
                 }
             }
             return null;
+        }
+
+        //Returns the songs that contain the query as a substring.
+        public static ObservableCollection<Song> SearchSongs(String query)
+        {
+            var Results = new ObservableCollection<Song>();
+            foreach (Song song in Songs)
+            {
+                if (song.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()))
+                {
+                    Results.Add(song);
+                }
+            }
+            return Results;
         }
 
         /*private static async Task oldGetFiles(StorageFolder folder)

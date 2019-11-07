@@ -556,3 +556,8 @@ C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\Microsoft.Xaml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_636340393040000000.json
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\.winmd_cache\$Robmikh.CompositionSurfaceFactory.winmd_636421332520000000.json
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\SearchResultsPage.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.g.i.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.g.cs
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.xaml
+C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.xbf

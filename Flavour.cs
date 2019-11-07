@@ -49,7 +49,7 @@ namespace Music_thing
                 Songs.Add(newSong);
             }
 
-            OrderByTrack(); //Should get rid of this
+            //OrderByTrack(); //Should get rid of this
 
             return Songs;
         }

@@ -36,9 +36,11 @@ namespace Music_thing
 
         public string CurrentAlbum;
 
+
         public AlbumPage()
         {
             this.InitializeComponent();
+            SongVersionTabs.ItemsSource = TabItems;
 
             //TabViewItem test = new TabViewItem();
             //test.Header = "TEST TAB";
@@ -78,11 +80,73 @@ namespace Music_thing
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            String key = e.Parameter as string;
-            Album album = SongListStorage.AlbumDict[key];
-            ChangeAlbum(album);
+            try
+            {
+                String key = e.Parameter as string;
+                Album album = SongListStorage.AlbumDict[key];
+                ChangeAlbum(album);
+                AddExistingFlavourTabs();
+            }
+            catch(Exception f)
+            {
+                var dict = e.Parameter as Dictionary<String, String>;
+                Album album = SongListStorage.AlbumDict[dict["albumkey"]];
+                ChangeAlbum(album);
+                AddExistingFlavourTabs();
 
-            AddExistingFlavourTabs();
+
+                /*foreach(TabViewItem tab in TabItems)
+                {
+                    if ((String)tab.Header == dict["flavourname"])
+                    {
+                        TabItems.
+                    }
+                }*/
+                for (int i = 0; i < TabItems.Count(); i++)
+                {
+                    if ((String)TabItems[i].Header == dict["flavourname"])
+                    {
+                        //TabView.SelectedIndex = i;
+                        SongVersionTabs.SelectedIndex = i;
+                        //TabView.SelectedIndexProperty = i;
+                    }
+                }
+
+            }
+            /*
+            if (e.GetType() == typeof(Dictionary<String, String>))
+            {
+                var dict = e.Parameter as Dictionary<String, String>;
+                Album album = SongListStorage.AlbumDict[dict["albumkey"]];
+                ChangeAlbum(album);
+                AddExistingFlavourTabs();
+
+
+                foreach(TabViewItem tab in TabItems)
+                {
+                    if ((String)tab.Header == dict["flavourname"])
+                    {
+                        TabItems.
+                    }
+                }
+                for (int i = 0; i < TabItems.Count(); i++)
+                {
+                    if ((String)TabItems[i].Header == dict["flavourname"])
+                    {
+                        //TabView.SelectedIndex = i;
+                        SongVersionTabs.SelectedIndex = i;
+                        //TabView.SelectedIndexProperty = i;
+                    }
+                }
+            }
+            else
+            {
+                String key = e.Parameter as string;
+                Album album = SongListStorage.AlbumDict[key];
+                ChangeAlbum(album);
+                AddExistingFlavourTabs();
+            }*/
+            
         }
 
         private void AddExistingFlavourTabs()
@@ -260,5 +324,6 @@ namespace Music_thing
             existingflavours.Add(newflavour);
             return existingflavours;
         }
+
     }
 }
