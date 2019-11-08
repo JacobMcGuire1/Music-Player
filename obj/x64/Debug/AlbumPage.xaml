@@ -22,6 +22,7 @@
                         <TextBlock x:ConnectionId='5' Padding="16" FontSize="37" Margin="0,-25,0,0"                               />
                         <TextBlock x:ConnectionId='6' Padding="16" FontSize="15" Margin="2,-30,0,0"                                />
                         <TextBlock x:ConnectionId='7' Padding="16" FontSize="15" Margin="2,-30,0,0"                          />
+                        
                     </StackPanel>
                 </StackPanel>
                 <controls:TabView x:ConnectionId='2' x:Name="SongVersionTabs" 

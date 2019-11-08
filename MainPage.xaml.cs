@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Storage;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -85,7 +86,31 @@ namespace Music_thing
                     if (flavour.pinned)
                     {
                         NavigationViewItem navigationViewItem = new NavigationViewItem();
-                        navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
+
+                        var stackpanel = new StackPanel();
+                        stackpanel.Orientation = Orientation.Vertical;
+
+                        TextBlock nametb = new TextBlock();
+                        nametb.Text = flavour.name;
+                        //nametb.FontWeight = FontWeights.Bold; 
+
+                        TextBlock artisttb = new TextBlock();
+                        artisttb.Text = flavour.artist + " - " + flavour.albumname;
+                        artisttb.FontWeight = FontWeights.ExtraLight;
+                        artisttb.FontSize = 12;
+
+                        TextBlock albumtb = new TextBlock();
+                        albumtb.Text = flavour.albumname;
+                        albumtb.FontWeight = FontWeights.ExtraLight;
+                        albumtb.FontSize = 10;
+
+
+                        stackpanel.Children.Add(nametb);
+                        stackpanel.Children.Add(artisttb);
+                        stackpanel.Children.Add(albumtb);
+
+                        //navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
+                        navigationViewItem.Content = stackpanel;
                         navigationViewItem.Name = "Flavour";
                         navigationViewItem.AllowDrop = true;
                         navigationViewItem.Drop += NavigationViewItem_Drop;
