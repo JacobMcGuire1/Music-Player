@@ -1102,6 +1102,17 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        }
+      },
       "Win2D.uwp/1.21.0": {
         "type": "package",
         "compile": {
@@ -2579,6 +2590,17 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
         }
       },
       "Win2D.uwp/1.21.0": {
@@ -4080,6 +4102,17 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        }
+      },
       "Win2D.uwp/1.21.0": {
         "type": "package",
         "compile": {
@@ -5574,6 +5607,17 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        }
+      },
       "Win2D.uwp/1.21.0": {
         "type": "package",
         "compile": {
@@ -7037,6 +7081,17 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
         }
       },
       "Win2D.uwp/1.21.0": {
@@ -8538,6 +8593,17 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        }
+      },
       "Win2D.uwp/1.21.0": {
         "type": "package",
         "compile": {
@@ -10004,6 +10070,17 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
         }
       },
       "Win2D.uwp/1.21.0": {
@@ -11503,6 +11580,17 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "taglib/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/policy.2.0.taglib-sharp.dll": {},
+          "lib/taglib-sharp.dll": {}
         }
       },
       "Win2D.uwp/1.21.0": {
@@ -19134,6 +19222,20 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "taglib/2.1.0": {
+      "sha512": "PuBT0KO/RJqxVKcM4tE0GDQIOA3584d2pHaLLh+X7tBz9MzFn9/mrVYaA63M+n7ED2dBXVtJBoogGnSxaqE7vg==",
+      "type": "package",
+      "path": "taglib/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/policy.2.0.taglib-sharp.config",
+        "lib/policy.2.0.taglib-sharp.dll",
+        "lib/taglib-sharp.dll",
+        "taglib.2.1.0.nupkg.sha512",
+        "taglib.nuspec"
+      ]
+    },
     "Win2D.uwp/1.21.0": {
       "sha512": "4ddgs6Mt4cDVOPcKE+gV02Rn8G9nhp8C9S94A/msxULD2ysq6Q/z3CmeyATJhJNVfhumWUaXzx0B3v39vB5A4Q==",
       "type": "package",
@@ -19160,7 +19262,8 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.8",
       "Microsoft.Toolkit >= 5.1.1",
       "Microsoft.Toolkit.Uwp.UI >= 5.1.1",
-      "Microsoft.Toolkit.Uwp.UI.Controls >= 5.1.1"
+      "Microsoft.Toolkit.Uwp.UI.Controls >= 5.1.1",
+      "taglib >= 2.1.0"
     ]
   },
   "packageFolders": {
@@ -19215,6 +19318,10 @@
           "Microsoft.Toolkit.Uwp.UI.Controls": {
             "target": "Package",
             "version": "[5.1.1, )"
+          },
+          "taglib": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           }
         },
         "imports": [
@@ -19247,5 +19354,17 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'taglib 2.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework 'UAP,Version=v10.0.17134'. This package may not be fully compatible with your project.",
+      "libraryId": "taglib",
+      "targetGraphs": [
+        "UAP,Version=v10.0.17134"
+      ]
+    }
+  ]
 }

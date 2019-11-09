@@ -561,3 +561,5 @@ C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsP
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.g.cs
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.xaml
 C:\Users\jacob\source\repos\Music thing\Music thing\obj\x64\Debug\SearchResultsPage.xbf
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\policy.2.0.taglib-sharp.dll
+C:\Users\jacob\source\repos\Music thing\Music thing\bin\x64\Debug\taglib-sharp.dll

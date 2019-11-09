@@ -21,6 +21,7 @@ namespace Music_thing
         public TimeSpan Duration { get; set; }
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
+        public string DiscNumber { get; set; }
 
 
         public bool isFlavour { get; set; }
@@ -34,6 +35,17 @@ namespace Music_thing
         {
             if (this.id == (obj as Song).id) return true;
             return false;
+        }
+
+        public String SongToJSON()
+        {
+            String JSON = "{";
+            return JSON;
+        }
+
+        public string GetPath()
+        {
+            return File.Path;
         }
 
         public string GetDuration()

@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TagLib;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
@@ -45,6 +48,8 @@ namespace Music_thing
         public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
         public static HashSet<int> SongsInCollection = new HashSet<int>();
+
+        private static bool loadednowplaying = false;
 
         public static void UpdateAndOrderArtists()
         {
@@ -164,6 +169,8 @@ namespace Music_thing
             //Make an async method that updates the collections every 5 seconds.
         }
 
+    
+
 
 
     public static async void DisplayFiles(Windows.Foundation.IAsyncAction action)
@@ -175,6 +182,23 @@ namespace Music_thing
                     UpdateAndOrderSongs();
                     UpdateAndOrderArtists();
                     UpdateAndOrderAlbums();
+
+                    //Should probably move this somewhere else
+                    if (!loadednowplaying)
+                    {
+                        try
+                        {
+                            var roamingSettings =
+                                            Windows.Storage.ApplicationData.Current.RoamingSettings;
+                            LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"]);
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    
+                    
 
 
                 });
@@ -192,7 +216,7 @@ namespace Music_thing
 
                 var items = await fold.GetItemsAsync();
 
-                Random rnd = new Random();
+                //Random rnd = new Random();
 
                 Regex songreg = new Regex(@"^audio/");
 
@@ -202,6 +226,11 @@ namespace Music_thing
                     {
 
                         MusicProperties musicProperties = await (item as StorageFile).Properties.GetMusicPropertiesAsync();
+
+
+                        //var k = await (item as StorageFile).Properties.RetrievePropertiesAsync();
+
+                        
 
                         //if (musicProperties.Title != "")
                         //{
@@ -216,12 +245,48 @@ namespace Music_thing
                             Duration = musicProperties.Duration,
                             TrackNumber = (int)musicProperties.TrackNumber,
                             isFlavour = false, //MAY NEED TO REMOVE
-                            //DiscNumber = musicProperties.,
+                            //DiscNumber = resp.,
                             File = item as StorageFile
                         };
-                        // song.SetAlbumArt();
+
+                        /*var thing2 = await (item as StorageFile).OpenAsync(FileAccessMode.Read);
+                        try
+                        {
+                            //TagLib.File file = TagLib.File.Create(item.Path);
+                            //var discNumber = file.Tag.Disc;
+
+                            //song.DiscNumber = resp.GetFrameValue("APIC", true);
+                            //string fileContent = await FileIO.ReadTextAsync((IStorageFile)item);
+                            //song.DiscNumber = fileContent;
+                            var thing = await (item as StorageFile).OpenAsync(FileAccessMode.Read);
+                            //thing.
+                        }
+                        catch(Exception e)
+                        {
+                            //...
+                            song.DiscNumber = "0";
+                        }
+                        if (!song.DiscNumber.Equals("0"))
+                        {
+                            string f = "yay";
+                        }
+                        // song.SetAlbumArt();*/
 
                         int id = 0;
+                        //if (song.Title == "American Darkness")
+                       // {
+
+                       // }
+                        String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
+                        //id = props.ToLowerInvariant().GetHashCode();
+                        //int id2 = props.ToLowerInvariant().GetHashCode(); 
+                        //id = Int32.Parse(props);
+                        
+                        for (int ctr = 0; ctr <= props.Length - 1; ctr++)
+                            id += props[ctr]; //need to make this better (hashcode) as songs can have the same id.
+                        song.id = id;
+                        SongDict.TryAdd(id, song); // should add error handling here?
+                        /*
                         Boolean Added = false;
                         while (!Added)
                         {
@@ -229,7 +294,7 @@ namespace Music_thing
                             song.id = id;
                             Added = SongDict.TryAdd(id, song);
                             //id = rnd.Next(0, 214740);
-                        }
+                        }*/
 
 
                         //Add artist
@@ -369,6 +434,43 @@ namespace Music_thing
                 }
             }
             return Results;
+        }
+
+        public static void SongsToJson()
+        {
+            string json = JsonConvert.SerializeObject(SongDict);
+            //foreach (Song song in SongDict.Values)
+            //{
+             //   string json = JsonConvert.SerializeObject(song);
+            //}
+            
+        }
+
+        public static string NowPlayingToString()
+        {
+            //var list = new List<string>();
+            int[] arr = new int[PlaylistRepresentation.Count()];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = PlaylistRepresentation[i].id;
+            }
+            return String.Join(",", arr.Select(i => i.ToString()).ToArray());
+           // return new List<string>();
+        }
+
+        public static void LoadNowPlaying(string nowplayingstring, int place)
+        {
+            if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
+            {
+                var loadedplaylist = new ObservableCollection<Song>();
+                int[] arr = nowplayingstring.Split(',').Select(s => Int32.Parse(s)).ToArray();
+                foreach (int id in arr)
+                {
+                    loadedplaylist.Add(SongDict[id]);
+                }
+                Media.Instance.PlayPlaylist(loadedplaylist, place); //need to get the position too.
+            }
+            loadednowplaying = true;
         }
 
         /*private static async Task oldGetFiles(StorageFolder folder)

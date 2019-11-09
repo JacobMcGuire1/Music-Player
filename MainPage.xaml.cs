@@ -87,22 +87,30 @@ namespace Music_thing
                     {
                         NavigationViewItem navigationViewItem = new NavigationViewItem();
 
-                        var stackpanel = new StackPanel();
-                        stackpanel.Orientation = Orientation.Vertical;
+                        var stackpanel = new StackPanel
+                        {
+                            Orientation = Orientation.Vertical
+                        };
 
-                        TextBlock nametb = new TextBlock();
-                        nametb.Text = flavour.name;
+                        TextBlock nametb = new TextBlock
+                        {
+                            Text = flavour.name
+                        };
                         //nametb.FontWeight = FontWeights.Bold; 
 
-                        TextBlock artisttb = new TextBlock();
-                        artisttb.Text = flavour.artist + " - " + flavour.albumname;
-                        artisttb.FontWeight = FontWeights.ExtraLight;
-                        artisttb.FontSize = 12;
+                        TextBlock artisttb = new TextBlock
+                        {
+                            Text = flavour.artist + " - " + flavour.albumname,
+                            FontWeight = FontWeights.ExtraLight,
+                            FontSize = 12
+                        };
 
-                        TextBlock albumtb = new TextBlock();
-                        albumtb.Text = flavour.albumname;
-                        albumtb.FontWeight = FontWeights.ExtraLight;
-                        albumtb.FontSize = 10;
+                        TextBlock albumtb = new TextBlock
+                        {
+                            Text = flavour.albumname,
+                            FontWeight = FontWeights.ExtraLight,
+                            FontSize = 10
+                        };
 
 
                         stackpanel.Children.Add(nametb);
@@ -117,9 +125,11 @@ namespace Music_thing
                         navigationViewItem.DragOver += NavigationViewItem_DragOver;
 
                         //The details needed to reference the corresponding flavour.
-                        var dict = new Dictionary<String, String>();
-                        dict.Add("albumkey", flavour.artist + flavour.albumname);
-                        dict.Add("flavourname", flavour.name);
+                        var dict = new Dictionary<String, String>
+                        {
+                            { "albumkey", flavour.artist + flavour.albumname },
+                            { "flavourname", flavour.name }
+                        };
                         navigationViewItem.Tag = dict;
 
                         //navigationViewItem.Tapped = 
