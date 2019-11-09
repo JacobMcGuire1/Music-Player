@@ -472,6 +472,8 @@ namespace Music_thing
                     loadedplaylist.Add(SongDict[id]);
                 }
                 Media.Instance.PlayPlaylist(loadedplaylist, place); //need to get the position too.
+
+                Media.Instance.mediaPlayer.Pause();
             }
             loadednowplaying = true;
         }
