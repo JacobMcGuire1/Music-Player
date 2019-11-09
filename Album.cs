@@ -27,14 +27,14 @@ namespace Music_thing
 
         public Windows.UI.Xaml.Media.ImageSource albumart100;
 
-        public List<int> Songids { get; set; }
-        = new List<int>();
+        public List<string> Songids { get; set; }
+        = new List<string>();
 
         public ObservableCollection<Song> ObserveSongs()
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
 
-            foreach (int songid in Songids)
+            foreach (string songid in Songids)
             {
                 Song song = SongListStorage.SongDict[songid];
                 song.isFlavour = false; //MB REMOVE
@@ -58,7 +58,7 @@ namespace Music_thing
             return Songs;
         }*/
 
-        public List<int> AddSong(int songid)
+        public List<string> AddSong(string songid)
         {
            // if (Songids.Count != 0) //fix
            // {
@@ -79,7 +79,7 @@ namespace Music_thing
         }
 
 
-        public async void SetAlbumArt(int songid)
+        public async void SetAlbumArt(string songid)
         {
             Song song = SongListStorage.SongDict[songid];
             if (albumart200 == null || SongListStorage.SongDict[songid].TrackNumber == 1)

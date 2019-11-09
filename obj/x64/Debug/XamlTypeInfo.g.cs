@@ -223,7 +223,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeNameTable[6] = "Music_thing.Album";
             _typeNameTable[7] = "String";
             _typeNameTable[8] = "Int32";
-            _typeNameTable[9] = "System.Collections.Generic.List`1<Int32>";
+            _typeNameTable[9] = "System.Collections.Generic.List`1<String>";
             _typeNameTable[10] = "Microsoft.Toolkit.Uwp.UI.Controls.TabView";
             _typeNameTable[11] = "Windows.UI.Xaml.Controls.ListViewBase";
             _typeNameTable[12] = "Windows.UI.Xaml.Controls.ItemsControl";
@@ -282,7 +282,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
             _typeTable[6] = typeof(global::Music_thing.Album);
             _typeTable[7] = typeof(global::System.String);
             _typeTable[8] = typeof(global::System.Int32);
-            _typeTable[9] = typeof(global::System.Collections.Generic.List<global::System.Int32>);
+            _typeTable[9] = typeof(global::System.Collections.Generic.List<global::System.String>);
             _typeTable[10] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.TabView);
             _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.ListViewBase);
             _typeTable[12] = typeof(global::Windows.UI.Xaml.Controls.ItemsControl);
@@ -368,7 +368,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private object Activate_3_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Music_thing.Album>(); }
         private object Activate_4_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Music_thing.Album>(); }
         private object Activate_6_Album() { return new global::Music_thing.Album(); }
-        private object Activate_9_List() { return new global::System.Collections.Generic.List<global::System.Int32>(); }
+        private object Activate_9_List() { return new global::System.Collections.Generic.List<global::System.String>(); }
         private object Activate_10_TabView() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.TabView(); }
         private object Activate_20_TabViewItem() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem(); }
         private object Activate_24_AlbumPage() { return new global::Music_thing.AlbumPage(); }
@@ -407,8 +407,8 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         }
         private void VectorAdd_9_List(object instance, object item)
         {
-            var collection = (global::System.Collections.Generic.ICollection<global::System.Int32>)instance;
-            var newItem = (global::System.Int32)item;
+            var collection = (global::System.Collections.Generic.ICollection<global::System.String>)instance;
+            var newItem = (global::System.String)item;
             collection.Add(newItem);
         }
         private void VectorAdd_25_ObservableCollection(object instance, object item)
@@ -512,7 +512,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 xamlType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  System.Collections.Generic.List`1<Int32>
+            case 9:   //  System.Collections.Generic.List`1<String>
                 userType = new global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.CollectionAdd = VectorAdd_9_List;
                 userType.SetIsReturnTypeStub();
@@ -968,7 +968,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private void set_5_Album_Songids(object instance, object Value)
         {
             var that = (global::Music_thing.Album)instance;
-            that.Songids = (global::System.Collections.Generic.List<global::System.Int32>)Value;
+            that.Songids = (global::System.Collections.Generic.List<global::System.String>)Value;
         }
         private object get_6_TabView_CanCloseTabs(object instance)
         {
@@ -1154,7 +1154,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
         private void set_24_Song_id(object instance, object Value)
         {
             var that = (global::Music_thing.Song)instance;
-            that.id = (global::System.Int32)Value;
+            that.id = (global::System.String)Value;
         }
         private object get_25_Song_FileName(object instance)
         {
@@ -1559,7 +1559,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 break;
             case "Music_thing.Album.Songids":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Album");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songids", "System.Collections.Generic.List`1<Int32>");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "Songids", "System.Collections.Generic.List`1<String>");
                 xamlMember.Getter = get_5_Album_Songids;
                 xamlMember.Setter = set_5_Album_Songids;
                 break;
@@ -1694,7 +1694,7 @@ namespace Music_thing.Music_thing_XamlTypeInfo
                 break;
             case "Music_thing.Song.id":
                 userType = (global::Music_thing.Music_thing_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Music_thing.Song");
-                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "id", "Int32");
+                xamlMember = new global::Music_thing.Music_thing_XamlTypeInfo.XamlMember(this, "id", "String");
                 xamlMember.Getter = get_24_Song_id;
                 xamlMember.Setter = set_24_Song_id;
                 break;

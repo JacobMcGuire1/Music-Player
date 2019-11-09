@@ -37,7 +37,7 @@ namespace Music_thing
         //public static Dictionary<string, List<int>> ArtistDict = new Dictionary<string, List<int>>();
 
         //SongID is the key
-        public static ConcurrentDictionary<int, Song> SongDict = new ConcurrentDictionary<int, Song>();
+        public static ConcurrentDictionary<string, Song> SongDict = new ConcurrentDictionary<string, Song>();
 
         //Artist name is the key
         public static ConcurrentDictionary<String, Artist> ArtistDict = new ConcurrentDictionary<String, Artist>();
@@ -115,8 +115,8 @@ namespace Music_thing
         {
             if (Songs.Count != SongDict.Count)
             {
-                List<int> Songkeys = new List<int>(); // ArtistDict.Keys as List<string>;
-                foreach (int key in SongDict.Keys)
+                List<string> Songkeys = new List<string>(); // ArtistDict.Keys as List<string>;
+                foreach (string key in SongDict.Keys)
                 {
                     Songkeys.Add(key);
                 }
@@ -125,7 +125,7 @@ namespace Music_thing
                     Songkeys.Sort();//((x, y) => );
                     Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
                     ObservableCollection<Song> Newsongs = new ObservableCollection<Song>();
-                    foreach (int songkey in Songkeys)
+                    foreach (string songkey in Songkeys)
                     {
                         Newsongs.Add(SongDict[songkey]);
                     }
@@ -236,7 +236,7 @@ namespace Music_thing
                         //{
                         Song song = new Song()
                         {
-                            id = 0, //Remove this id
+                            id = "", //don't Remove this id
                             Title = musicProperties.Title,
                             Album = musicProperties.Album,
                             AlbumArtist = musicProperties.AlbumArtist,
@@ -272,18 +272,20 @@ namespace Music_thing
                         }
                         // song.SetAlbumArt();*/
 
-                        int id = 0;
+                        string id = "";
                         //if (song.Title == "American Darkness")
                        // {
 
                        // }
                         String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
+                        props.Replace(",", "");
                         //id = props.ToLowerInvariant().GetHashCode();
                         //int id2 = props.ToLowerInvariant().GetHashCode(); 
                         //id = Int32.Parse(props);
-                        
-                        for (int ctr = 0; ctr <= props.Length - 1; ctr++)
-                            id += props[ctr]; //need to make this better (hashcode) as songs can have the same id.
+
+                        //for (int ctr = 0; ctr <= props.Length - 1; ctr++)
+                        //    id += props[ctr]; //need to make this better (hashcode) as songs can have the same id.
+                        id = props;
                         song.id = id;
                         SongDict.TryAdd(id, song); // should add error handling here?
                         /*
@@ -339,7 +341,7 @@ namespace Music_thing
             ArtistDict.AddOrUpdate(artist, ids, (key, existingvalue) => ExtendIDList(existingvalue, id));
         }*/
 
-        public static void AddAlbum(int id, Song song)
+        public static void AddAlbum(string songid, Song song)
         {
             string artistname;
             string albumname;
@@ -370,15 +372,15 @@ namespace Music_thing
                 name = albumname,
                 key = key,
                 year = (int)song.Year,
-                Songids = new List<int>()//Replaced with use of AddSong Songids = new List<int> { id }
+                Songids = new List<string>()//Replaced with use of AddSong Songids = new List<int> { id }
             };
 
-            album.AddSong(id);
+            album.AddSong(songid);
 
             //List<int> ids = new List<int>();
             //ids.Add(id);
 
-            AlbumDict.AddOrUpdate(key, album, (key2, existingalbum) => AddSongToAlbum(existingalbum, id));///ExtendIDList(existingvalue, id));
+            AlbumDict.AddOrUpdate(key, album, (key2, existingalbum) => AddSongToAlbum(existingalbum, songid));///ExtendIDList(existingvalue, id));
 
             //Add to the artist
 
@@ -397,7 +399,7 @@ namespace Music_thing
             return existingartist;
         }
 
-        public static Album AddSongToAlbum(Album existingalbum, int songid)
+        public static Album AddSongToAlbum(Album existingalbum, string songid)
         {
             existingalbum.AddSong(songid);
             return existingalbum;
@@ -449,12 +451,13 @@ namespace Music_thing
         public static string NowPlayingToString()
         {
             //var list = new List<string>();
-            int[] arr = new int[PlaylistRepresentation.Count()];
+            string[] arr = new string[PlaylistRepresentation.Count()];
             for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = PlaylistRepresentation[i].id;
             }
-            return String.Join(",", arr.Select(i => i.ToString()).ToArray());
+            var temp = String.Join(",", arr.Select(i => i.ToString()).ToArray());
+            return temp;
            // return new List<string>();
         }
 
@@ -463,8 +466,8 @@ namespace Music_thing
             if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
             {
                 var loadedplaylist = new ObservableCollection<Song>();
-                int[] arr = nowplayingstring.Split(',').Select(s => Int32.Parse(s)).ToArray();
-                foreach (int id in arr)
+                string[] arr = nowplayingstring.Split(',').ToArray();
+                foreach (string id in arr)
                 {
                     loadedplaylist.Add(SongDict[id]);
                 }

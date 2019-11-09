@@ -183,16 +183,16 @@ namespace Music_thing
         }
 
 
-        public void playSong(int song)
+        public void playSong(string songid)
         {
             //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
             Playlist.Items.Clear();
             //StorageFile file = SongListStorage.Songs[song].File;
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[song].File));
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Clear();
-            SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[song]);
+            SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
 
         }
 
@@ -210,12 +210,12 @@ namespace Music_thing
 
         }
 
-        public void addSong(int song)
+        public void addSong(string songid)
         {
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[song].File));
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
-            SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[song]);
+            SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
             //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
         }
 

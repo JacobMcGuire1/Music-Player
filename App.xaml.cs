@@ -108,7 +108,7 @@ namespace Music_thing
             //var temp = SongListStorage.NowPlayingToString();
             //SongListStorage.LoadNowPlaying(temp);
             roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
-            roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist;
+            roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
 
             deferral.Complete();
         }

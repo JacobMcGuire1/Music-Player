@@ -209,7 +209,7 @@ namespace Music_thing
 
             //Song song = ((Button)sender).Tag as Song;
 
-            int song = (int)(((Button)sender).Tag);
+            string song = (string)(((Button)sender).Tag);
 
             Media.Instance.addSong(song);
         }
@@ -285,7 +285,7 @@ namespace Music_thing
                 name = flavourname,
                 albumname = SongListStorage.AlbumDict[CurrentAlbum].name,
                 artist = SongListStorage.AlbumDict[CurrentAlbum].artist,
-                Songids = new List<int>(SongListStorage.AlbumDict[CurrentAlbum].Songids)
+                Songids = new List<string>(SongListStorage.AlbumDict[CurrentAlbum].Songids)
             };
 
             //List<List<int>> flavours = SongListStorage.AlbumFlavours[CurrentAlbum];

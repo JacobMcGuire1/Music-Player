@@ -34,7 +34,7 @@ namespace Music_thing
 
                 Song newSong = new Song()
                 {
-                    id = song.id, //Remove this id
+                    id = song.id, //dont Remove this id
                     Title = song.Title,
                     Album = song.Album,
                     AlbumArtist = song.AlbumArtist,
@@ -68,7 +68,7 @@ namespace Music_thing
             return ObserveSongs();
         }
 
-        public new List<int> AddSong(int songid)
+        public new List<string> AddSong(string songid)
         {
             Songids.Add(songid);
             return Songids;

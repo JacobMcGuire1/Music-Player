@@ -106,7 +106,7 @@ namespace Music_thing
 
             //Song song = ((Button)sender).Tag as Song;
 
-            int song = (int)(((Button)sender).Tag);
+            string song = (string)(((Button)sender).Tag);
 
             Media.Instance.addSong(song);
         }

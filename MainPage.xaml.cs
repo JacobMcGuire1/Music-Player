@@ -156,7 +156,7 @@ namespace Music_thing
             String flavourname = dict["flavourname"];
 
             Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
-            flavour.AddSong(Int32.Parse(songid));
+            flavour.AddSong(songid);
             //LoadPinnedFlavours();
         }
 
