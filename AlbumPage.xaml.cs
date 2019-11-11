@@ -285,7 +285,8 @@ namespace Music_thing
                 name = flavourname,
                 albumname = SongListStorage.AlbumDict[CurrentAlbum].name,
                 artist = SongListStorage.AlbumDict[CurrentAlbum].artist,
-                Songids = new List<string>(SongListStorage.AlbumDict[CurrentAlbum].Songids)
+                Songids = new List<string>(SongListStorage.AlbumDict[CurrentAlbum].Songids),
+                pinned = true
             };
 
             //List<List<int>> flavours = SongListStorage.AlbumFlavours[CurrentAlbum];
@@ -301,21 +302,23 @@ namespace Music_thing
             newtab.Content = frame;
             TabItems.Add(newtab);
 
+            SongListStorage.FlavoursChanged = true;
+
             //frame.Navigate(typeof(SongList));
             //needtoputalbumversionidhere.Navigate()
-               /* < Frame x: Name = "ContentFrame" Margin = "0,32,0,0" >
-    
-                        < Frame.ContentTransitions >
-    
-                            < TransitionCollection >
-    
-                                < NavigationThemeTransition />
-    
-                            </ TransitionCollection >
-    
-                        </ Frame.ContentTransitions >
-    
-                    </ Frame >*/
+            /* < Frame x: Name = "ContentFrame" Margin = "0,32,0,0" >
+
+                     < Frame.ContentTransitions >
+
+                         < TransitionCollection >
+
+                             < NavigationThemeTransition />
+
+                         </ TransitionCollection >
+
+                     </ Frame.ContentTransitions >
+
+                 </ Frame >*/
 
         }
 

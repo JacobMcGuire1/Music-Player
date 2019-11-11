@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -26,6 +27,8 @@ namespace Music_thing
         public Windows.UI.Xaml.Media.ImageSource albumart250;
 
         public Windows.UI.Xaml.Media.ImageSource albumart100;
+
+       // public BitmapIcon icon;
 
         public List<string> Songids { get; set; }
         = new List<string>();
@@ -119,6 +122,17 @@ namespace Music_thing
                     bitmapImage.DecodePixelWidth = 100;
                     albumart100 = bitmapImage;
                 }
+
+                /*thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 20);
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    //ImageControl.Source = bitmapImage;
+
+                    bitmapImage.DecodePixelHeight = 20;
+                    bitmapImage.DecodePixelWidth = 20;
+                }*/
 
 
                 //using (var )

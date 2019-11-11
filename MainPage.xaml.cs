@@ -27,6 +27,7 @@ namespace Music_thing
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
 
         public int currentid;
 
@@ -64,17 +65,20 @@ namespace Music_thing
             //mediaPlayerElement.Play();
         }*/
 
-        private void LoadPinnedFlavours()
+        public void LoadPinnedFlavours() //Could probably be done more efficiently
         {
 
             //navigationViewItem.Content = "TEst";
 
-            
+            List<String> inlist = new List<string>();
             foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
             {
+                
                 if (menuitem.Name.Equals("Flavour"))
                 {
-                    menuitem.Visibility = Visibility.Collapsed;
+                    var tag = (Dictionary<String, string>)menuitem.Tag;
+                    inlist.Add(tag["albumkey"] + tag["flavourname"]);
+                    //menuitem.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -86,6 +90,20 @@ namespace Music_thing
                     if (flavour.pinned)
                     {
                         NavigationViewItem navigationViewItem = new NavigationViewItem();
+
+                        /*Image icon stuff
+                        var stackpanelhor = new StackPanel
+                        {
+                            Orientation = Orientation.Horizontal
+                        };
+
+                        var icon = new Image();
+                        icon.Source = flavour.albumart100;
+                        icon.Height = 20;
+                        icon.Width = 20;
+
+                        stackpanelhor.Children.Add(icon);
+                        */
 
                         var stackpanel = new StackPanel
                         {
@@ -117,6 +135,9 @@ namespace Music_thing
                         stackpanel.Children.Add(artisttb);
                         stackpanel.Children.Add(albumtb);
 
+
+                       // stackpanelhor.Children.Add(stackpanel);
+
                         //navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
                         navigationViewItem.Content = stackpanel;
                         navigationViewItem.Name = "Flavour";
@@ -133,11 +154,31 @@ namespace Music_thing
                         navigationViewItem.Tag = dict;
 
                         //navigationViewItem.Tapped = 
-
-                        NavView.MenuItems.Add(navigationViewItem);
+                        if (!inlist.Contains(dict["albumkey"] + dict["flavourname"]))
+                        {
+                            NavView.MenuItems.Add(navigationViewItem);
+                        }
+                        
                     }
                 }
                 
+            }
+            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
+            {
+                if (menuitem.Name.Equals("Flavour"))
+                {
+                    var tag = (Dictionary<String, string>)menuitem.Tag;
+                    if (!SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
+                    {
+                        menuitem.Visibility = Visibility.Collapsed;
+                    }
+                }
+
+                //if (menuitem.Name.Equals("Flavour"))
+                //{
+                    //inlist.Add(tag["albumkey"] + tag["flavourname"]);
+                  //  menuitem.Visibility = Visibility.Collapsed;
+               // }
             }
         }
 
@@ -162,7 +203,6 @@ namespace Music_thing
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            LoadPinnedFlavours();
             
             if (args.IsSettingsSelected)
             {

@@ -113,17 +113,23 @@ namespace Music_thing
 
         private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)
         {
-            int TrackNumber = (int)((Button)sender).Tag;
+            int TrackNumber = (int)((Button)sender).Tag - 1;
 
             //Can maybe do this in a way that doesn't clear the list.
 
-            Songs.Clear();
+            //Songs.Clear();
 
             ObservableCollection<Song> NewSongs = SongListStorage.AlbumFlavourDict[albumid][flavourid].RemoveSong(TrackNumber);
 
-            foreach (Song song in NewSongs)
+            //foreach (Song song in NewSongs)
+            //{
+            //    Songs.Add(song);
+            //}
+            Songs.RemoveAt(Songs.Count - 1);
+
+            for(int i = 0; i < NewSongs.Count; i++)
             {
-                Songs.Add(song);
+                Songs[i] = NewSongs[i];
             }
 
 
@@ -133,6 +139,7 @@ namespace Music_thing
         {
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
             SongListStorage.AlbumFlavourDict[albumid][flavourid].pinned = true;
+            SongListStorage.FlavoursChanged = true;
         }
 
         private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)

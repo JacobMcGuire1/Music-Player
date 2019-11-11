@@ -23,6 +23,8 @@ namespace Music_thing
     /// </summary>
     sealed partial class App : Application
     {
+
+        public static MainPage GetForCurrentView() => (MainPage)((Frame)Window.Current.Content).Content;  //This may be illegal"!!!!!
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -80,6 +82,8 @@ namespace Music_thing
 
         }
 
+        
+
 
 
         /// <summary>
@@ -109,6 +113,8 @@ namespace Music_thing
             //SongListStorage.LoadNowPlaying(temp);
             roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
             roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+
+            roamingSettings.Values["flavours"] = SongListStorage.SerializeFlavours();
 
             deferral.Complete();
         }

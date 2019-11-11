@@ -44,12 +44,14 @@ namespace Music_thing
 
         //Key is artistname + albumname
         public static ConcurrentDictionary<String, Album> AlbumDict = new ConcurrentDictionary<String, Album>();
-
+        
         public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
         public static HashSet<int> SongsInCollection = new HashSet<int>();
 
         private static bool loadednowplaying = false;
+
+        public static bool FlavoursChanged = false; //Should changed this to true?
 
         public static void UpdateAndOrderArtists()
         {
@@ -69,6 +71,7 @@ namespace Music_thing
                         NewArtists.Add(ArtistDict[artistkey]);
                     }
                     Artists = NewArtists;
+
                 }
             }
         }
@@ -177,8 +180,15 @@ namespace Music_thing
         {
             while (true)
             {
+                
+
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
+                    if (FlavoursChanged)
+                    {
+                        App.GetForCurrentView().LoadPinnedFlavours();
+                        FlavoursChanged = false;
+                    }
                     UpdateAndOrderSongs();
                     UpdateAndOrderArtists();
                     UpdateAndOrderAlbums();
@@ -197,13 +207,23 @@ namespace Music_thing
 
                         }
                     }
-                    
+
+                    try
+                    {
+                        var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                        LoadFlavours((string)roamingSettings.Values["flavours"]);
+
+                    }
+                    catch
+                    {
+                        
+                    }
                     
 
 
                 });
                 
-                Thread.Sleep(10000); //update rate of the lists used for the ui
+                Thread.Sleep(100); //update rate of the lists used for the ui
             }
             
         }        
@@ -476,6 +496,23 @@ namespace Music_thing
                 Media.Instance.mediaPlayer.Pause();
             }
             loadednowplaying = true;
+        }
+
+        public static string SerializeFlavours()
+        {
+            var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.None);
+            return x;
+        }
+
+        public static void LoadFlavours(String flavours)
+        {
+            if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
+            {
+                var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
+                AlbumFlavourDict = flavourdict;
+                SongListStorage.FlavoursChanged = true;
+            }
+            
         }
 
         /*private static async Task oldGetFiles(StorageFolder folder)
