@@ -210,8 +210,16 @@ namespace Music_thing
 
                     try
                     {
+
                         var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-                        LoadFlavours((string)roamingSettings.Values["flavours"]);
+                        int flavourcount = (int)roamingSettings.Values["flavourcount"];
+                        string flavourstr = "";
+                        for (int i = 0; i <= flavourcount; i++)
+                        {
+                            //int place = i * 4000;
+                            flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
+                        }
+                        LoadFlavours(flavourstr);
 
                     }
                     catch
@@ -500,7 +508,7 @@ namespace Music_thing
 
         public static string SerializeFlavours()
         {
-            var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.None);
+            var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.Indented);
             return x;
         }
 
