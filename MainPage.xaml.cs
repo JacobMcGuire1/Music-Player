@@ -53,18 +53,10 @@ namespace Music_thing
 
         }
 
+        //Returns the instance of the media instance to allow information from it to be accessed.
         public Media MediaProxy { get { return Media.Instance; } }
 
-        /*public async void testSong()
-        {
-
-            Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
-            Windows.Storage.StorageFile file = await folder.GetFileAsync("Antibiotics.mp3");
-
-            mediaPlayerElement.Source = MediaSource.CreateFromStorageFile(file);
-            //mediaPlayerElement.Play();
-        }*/
-
+        //Loads the pinned flavours and playlists into the list on the left of the screen.
         public void LoadPinnedFlavours() //Could probably be done more efficiently
         {
 
@@ -182,11 +174,13 @@ namespace Music_thing
             }
         }
 
+        
         private void NavigationViewItem_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = (e.DataView.Contains(StandardDataFormats.Text)) ? DataPackageOperation.Copy : DataPackageOperation.None;
         }
 
+        //Adds a song to a flavour/playlist if it is dragged onto it.
         private async void NavigationViewItem_Drop(object sender, DragEventArgs e)
         {
             var task = e.DataView.GetTextAsync();
@@ -201,6 +195,7 @@ namespace Music_thing
             //LoadPinnedFlavours();
         }
 
+        //Loads a page when it is navigated to.
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             
@@ -249,6 +244,7 @@ namespace Music_thing
             }
         }
 
+        //Loads the flavour/playlist when it's clicked on.
         private void HandleFlavourClick(NavigationViewItem item)
         {
             var dict = (Dictionary <String, String>)item.Tag;
@@ -261,12 +257,8 @@ namespace Music_thing
             Stopped, Playing, Paused
         }
 
-        private void TestButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         //MAKE THIS ONLY HAPPEN WHEN THE SELECTION DOESN'T CHANGE
+        //Reloads the current page when it is clicked on.
         private void NavView_Tapped(object sender, TappedRoutedEventArgs e)
         {
             switch (currentpage)
@@ -294,6 +286,7 @@ namespace Music_thing
             }
         }
 
+        //Shows song suggestions in the searchbox based on what has been typed.
         private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             
@@ -308,7 +301,7 @@ namespace Music_thing
                 SearchBox.ItemsSource = textresults;
             }
         }
-
+        
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
 

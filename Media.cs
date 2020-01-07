@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media.Imaging;
 namespace Music_thing
 {
     public sealed class Media : INotifyPropertyChanged
+        //This class manages the currently playing song and the queued songs.
     {
         private static readonly Media instance = new Media();
 
@@ -56,11 +57,7 @@ namespace Music_thing
 
             mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
 
-            //Code for placeholder album art:
-            //Uri imgpath = new Uri("Assets/StoreLogo.png");
-            //BitmapImage bitmapImage = new BitmapImage(imgpath);
-            
-
+            //The placeholder album art TODO: make it work?
             BitmapImage bitmapImage =
                      new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/StoreLogo.png"));
 
@@ -70,6 +67,7 @@ namespace Music_thing
             //CurrentSong = new StorageFile();
         }
 
+        //Used to inform the UI that something about the currently playing song has changed.
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
 
@@ -79,16 +77,16 @@ namespace Music_thing
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             });
-            
-
         }
 
+        //Changes the volume and notifies of this.
         private void MediaPlayer_VolumeChanged(MediaPlayer sender, object args)
         {
             chosenVol = (int)(mediaPlayer.Volume * 100);
             VolChanged();
         }
 
+        //Dodgy volume stuff
         public void VolChanged()
         {
             if (!hasFixedvol)
@@ -103,10 +101,12 @@ namespace Music_thing
 
         }
 
+
+        //Updates song details when the song changes.
         private void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
             uint thign = Playlist.CurrentItemIndex;
-            if (thign == 4294967295)
+            if (thign == 4294967295) //Magic number?? Perfectly totient.
             {
                 SongListStorage.CurrentPlaceInPlaylist = 0;
             }
@@ -119,12 +119,10 @@ namespace Music_thing
             Currentart = SongListStorage.GetCurrentSongArt();
             Currenttitle = SongListStorage.GetCurrentSongName();
             Currentartist = SongListStorage.GetCurrentArtistName();
-
-            //SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].Album
-            //CurrentSong = Song;
-            //throw new NotImplementedException();
-
         }
+
+        //Allows the following properties to be accessed
+
 
         public string Currenttitle
         {
@@ -174,6 +172,7 @@ namespace Music_thing
             }
         }
 
+        //Returns the static instance of this class, as only one instance can run at a time.
         public static Media Instance
         {
             get
@@ -182,7 +181,7 @@ namespace Music_thing
             }
         }
 
-
+        //Plays the specified song
         public void playSong(string songid)
         {
             //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
@@ -196,13 +195,13 @@ namespace Music_thing
 
         }
 
+        //Plays the playlist
         public void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
         {
             Playlist.Items.Clear(); //Clears the playlist
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
-                //Media.Instance.
                 addSong(song.id);
 
             }
@@ -210,13 +209,13 @@ namespace Music_thing
 
         }
 
+        //Appends a song to the playlist.
         public void addSong(string songid)
         {
             var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
-            //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
         }
 
 
