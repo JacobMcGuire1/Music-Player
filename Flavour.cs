@@ -17,15 +17,6 @@ namespace Music_thing
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
 
-
-            /*foreach (int songid in Songids)
-            {
-                Song song = SongListStorage.SongDict[songid];
-                song.isFlavour = true;
-                song.TrackNumber = i;
-                Songs.Add(song);
-            }*/
-
             for (int i = 0; i < Songids.Count; i++)
             {
                 Song song = SongListStorage.SongDict[Songids[i]];
