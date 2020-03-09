@@ -44,6 +44,7 @@ namespace Music_thing
             
 
             SongListStorage.GetSongList();
+            Database.GetSongs(); //Temp
 
             //SongListStorage.FindArtists();
 

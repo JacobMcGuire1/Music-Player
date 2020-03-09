@@ -148,6 +148,8 @@ namespace Music_thing
 
             GetFiles(musicFolder);
 
+            
+
         }
 
         //This is the UI thread. It updates and orders the visible lists of songs and loads and newly created flavours/playlists.
