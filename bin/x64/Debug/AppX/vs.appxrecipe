@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-03-08T16:22:01.623</Modified>
+      <Modified>2020-03-09T14:51:02.859</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Music thing.exe">
       <PackagePath>entrypoint\Music thing.exe</PackagePath>
-      <Modified>2020-03-08T16:21:57.790</Modified>
+      <Modified>2020-03-09T14:51:00.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -154,47 +154,47 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.391</Modified>
+      <Modified>2020-03-09T14:51:00.625</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumList.xbf">
-      <PackagePath>AlbumList.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.391</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumList.xbf">
+      <PackagePath>Pages\AlbumList.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.625</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumPage.xbf">
-      <PackagePath>AlbumPage.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.391</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumPage.xbf">
+      <PackagePath>Pages\AlbumPage.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumSongList.xbf">
-      <PackagePath>AlbumSongList.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumSongList.xbf">
+      <PackagePath>Pages\AlbumSongList.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\ArtistList.xbf">
-      <PackagePath>ArtistList.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\ArtistList.xbf">
+      <PackagePath>Pages\ArtistList.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\MainPage.xbf">
-      <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\MainPage.xbf">
+      <PackagePath>Pages\MainPage.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\NowPlaying.xbf">
-      <PackagePath>NowPlaying.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\NowPlaying.xbf">
+      <PackagePath>Pages\NowPlaying.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\RecentlyPlayed.xbf">
-      <PackagePath>RecentlyPlayed.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\RecentlyPlayed.xbf">
+      <PackagePath>Pages\RecentlyPlayed.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SearchResultsPage.xbf">
-      <PackagePath>SearchResultsPage.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SearchResultsPage.xbf">
+      <PackagePath>Pages\SearchResultsPage.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SettingsPage.xbf">
-      <PackagePath>SettingsPage.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SettingsPage.xbf">
+      <PackagePath>Pages\SettingsPage.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SongList.xbf">
-      <PackagePath>SongList.xbf</PackagePath>
-      <Modified>2020-03-08T16:21:57.392</Modified>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SongList.xbf">
+      <PackagePath>Pages\SongList.xbf</PackagePath>
+      <Modified>2020-03-09T14:51:00.626</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -346,11 +346,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-03-08T16:21:59.429</Modified>
+      <Modified>2020-03-09T14:51:01.763</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Core\Music thing.exe">
       <PackagePath>Music thing.exe</PackagePath>
-      <Modified>2020-03-08T16:22:01.593</Modified>
+      <Modified>2020-03-09T14:51:02.847</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

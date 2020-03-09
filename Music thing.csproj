@@ -92,47 +92,47 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AlbumList.xaml.cs">
+    <Compile Include="Pages\AlbumList.xaml.cs">
       <DependentUpon>AlbumList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AlbumPage.xaml.cs">
+    <Compile Include="Pages\AlbumPage.xaml.cs">
       <DependentUpon>AlbumPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AlbumSongList.xaml.cs">
+    <Compile Include="Pages\AlbumSongList.xaml.cs">
       <DependentUpon>AlbumSongList.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArtistList.xaml.cs">
+    <Compile Include="Pages\ArtistList.xaml.cs">
       <DependentUpon>ArtistList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Artist.cs" />
-    <Compile Include="Album.cs" />
-    <Compile Include="Flavour.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Classes\Artist.cs" />
+    <Compile Include="Classes\Album.cs" />
+    <Compile Include="Classes\Flavour.cs" />
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Media.cs" />
-    <Compile Include="NowPlaying.xaml.cs">
+    <Compile Include="Classes\Media.cs" />
+    <Compile Include="Pages\NowPlaying.xaml.cs">
       <DependentUpon>NowPlaying.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageGateway.cs" />
+    <Compile Include="Classes\PageGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecentlyPlayed.xaml.cs">
+    <Compile Include="Pages\RecentlyPlayed.xaml.cs">
       <DependentUpon>RecentlyPlayed.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchResultsPage.xaml.cs">
+    <Compile Include="Pages\SearchResultsPage.xaml.cs">
       <DependentUpon>SearchResultsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Song.cs" />
-    <Compile Include="SongList.xaml.cs">
+    <Compile Include="Classes\Song.cs" />
+    <Compile Include="Pages\SongList.xaml.cs">
       <DependentUpon>SongList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SongListStorage.cs" />
+    <Compile Include="Classes\SongListStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -157,43 +157,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AlbumList.xaml">
+    <Page Include="Pages\AlbumList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AlbumPage.xaml">
+    <Page Include="Pages\AlbumPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AlbumSongList.xaml">
+    <Page Include="Pages\AlbumSongList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ArtistList.xaml">
+    <Page Include="Pages\ArtistList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NowPlaying.xaml">
+    <Page Include="Pages\NowPlaying.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecentlyPlayed.xaml">
+    <Page Include="Pages\RecentlyPlayed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SearchResultsPage.xaml">
+    <Page Include="Pages\SearchResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SongList.xaml">
+    <Page Include="Pages\SongList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,16 +6,16 @@ Assets\Square44x44Logo.scale-200.png
 Assets\Square44x44Logo.targetsize-24_altform-unplated.png
 Assets\StoreLogo.png
 Assets\Wide310x150Logo.scale-200.png
-AlbumList.xbf
-AlbumPage.xbf
-AlbumSongList.xbf
 App.xbf
-ArtistList.xbf
-MainPage.xbf
 Music thing.xr.xml
-NowPlaying.xbf
-RecentlyPlayed.xbf
-SearchResultsPage.xbf
-SettingsPage.xbf
-SongList.xbf
+Pages\AlbumList.xbf
+Pages\AlbumPage.xbf
+Pages\AlbumSongList.xbf
+Pages\ArtistList.xbf
+Pages\MainPage.xbf
+Pages\NowPlaying.xbf
+Pages\RecentlyPlayed.xbf
+Pages\SearchResultsPage.xbf
+Pages\SettingsPage.xbf
+Pages\SongList.xbf
 Properties\Default.rd.xml

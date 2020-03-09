@@ -118,35 +118,35 @@
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumList.xbf">
-      <PackagePath>AlbumList.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumList.xbf">
+      <PackagePath>Pages\AlbumList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumPage.xbf">
-      <PackagePath>AlbumPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumPage.xbf">
+      <PackagePath>Pages\AlbumPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\AlbumSongList.xbf">
-      <PackagePath>AlbumSongList.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\AlbumSongList.xbf">
+      <PackagePath>Pages\AlbumSongList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\ArtistList.xbf">
-      <PackagePath>ArtistList.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\ArtistList.xbf">
+      <PackagePath>Pages\ArtistList.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\MainPage.xbf">
-      <PackagePath>MainPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\MainPage.xbf">
+      <PackagePath>Pages\MainPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\NowPlaying.xbf">
-      <PackagePath>NowPlaying.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\NowPlaying.xbf">
+      <PackagePath>Pages\NowPlaying.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\RecentlyPlayed.xbf">
-      <PackagePath>RecentlyPlayed.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\RecentlyPlayed.xbf">
+      <PackagePath>Pages\RecentlyPlayed.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SearchResultsPage.xbf">
-      <PackagePath>SearchResultsPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SearchResultsPage.xbf">
+      <PackagePath>Pages\SearchResultsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SettingsPage.xbf">
-      <PackagePath>SettingsPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SettingsPage.xbf">
+      <PackagePath>Pages\SettingsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\SongList.xbf">
-      <PackagePath>SongList.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Pages\SongList.xbf">
+      <PackagePath>Pages\SongList.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
