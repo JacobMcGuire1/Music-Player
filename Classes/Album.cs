@@ -87,7 +87,8 @@ namespace Music_thing
             Song song = SongListStorage.SongDict[songid];
             if (albumart200 == null || SongListStorage.SongDict[songid].TrackNumber == 1)
             {
-                var thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
+                var file = await song.GetFile();
+                var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
                     var bitmapImage = new BitmapImage();
@@ -99,7 +100,7 @@ namespace Music_thing
                     albumart200 = bitmapImage;
                 }
 
-                thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
+                thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 250);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
                     var bitmapImage = new BitmapImage();
@@ -111,7 +112,7 @@ namespace Music_thing
                     albumart250 = bitmapImage;
                 }
 
-                thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 100);
+                thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 100);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
                     var bitmapImage = new BitmapImage();

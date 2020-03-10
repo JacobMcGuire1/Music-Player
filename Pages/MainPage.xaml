@@ -41,7 +41,7 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
-                    <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
                 </NavigationView.MenuItems>
 

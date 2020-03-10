@@ -175,7 +175,7 @@ namespace Music_thing
                         {
                             try
                             {
-                                LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"]);
+                               LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"]);
                             }
                             catch
                             {
@@ -238,10 +238,12 @@ namespace Music_thing
                                 Duration = musicProperties.Duration,
                                 TrackNumber = (int)musicProperties.TrackNumber,
                                 isFlavour = false, //MAY NEED TO REMOVE
+                                Path = ((StorageFile)item).Path
                                 //DiscNumber = resp.,
-                                File = item as StorageFile
-                            };
+                                //File = item as StorageFile
+                    };
 
+                            
                             string id = "";
                             String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
                             props.Replace(",", "");
@@ -370,6 +372,14 @@ namespace Music_thing
                 }
                 var temp = String.Join(",", arr.Select(i => i.ToString()).ToArray());
                 return temp;
+            }
+
+            public static void SaveNowPlaying()
+            {
+                var roamingSettings =
+                    Windows.Storage.ApplicationData.Current.RoamingSettings;
+                roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
+                roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
             }
 
             public static void LoadNowPlaying(string nowplayingstring, int place)

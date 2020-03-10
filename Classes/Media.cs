@@ -115,10 +115,13 @@ namespace Music_thing
                 SongListStorage.CurrentPlaceInPlaylist = (int)Playlist.CurrentItemIndex;
             }
 
-
-            Currentart = SongListStorage.GetCurrentSongArt();
-            Currenttitle = SongListStorage.GetCurrentSongName();
-            Currentartist = SongListStorage.GetCurrentArtistName();
+            if (SongListStorage.PlaylistRepresentation.Count > 0)
+            {
+                Currentart = SongListStorage.GetCurrentSongArt();
+                Currenttitle = SongListStorage.GetCurrentSongName();
+                Currentartist = SongListStorage.GetCurrentArtistName();
+            }
+            SongListStorage.SaveNowPlaying();
         }
 
         //Allows the following properties to be accessed
@@ -182,12 +185,12 @@ namespace Music_thing
         }
 
         //Plays the specified song
-        public void playSong(string songid)
+        public async Task playSong(string songid)
         {
-            //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
             Playlist.Items.Clear();
-            //StorageFile file = SongListStorage.Songs[song].File;
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
+            var song = SongListStorage.SongDict[songid];
+            var file = await song.GetFile();
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Clear();
@@ -196,13 +199,14 @@ namespace Music_thing
         }
 
         //Plays the playlist
-        public void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
+        public async void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
         {
             Playlist.Items.Clear(); //Clears the playlist
+            SongListStorage.CurrentPlaceInPlaylist = 0;
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
-                addSong(song.id);
+                await addSong(song.id);
 
             }
             Playlist.MoveTo((uint)Pos - 1);
@@ -210,9 +214,10 @@ namespace Music_thing
         }
 
         //Appends a song to the playlist.
-        public void addSong(string songid)
+        public async Task addSong(string songid)
         {
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
+            var song = SongListStorage.SongDict[songid];
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);

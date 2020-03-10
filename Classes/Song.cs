@@ -22,14 +22,21 @@ namespace Music_thing
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
         public string DiscNumber { get; set; }
+        public string Path { get; set; }
 
 
         public bool isFlavour { get; set; }
 
         public uint Bitrate { get; set; }
-        public StorageFile File { get; set; }
+        //public StorageFile File { get; set; }
 
         //public BitmapImage AlbumArt { get; set; }
+
+        public async Task<StorageFile> GetFile()
+        {
+            StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
+            return file;
+        }
 
         public override bool Equals(object obj)
         {
@@ -43,10 +50,10 @@ namespace Music_thing
             return JSON;
         }
 
-        public string GetPath()
-        {
-            return File.Path;
-        }
+       // //public string GetPath()
+       // {
+         //   return File.Path;
+        //}
 
         public string GetDuration()
         {

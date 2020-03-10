@@ -34,7 +34,7 @@ namespace Music_thing
                     Duration = song.Duration,
                     TrackNumber = i + 1,
                     isFlavour = true, //MAY NEED TO REMOVE
-                    File = song.File
+                    Path = song.Path
                 };
 
                 Songs.Add(newSong);

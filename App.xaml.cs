@@ -111,8 +111,7 @@ namespace Music_thing
                 Windows.Storage.ApplicationData.Current.RoamingSettings;
             //var temp = SongListStorage.NowPlayingToString();
             //SongListStorage.LoadNowPlaying(temp);
-            roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
-            roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+            SongListStorage.SaveNowPlaying();
 
             var flavstr = SongListStorage.SerializeFlavours();
 
