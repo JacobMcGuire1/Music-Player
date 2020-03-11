@@ -13,6 +13,7 @@ using TagLib;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Media;
 
 namespace Music_thing
 {
@@ -47,15 +48,16 @@ namespace Music_thing
         
         public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
-        public static HashSet<int> SongsInCollection = new HashSet<int>();
+        //public static HashSet<int> SongsInCollection = new HashSet<int>();
 
         private static bool loadednowplaying = false;
 
         public static bool FlavoursChanged = false; //Should changed this to true?
 
-        public static Windows.UI.Xaml.Media.ImageSource GetCurrentSongArt()
+        public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
-            return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart100;
+            //return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart100;
+            return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetArt(size);
         }
 
         public static string GetCurrentSongName()
@@ -144,9 +146,9 @@ namespace Music_thing
         {
             Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
 
-            StorageFolder musicFolder = KnownFolders.MusicLibrary;
+            //StorageFolder musicFolder = KnownFolders.MusicLibrary;
 
-            GetFiles(musicFolder);
+            //GetFiles(musicFolder);
 
             
 
@@ -241,7 +243,7 @@ namespace Music_thing
                                 Path = ((StorageFile)item).Path
                                 //DiscNumber = resp.,
                                 //File = item as StorageFile
-                    };
+                            };
 
                             
                             string id = "";

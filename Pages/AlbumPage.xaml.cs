@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -36,6 +37,8 @@ namespace Music_thing
 
         public string CurrentAlbum;
 
+        public ImageSource albumart;
+
 
         public AlbumPage()
         {
@@ -53,9 +56,10 @@ namespace Music_thing
             CurrentAlbum = album.key;
         }
 
-        public ImageSource GetAlbumArt()
+        public async Task SetAlbumArt()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
+            //return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
+            albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250);
         }
 
         public string GetAlbumName()
@@ -78,8 +82,9 @@ namespace Music_thing
             return year.ToString();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
             try
             {
                 String key = e.Parameter as string;
@@ -113,6 +118,7 @@ namespace Music_thing
                 }
 
             }
+            await SetAlbumArt();
             /*
             if (e.GetType() == typeof(Dictionary<String, String>))
             {
@@ -146,7 +152,7 @@ namespace Music_thing
                 ChangeAlbum(album);
                 AddExistingFlavourTabs();
             }*/
-            
+
         }
 
         private void AddExistingFlavourTabs()

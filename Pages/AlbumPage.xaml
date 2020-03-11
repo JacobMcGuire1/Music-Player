@@ -17,7 +17,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="20,20,20,20">
-                    <Image Width="250" Height="250" Source="{x:Bind GetAlbumArt()}"/>
+                    <Image Width="250" Height="250" Source="{x:Bind albumart}"/>
                     <StackPanel>
                         <TextBlock Padding="16" FontSize="37" Margin="0,-25,0,0" Text="{x:Bind GetAlbumName()}"/>
                         <TextBlock Padding="16" FontSize="15" Margin="2,-30,0,0" Text="{x:Bind GetArtistName()}"/>

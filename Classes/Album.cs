@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Music_thing.Classes;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -22,13 +25,18 @@ namespace Music_thing
         public int year { get; set; }
 
         //public BitmapImage albumart;
-        public Windows.UI.Xaml.Media.ImageSource albumart200;
+        //public Windows.UI.Xaml.Media.ImageSource albumart200;
 
-        public Windows.UI.Xaml.Media.ImageSource albumart250;
+        //public Windows.UI.Xaml.Media.ImageSource albumart250;
 
-        public Windows.UI.Xaml.Media.ImageSource albumart100;
+        //public Windows.UI.Xaml.Media.ImageSource albumart100;
 
-       // public BitmapIcon icon;
+        // public BitmapIcon icon;
+
+        //Should only be in memory for the album list.
+        public ImageSource albumart;
+
+        public string albumartsongid { get; set; }
 
         public List<string> Songids { get; set; }
         = new List<string>();
@@ -81,86 +89,101 @@ namespace Music_thing
             Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
         }
 
-
         public async void SetAlbumArt(string songid)
         {
             Song song = SongListStorage.SongDict[songid];
-            if (albumart200 == null || SongListStorage.SongDict[songid].TrackNumber == 1)
+            if (albumartsongid == null || SongListStorage.SongDict[songid].TrackNumber == 1)
             {
                 var file = await song.GetFile();
-                var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
+                var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
-                    //ImageControl.Source = bitmapImage;
-
-                    bitmapImage.DecodePixelHeight = 200;
-                    bitmapImage.DecodePixelWidth = 200;
-                    albumart200 = bitmapImage;
+                    albumartsongid = songid;
                 }
-
-                thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 250);
-                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-                {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
-                    //ImageControl.Source = bitmapImage;
-
-                    bitmapImage.DecodePixelHeight = 250;
-                    bitmapImage.DecodePixelWidth = 250;
-                    albumart250 = bitmapImage;
-                }
-
-                thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 100);
-                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-                {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
-                    //ImageControl.Source = bitmapImage;
-
-                    bitmapImage.DecodePixelHeight = 100;
-                    bitmapImage.DecodePixelWidth = 100;
-                    albumart100 = bitmapImage;
-                }
-
-                /*thumbnail = await song.File.GetThumbnailAsync(ThumbnailMode.MusicView, 20);
-                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-                {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
-                    //ImageControl.Source = bitmapImage;
-
-                    bitmapImage.DecodePixelHeight = 20;
-                    bitmapImage.DecodePixelWidth = 20;
-                }*/
-
-
-                //using (var )
             }
         }
 
-        /*public async void SetAlbumArt()
+        public async Task<ImageSource> GetAlbumArt(int size)
         {
-            var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
-            //var result = task.WaitAndUnwrapException();
-            //using (StorageItemThumbnail thumbnail = File.GetThumbnailAsync(ThumbnailMode.MusicView, 300).Wait() )
-            //{
-            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-            {
-                var bitmapImage = new BitmapImage();
-                bitmapImage.SetSource(thumbnail);
-                //ImageControl.Source = bitmapImage;
-                AlbumArt = bitmapImage;
-            }
-            else
-            {
-                AlbumArt = null;
-            }
+            return await SongListStorage.SongDict[albumartsongid].GetArt(size);
+        }
 
-            //}
-        }*/
+        /* public async void SetAlbumArt(string songid)
+            {
+                Song song = SongListStorage.SongDict[songid];
+                if (albumart200 == null || SongListStorage.SongDict[songid].TrackNumber == 1)
+                {
+                    var file = await song.GetFile();
+                    var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
+                    if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.SetSource(thumbnail);
+                        //ImageControl.Source = bitmapImage;
 
-    }
+                        bitmapImage.DecodePixelHeight = 200;
+                        bitmapImage.DecodePixelWidth = 200;
+                        albumart200 = bitmapImage;
+                    }
+
+                    thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 250);
+                    if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.SetSource(thumbnail);
+                        //ImageControl.Source = bitmapImage;
+
+                        bitmapImage.DecodePixelHeight = 250;
+                        bitmapImage.DecodePixelWidth = 250;
+                        albumart250 = bitmapImage;
+                    }
+
+                    thumbnail = await (await song.GetFile()).GetThumbnailAsync(ThumbnailMode.MusicView, 100);
+                    if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.SetSource(thumbnail);
+                        //ImageControl.Source = bitmapImage;
+
+                        bitmapImage.DecodePixelHeight = 100;
+                        bitmapImage.DecodePixelWidth = 100;
+                        albumart100 = bitmapImage;
+                    }
+
+
+                    //using (var )
+                }
+            }*/
+
+
+
+
+
+
+
+
+
+            /*public async void SetAlbumArt()
+            {
+                var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
+                //var result = task.WaitAndUnwrapException();
+                //using (StorageItemThumbnail thumbnail = File.GetThumbnailAsync(ThumbnailMode.MusicView, 300).Wait() )
+                //{
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    //ImageControl.Source = bitmapImage;
+                    AlbumArt = bitmapImage;
+                }
+                else
+                {
+                    AlbumArt = null;
+                }
+
+                //}
+            }*/
+
+        }
 
 }

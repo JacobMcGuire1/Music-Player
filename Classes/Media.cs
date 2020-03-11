@@ -103,7 +103,7 @@ namespace Music_thing
 
 
         //Updates song details when the song changes.
-        private void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
+        private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
             uint thign = Playlist.CurrentItemIndex;
             if (thign == 4294967295) //Magic number?? Perfectly totient.
@@ -117,7 +117,14 @@ namespace Music_thing
 
             if (SongListStorage.PlaylistRepresentation.Count > 0)
             {
-                Currentart = SongListStorage.GetCurrentSongArt();
+
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                async () =>
+                {
+                    Currentart = await SongListStorage.GetCurrentSongArt(100);
+
+                }
+                );
                 Currenttitle = SongListStorage.GetCurrentSongName();
                 Currentartist = SongListStorage.GetCurrentArtistName();
             }

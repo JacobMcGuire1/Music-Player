@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Microsoft.Data.Sqlite;
+using Windows.Storage.FileProperties;
+using Newtonsoft.Json;
+using System.Collections.Concurrent;
 
 namespace Music_thing
 {
@@ -17,10 +20,10 @@ namespace Music_thing
         {
             var files = await GetSongList();
 
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile songsfile = await storageFolder.CreateFileAsync("test.txt",
-                    Windows.Storage.CreationCollisionOption.OpenIfExists);
-            var listOfStrings = new List<string> { "Songs: " };
+            //Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            //Windows.Storage.StorageFile songsfile = await storageFolder.CreateFileAsync("test.txt",
+            //        Windows.Storage.CreationCollisionOption.OpenIfExists);
+            //var listOfStrings = new List<string> { "Songs: " };
 
             Regex songreg = new Regex(@"^audio/");
             foreach (var file in files)
@@ -28,14 +31,41 @@ namespace Music_thing
                 //Checks if it's an audio file
                 if (songreg.IsMatch(file.ContentType))
                 {
-                    //MusicProperties musicProperties = await (item as StorageFile).Properties.GetMusicPropertiesAsync();
-                    listOfStrings.Add(file.FolderRelativeId);
+                    MusicProperties musicProperties = await (file as StorageFile).Properties.GetMusicPropertiesAsync();
+
+                    Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
+                    {
+                        id = "",
+                        Title = musicProperties.Title,
+                        Album = musicProperties.Album,
+                        AlbumArtist = musicProperties.AlbumArtist,
+                        Artist = musicProperties.Artist,
+                        Year = musicProperties.Year,
+                        Duration = musicProperties.Duration,
+                        TrackNumber = (int)musicProperties.TrackNumber,
+                        isFlavour = false, //MAY NEED TO REMOVE
+                        Path = ((StorageFile)file).Path
+                        //Need discnumber
+                    };
+
+
+                    string id = "";
+                    String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
+                    props.Replace(",", "");
+                    id = props;
+                    song.id = id;
+
+                    SongListStorage.SongDict.TryAdd(id, song); // should add error handling here?
+
+                    SongListStorage.AddAlbum(id, song);
                 }
             }
-           
-            await Windows.Storage.FileIO.AppendLinesAsync(songsfile, listOfStrings); // each entry in the list is written to the file on its own line.
 
-            //var file = (await KnownFolders.MusicLibrary.GetFilesAsync()).FirstOrDefault(x => x.FolderRelativeId == folderrelativeid); <-- Gets file from id. May want to navigate to the folder first.
+            await MusicToJSON();
+           
+            //await Windows.Storage.FileIO.AppendLinesAsync(songsfile, listOfStrings); // each entry in the list is written to the file on its own line.
+
+            
 
         }
 
@@ -54,41 +84,67 @@ namespace Music_thing
             return files;
         }
 
-        /*public static async Task<StorageFile> GetSongFromFolderRelativeId(String folderrelativeid)
+        public static async Task MusicToJSON()
         {
-            var files = await GetSongList();
-            //var file = files.FirstOrDefault(x => x.FolderRelativeId == folderrelativeid);
+            //StoreDict("songdict.txt", SongListStorage.SongDict);
 
-            
+            string songdictjson = JsonConvert.SerializeObject(SongListStorage.SongDict);
+            string artistdictjson = JsonConvert.SerializeObject(SongListStorage.ArtistDict);
+            string albumdictjson = JsonConvert.SerializeObject(SongListStorage.AlbumDict);
+            //string albumflavourdict = JsonConvert.SerializeObject(SongListStorage.AlbumFlavourDict);
 
-            foreach (var file in files)
+            StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            StorageFile songdictfile = await storageFolder.CreateFileAsync("songdict.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(songdictfile, songdictjson);
+
+            StorageFile artistdictfile = await storageFolder.CreateFileAsync("artistdict.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(artistdictfile, artistdictjson);
+
+            StorageFile albumdictfile = await storageFolder.CreateFileAsync("albumdict.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(albumdictfile, albumdictjson);
+        }
+
+        public static async Task LoadMusicFromJSON()
+        {
+            try
             {
-               //var testfile = GetFileFromPathAsync(file.Path);
-                StorageFile testfile = await StorageFile.GetFileFromPathAsync(file.Path);
-                //Checks if it's an audio file
-                if (file.Path == folderrelativeid)
-                {
-                    return file;
-                }
+                StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+                StorageFile albumdictfile = await storageFolder.CreateFileAsync("albumdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                string albumdictjson = await FileIO.ReadTextAsync(albumdictfile);
+                var albumdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, Album>>(albumdictjson);
+                SongListStorage.AlbumDict = albumdict;
+
+                StorageFile songdictfile = await storageFolder.CreateFileAsync("songdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                string songdictjson = await FileIO.ReadTextAsync(songdictfile);
+                var songdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, Song>>(songdictjson);
+                SongListStorage.SongDict = songdict;
+
+                StorageFile artistdictfile = await storageFolder.CreateFileAsync("artistdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                string artistdictjson = await FileIO.ReadTextAsync(artistdictfile);
+                var artistdict = JsonConvert.DeserializeObject<ConcurrentDictionary<string, Artist>>(artistdictjson);
+                SongListStorage.ArtistDict = artistdict;
             }
-            return null;
-        }*/
+            catch
+            {
+                GetSongs();
+            }
+            SongListStorage.GetSongList();
 
-        //public static async void getFolders()
-        // {
-        /* QueryOptions queryOption = new QueryOptions
-             (CommonFileQuery.OrderByTitle, new string[] { "*" });
 
-         queryOption.FolderDepth = FolderDepth.Deep;
+        }
 
-         Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
 
-         var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
-           (queryOption).GetFilesAsync();
+            /*public static async Task StoreDict<T>(string filename, IDictionary dict)
+            {
+                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
-         KnownFolders.MusicLibrary.*/
+                string json = JsonConvert.SerializeObject(dict);
 
-        //     IReadOnlyList<StorageFolder> folderList = await KnownFolders.MusicLibrary.GetFoldersAsync();
-        // }
-    }
+                Windows.Storage.StorageFile file = await storageFolder.CreateFileAsync(filename, Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                await Windows.Storage.FileIO.WriteTextAsync(file, json);
+            }*/
+        }
 }

@@ -33,7 +33,7 @@
                     <Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}" Background="Transparent">
                         <!--Need to add play and add to playlist buttons-->
                         <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinHeight="275" Height="Auto">
-                            <Image Width="200" Height="200" Source="{x:Bind albumart200}"/>
+                            <Image Width="200" Height="200" Source="{x:Bind albumart}"/>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0" Tag="{x:Bind key}"/>
                                 <StackPanel Orientation="Vertical">

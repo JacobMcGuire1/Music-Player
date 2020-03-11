@@ -28,6 +28,8 @@ namespace Music_thing
 
         public Artist artist;
 
+        public bool artloaded = false;
+
         public AlbumList()
         {
             this.InitializeComponent();
@@ -53,11 +55,33 @@ namespace Music_thing
             //Media.Instance.addSong(song);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             String artistid = e.Parameter as string;
             //Artist artist = SongListStorage.ArtistDict[key];
             ChangeArtist(artistid);
+
+            if (!artloaded)
+            {
+                foreach (Album album in Albums)
+                {
+                    try
+                    {
+                        album.albumart = await album.GetAlbumArt(200);
+                    }
+                    catch { }
+                }
+                artloaded = true;
+            }
+        }
+
+        protected new void Unloaded(NavigationEventArgs e)
+        {
+            foreach (Album album in Albums)
+            {
+                album.albumart = null;
+            }
+            artloaded = false;
         }
 
         public void ChangeArtist(string artistid)

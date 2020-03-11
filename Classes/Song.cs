@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -73,6 +74,20 @@ namespace Music_thing
             {
                 return (Visibility)1;
             }
+        }
+
+        public async Task<ImageSource> GetArt(int size)
+        {
+            var file = await GetFile();
+            var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, (uint)size);
+            var bitmapImage = new BitmapImage();
+            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+            {
+                bitmapImage.SetSource(thumbnail);
+                bitmapImage.DecodePixelHeight = size;
+                bitmapImage.DecodePixelWidth = size;
+            }
+            return bitmapImage;
         }
 
         /*public async void SetAlbumArt()

@@ -41,10 +41,11 @@ namespace Music_thing
 
             currentid = 0;
 
-            
 
-            SongListStorage.GetSongList();
-            Database.GetSongs(); //Temp
+
+            //SongListStorage.GetSongList(); //Should change/remove this.
+            //Database.GetSongs(); //Temp
+            Database.LoadMusicFromJSON();
 
             //SongListStorage.FindArtists();
 
