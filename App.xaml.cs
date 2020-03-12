@@ -118,18 +118,23 @@ namespace Music_thing
             //int l = sizeof(char);
             float t = (flavstr.Length * sizeof(char)) / 8000;
             var flavourcount = (int)Math.Ceiling(t);
-            roamingSettings.Values["flavourcount"] = flavourcount;
-            for (int i = 0; i <= flavourcount; i++)
+            if (SongListStorage.AlbumFlavourDict.Values.Count >= 0)
             {
-                int place = i * 4000;
-                int length = 4000;
-                if (length  + place > flavstr.Length)
+                roamingSettings.Values["flavourcount"] = flavourcount;
+                for (int i = 0; i <= flavourcount; i++)
                 {
-                    length = flavstr.Length - place;
+                    int place = i * 4000;
+                    int length = 4000;
+                    if (length + place > flavstr.Length)
+                    {
+                        length = flavstr.Length - place;
+                    }
+                    string str = flavstr.Substring(place, length);
+                    roamingSettings.Values["flavourstr" + i] = str;
                 }
-                string str = flavstr.Substring(place, length);
-                roamingSettings.Values["flavourstr" + i] = str;
             }
+
+                
             //roamingSettings.Values["flavours"] = flavstr;
 
             deferral.Complete();

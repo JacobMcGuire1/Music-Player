@@ -34,7 +34,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/> <!-- Remove this drop functrionality-->

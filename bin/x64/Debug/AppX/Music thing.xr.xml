@@ -170,10 +170,12 @@
       <RootProperty Name="Header" />
       <RootProperty Name="AlwaysShowHeader" />
       <RootProperty Name="AllowDrop" />
+      <RootProperty Name="IsBackEnabled" />
       <RootProperty Name="MenuItems" />
       <RootProperty Name="AutoSuggestBox" />
       <RootProperty Name="Content" />
       <RootEvent Name="SelectionChanged" />
+      <RootEvent Name="BackRequested" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -75,12 +76,8 @@ namespace Music_thing
 
         public string GetYear()
         {
-            int year = SongListStorage.AlbumDict[CurrentAlbum].year;
-            if (year == 0)
-            {
-                return "Unknown Year";
-            }
-            return year.ToString();
+            return SongListStorage.AlbumDict[CurrentAlbum].GetStringYear();
+            
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -95,6 +92,7 @@ namespace Music_thing
             }
             catch(Exception f)
             {
+                //Album page is clicked from a flavour, so the flavour is navigated to.
                 var dict = e.Parameter as Dictionary<String, String>;
                 Album album = SongListStorage.AlbumDict[dict["albumkey"]];
                 ChangeAlbum(album);
@@ -124,7 +122,11 @@ namespace Music_thing
                 await SetAlbumArt();
                 
             }
-            catch { }
+            catch(Exception E)
+            {
+                Debug.WriteLine("Couldn't set album art.");
+                Debug.WriteLine(E.Message);
+            }
             
             /*
             if (e.GetType() == typeof(Dictionary<String, String>))

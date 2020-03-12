@@ -313,5 +313,32 @@ namespace Music_thing
         {
 
         }
+
+        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            On_BackRequested();
+        }
+
+        private void BackInvoked(KeyboardAccelerator sender,
+                         KeyboardAcceleratorInvokedEventArgs args)
+        {
+            On_BackRequested();
+            args.Handled = true;
+        }
+
+        private bool On_BackRequested()
+        {
+            if (!ContentFrame.CanGoBack)
+                return false;
+
+            // Don't go back if the nav pane is overlayed.
+            //if (NavView.IsPaneOpen &&
+            //    (NavView.DisplayMode == muxc.NavigationViewDisplayMode.Compact ||
+            //     NavView.DisplayMode == muxc.NavigationViewDisplayMode.Minimal))
+            //    return false;
+
+            ContentFrame.GoBack();
+            return true;
+        }
     }
 }

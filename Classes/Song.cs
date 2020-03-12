@@ -84,9 +84,13 @@ namespace Music_thing
             if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
             {
                 bitmapImage.SetSource(thumbnail);
-                bitmapImage.DecodePixelHeight = size;
-                bitmapImage.DecodePixelWidth = size;
             }
+            else
+            {
+                bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music-Thing]/Assets/Album.jpg"));
+            }
+            bitmapImage.DecodePixelHeight = size;
+            bitmapImage.DecodePixelWidth = size;
             return bitmapImage;
         }
 

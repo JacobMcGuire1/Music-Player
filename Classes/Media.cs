@@ -101,6 +101,16 @@ namespace Music_thing
 
         }
 
+        public TimeSpan GetSongTime()
+        {
+            return mediaPlayer.PlaybackSession.Position;
+        }
+
+        public void SetSongTime(TimeSpan songtime)
+        {
+            mediaPlayer.PlaybackSession.Position = songtime;
+        }
+
 
         //Updates song details when the song changes.
         private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
@@ -206,7 +216,7 @@ namespace Music_thing
         }
 
         //Plays the playlist
-        public async void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
+        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
         {
             Playlist.Items.Clear(); //Clears the playlist
             SongListStorage.CurrentPlaceInPlaylist = 0;

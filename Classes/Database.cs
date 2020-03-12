@@ -10,6 +10,7 @@ using Microsoft.Data.Sqlite;
 using Windows.Storage.FileProperties;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace Music_thing
 {
@@ -126,8 +127,10 @@ namespace Music_thing
                 var artistdict = JsonConvert.DeserializeObject<ConcurrentDictionary<string, Artist>>(artistdictjson);
                 SongListStorage.ArtistDict = artistdict;
             }
-            catch
+            catch(Exception E)
             {
+                Debug.WriteLine("Couldn't load music.");
+                Debug.WriteLine(E.Message);
                 GetSongs();
             }
             SongListStorage.GetSongList();

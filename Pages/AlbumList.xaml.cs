@@ -68,18 +68,21 @@ namespace Music_thing
                 {
                     try
                     {
-                        album.albumart = await album.GetAlbumArt(200);
+                        album.Albumart = await album.GetAlbumArt(200);
                         //Bindings.Update();
                     }
                     catch
                     {
                         //BitmapImage bitmapImage = new BitmapImage();
                         //bitmapImage.UriSource = new Uri("Assets/Album.png");
-                        BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
+                        //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
+                        BitmapImage bitmapImage = new BitmapImage(new Uri(this.BaseUri, "/Assets/Album.png"));
+                        //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_Thing]/Assets/Album.png"));
+                        bitmapImage.DecodePixelHeight = 200;
+                        bitmapImage.DecodePixelWidth = 200;
                         album.albumart = bitmapImage;
                     }
                 }
-                
                 artloaded = true;
             }
         }
@@ -101,11 +104,12 @@ namespace Music_thing
                 Artist artist = SongListStorage.ArtistDict[artistid];
                 this.artist = artist;
                 Albums.Clear();
+                artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].year.CompareTo(SongListStorage.AlbumDict[x].year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
                 foreach (string albumid in artist.Albums)
                 {
                     Albums.Add(SongListStorage.AlbumDict[albumid]);
                 }
-                
+                //Albums.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
             }
             else
             {

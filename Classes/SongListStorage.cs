@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,7 @@ namespace Music_thing
         //public static HashSet<int> SongsInCollection = new HashSet<int>();
 
         private static bool loadednowplaying = false;
+        public static bool FlavoursLoaded = false;
 
         public static bool FlavoursChanged = false; //Should changed this to true?
 
@@ -177,29 +179,35 @@ namespace Music_thing
                         {
                             try
                             {
-                               LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"]);
+                               LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
                             }
-                            catch
+                            catch(Exception E)
                             {
-
+                                Debug.WriteLine("Couldn't load now playing yet.");
+                                Debug.WriteLine(E.Message);
                             }
                         }
 
-                        try
+                        if (!FlavoursLoaded)
                         {
-                            int flavourcount = (int)roamingSettings.Values["flavourcount"];
-                            string flavourstr = "";
-                            for (int i = 0; i <= flavourcount; i++)
+                            try
                             {
-                                flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
-                            }
-                            LoadFlavours(flavourstr);
+                                int flavourcount = (int)roamingSettings.Values["flavourcount"];
+                                string flavourstr = "";
+                                for (int i = 0; i <= flavourcount; i++)
+                                {
+                                    flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
+                                }
+                                LoadFlavours(flavourstr);
 
+                            }
+                            catch (Exception E)
+                            {
+                                Debug.WriteLine("Couldn't load flavours.");
+                                Debug.WriteLine(E.Message);
+                            }
                         }
-                        catch
-                        {
                         
-                        }
                     
 
 
@@ -378,13 +386,17 @@ namespace Music_thing
 
             public static void SaveNowPlaying()
             {
-                var roamingSettings =
-                    Windows.Storage.ApplicationData.Current.RoamingSettings;
-                roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
-                roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+                if (PlaylistRepresentation.Count > 0)
+                {
+                    var roamingSettings =
+                        Windows.Storage.ApplicationData.Current.RoamingSettings;
+                    roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
+                    roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+                    roamingSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
+                }
             }
 
-            public static void LoadNowPlaying(string nowplayingstring, int place)
+            public static async void LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
             {
                 if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
                 {
@@ -394,9 +406,12 @@ namespace Music_thing
                     {
                         loadedplaylist.Add(SongDict[id]);
                     }
-                    Media.Instance.PlayPlaylist(loadedplaylist, place); //need to get the position too.
+                    await Media.Instance.PlayPlaylist(loadedplaylist, place); //need to get the position too.
 
                     Media.Instance.mediaPlayer.Pause();
+
+                    //TimeSpan timeeeee = new TimeSpan()
+                    Media.Instance.SetSongTime(time);
                 }
                 loadednowplaying = true;
             }
@@ -412,12 +427,23 @@ namespace Music_thing
             {
                 if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
                 {
-                    var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
-                    AlbumFlavourDict = flavourdict;
-                    SongListStorage.FlavoursChanged = true;
+                    try
+                    {
+                        var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
+                        AlbumFlavourDict = flavourdict;
+                        SongListStorage.FlavoursChanged = true;
+                        FlavoursLoaded = true;
+                    }
+                    catch (Exception E)
+                    {
+                        
+
+                    }
+                    
                 }
             
             }
+
 
     }
 

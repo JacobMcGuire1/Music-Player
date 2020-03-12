@@ -3,18 +3,22 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
 {
-    public class Album
+    public class Album : INotifyPropertyChanged
     {
         public string name { get; set; }
 
@@ -36,6 +40,8 @@ namespace Music_thing
         //Should only be in memory for the album list.
         [JsonIgnore]
         public ImageSource albumart;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string albumartsongid { get; set; }
 
@@ -81,6 +87,15 @@ namespace Music_thing
             return Songids;
         }
 
+        public string GetStringYear()
+        {
+            if (year == 0)
+            {
+                return "Unknown Year";
+            }
+            return year.ToString();
+        }
+
         //Function to sort songs by track number.
         public void OrderByTrack()
         {
@@ -107,6 +122,34 @@ namespace Music_thing
         public async Task<ImageSource> GetAlbumArt(int size)
         {
             return await SongListStorage.SongDict[albumartsongid].GetArt(size);
+        }
+
+        public ImageSource Albumart
+        {
+            get
+            {
+                return this.albumart;
+            }
+            set
+            {
+                NotifyPropertyChanged();
+                if (value != this.albumart)
+                {
+                    this.albumart = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+
+            // Your UI update code goes here!
+            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            });
         }
 
         /* public async void SetAlbumArt(string songid)
@@ -164,27 +207,27 @@ namespace Music_thing
 
 
 
-            /*public async void SetAlbumArt()
+        /*public async void SetAlbumArt()
+        {
+            var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
+            //var result = task.WaitAndUnwrapException();
+            //using (StorageItemThumbnail thumbnail = File.GetThumbnailAsync(ThumbnailMode.MusicView, 300).Wait() )
+            //{
+            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
             {
-                var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);
-                //var result = task.WaitAndUnwrapException();
-                //using (StorageItemThumbnail thumbnail = File.GetThumbnailAsync(ThumbnailMode.MusicView, 300).Wait() )
-                //{
-                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-                {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
-                    //ImageControl.Source = bitmapImage;
-                    AlbumArt = bitmapImage;
-                }
-                else
-                {
-                    AlbumArt = null;
-                }
+                var bitmapImage = new BitmapImage();
+                bitmapImage.SetSource(thumbnail);
+                //ImageControl.Source = bitmapImage;
+                AlbumArt = bitmapImage;
+            }
+            else
+            {
+                AlbumArt = null;
+            }
 
-                //}
-            }*/
+            //}
+        }*/
 
-        }
+    }
 
 }
