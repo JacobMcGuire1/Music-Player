@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -68,9 +69,17 @@ namespace Music_thing
                     try
                     {
                         album.albumart = await album.GetAlbumArt(200);
+                        //Bindings.Update();
                     }
-                    catch { }
+                    catch
+                    {
+                        //BitmapImage bitmapImage = new BitmapImage();
+                        //bitmapImage.UriSource = new Uri("Assets/Album.png");
+                        BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
+                        album.albumart = bitmapImage;
+                    }
                 }
+                
                 artloaded = true;
             }
         }

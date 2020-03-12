@@ -109,6 +109,14 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="Glyph" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
+      <RootProperty Name="Padding" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Tag" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Music_thing.AlbumPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />

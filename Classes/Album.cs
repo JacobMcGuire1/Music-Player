@@ -34,6 +34,7 @@ namespace Music_thing
         // public BitmapIcon icon;
 
         //Should only be in memory for the album list.
+        [JsonIgnore]
         public ImageSource albumart;
 
         public string albumartsongid { get; set; }

@@ -60,6 +60,7 @@ namespace Music_thing
         {
             //return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
             albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250);
+            Bindings.Update();
         }
 
         public string GetAlbumName()
@@ -118,7 +119,13 @@ namespace Music_thing
                 }
 
             }
-            await SetAlbumArt();
+            try
+            {
+                await SetAlbumArt();
+                
+            }
+            catch { }
+            
             /*
             if (e.GetType() == typeof(Dictionary<String, String>))
             {
@@ -334,5 +341,10 @@ namespace Music_thing
             return existingflavours;
         }
 
+        private void OpenArtistPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            string artistid = (string)((HyperlinkButton)sender).Tag;
+            this.Frame.Navigate(typeof(AlbumList), artistid);
+        }
     }
 }

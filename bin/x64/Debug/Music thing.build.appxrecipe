@@ -100,8 +100,8 @@
     <AppxPackagedFile Include="C:\Users\jacob\.nuget\packages\win2d.uwp\1.21.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png">
+      <PackagePath>Assets\Album.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -129,6 +129,9 @@
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jacob\source\repos\Music Player\Music-Player\bin\x64\Debug\Music thing.xr.xml">
       <PackagePath>Music thing.xr.xml</PackagePath>
