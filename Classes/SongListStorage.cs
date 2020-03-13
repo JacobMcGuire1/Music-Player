@@ -315,7 +315,6 @@ namespace Music_thing
                     //TimeSpan timeeeee = new TimeSpan()
                     Media.Instance.SetSongTime(time);
                 }
-                loadednowplaying = true;
             }
 
             //Converts the flavours/playlists into JSON format.
