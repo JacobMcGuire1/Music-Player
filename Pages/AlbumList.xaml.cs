@@ -66,21 +66,24 @@ namespace Music_thing
             {
                 foreach (Album album in Albums)
                 {
-                    try
+                    if (album.Albumart == null)
                     {
-                        album.Albumart = await album.GetAlbumArt(200);
-                        //Bindings.Update();
-                    }
-                    catch
-                    {
-                        //BitmapImage bitmapImage = new BitmapImage();
-                        //bitmapImage.UriSource = new Uri("Assets/Album.png");
-                        //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
-                        BitmapImage bitmapImage = new BitmapImage(new Uri(this.BaseUri, "/Assets/Album.png"));
-                        //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_Thing]/Assets/Album.png"));
-                        bitmapImage.DecodePixelHeight = 200;
-                        bitmapImage.DecodePixelWidth = 200;
-                        album.albumart = bitmapImage;
+                        try
+                        {
+                            album.Albumart = await album.GetAlbumArt(200);
+                            //Bindings.Update();
+                        }
+                        catch
+                        {
+                            //BitmapImage bitmapImage = new BitmapImage();
+                            //bitmapImage.UriSource = new Uri("Assets/Album.png");
+                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
+                            BitmapImage bitmapImage = new BitmapImage(new Uri(this.BaseUri, "/Assets/Album.png"));
+                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_Thing]/Assets/Album.png"));
+                            bitmapImage.DecodePixelHeight = 200;
+                            bitmapImage.DecodePixelWidth = 200;
+                            album.Albumart = bitmapImage;
+                        }
                     }
                 }
                 artloaded = true;
