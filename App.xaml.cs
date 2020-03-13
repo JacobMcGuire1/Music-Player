@@ -80,6 +80,7 @@ namespace Music_thing
             // Hide default title bar.
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
+
         }
 
         

@@ -55,7 +55,7 @@ namespace Music_thing
             
             if (args.flavourid == -1)
             {
-                Songs = SongListStorage.AlbumDict[albumid].ObserveSongs();
+                Songs = SongListStorage.AlbumDict[albumid].ObserveSongs(SongListStorage.SongDict);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace Music_thing
 
         
 
-        private void playButton_Click(object sender, RoutedEventArgs e)
+        private async void playButton_Click(object sender, RoutedEventArgs e)
         {
             //Button b = (Button)sender;
             //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
@@ -96,7 +96,7 @@ namespace Music_thing
 
             Media.Instance.playSong(song);*/
 
-            Media.Instance.PlayPlaylist(Songs, songid);
+            await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
 
         private void addToPlaylistButton_Click(object sender, RoutedEventArgs e)

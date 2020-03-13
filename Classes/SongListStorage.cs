@@ -53,6 +53,7 @@ namespace Music_thing
 
         private static bool loadednowplaying = false;
         public static bool FlavoursLoaded = false;
+        public static bool LoadingMusic = true;
 
         public static bool FlavoursChanged = false; //Should changed this to true?
 
@@ -144,16 +145,9 @@ namespace Music_thing
         }
 
         //Loads the user's songs from their files. Should only be done to initially discover their music in the future.
-        public  static void GetSongList()
+        public static void GetSongList()
         {
             Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
-
-            //StorageFolder musicFolder = KnownFolders.MusicLibrary;
-
-            //GetFiles(musicFolder);
-
-            
-
         }
 
         //This is the UI thread. It updates and orders the visible lists of songs and loads and newly created flavours/playlists.
@@ -163,13 +157,17 @@ namespace Music_thing
 
                 while (true)
                 {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                     {
                         if (FlavoursChanged)
                         {
                             App.GetForCurrentView().LoadPinnedFlavours();
                             FlavoursChanged = false;
                         }
+
+                        
+
+                        //Should do something similar to the flavourschanged bool here.
                         UpdateAndOrderSongs();
                         UpdateAndOrderArtists();
                         UpdateAndOrderAlbums();
@@ -179,8 +177,8 @@ namespace Music_thing
                         {
                             try
                             {
-                               LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
-                            }
+                                await LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
+                                Debug.WriteLine("Loaded now playing.");                            }
                             catch(Exception E)
                             {
                                 Debug.WriteLine("Couldn't load now playing yet.");
@@ -220,7 +218,8 @@ namespace Music_thing
 
             //Asynchronously gets the songs and organises them in the concurrentdictionary.
             //It iterates through the folders recursively, with a separate thread for each one.
-            private static async Task GetFiles(StorageFolder folder)
+            //Replaced by database.
+            /*private static async Task GetFiles(StorageFolder folder)
             {
                 if (folder != null)
                 {
@@ -271,71 +270,9 @@ namespace Music_thing
 
                 }
             
-            }
+            }*/
 
-            //Adds a newly discovered album to the dictionary, adding the song it found it in to the album.
-            public static void AddAlbum(string songid, Song song)
-            {
-                string artistname;
-                string albumname;
-
-                if (song.AlbumArtist != "")
-                {
-                    artistname = song.AlbumArtist;
-                }
-                else
-                {
-                    artistname = song.Artist;
-                }
-
-                if (song.Album == "")
-                {
-                    albumname = "Unknown Album";
-                }
-                else
-                {
-                    albumname = song.Album;
-                }
-
-                String key = String.Concat(artistname, albumname);
-
-                Album album = new Album()
-                {
-                    artist = artistname,
-                    name = albumname,
-                    key = key,
-                    year = (int)song.Year,
-                    Songids = new List<string>()
-                };
-
-                album.AddSong(songid);
-
-                AlbumDict.AddOrUpdate(key, album, (key2, existingalbum) => AddSongToAlbum(existingalbum, songid));
-
-                //Add to the artist
-
-                Artist artist = new Artist()
-                {
-                    name = artistname,
-                    Albums = new List<String> { key }
-                };
-
-                ArtistDict.AddOrUpdate(artistname, artist, (albumname2, existingartist) => AddAlbumToArtist(existingartist, key));
-            }
-
-            //Adds an album to an artist's collection in a threadsafe way.
-            public static Artist AddAlbumToArtist(Artist existingartist, string albumkey)
-            {
-                existingartist.AddAlbum(albumkey);
-                return existingartist;
-            }
-
-            //Adds a song to an album representation in a threadsafe way.
-            public static Album AddSongToAlbum(Album existingalbum, string songid)
-            {
-                existingalbum.AddSong(songid);
-                return existingalbum;
-            }
+            
 
             //Returns a flavour/playlist based on the album it is sourced from and its name.
             public static Flavour GetFlavourByName(String albumkey, String flavourname)
@@ -396,7 +333,7 @@ namespace Music_thing
                 }
             }
 
-            public static async void LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
+            public static async Task LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
             {
                 if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
                 {
@@ -406,7 +343,7 @@ namespace Music_thing
                     {
                         loadedplaylist.Add(SongDict[id]);
                     }
-                    await Media.Instance.PlayPlaylist(loadedplaylist, place); //need to get the position too.
+                    await Media.Instance.PlayPlaylist(loadedplaylist, place, false); //need to get the position too.
 
                     Media.Instance.mediaPlayer.Pause();
 

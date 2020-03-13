@@ -216,18 +216,29 @@ namespace Music_thing
         }
 
         //Plays the playlist
-        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
+        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos, bool play)
         {
+            if (!play)
+            {
+                mediaPlayer.Pause();
+            }
+            else
+            {
+                mediaPlayer.Play();
+            }
+           
             Playlist.Items.Clear(); //Clears the playlist
             SongListStorage.CurrentPlaceInPlaylist = 0;
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
                 await addSong(song.id);
-
+                if (!play)
+                {
+                    mediaPlayer.Pause();
+                }
             }
             Playlist.MoveTo((uint)Pos - 1);
-
         }
 
         //Appends a song to the playlist.
@@ -236,7 +247,6 @@ namespace Music_thing
             var song = SongListStorage.SongDict[songid];
             var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
-            mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
         }
 

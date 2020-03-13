@@ -64,6 +64,15 @@ namespace Music_thing
             return Duration.ToString(@"mm\:ss");
         }
 
+        public string GetStringYear()
+        {
+            if (Year == 0)
+            {
+                return "Unknown Year";
+            }
+            return Year.ToString();
+        }
+
         public Visibility CheckIfFlavour()
         {
             if (isFlavour)

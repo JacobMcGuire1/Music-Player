@@ -1,6 +1,7 @@
 ﻿using Music_thing.Classes;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -48,13 +49,13 @@ namespace Music_thing
         public List<string> Songids { get; set; }
         = new List<string>();
 
-        public ObservableCollection<Song> ObserveSongs()
+        public ObservableCollection<Song> ObserveSongs(ConcurrentDictionary<string, Song> SongDict)
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
 
             foreach (string songid in Songids)
             {
-                Song song = SongListStorage.SongDict[songid];
+                Song song = SongDict[songid];
                 song.isFlavour = false; //MB REMOVE
                 Songs.Add(song);
             }
@@ -76,14 +77,14 @@ namespace Music_thing
             return Songs;
         }*/
 
-        public List<string> AddSong(string songid)
+        public List<string> AddSong(string songid, ConcurrentDictionary<string, Song> SongDict)
         {
            // if (Songids.Count != 0) //fix
            // {
-                SetAlbumArt(songid);
+                SetAlbumArt(songid, SongDict);
            // }
             Songids.Add(songid);
-            OrderByTrack();
+            OrderByTrack(SongDict);
             return Songids;
         }
 
@@ -97,18 +98,18 @@ namespace Music_thing
         }
 
         //Function to sort songs by track number.
-        public void OrderByTrack()
+        public void OrderByTrack(ConcurrentDictionary<string, Song> SongDict)
         {
             //Need to add disk number support
             //Songids = Songids.OrderBy(x => SongListStorage.SongDict[x].TrackNumber) as List<int>;
 
-            Songids.Sort((x, y) => SongListStorage.SongDict[x].TrackNumber - SongListStorage.SongDict[y].TrackNumber);
+            Songids.Sort((x, y) => SongDict[x].TrackNumber - SongDict[y].TrackNumber);
         }
 
-        public async void SetAlbumArt(string songid)
+        public async void SetAlbumArt(string songid, ConcurrentDictionary<string, Song> SongDict)
         {
-            Song song = SongListStorage.SongDict[songid];
-            if (albumartsongid == null || SongListStorage.SongDict[songid].TrackNumber == 1)
+            Song song = SongDict[songid];
+            if (albumartsongid == null || SongDict[songid].TrackNumber == 1)
             {
                 var file = await song.GetFile();
                 var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView);
@@ -119,11 +120,11 @@ namespace Music_thing
             }
         }
 
-        public async Task<ImageSource> GetAlbumArt(int size)
+        public async Task<ImageSource> GetAlbumArt(int size, ConcurrentDictionary<string, Song> SongDict)
         {
             if (albumartsongid != null)
             {
-                return await SongListStorage.SongDict[albumartsongid].GetArt(size);
+                return await SongDict[albumartsongid].GetArt(size);
             }
             BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
             bitmapImage.DecodePixelHeight = size;

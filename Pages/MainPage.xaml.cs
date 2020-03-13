@@ -58,6 +58,32 @@ namespace Music_thing
         //Returns the instance of the media instance to allow information from it to be accessed.
         public Media MediaProxy { get { return Media.Instance; } }
 
+
+        public void DisplayLoading(int songsloaded, int totalfiles, int filesscanned, bool complete)
+        {
+            if (!complete)
+            {
+                progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
+                progressbar.Visibility = Visibility.Visible;
+                if (totalfiles == 0)
+                {
+                    progressbar.IsIndeterminate = true;
+                }
+                else
+                {
+                    progressbar.IsIndeterminate = false;
+                    progressbar.Value = filesscanned;
+                    progressbar.Maximum = totalfiles;
+                }
+                
+            }
+            else
+            {
+                progressbartextblock.Text = "Loaded " + songsloaded + " songs.";
+                progressbar.Visibility = Visibility.Collapsed;
+            }
+        }
+
         //Loads the pinned flavours and playlists into the list on the left of the screen.
         public void LoadPinnedFlavours() //Could probably be done more efficiently
         {

@@ -39,7 +39,7 @@ namespace Music_thing
 
         private void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
         {
-            Database.GetSongs();
+            Database.GetSongs(false);
         }
     }
 }

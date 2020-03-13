@@ -70,7 +70,7 @@ namespace Music_thing
                     {
                         try
                         {
-                            album.Albumart = await album.GetAlbumArt(200);
+                            album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
                             //Bindings.Update();
                         }
                         catch
@@ -126,11 +126,11 @@ namespace Music_thing
             
         }
 
-        private void playalbumButton_Click(object sender, RoutedEventArgs e)
+        private async void playalbumButton_Click(object sender, RoutedEventArgs e)
         {
             string albumid = (string)((Button)sender).Tag;
             Album album = SongListStorage.AlbumDict[albumid];
-            Media.Instance.PlayPlaylist(album.ObserveSongs(), 1); //mb 1
+            await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
         }
     }
 }

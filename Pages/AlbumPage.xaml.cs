@@ -53,14 +53,14 @@ namespace Music_thing
 
         public void ChangeAlbum(Album album)
         {
-            Songs = album.ObserveSongs();
+            Songs = album.ObserveSongs(SongListStorage.SongDict);
             CurrentAlbum = album.key;
         }
 
         public async Task SetAlbumArt()
         {
             //return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
-            albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250);
+            albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
             Bindings.Update();
         }
 
@@ -199,7 +199,7 @@ namespace Music_thing
             }
         }
 
-        private void playButton_Click(object sender, RoutedEventArgs e)
+        private async void playButton_Click(object sender, RoutedEventArgs e)
         {
             //Button b = (Button)sender;
             //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
@@ -214,7 +214,7 @@ namespace Music_thing
 
             Media.Instance.playSong(song);*/
 
-            Media.Instance.PlayPlaylist(Songs, songid);
+            await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
 
         private void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
