@@ -121,9 +121,17 @@ namespace Music_thing
 
         public async Task<ImageSource> GetAlbumArt(int size)
         {
-            return await SongListStorage.SongDict[albumartsongid].GetArt(size);
+            if (albumartsongid != null)
+            {
+                return await SongListStorage.SongDict[albumartsongid].GetArt(size);
+            }
+            BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+            bitmapImage.DecodePixelHeight = size;
+            bitmapImage.DecodePixelWidth = size;
+            return bitmapImage;
         }
 
+        [JsonIgnore]
         public ImageSource Albumart
         {
             get

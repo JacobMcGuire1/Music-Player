@@ -87,7 +87,7 @@ namespace Music_thing
             }
             else
             {
-                bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music-Thing]/Assets/Album.jpg"));
+                 bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
             }
             bitmapImage.DecodePixelHeight = size;
             bitmapImage.DecodePixelWidth = size;

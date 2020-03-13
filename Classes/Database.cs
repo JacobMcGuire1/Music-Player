@@ -11,6 +11,7 @@ using Windows.Storage.FileProperties;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Music_thing
 {
@@ -25,6 +26,15 @@ namespace Music_thing
             //Windows.Storage.StorageFile songsfile = await storageFolder.CreateFileAsync("test.txt",
             //        Windows.Storage.CreationCollisionOption.OpenIfExists);
             //var listOfStrings = new List<string> { "Songs: " };
+            SongListStorage.SongDict = new ConcurrentDictionary<string, Song>();
+            SongListStorage.ArtistDict = new ConcurrentDictionary<String, Artist>();
+            SongListStorage.AlbumDict = new ConcurrentDictionary<String, Album>();
+
+            SongListStorage.Songs = new ObservableCollection<Song>();
+            SongListStorage.Artists = new ObservableCollection<Artist>();
+            SongListStorage.Albums = new ObservableCollection<Album>();
+
+            SongListStorage.PlaylistRepresentation = new ObservableCollection<Song>();
 
             Regex songreg = new Regex(@"^audio/");
             foreach (var file in files)

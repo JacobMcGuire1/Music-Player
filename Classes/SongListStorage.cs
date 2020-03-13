@@ -31,7 +31,7 @@ namespace Music_thing
 
         public static int currentid;
 
-        public static ObservableCollection<Song> PlaylistRepresentation { get; }
+        public static ObservableCollection<Song> PlaylistRepresentation { get; set; }
         = new ObservableCollection<Song>();
 
         public static int CurrentPlaceInPlaylist = new int();

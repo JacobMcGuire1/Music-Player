@@ -36,5 +36,10 @@ namespace Music_thing
 
             Media.Instance.VolChanged();
         }
+
+        private void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
+        {
+            Database.GetSongs();
+        }
     }
 }

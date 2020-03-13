@@ -75,6 +75,10 @@ namespace Music_thing
                         }
                         catch
                         {
+
+                        }
+                        /*catch
+                        {
                             //BitmapImage bitmapImage = new BitmapImage();
                             //bitmapImage.UriSource = new Uri("Assets/Album.png");
                             //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
@@ -83,7 +87,7 @@ namespace Music_thing
                             bitmapImage.DecodePixelHeight = 200;
                             bitmapImage.DecodePixelWidth = 200;
                             album.Albumart = bitmapImage;
-                        }
+                        }*/
                     }
                 }
                 artloaded = true;

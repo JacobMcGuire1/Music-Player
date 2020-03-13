@@ -59,7 +59,7 @@ namespace Music_thing
 
             //The placeholder album art TODO: make it work?
             BitmapImage bitmapImage =
-                     new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/StoreLogo.png"));
+                     new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
 
             Currentart = bitmapImage;
             NotifyPropertyChanged();
