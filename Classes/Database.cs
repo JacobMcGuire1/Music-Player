@@ -214,6 +214,7 @@ namespace Music_thing
                 GetSongs(true);
             }
             await SongListStorage.GetNowPlaying();
+            SongListStorage.GetFlavours();
             SongListStorage.GetSongList();
             
 

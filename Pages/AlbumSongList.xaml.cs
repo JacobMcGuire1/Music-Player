@@ -139,7 +139,7 @@ namespace Music_thing
         {
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
             SongListStorage.AlbumFlavourDict[albumid][flavourid].pinned = true;
-            SongListStorage.FlavoursChanged = true;
+            App.GetForCurrentView().LoadPinnedFlavours();
         }
 
         private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)

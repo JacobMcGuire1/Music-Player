@@ -51,11 +51,7 @@ namespace Music_thing
 
         //public static HashSet<int> SongsInCollection = new HashSet<int>();
 
-        private static bool loadednowplaying = false;
-        public static bool FlavoursLoaded = false;
         public static bool LoadingMusic = true;
-
-        public static bool FlavoursChanged = false; //Should changed this to true?
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
@@ -159,48 +155,10 @@ namespace Music_thing
                 {
                     await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                     {
-                        if (FlavoursChanged)
-                        {
-                            App.GetForCurrentView().LoadPinnedFlavours();
-                            FlavoursChanged = false;
-                        }
-
-                        
-
                         //Should do something similar to the flavourschanged bool here.
                         UpdateAndOrderSongs();
                         UpdateAndOrderArtists();
                         UpdateAndOrderAlbums();
-
-                        //Should probably move this somewhere else
-                        if (!loadednowplaying)
-                        {
-                            
-                        }
-
-                        if (!FlavoursLoaded)
-                        {
-                            try
-                            {
-                                int flavourcount = (int)roamingSettings.Values["flavourcount"];
-                                string flavourstr = "";
-                                for (int i = 0; i <= flavourcount; i++)
-                                {
-                                    flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
-                                }
-                                LoadFlavours(flavourstr);
-
-                            }
-                            catch (Exception E)
-                            {
-                                Debug.WriteLine("Couldn't load flavours.");
-                                Debug.WriteLine(E.Message);
-                            }
-                        }
-                        
-                    
-
-
                     });
                 
                     Thread.Sleep(100); //update rate of the lists used for the ui
@@ -367,6 +325,27 @@ namespace Music_thing
                 return x;
             }
 
+            public static void GetFlavours()
+            {
+                var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                try
+                {
+                    int flavourcount = (int)roamingSettings.Values["flavourcount"];
+                    string flavourstr = "";
+                    for (int i = 0; i <= flavourcount; i++)
+                    {
+                        flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
+                    }
+                    LoadFlavours(flavourstr);
+
+                }
+                catch (Exception E)
+                {
+                    Debug.WriteLine("Couldn't load flavours.");
+                    Debug.WriteLine(E.Message);
+                }
+            }
+
             public static void LoadFlavours(String flavours)
             {
                 if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
@@ -375,8 +354,7 @@ namespace Music_thing
                     {
                         var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
                         AlbumFlavourDict = flavourdict;
-                        SongListStorage.FlavoursChanged = true;
-                        FlavoursLoaded = true;
+                        App.GetForCurrentView().LoadPinnedFlavours();
                     }
                     catch (Exception E)
                     {

@@ -317,7 +317,7 @@ namespace Music_thing
             newtab.Content = frame;
             TabItems.Add(newtab);
 
-            SongListStorage.FlavoursChanged = true;
+            App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
 
             //frame.Navigate(typeof(SongList));
             //needtoputalbumversionidhere.Navigate()
