@@ -175,15 +175,7 @@ namespace Music_thing
                         //Should probably move this somewhere else
                         if (!loadednowplaying)
                         {
-                            try
-                            {
-                                await LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
-                                Debug.WriteLine("Loaded now playing.");                            }
-                            catch(Exception E)
-                            {
-                                Debug.WriteLine("Couldn't load now playing yet.");
-                                Debug.WriteLine(E.Message);
-                            }
+                            
                         }
 
                         if (!FlavoursLoaded)
@@ -330,6 +322,21 @@ namespace Music_thing
                     roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
                     roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
                     roamingSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
+                }
+            }
+
+            public static async Task GetNowPlaying()
+            {
+                var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                try
+                {
+                    await LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
+                    Debug.WriteLine("Loaded now playing");
+                }
+                catch (Exception E)
+                {
+                    Debug.WriteLine("Couldn't load now playing yet.");
+                    Debug.WriteLine(E.Message);
                 }
             }
 

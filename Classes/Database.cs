@@ -213,7 +213,9 @@ namespace Music_thing
                 Debug.WriteLine(E.Message);
                 GetSongs(true);
             }
+            await SongListStorage.GetNowPlaying();
             SongListStorage.GetSongList();
+            
 
 
         }
