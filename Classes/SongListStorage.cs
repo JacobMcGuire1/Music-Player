@@ -51,8 +51,6 @@ namespace Music_thing
 
         //public static HashSet<int> SongsInCollection = new HashSet<int>();
 
-        public static bool LoadingMusic = true;
-
         public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
             //return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart100;
@@ -67,6 +65,13 @@ namespace Music_thing
         public static string GetCurrentArtistName()
         {
             return PlaylistRepresentation[CurrentPlaceInPlaylist].Artist;
+        }
+
+        public static void UpdateAndOrderMusic()
+        {
+            UpdateAndOrderSongs();
+            UpdateAndOrderArtists();
+            UpdateAndOrderAlbums();
         }
 
         //Updates the list of albums from the dictionary. This is done so that the observable list of albums is smoothly updated as they are discovered asynchronously by the file finder threads. 
@@ -116,6 +121,31 @@ namespace Music_thing
             }
         }
 
+        public static void SaveFlavours()
+        {
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            var flavstr = SerializeFlavours();
+
+            //int l = sizeof(char);
+            float t = (flavstr.Length * sizeof(char)) / 8000;
+            var flavourcount = (int)Math.Ceiling(t);
+            if (AlbumFlavourDict.Values.Count >= 0)
+            {
+                roamingSettings.Values["flavourcount"] = flavourcount;
+                for (int i = 0; i <= flavourcount; i++)
+                {
+                    int place = i * 4000;
+                    int length = 4000;
+                    if (length + place > flavstr.Length)
+                    {
+                        length = flavstr.Length - place;
+                    }
+                    string str = flavstr.Substring(place, length);
+                    roamingSettings.Values["flavourstr" + i] = str;
+                }
+            }
+        }
+
         //Updates the list of songs from the dictionary. This is done so that the observable list of songs is smoothly updated as they are discovered asynchronously by the file finder threads. 
         public static void UpdateAndOrderSongs()
         {
@@ -141,101 +171,41 @@ namespace Music_thing
         }
 
         //Loads the user's songs from their files. Should only be done to initially discover their music in the future.
-        public static void GetSongList()
+       /* public static void GetSongList()
         {
             Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
-        }
+        }*/
 
         //This is the UI thread. It updates and orders the visible lists of songs and loads and newly created flavours/playlists.
-        public static async void DisplayFiles(Windows.Foundation.IAsyncAction action)
+       /* public static async void DisplayFiles(Windows.Foundation.IAsyncAction action)
             {
-                var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                //var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
                 while (true)
                 {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         //Should do something similar to the flavourschanged bool here.
-                        UpdateAndOrderSongs();
-                        UpdateAndOrderArtists();
-                        UpdateAndOrderAlbums();
+                        
                     });
                 
                     Thread.Sleep(100); //update rate of the lists used for the ui
                 }
             
-            }        
-
-            //Asynchronously gets the songs and organises them in the concurrentdictionary.
-            //It iterates through the folders recursively, with a separate thread for each one.
-            //Replaced by database.
-            /*private static async Task GetFiles(StorageFolder folder)
-            {
-                if (folder != null)
-                {
-                    StorageFolder fold = folder;
-
-                    var items = await fold.GetItemsAsync();
-
-                    Regex songreg = new Regex(@"^audio/");
-
-                    foreach (var item in items)
-                    {
-                        if (item.GetType() == typeof(StorageFile) && songreg.IsMatch(((StorageFile)item).ContentType))
-                        {
-
-                            MusicProperties musicProperties = await (item as StorageFile).Properties.GetMusicPropertiesAsync();
-
-                            Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
-                            {
-                                id = "", //don't Remove this id
-                                Title = musicProperties.Title,
-                                Album = musicProperties.Album,
-                                AlbumArtist = musicProperties.AlbumArtist,
-                                Artist = musicProperties.Artist,
-                                Year = musicProperties.Year,
-                                Duration = musicProperties.Duration,
-                                TrackNumber = (int)musicProperties.TrackNumber,
-                                isFlavour = false, //MAY NEED TO REMOVE
-                                Path = ((StorageFile)item).Path
-                                //DiscNumber = resp.,
-                                //File = item as StorageFile
-                            };
-
-                            
-                            string id = "";
-                            String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
-                            props.Replace(",", "");
-                            id = props;
-                            song.id = id;
-
-                            SongDict.TryAdd(id, song); // should add error handling here?
-
-                            AddAlbum(id, song);
-                        }
-                        else
-                            GetFiles(item as StorageFolder);
-
-                    }
-
-                }
-            
-            }*/
-
-            
+            }   */     
 
             //Returns a flavour/playlist based on the album it is sourced from and its name.
             public static Flavour GetFlavourByName(String albumkey, String flavourname)
             {
-                List<Flavour> flavours = AlbumFlavourDict[albumkey];
-                foreach (Flavour flavour in flavours)
-                {
-                    if (flavour.name == flavourname) // TODO: Must make flavour names unique
+                    List<Flavour> flavours = AlbumFlavourDict[albumkey];
+                    foreach (Flavour flavour in flavours)
                     {
-                        return flavour;
+                        if (flavour.name == flavourname) // TODO: Must make flavour names unique
+                        {
+                            return flavour;
+                        }
                     }
-                }
-                return null;
+            return null;
             }
 
             //Returns the songs that contain the query as a substring to allow searching.

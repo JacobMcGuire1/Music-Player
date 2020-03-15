@@ -258,42 +258,61 @@ namespace Music_thing
             TabViewItem newtab = new TabViewItem();
             newtab.Header = "New Album Version";
 
-            ContentDialog nameFlavourDialog = new ContentDialog()
+            //Generate a list of the current flavour names to ensure this one is unique.
+            List<String> currentflavournames = new List<string>();
+            if (SongListStorage.AlbumFlavourDict.ContainsKey(CurrentAlbum))
             {
-                Title = "Name your flavour",
-                CloseButtonText = "Ok"
-            };
-
-            TextBox textBox = new TextBox()
+                for (int i = 0; i < SongListStorage.AlbumFlavourDict[CurrentAlbum].Count; i++)
+                {
+                    currentflavournames.Add(SongListStorage.AlbumFlavourDict[CurrentAlbum][i].name);
+                }
+            }
+            string flavourname = "";
+            bool err = false;
+            while (flavourname == "" || currentflavournames.Contains(flavourname))
             {
+                ContentDialog nameFlavourDialog = new ContentDialog()
+                {
+                    Title = "Name your flavour",
+                    CloseButtonText = "Ok"
+                };
+                TextBox textBox = new TextBox()
+                {
 
-            };
+                };
+                if (!err)
+                {
+                    nameFlavourDialog.Content = textBox;
+                }
+                else
+                {
+                    var stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Vertical
+                    };
+                    TextBlock errormsgtext = new TextBlock()
+                    {
+                        Text = "Error: Please try another name."
+                    };
+                    stackpanel.Children.Add(textBox);
+                    stackpanel.Children.Add(errormsgtext);
+                    nameFlavourDialog.Content = stackpanel;
+                }
+                
 
-            nameFlavourDialog.Content = textBox;
+                
 
 
-            await nameFlavourDialog.ShowAsync();
+                await nameFlavourDialog.ShowAsync();
 
-            string flavourname = textBox.Text;
+                flavourname = textBox.Text;
+                err = true;
+            }
+            
 
             newtab.Header = flavourname;
-
-            /*//Thickness listmargin = new Thickness(20, 20, 20, 0);
-            ListView listview = new ListView() {
-                Margin = new Thickness(20, 20, 20, 0),
-                ItemsSource = "{x:Bind Songs}"  };
-
-
-
-            //listview.ItemTemplate
-
-            DataTemplate datatemplate = new DataTemplate();
-            datatemplate.SetValue(FrameworkElement.)*/
-
             Frame frame = new Frame();
             frame.SetValue(FrameworkElement.NameProperty, "needtoputalbumversionidhere");
-            //frame.ContentTransitions = new Windows.UI.Xaml.Media.Animation.TransitionCollection();
-            //frame.ContentTransitions.Add(new NavigationThemeTransition());
 
             Flavour flavour = new Flavour()
             {
@@ -318,22 +337,7 @@ namespace Music_thing
             TabItems.Add(newtab);
 
             App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
-
-            //frame.Navigate(typeof(SongList));
-            //needtoputalbumversionidhere.Navigate()
-            /* < Frame x: Name = "ContentFrame" Margin = "0,32,0,0" >
-
-                     < Frame.ContentTransitions >
-
-                         < TransitionCollection >
-
-                             < NavigationThemeTransition />
-
-                         </ TransitionCollection >
-
-                     </ Frame.ContentTransitions >
-
-                 </ Frame >*/
+            SongListStorage.SaveFlavours();
 
         }
 
@@ -347,6 +351,25 @@ namespace Music_thing
         {
             string artistid = (string)((HyperlinkButton)sender).Tag;
             this.Frame.Navigate(typeof(AlbumList), artistid);
+        }
+
+        private void SongVersionTabs_TabClosing(object sender, TabClosingEventArgs e)
+        {
+            var tab = (TabViewItem)e.Tab;
+            String flavourname = (String)tab.Header;
+            List<Flavour> flavours = SongListStorage.AlbumFlavourDict[CurrentAlbum];
+            int index = -1;
+            for(int i = 0; i < flavours.Count; i++)
+            {
+                if (flavours[i].name == flavourname)
+                {
+                    index = i;
+                }
+            }
+            flavours.RemoveAt(index);
+            TabItems.Remove(tab);
+            App.GetForCurrentView().LoadPinnedFlavours();
+            SongListStorage.SaveFlavours();
         }
     }
 }

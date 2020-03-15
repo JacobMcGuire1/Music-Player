@@ -19,6 +19,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.GridView">
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="CanDragItems" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsPanel" />
     </RootType>
@@ -47,12 +48,13 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="MinHeight" />
       <RootProperty Name="Height" />
-      <RootProperty Name="Children" />
       <RootProperty Name="CanDrag" />
       <RootProperty Name="Tag" />
+      <RootProperty Name="Children" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Width" />
       <RootEvent Name="DragStarting" />
+      <RootEvent Name="Drop" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Width" />
@@ -94,6 +96,7 @@
       <RootProperty Name="Resources" />
       <RootProperty Name="Items" />
       <RootProperty Name="TabActionHeader" />
+      <RootEvent Name="TabClosing" />
     </RootType>
     <RootType FullName="System.Double" />
     <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.TabViewItem">

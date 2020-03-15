@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -40,6 +41,22 @@ namespace Music_thing
             PageGateway.MainPage = this;
 
             currentid = 0;
+
+            //BAck stuff
+            KeyboardAccelerator GoBack = new KeyboardAccelerator();
+            GoBack.Key = VirtualKey.GoBack;
+            GoBack.Invoked += BackInvoked;
+            KeyboardAccelerator AltLeft = new KeyboardAccelerator();
+            AltLeft.Key = VirtualKey.Left;
+            AltLeft.Invoked += BackInvoked;
+            KeyboardAccelerator t = new KeyboardAccelerator();
+            t.Key = VirtualKey.Back;
+            t.Invoked += BackInvoked;
+            this.KeyboardAccelerators.Add(GoBack);
+            this.KeyboardAccelerators.Add(AltLeft);
+            this.KeyboardAccelerators.Add(t);
+            // ALT routes here
+            AltLeft.Modifiers = VirtualKeyModifiers.Menu;
 
 
 
@@ -188,7 +205,7 @@ namespace Music_thing
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var tag = (Dictionary<String, string>)menuitem.Tag;
-                    if (!SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
+                    if (SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]) == null || !SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
                     {
                         menuitem.Visibility = Visibility.Collapsed;
                     }
@@ -211,16 +228,29 @@ namespace Music_thing
         //Adds a song to a flavour/playlist if it is dragged onto it.
         private async void NavigationViewItem_Drop(object sender, DragEventArgs e)
         {
-            var task = e.DataView.GetTextAsync();
-            String songid = await task;
-            var send = (NavigationViewItem)sender;
-            var dict = (Dictionary<String, String>)send.Tag;
-            String albumkey = dict["albumkey"];
-            String flavourname = dict["flavourname"];
+            if (e.DataView.Contains(StandardDataFormats.Text))
+            {
+                var def = e.GetDeferral();
 
-            Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
-            flavour.AddSong(songid);
-            //LoadPinnedFlavours();
+                var send = (NavigationViewItem)sender;
+                var dict = (Dictionary<String, String>)send.Tag;
+                String albumkey = dict["albumkey"];
+                String flavourname = dict["flavourname"];
+                Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
+
+                var s = await e.DataView.GetTextAsync();
+                var ids = s.Split(Environment.NewLine);
+                if (ids.Length > 0)
+                {
+                    foreach (string id in ids)
+                    {
+                        flavour.AddSong(id);
+                    }
+                }
+                e.AcceptedOperation = DataPackageOperation.Copy;
+                SongListStorage.SaveFlavours();
+                def.Complete();
+            }
         }
 
         //Loads a page when it is navigated to.

@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -131,6 +133,31 @@ namespace Music_thing
             string albumid = (string)((Button)sender).Tag;
             Album album = SongListStorage.AlbumDict[albumid];
             await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
+        }
+
+        private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            StackPanel send = (StackPanel)sender;
+            //args.Data.SetText((String)send.Tag.ToString());
+            var albumid = send.Tag.ToString();
+            var songids = SongListStorage.AlbumDict[albumid].Songids;
+
+            var items = new StringBuilder();
+            foreach (String songid in songids)
+            {
+                if (items.Length > 0) items.AppendLine();
+                items.Append(songid);
+            }
+            var t = items.ToString();
+            args.Data.SetText(items.ToString());
+
+            //args.Data.SetData("", songids);
+            args.Data.RequestedOperation = DataPackageOperation.Copy;
+        }
+
+        private void StackPanel_Drop(object sender, DragEventArgs e)
+        {
+            
         }
     }
 }

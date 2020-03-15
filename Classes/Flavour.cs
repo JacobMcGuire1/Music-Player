@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,25 +20,34 @@ namespace Music_thing
 
             for (int i = 0; i < Songids.Count; i++)
             {
-                Song song = SongListStorage.SongDict[Songids[i]];
-                //song.isFlavour = true;
-                //song.TrackNumber = i;
-
-                Song newSong = new Song()
+                try
                 {
-                    id = song.id, //dont Remove this id
-                    Title = song.Title,
-                    Album = song.Album,
-                    AlbumArtist = song.AlbumArtist,
-                    Artist = song.Artist,
-                    Year = song.Year,
-                    Duration = song.Duration,
-                    TrackNumber = i + 1,
-                    isFlavour = true, //MAY NEED TO REMOVE
-                    Path = song.Path
-                };
+                    Song song = SongListStorage.SongDict[Songids[i]];
+                    //song.isFlavour = true;
+                    //song.TrackNumber = i;
 
-                Songs.Add(newSong);
+                    Song newSong = new Song()
+                    {
+                        id = song.id, //dont Remove this id
+                        Title = song.Title,
+                        Album = song.Album,
+                        AlbumArtist = song.AlbumArtist,
+                        Artist = song.Artist,
+                        Year = song.Year,
+                        Duration = song.Duration,
+                        TrackNumber = i + 1,
+                        isFlavour = true, //MAY NEED TO REMOVE
+                        Path = song.Path
+                    };
+
+                    Songs.Add(newSong);
+                }
+                catch(KeyNotFoundException E)
+                {
+                    //Debug.WriteLine("Couldn't fine key " + Songids[i] + " in the collection.");
+                    Debug.WriteLine(E.Message);
+                }
+                
             }
 
             //OrderByTrack(); //Should get rid of this
@@ -63,6 +73,14 @@ namespace Music_thing
         {
             Songids.Add(songid);
             return Songids;
+        }
+
+        public void AddSongList(List<String> songidlist)
+        {
+            foreach(String songid in songidlist)
+            {
+                Songids.Add(songid);
+            }
         }
 
         public void ReorderSongs(ObservableCollection<Song> Songs)

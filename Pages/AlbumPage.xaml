@@ -33,6 +33,7 @@
                           CanDragItems="True"
                           CanReorderItems="True"
                                   AllowDrop="True"
+                                  TabClosing="SongVersionTabs_TabClosing"
                           >
                           <!--ItemsSource="{x:Bind TabItems}"-->
                           

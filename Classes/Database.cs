@@ -25,8 +25,6 @@ namespace Music_thing
                 App.GetForCurrentView().DisplayLoading(0, 0, 0, false);
             }
             catch { }
-
-            SongListStorage.LoadingMusic = true; //mb get rid of
             var files = await GetSongList();
 
             var SongDict = new ConcurrentDictionary<String, Song>();
@@ -52,7 +50,6 @@ namespace Music_thing
             Regex songreg = new Regex(@"^audio/");
             int filesscanned = 0;
             int songsfound = 0;
-            int testets = 0;
             foreach (var file in files)
             {
                 filesscanned++;
@@ -67,6 +64,10 @@ namespace Music_thing
                             App.GetForCurrentView().DisplayLoading(songsfound, files.Count, filesscanned, false);
                         }
                         catch { }
+                    }
+                    if (songsfound % 200 == 0)
+                    {
+                        if (FirstTime) SongListStorage.UpdateAndOrderMusic();
                     }
                     MusicProperties musicProperties = await (file as StorageFile).Properties.GetMusicPropertiesAsync();
 
@@ -112,13 +113,12 @@ namespace Music_thing
 
             //Should also display a message saying that all files have been loaded.
             Debug.WriteLine("Loaded " + songsloaded + " songs.");
-            //SongListStorage.LoadingMusic = false;
             try
             {
                 App.GetForCurrentView().DisplayLoading(songsfound, files.Count, filesscanned, true);
             }
             catch { }
-            
+            SongListStorage.UpdateAndOrderMusic();
 
             await MusicToJSON();
 
@@ -214,8 +214,9 @@ namespace Music_thing
                 GetSongs(true);
             }
             await SongListStorage.GetNowPlaying();
+            SongListStorage.UpdateAndOrderMusic();
             SongListStorage.GetFlavours();
-            SongListStorage.GetSongList();
+            //SongListStorage.GetSongList();
             
 
 

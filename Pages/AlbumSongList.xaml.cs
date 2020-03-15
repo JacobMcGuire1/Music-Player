@@ -40,6 +40,7 @@ namespace Music_thing
         {
             Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
             flavour.ReorderSongs(Songs);
+            SongListStorage.SaveFlavours();
             //Songs.Clear();
             //Songs = flavour.ObserveSongs();
             //Songs.CollectionChanged += Songs_CollectionChanged;
@@ -77,24 +78,14 @@ namespace Music_thing
         {
             Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
             flavour.ReorderSongs(Songs);
+            SongListStorage.SaveFlavours();
         }
 
         
 
         private async void playButton_Click(object sender, RoutedEventArgs e)
         {
-            //Button b = (Button)sender;
-            //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
-
             int songid = (int)((Button)sender).Tag;
-
-            /*foreach (Song song in Songs)
-            {
-                Media.Instance.
-                Media.Instance.addSong(song.id);
-            }
-
-            Media.Instance.playSong(song);*/
 
             await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
@@ -132,6 +123,8 @@ namespace Music_thing
                 Songs[i] = NewSongs[i];
             }
 
+            SongListStorage.SaveFlavours();
+
 
         }
 
@@ -145,7 +138,8 @@ namespace Music_thing
         private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
             StackPanel send = (StackPanel)sender;
-            args.Data.SetText((String)send.Tag.ToString());
+            var songid = send.Tag.ToString();
+            args.Data.SetText(songid);
             args.Data.RequestedOperation = DataPackageOperation.Copy;
         }
 
