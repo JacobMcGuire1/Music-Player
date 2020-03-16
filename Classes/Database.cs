@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace Music_thing
 {
@@ -24,7 +25,11 @@ namespace Music_thing
             {
                 App.GetForCurrentView().DisplayLoading(0, 0, 0, false);
             }
-            catch { }
+            catch (Exception E)
+            {
+                Debug.WriteLine("Couldn't display loading bar yet.");
+                Debug.WriteLine(E.Message);
+            }
             var files = await GetSongList();
 
             var SongDict = new ConcurrentDictionary<String, Song>();
@@ -44,7 +49,11 @@ namespace Music_thing
             {
                 App.GetForCurrentView().DisplayLoading(0, 0, 0, false);
             }
-            catch { }
+            catch (Exception E)
+            {
+                Debug.WriteLine("Couldn't display loading bar yet.");
+                Debug.WriteLine(E.Message);
+            }
 
 
             Regex songreg = new Regex(@"^audio/");
@@ -181,17 +190,18 @@ namespace Music_thing
                 catch { }
                 StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
-                StorageFile albumdictfile = await storageFolder.CreateFileAsync("albumdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                //StorageFile albumdictfile = await storageFolder.CreateFileAsync("albumdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                StorageFile albumdictfile = await storageFolder.GetFileAsync("albumdict.txt");
                 string albumdictjson = await FileIO.ReadTextAsync(albumdictfile);
                 var albumdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, Album>>(albumdictjson);
                 SongListStorage.AlbumDict = albumdict;
 
-                StorageFile songdictfile = await storageFolder.CreateFileAsync("songdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                StorageFile songdictfile = await storageFolder.GetFileAsync("songdict.txt");
                 string songdictjson = await FileIO.ReadTextAsync(songdictfile);
                 var songdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, Song>>(songdictjson);
                 SongListStorage.SongDict = songdict;
 
-                StorageFile artistdictfile = await storageFolder.CreateFileAsync("artistdict.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                StorageFile artistdictfile = await storageFolder.GetFileAsync("artistdict.txt");
                 string artistdictjson = await FileIO.ReadTextAsync(artistdictfile);
                 var artistdict = JsonConvert.DeserializeObject<ConcurrentDictionary<string, Artist>>(artistdictjson);
                 SongListStorage.ArtistDict = artistdict;
@@ -207,7 +217,7 @@ namespace Music_thing
                 }
                 
             }
-            catch(Exception E)
+            catch(FileNotFoundException E)
             {
                 Debug.WriteLine("Couldn't load music.");
                 Debug.WriteLine(E.Message);
