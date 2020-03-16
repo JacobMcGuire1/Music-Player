@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,9 +42,27 @@ namespace Music_thing
 
             currentid = 0;
 
-            
+            //BAck stuff
+            KeyboardAccelerator GoBack = new KeyboardAccelerator();
+            GoBack.Key = VirtualKey.GoBack;
+            GoBack.Invoked += BackInvoked;
+            KeyboardAccelerator AltLeft = new KeyboardAccelerator();
+            AltLeft.Key = VirtualKey.Left;
+            AltLeft.Invoked += BackInvoked;
+            KeyboardAccelerator t = new KeyboardAccelerator();
+            t.Key = VirtualKey.Back;
+            t.Invoked += BackInvoked;
+            this.KeyboardAccelerators.Add(GoBack);
+            this.KeyboardAccelerators.Add(AltLeft);
+            this.KeyboardAccelerators.Add(t);
+            // ALT routes here
+            AltLeft.Modifiers = VirtualKeyModifiers.Menu;
 
-            SongListStorage.GetSongList();
+
+
+            //SongListStorage.GetSongList(); //Should change/remove this.
+            //Database.GetSongs(); //Temp
+            Database.LoadMusicFromJSON();
 
             //SongListStorage.FindArtists();
 
@@ -55,6 +74,32 @@ namespace Music_thing
 
         //Returns the instance of the media instance to allow information from it to be accessed.
         public Media MediaProxy { get { return Media.Instance; } }
+
+
+        public void DisplayLoading(int songsloaded, int totalfiles, int filesscanned, bool complete)
+        {
+            if (!complete)
+            {
+                progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
+                progressbar.Visibility = Visibility.Visible;
+                if (totalfiles == 0)
+                {
+                    progressbar.IsIndeterminate = true;
+                }
+                else
+                {
+                    progressbar.IsIndeterminate = false;
+                    progressbar.Value = filesscanned;
+                    progressbar.Maximum = totalfiles;
+                }
+                
+            }
+            else
+            {
+                progressbartextblock.Text = "Loaded " + songsloaded + " songs.";
+                progressbar.Visibility = Visibility.Collapsed;
+            }
+        }
 
         //Loads the pinned flavours and playlists into the list on the left of the screen.
         public void LoadPinnedFlavours() //Could probably be done more efficiently
@@ -160,7 +205,7 @@ namespace Music_thing
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var tag = (Dictionary<String, string>)menuitem.Tag;
-                    if (!SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
+                    if (SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]) == null || !SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
                     {
                         menuitem.Visibility = Visibility.Collapsed;
                     }
@@ -183,16 +228,29 @@ namespace Music_thing
         //Adds a song to a flavour/playlist if it is dragged onto it.
         private async void NavigationViewItem_Drop(object sender, DragEventArgs e)
         {
-            var task = e.DataView.GetTextAsync();
-            String songid = await task;
-            var send = (NavigationViewItem)sender;
-            var dict = (Dictionary<String, String>)send.Tag;
-            String albumkey = dict["albumkey"];
-            String flavourname = dict["flavourname"];
+            if (e.DataView.Contains(StandardDataFormats.Text))
+            {
+                var def = e.GetDeferral();
 
-            Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
-            flavour.AddSong(songid);
-            //LoadPinnedFlavours();
+                var send = (NavigationViewItem)sender;
+                var dict = (Dictionary<String, String>)send.Tag;
+                String albumkey = dict["albumkey"];
+                String flavourname = dict["flavourname"];
+                Flavour flavour = SongListStorage.GetFlavourByName(albumkey, flavourname);
+
+                var s = await e.DataView.GetTextAsync();
+                var ids = s.Split(Environment.NewLine);
+                if (ids.Length > 0)
+                {
+                    foreach (string id in ids)
+                    {
+                        flavour.AddSong(id);
+                    }
+                }
+                e.AcceptedOperation = DataPackageOperation.Copy;
+                SongListStorage.SaveFlavours();
+                def.Complete();
+            }
         }
 
         //Loads a page when it is navigated to.
@@ -310,6 +368,33 @@ namespace Music_thing
         private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
 
+        }
+
+        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            On_BackRequested();
+        }
+
+        private void BackInvoked(KeyboardAccelerator sender,
+                         KeyboardAcceleratorInvokedEventArgs args)
+        {
+            On_BackRequested();
+            args.Handled = true;
+        }
+
+        private bool On_BackRequested()
+        {
+            if (!ContentFrame.CanGoBack)
+                return false;
+
+            // Don't go back if the nav pane is overlayed.
+            //if (NavView.IsPaneOpen &&
+            //    (NavView.DisplayMode == muxc.NavigationViewDisplayMode.Compact ||
+            //     NavView.DisplayMode == muxc.NavigationViewDisplayMode.Minimal))
+            //    return false;
+
+            ContentFrame.GoBack();
+            return true;
         }
     }
 }

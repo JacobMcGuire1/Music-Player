@@ -59,7 +59,7 @@ namespace Music_thing
 
             //The placeholder album art TODO: make it work?
             BitmapImage bitmapImage =
-                     new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/StoreLogo.png"));
+                     new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
 
             Currentart = bitmapImage;
             NotifyPropertyChanged();
@@ -101,9 +101,19 @@ namespace Music_thing
 
         }
 
+        public TimeSpan GetSongTime()
+        {
+            return mediaPlayer.PlaybackSession.Position;
+        }
+
+        public void SetSongTime(TimeSpan songtime)
+        {
+            mediaPlayer.PlaybackSession.Position = songtime;
+        }
+
 
         //Updates song details when the song changes.
-        private void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
+        private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
             uint thign = Playlist.CurrentItemIndex;
             if (thign == 4294967295) //Magic number?? Perfectly totient.
@@ -115,10 +125,20 @@ namespace Music_thing
                 SongListStorage.CurrentPlaceInPlaylist = (int)Playlist.CurrentItemIndex;
             }
 
+            if (SongListStorage.PlaylistRepresentation.Count > 0)
+            {
 
-            Currentart = SongListStorage.GetCurrentSongArt();
-            Currenttitle = SongListStorage.GetCurrentSongName();
-            Currentartist = SongListStorage.GetCurrentArtistName();
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                async () =>
+                {
+                    Currentart = await SongListStorage.GetCurrentSongArt(100);
+
+                }
+                );
+                Currenttitle = SongListStorage.GetCurrentSongName();
+                Currentartist = SongListStorage.GetCurrentArtistName();
+            }
+            SongListStorage.SaveNowPlaying();
         }
 
         //Allows the following properties to be accessed
@@ -182,12 +202,12 @@ namespace Music_thing
         }
 
         //Plays the specified song
-        public void playSong(string songid)
+        public async Task playSong(string songid)
         {
-            //mediaPlayer.Source = MediaSource.CreateFromStorageFile(song);
             Playlist.Items.Clear();
-            //StorageFile file = SongListStorage.Songs[song].File;
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
+            var song = SongListStorage.SongDict[songid];
+            var file = await song.GetFile();
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Clear();
@@ -196,25 +216,37 @@ namespace Music_thing
         }
 
         //Plays the playlist
-        public void PlayPlaylist(ObservableCollection<Song> Songs, int Pos)
+        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos, bool play)
         {
+            if (!play)
+            {
+                mediaPlayer.Pause();
+            }
+            else
+            {
+                mediaPlayer.Play();
+            }
+           
             Playlist.Items.Clear(); //Clears the playlist
+            SongListStorage.CurrentPlaceInPlaylist = 0;
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
-                addSong(song.id);
-
+                await addSong(song.id);
+                if (!play)
+                {
+                    mediaPlayer.Pause();
+                }
             }
             Playlist.MoveTo((uint)Pos - 1);
-
         }
 
         //Appends a song to the playlist.
-        public void addSong(string songid)
+        public async Task addSong(string songid)
         {
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(SongListStorage.SongDict[songid].File));
+            var song = SongListStorage.SongDict[songid];
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
-            mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
         }
 

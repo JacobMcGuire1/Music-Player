@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -12,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -27,6 +30,8 @@ namespace Music_thing
         = new ObservableCollection<Album>();
 
         public Artist artist;
+
+        public bool artloaded = false;
 
         public AlbumList()
         {
@@ -53,11 +58,51 @@ namespace Music_thing
             //Media.Instance.addSong(song);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             String artistid = e.Parameter as string;
             //Artist artist = SongListStorage.ArtistDict[key];
             ChangeArtist(artistid);
+
+            if (!artloaded)
+            {
+                foreach (Album album in Albums)
+                {
+                    if (album.Albumart == null)
+                    {
+                        try
+                        {
+                            album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
+                            //Bindings.Update();
+                        }
+                        catch
+                        {
+
+                        }
+                        /*catch
+                        {
+                            //BitmapImage bitmapImage = new BitmapImage();
+                            //bitmapImage.UriSource = new Uri("Assets/Album.png");
+                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
+                            BitmapImage bitmapImage = new BitmapImage(new Uri(this.BaseUri, "/Assets/Album.png"));
+                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_Thing]/Assets/Album.png"));
+                            bitmapImage.DecodePixelHeight = 200;
+                            bitmapImage.DecodePixelWidth = 200;
+                            album.Albumart = bitmapImage;
+                        }*/
+                    }
+                }
+                artloaded = true;
+            }
+        }
+
+        protected new void Unloaded(NavigationEventArgs e)
+        {
+            foreach (Album album in Albums)
+            {
+                album.albumart = null;
+            }
+            artloaded = false;
         }
 
         public void ChangeArtist(string artistid)
@@ -68,11 +113,12 @@ namespace Music_thing
                 Artist artist = SongListStorage.ArtistDict[artistid];
                 this.artist = artist;
                 Albums.Clear();
+                artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].year.CompareTo(SongListStorage.AlbumDict[x].year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
                 foreach (string albumid in artist.Albums)
                 {
                     Albums.Add(SongListStorage.AlbumDict[albumid]);
                 }
-                
+                //Albums.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
             }
             else
             {
@@ -82,11 +128,36 @@ namespace Music_thing
             
         }
 
-        private void playalbumButton_Click(object sender, RoutedEventArgs e)
+        private async void playalbumButton_Click(object sender, RoutedEventArgs e)
         {
             string albumid = (string)((Button)sender).Tag;
             Album album = SongListStorage.AlbumDict[albumid];
-            Media.Instance.PlayPlaylist(album.ObserveSongs(), 1); //mb 1
+            await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
+        }
+
+        private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            StackPanel send = (StackPanel)sender;
+            //args.Data.SetText((String)send.Tag.ToString());
+            var albumid = send.Tag.ToString();
+            var songids = SongListStorage.AlbumDict[albumid].Songids;
+
+            var items = new StringBuilder();
+            foreach (String songid in songids)
+            {
+                if (items.Length > 0) items.AppendLine();
+                items.Append(songid);
+            }
+            var t = items.ToString();
+            args.Data.SetText(items.ToString());
+
+            //args.Data.SetData("", songids);
+            args.Data.RequestedOperation = DataPackageOperation.Copy;
+        }
+
+        private void StackPanel_Drop(object sender, DragEventArgs e)
+        {
+            
         }
     }
 }

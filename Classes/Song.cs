@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Music_thing
@@ -22,14 +23,21 @@ namespace Music_thing
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
         public string DiscNumber { get; set; }
+        public string Path { get; set; }
 
 
         public bool isFlavour { get; set; }
 
         public uint Bitrate { get; set; }
-        public StorageFile File { get; set; }
+        //public StorageFile File { get; set; }
 
         //public BitmapImage AlbumArt { get; set; }
+
+        public async Task<StorageFile> GetFile()
+        {
+            StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
+            return file;
+        }
 
         public override bool Equals(object obj)
         {
@@ -43,10 +51,10 @@ namespace Music_thing
             return JSON;
         }
 
-        public string GetPath()
-        {
-            return File.Path;
-        }
+       // //public string GetPath()
+       // {
+         //   return File.Path;
+        //}
 
         public string GetDuration()
         {
@@ -54,6 +62,15 @@ namespace Music_thing
             //dur.ToString("N2");
             //return dur.ToString("N2").Replace('.', ':');
             return Duration.ToString(@"mm\:ss");
+        }
+
+        public string GetStringYear()
+        {
+            if (Year == 0)
+            {
+                return "Unknown Year";
+            }
+            return Year.ToString();
         }
 
         public Visibility CheckIfFlavour()
@@ -66,6 +83,24 @@ namespace Music_thing
             {
                 return (Visibility)1;
             }
+        }
+
+        public async Task<ImageSource> GetArt(int size)
+        {
+            var file = await GetFile();
+            var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, (uint)size);
+            var bitmapImage = new BitmapImage();
+            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+            {
+                bitmapImage.SetSource(thumbnail);
+            }
+            else
+            {
+                 bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+            }
+            bitmapImage.DecodePixelHeight = size;
+            bitmapImage.DecodePixelWidth = size;
+            return bitmapImage;
         }
 
         /*public async void SetAlbumArt()

@@ -34,14 +34,14 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/> <!-- Remove this drop functrionality-->
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Artists" x:Name="ArtistsButton" Icon="Contact" Tag="artists"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
-                    <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Undo" Tag="nowPlaying"/>
+                    <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
                 </NavigationView.MenuItems>
 
@@ -106,6 +106,12 @@
                     />
                     </MediaPlayerElement.TransportControls>
                 </MediaPlayerElement>
+
+                <StackPanel Orientation="Vertical" Grid.Column="2">
+                    <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    <ProgressBar x:Name="progressbar" IsIndeterminate="False" Visibility="Collapsed" HorizontalAlignment="Center" Width="300" Margin="0,10,0,0" />
+                </StackPanel>
+                
             </Grid>
 
 

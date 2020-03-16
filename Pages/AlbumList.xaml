@@ -9,44 +9,29 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <!--
-        <ListView x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Albums}">
-            <ListView.ItemTemplate >
-                <DataTemplate x:DataType="local:Album" >
-                    <Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}">
-                        <StackPanel Orientation="Horizontal" Height="200" Margin="0,0,0,0" HorizontalAlignment="Stretch">
-                            <Image Width="200" Source="{x:Bind albumart200}"/>
-                            <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind key}"/>
-                            <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" Width="600" Margin="0,0,5,0"/>
-                            <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" Width="600" Margin="0,0,5,0"/>
-                            
-                        </StackPanel>
-                    </Button>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        -->
-
-        <GridView ItemsSource="{x:Bind Albums}">
+        <GridView ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="IconTextTemplate" x:DataType="local:Album">
+                    
                     <Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}" Background="Transparent">
-                        <!--Need to add play and add to playlist buttons-->
-                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinHeight="275" Height="Auto">
-                            <Image Width="200" Height="200" Source="{x:Bind albumart200}"/>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0" Tag="{x:Bind key}"/>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
-                                    <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                            <!--Need to add play and add to playlist buttons-->
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinHeight="275" Height="Auto" CanDrag="True" DragStarting="StackPanel_DragStarting" Drop="StackPanel_Drop" Tag="{x:Bind key}">
+                                <Image Width="200" Height="200" Source="{x:Bind Albumart, Mode=OneWay}"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0" Tag="{x:Bind key}"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Text="{x:Bind GetStringYear()}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                    </StackPanel>
                                 </StackPanel>
+
+
+
+
                             </StackPanel>
-                            
-                            
-
-
-                        </StackPanel>
                     </Button>
+                    
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>
