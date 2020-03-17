@@ -23,9 +23,9 @@
                                         <Button x:Name="addAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click" Width="30" Height="30" Padding="0"  Margin="0,0,5,0"  Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Tag="{x:Bind key}"></Button>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold"  Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords" MaxLines="2"/>
-                                        <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords"/>
+                                            <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords"/>
                                         </StackPanel>
                                         <TextBlock Text="{x:Bind GetStringYear()}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="28" TextWrapping="WrapWholeWords"/>
                                 </StackPanel>
