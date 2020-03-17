@@ -92,7 +92,7 @@ namespace Music_thing
         {
             if (year == 0)
             {
-                return "Unknown Year";
+                return "N/A";
             }
             return year.ToString();
         }

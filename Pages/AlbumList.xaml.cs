@@ -135,12 +135,30 @@ namespace Music_thing
             await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
         }
 
-        private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
+        private async void AddAlbumToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel send = (StackPanel)sender;
-            //args.Data.SetText((String)send.Tag.ToString());
-            var albumid = send.Tag.ToString();
-            var songids = SongListStorage.AlbumDict[albumid].Songids;
+            string albumid = (string)((Button)sender).Tag;
+            Album album = SongListStorage.AlbumDict[albumid];
+            //await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
+            foreach(String songid in album.Songids)
+            {
+                await Media.Instance.addSong(songid);
+            }
+        }
+
+        private void Jess_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Album album = (Album)e.ClickedItem;
+            //String albumkey = (string)(((Button)sender).Tag);
+
+            this.Frame.Navigate(typeof(AlbumPage), album.key);
+        }
+
+        private void Jess_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            var album = (Album)e.Items[0];
+
+            var songids = album.Songids;
 
             var items = new StringBuilder();
             foreach (String songid in songids)
@@ -149,15 +167,10 @@ namespace Music_thing
                 items.Append(songid);
             }
             var t = items.ToString();
-            args.Data.SetText(items.ToString());
+            e.Data.SetText(items.ToString());
 
             //args.Data.SetData("", songids);
-            args.Data.RequestedOperation = DataPackageOperation.Copy;
-        }
-
-        private void StackPanel_Drop(object sender, DragEventArgs e)
-        {
-            
+            e.Data.RequestedOperation = DataPackageOperation.Copy;
         }
     }
 }

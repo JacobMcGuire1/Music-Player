@@ -9,28 +9,34 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <GridView ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True">
+        <GridView ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="IconTextTemplate" x:DataType="local:Album">
                     
-                    <Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}" Background="Transparent">
+                    <!--Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}" Background="Transparent"-->
                             <!--Need to add play and add to playlist buttons-->
-                        <StackPanel Orientation="Vertical" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinHeight="275" Height="Auto" CanDrag="True" DragStarting="StackPanel_DragStarting" Drop="StackPanel_Drop" Tag="{x:Bind key}">
+                            <StackPanel Orientation="Vertical" Padding="5" HorizontalAlignment="Stretch" MinHeight="250" Height="Auto" Tag="{x:Bind key}">
                                 <Image Width="200" Height="200" Source="{x:Bind Albumart, Mode=OneWay}"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <Button x:Name="playalbumButton" Click="playalbumButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent" Margin="0,0,5,0" Tag="{x:Bind key}"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
-                                        <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
-                                        <TextBlock Text="{x:Bind GetStringYear()}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="150" TextWrapping="WrapWholeWords"/>
+                                        <Button x:Name="playalbumButton" Click="playalbumButton_Click"  Width="30" Height="30" Padding="0"  Margin="0,0,5,0" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Tag="{x:Bind key}"/>
+                                        <Button x:Name="addAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click" Width="30" Height="30" Padding="0"  Margin="0,0,5,0"  Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Tag="{x:Bind key}"></Button>
                                     </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                            <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold"  Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords" MaxLines="2"/>
+                                        <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{x:Bind GetStringYear()}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="28" TextWrapping="WrapWholeWords"/>
+                                </StackPanel>
+                                    
                                 </StackPanel>
 
 
 
 
                             </StackPanel>
-                    </Button>
+                    <!--/Button-->
                     
                 </DataTemplate>
             </GridView.ItemTemplate>

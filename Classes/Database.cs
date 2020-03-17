@@ -59,14 +59,16 @@ namespace Music_thing
             Regex songreg = new Regex(@"^audio/");
             int filesscanned = 0;
             int songsfound = 0;
-            foreach (var file in files)
+            //foreach (var file in files)
+            for (int i = 0; i<files.Count; i++)
             {
+                var file = files[i];
                 filesscanned++;
                 //Checks if it's an audio file
                 if (songreg.IsMatch(file.ContentType))
                 {
                     songsfound++;
-                    if (songsfound % 10 == 0)
+                    if (songsfound % 10 == 0 || songsfound <= 1)
                     {
                         try
                         {
@@ -136,7 +138,7 @@ namespace Music_thing
         public static async Task<IReadOnlyList<StorageFile>> GetSongList()
         {
             QueryOptions queryOption = new QueryOptions
-                (CommonFileQuery.OrderByTitle, new string[] { "*" });
+                (CommonFileQuery.DefaultQuery, new string[] { "*" });
 
             queryOption.FolderDepth = FolderDepth.Deep;
 

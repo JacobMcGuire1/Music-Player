@@ -43,20 +43,20 @@ namespace Music_thing
             currentid = 0;
 
             //BAck stuff
-            KeyboardAccelerator GoBack = new KeyboardAccelerator();
-            GoBack.Key = VirtualKey.GoBack;
-            GoBack.Invoked += BackInvoked;
-            KeyboardAccelerator AltLeft = new KeyboardAccelerator();
-            AltLeft.Key = VirtualKey.Left;
-            AltLeft.Invoked += BackInvoked;
-            KeyboardAccelerator t = new KeyboardAccelerator();
-            t.Key = VirtualKey.Back;
-            t.Invoked += BackInvoked;
-            this.KeyboardAccelerators.Add(GoBack);
-            this.KeyboardAccelerators.Add(AltLeft);
-            this.KeyboardAccelerators.Add(t);
+            //KeyboardAccelerator GoBack = new KeyboardAccelerator();
+            //GoBack.Key = VirtualKey.GoBack;
+            //GoBack.Invoked += BackInvoked;
+            //KeyboardAccelerator AltLeft = new KeyboardAccelerator();
+           //AltLeft.Key = VirtualKey.Left;
+           // AltLeft.Invoked += BackInvoked;
+      ///    //  KeyboardAccelerator t = new KeyboardAccelerator();
+         //   t.Key = VirtualKey.Back;
+          //  t.Invoked += BackInvoked;
+         //   this.KeyboardAccelerators.Add(GoBack);
+          //  this.KeyboardAccelerators.Add(AltLeft);
+          //  this.KeyboardAccelerators.Add(t);
             // ALT routes here
-            AltLeft.Modifiers = VirtualKeyModifiers.Menu;
+         //   AltLeft.Modifiers = VirtualKeyModifiers.Menu;
 
 
 
