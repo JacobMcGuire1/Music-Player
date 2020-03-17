@@ -1,19 +1,26 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace Music_thing
 {
     public class Flavour : Album
     {
         public string albumname;
+        public string albumkey;
 
         public bool pinned = false;
-        
+        public bool pinnedinalbum = false;
+
+        //[JsonIgnore]
+        //public ImageSource thumbnail;
+
         public new ObservableCollection<Song> ObserveSongs()
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();

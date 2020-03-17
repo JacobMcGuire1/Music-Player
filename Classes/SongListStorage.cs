@@ -294,7 +294,7 @@ namespace Music_thing
                 return x;
             }
 
-            public static void GetFlavours()
+            public static async Task GetFlavours()
             {
                 var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
                 try
@@ -305,7 +305,7 @@ namespace Music_thing
                     {
                         flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
                     }
-                    LoadFlavours(flavourstr);
+                    await LoadFlavours(flavourstr);
 
                 }
                 catch (Exception E)
@@ -315,7 +315,17 @@ namespace Music_thing
                 }
             }
 
-            public static void LoadFlavours(String flavours)
+            public static Album GetPinnedFlavourForAlbum(string albumid)
+            {
+                if (AlbumFlavourDict.ContainsKey(albumid))
+                {
+                    foreach (Flavour flavour in AlbumFlavourDict[albumid])
+                        if (flavour.pinnedinalbum) return flavour;
+                }
+                return AlbumDict[albumid];
+            }
+
+            public static async Task LoadFlavours(String flavours)
             {
                 if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
                 {
@@ -323,7 +333,7 @@ namespace Music_thing
                     {
                         var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
                         AlbumFlavourDict = flavourdict;
-                        App.GetForCurrentView().LoadPinnedFlavours();
+                        await App.GetForCurrentView().LoadPinnedFlavours();
                     }
                     catch (Exception E)
                     {

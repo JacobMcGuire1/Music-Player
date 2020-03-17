@@ -30,22 +30,16 @@
                 <controls:TabView x:Name="SongVersionTabs" 
                           CanCloseTabs="True"
                           IsCloseButtonOverlay="False"
-                          CanDragItems="True"
-                          CanReorderItems="True"
-                                  AllowDrop="True"
-                                  TabClosing="SongVersionTabs_TabClosing"
+                          CanDragItems="False"
+                          CanReorderItems="False"
+                          AllowDrop="True"
+                          TabClosing="SongVersionTabs_TabClosing"
                           >
-                          <!--ItemsSource="{x:Bind TabItems}"-->
-                          
                     <controls:TabView.Resources>
                         <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
                         <x:Double x:Key="TabViewItemHeaderMinWidth">90</x:Double>
                         <x:Double x:Key="TabViewItemHeaderMaxWidth">200</x:Double>
                     </controls:TabView.Resources>
-
-                    <controls:TabViewItem Header="Custom Album Version">
-                        <TextBlock Padding="16">A 2nd Tab.</TextBlock>
-                    </controls:TabViewItem>
 
                     <controls:TabView.TabActionHeader>
                         <Button x:Name="NewTabButton"

@@ -29,14 +29,7 @@ namespace Music_thing
 
         public int year { get; set; }
 
-        //public BitmapImage albumart;
-        //public Windows.UI.Xaml.Media.ImageSource albumart200;
-
-        //public Windows.UI.Xaml.Media.ImageSource albumart250;
-
-        //public Windows.UI.Xaml.Media.ImageSource albumart100;
-
-        // public BitmapIcon icon;
+        //public int priorityflavour = -1;
 
         //Should only be in memory for the album list.
         [JsonIgnore]
@@ -62,6 +55,21 @@ namespace Music_thing
 
             return Songs;
         }
+
+        public async Task Play()
+        {
+            await Media.Instance.PlayPlaylist(ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1?
+        }
+
+        public async Task AddToPlaylist()
+        {
+            foreach (String songid in Songids)
+            {
+                await Media.Instance.addSong(songid);
+            }
+            App.GetForCurrentView().NotificationMessage("Added " + artist + " - " + name + " to now playing.");
+        }
+
 
         /*public ObservableCollection<Song> ObserveSongsForFlavour()
         {

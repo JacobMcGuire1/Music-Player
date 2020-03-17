@@ -27,9 +27,9 @@ namespace Music_thing
         public ObservableCollection<Song> Songs { get; set; }
         = new ObservableCollection<Song>();
 
-        public string albumid;
+        public Album album;
 
-        public int flavourid;
+        public Flavour flavour;
 
         public AlbumSongList()
         {
@@ -38,32 +38,29 @@ namespace Music_thing
 
         private void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
             flavour.ReorderSongs(Songs);
             SongListStorage.SaveFlavours();
-            //Songs.Clear();
-            //Songs = flavour.ObserveSongs();
-            //Songs.CollectionChanged += Songs_CollectionChanged;
         }
 
         //arg is a struct containing album id and an int representing which flavour of the album this is.
         //Original album is -1.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            AlbumPage.Args args = (AlbumPage.Args)e.Parameter;
-            albumid =  args.id;
-            flavourid = args.flavourid;
-            
-            if (args.flavourid == -1)
+            if (!(e.Parameter is Flavour))
             {
-                Songs = SongListStorage.AlbumDict[albumid].ObserveSongs(SongListStorage.SongDict);
+                album = (Album)e.Parameter;
+                flavour = null;
+                Songs = album.ObserveSongs(SongListStorage.SongDict);
             }
             else
             {
+                flavour = (Flavour)e.Parameter;
+                //album = SongListStorage.AlbumDict[flavour.alb]
+                album = null;
                 ListViewSongs.CanReorderItems = true;
                 ListViewSongs.AllowDrop = true;
                 ListViewSongs.Drop += ListViewSongs_Drop;
-                Songs = SongListStorage.AlbumFlavourDict[albumid][flavourid].ObserveSongs();
+                Songs = flavour.ObserveSongs();
                 Songs.CollectionChanged += Songs_CollectionChanged;
                 addSongButton.Visibility = (Visibility)0;
                 addSongText.Visibility = (Visibility)0;
@@ -76,7 +73,6 @@ namespace Music_thing
 
         private void ListViewSongs_Drop(object sender, DragEventArgs e)
         {
-            Flavour flavour = SongListStorage.AlbumFlavourDict[albumid][flavourid];
             flavour.ReorderSongs(Songs);
             SongListStorage.SaveFlavours();
         }
@@ -90,32 +86,24 @@ namespace Music_thing
             await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
 
-        private void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private async void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
 
             //Song song = ((Button)sender).Tag as Song;
 
-            string song = (string)(((Button)sender).Tag);
+            string songid = (string)(((Button)sender).Tag);
+            Song song = SongListStorage.SongDict[songid];
+            App.GetForCurrentView().NotificationMessage("Added '" + song.Artist + " - " + song.Title + "' to now playing.");
 
-            Media.Instance.addSong(song);
+            await Media.Instance.addSong(songid);
         }
 
         private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)
         {
             int TrackNumber = (int)((Button)sender).Tag - 1;
-
-            //Can maybe do this in a way that doesn't clear the list.
-
-            //Songs.Clear();
-
-            ObservableCollection<Song> NewSongs = SongListStorage.AlbumFlavourDict[albumid][flavourid].RemoveSong(TrackNumber);
-
-            //foreach (Song song in NewSongs)
-            //{
-            //    Songs.Add(song);
-            //}
+            ObservableCollection<Song> NewSongs = flavour.RemoveSong(TrackNumber);
             Songs.RemoveAt(Songs.Count - 1);
 
             for(int i = 0; i < NewSongs.Count; i++)
@@ -128,11 +116,11 @@ namespace Music_thing
 
         }
 
-        private void AddSongButton_Click(object sender, RoutedEventArgs e)
+        private async void AddSongButton_Click(object sender, RoutedEventArgs e)
         {
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
-            SongListStorage.AlbumFlavourDict[albumid][flavourid].pinned = true;
-            App.GetForCurrentView().LoadPinnedFlavours();
+            flavour.pinned = true;
+            await App.GetForCurrentView().LoadPinnedFlavours();
         }
 
         private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
@@ -143,5 +131,30 @@ namespace Music_thing
             args.Data.RequestedOperation = DataPackageOperation.Copy;
         }
 
+        private async void PlayAlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (flavour == null)
+            {
+                await album.Play();
+            }
+            else
+            {
+                await flavour.Play();
+            }
+                
+        }
+
+
+        private async void AddAlbumToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (flavour == null)
+            {
+                await album.AddToPlaylist();
+            }
+            else
+            {
+                await flavour.AddToPlaylist();
+            }
+        }
     }
 }

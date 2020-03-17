@@ -227,7 +227,7 @@ namespace Music_thing
             }
             await SongListStorage.GetNowPlaying();
             SongListStorage.UpdateAndOrderMusic();
-            SongListStorage.GetFlavours();
+            await SongListStorage.GetFlavours();
             //SongListStorage.GetSongList();
             
 
@@ -268,7 +268,6 @@ namespace Music_thing
                 year = (int)song.Year,
                 Songids = new List<string>()
             };
-
             album.AddSong(songid, SongDict);
 
             AlbumDict.AddOrUpdate(key, album, (key2, existingalbum) => AddSongToAlbum(existingalbum, songid, SongDict));

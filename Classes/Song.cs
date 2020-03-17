@@ -51,9 +51,20 @@ namespace Music_thing
             return JSON;
         }
 
-       // //public string GetPath()
-       // {
-         //   return File.Path;
+        public async Task Play()
+        {
+            await Media.Instance.playSong(id);
+        }
+
+        public async Task AddToPlaylist()
+        {
+            await Media.Instance.addSong(id);
+            App.GetForCurrentView().NotificationMessage("Added " + Artist + " - " + Title + " to now playing.");
+        }
+
+        // //public string GetPath()
+        // {
+        //   return File.Path;
         //}
 
         public string GetDuration()

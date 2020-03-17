@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Microsoft.Graphics.Canvas.Effects;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.System;
+using Windows.UI.Composition;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -75,6 +78,12 @@ namespace Music_thing
         //Returns the instance of the media instance to allow information from it to be accessed.
         public Media MediaProxy { get { return Media.Instance; } }
 
+        public void NotificationMessage(String Message)
+        {
+            progressbar.Visibility = Visibility.Collapsed;
+            progressbartextblock.Visibility = Visibility.Visible;
+            progressbartextblock.Text = Message;
+        }
 
         public void DisplayLoading(int songsloaded, int totalfiles, int filesscanned, bool complete)
         {
@@ -102,7 +111,7 @@ namespace Music_thing
         }
 
         //Loads the pinned flavours and playlists into the list on the left of the screen.
-        public void LoadPinnedFlavours() //Could probably be done more efficiently
+        public async Task LoadPinnedFlavours() //Could probably be done more efficiently
         {
 
             //navigationViewItem.Content = "TEst";
@@ -141,6 +150,10 @@ namespace Music_thing
 
                         stackpanelhor.Children.Add(icon);
                         */
+                        var stackpanelouter = new StackPanel
+                        {
+                            Orientation = Orientation.Horizontal
+                        };
 
                         var stackpanel = new StackPanel
                         {
@@ -160,23 +173,43 @@ namespace Music_thing
                             FontSize = 12
                         };
 
-                        TextBlock albumtb = new TextBlock
+                        /*TextBlock albumtb = new TextBlock
                         {
                             Text = flavour.albumname,
                             FontWeight = FontWeights.ExtraLight,
                             FontSize = 10
-                        };
+                        };*/
 
 
                         stackpanel.Children.Add(nametb);
                         stackpanel.Children.Add(artisttb);
-                        stackpanel.Children.Add(albumtb);
+
+                        //IMAGESTUFF
+
+                        Image icon = new Image();
+                        try
+                        {
+                            icon.Source = await SongListStorage.AlbumDict[flavour.albumkey].GetAlbumArt(15, SongListStorage.SongDict);
+                        }
+                        catch { }
+                        icon.Width = 20;
+                        icon.Height = 20;
+                        icon.Margin = new Thickness(0,0,14,0);
+                        //icon.Opacity = 0.5;
+                        //icon.ren
+                        //icon.
+
+                        //IMAGESTUFF
+
+                        stackpanelouter.Children.Add(icon);
+                        stackpanelouter.Children.Add(stackpanel);
+                        //stackpanel.Children.Add(albumtb);
 
 
-                       // stackpanelhor.Children.Add(stackpanel);
+                        // stackpanelhor.Children.Add(stackpanel);
 
                         //navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
-                        navigationViewItem.Content = stackpanel;
+                        navigationViewItem.Content = stackpanelouter;
                         navigationViewItem.Name = "Flavour";
                         navigationViewItem.AllowDrop = true;
                         navigationViewItem.Drop += NavigationViewItem_Drop;
@@ -249,6 +282,7 @@ namespace Music_thing
                 }
                 e.AcceptedOperation = DataPackageOperation.Copy;
                 SongListStorage.SaveFlavours();
+                App.GetForCurrentView().NotificationMessage("Added song(s) to flavour '" + flavourname + "'.");
                 def.Complete();
             }
         }

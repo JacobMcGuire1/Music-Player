@@ -6,38 +6,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Unloaded="Page_Unloaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
 
     <Grid>
         <GridView ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="IconTextTemplate" x:DataType="local:Album">
-                    
-                    <!--Button x:Name="albumbutton" Click="Albumbutton_Click" Tag="{x:Bind key}" Background="Transparent"-->
-                            <!--Need to add play and add to playlist buttons-->
-                            <StackPanel Orientation="Vertical" Padding="5" HorizontalAlignment="Stretch" MinHeight="250" Height="Auto" Tag="{x:Bind key}">
-                                <Image Width="200" Height="200" Source="{x:Bind Albumart, Mode=OneWay}"/>
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <StackPanel Orientation="Vertical">
-                                        <Button x:Name="playalbumButton" Click="playalbumButton_Click"  Width="30" Height="30" Padding="0"  Margin="0,0,5,0" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Tag="{x:Bind key}"/>
-                                        <Button x:Name="addAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click" Width="30" Height="30" Padding="0"  Margin="0,0,5,0"  Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Tag="{x:Bind key}"></Button>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold"  Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords" MaxLines="2"/>
-                                            <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="120" TextWrapping="WrapWholeWords"/>
-                                        </StackPanel>
-                                        <TextBlock Text="{x:Bind GetStringYear()}" VerticalAlignment="Center" FontSize="13" Margin="0,0,5,0" Width="28" TextWrapping="WrapWholeWords"/>
+                    <StackPanel Orientation="Vertical" Padding="10"  Tag="{x:Bind key}">
+                        <Image Width="200" Height="200" Source="{x:Bind Albumart, Mode=OneWay}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <StackPanel Orientation="Vertical" Margin="0,0,5,0" >
+                                <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+                                    <Button x:Name="playalbumButton"  Click="playalbumButton_Click"  Width="30" Height="30" Padding="0"  Margin="0" Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Tag="{x:Bind key}"/>
+                                    <Button x:Name="addAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click" Width="30" Height="30" Padding="0"  Margin="0"  Background="Transparent" FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Tag="{x:Bind key}"></Button>
                                 </StackPanel>
-                                    
-                                </StackPanel>
-
-
-
-
+                                <TextBlock  Text="{x:Bind GetStringYear()}" VerticalAlignment="Bottom" FontSize="13" Margin="0,0,0,0" Width="28" TextWrapping="WrapWholeWords"/>
                             </StackPanel>
-                    <!--/Button-->
-                    
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="SemiBold"  Margin="0,0,0,0" Width="120" TextWrapping="WrapWholeWords" MaxLines="2"/>
+                                <TextBlock Text="{x:Bind artist}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Margin="0,0,0,0" Width="120" TextWrapping="WrapWholeWords"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>
@@ -46,8 +38,5 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
-
-
-
     </Grid>
 </Page>

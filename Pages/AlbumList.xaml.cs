@@ -96,15 +96,6 @@ namespace Music_thing
             }
         }
 
-        protected new void Unloaded(NavigationEventArgs e)
-        {
-            foreach (Album album in Albums)
-            {
-                album.albumart = null;
-            }
-            artloaded = false;
-        }
-
         public void ChangeArtist(string artistid)
         {
             //this.artist = artist;
@@ -131,26 +122,20 @@ namespace Music_thing
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)
         {
             string albumid = (string)((Button)sender).Tag;
-            Album album = SongListStorage.AlbumDict[albumid];
-            await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
+            Album album = SongListStorage.GetPinnedFlavourForAlbum(albumid); //SongListStorage.AlbumDict[albumid];
+            await album.Play(); //mb 1
         }
 
         private async void AddAlbumToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             string albumid = (string)((Button)sender).Tag;
-            Album album = SongListStorage.AlbumDict[albumid];
-            //await Media.Instance.PlayPlaylist(album.ObserveSongs(SongListStorage.SongDict), 1, true); //mb 1
-            foreach(String songid in album.Songids)
-            {
-                await Media.Instance.addSong(songid);
-            }
+            Album album = SongListStorage.GetPinnedFlavourForAlbum(albumid);
+            await album.AddToPlaylist();
         }
 
         private void Jess_ItemClick(object sender, ItemClickEventArgs e)
         {
             Album album = (Album)e.ClickedItem;
-            //String albumkey = (string)(((Button)sender).Tag);
-
             this.Frame.Navigate(typeof(AlbumPage), album.key);
         }
 
@@ -171,6 +156,15 @@ namespace Music_thing
 
             //args.Data.SetData("", songids);
             e.Data.RequestedOperation = DataPackageOperation.Copy;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            /*foreach (Album album in Albums)
+            {
+                album.albumart = null;
+            }
+            artloaded = false;*/
         }
     }
 }
