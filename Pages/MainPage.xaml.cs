@@ -68,7 +68,7 @@ namespace Music_thing
             //Database.GetSongs(); //Temp
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-            //Window.Current.SetTitleBar(AppTitleBar);
+            Window.Current.SetTitleBar(AppTitleBar);
 
             Database.LoadMusicFromJSON();
 

@@ -8,10 +8,18 @@
     mc:Ignorable="d"
     Unloaded="Page_Unloaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
 
-    <Grid>
-        <GridView ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
+
+
+    <Grid x:Name="TheBigGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical" x:Name="ArtistInfoStack" Margin="20,0,0,0">
+            <TextBlock Text="{x:Bind artist.name}" FontSize="37" />
+        </StackPanel>
+        <GridView Grid.Row="1" ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="IconTextTemplate" x:DataType="local:Album">
                     <StackPanel Orientation="Vertical" Padding="10"  Tag="{x:Bind key}">

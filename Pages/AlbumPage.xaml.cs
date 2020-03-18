@@ -378,7 +378,7 @@ namespace Music_thing
             {
                 BigArt.Height = 700;
                 BigArt.Width = 700;
-                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(1000, SongListStorage.SongDict);
+                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(700, SongListStorage.SongDict);
                 Bindings.Update();
             }
             else

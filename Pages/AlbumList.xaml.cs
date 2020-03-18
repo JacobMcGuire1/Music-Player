@@ -103,6 +103,7 @@ namespace Music_thing
             {
                 Artist artist = SongListStorage.ArtistDict[artistid];
                 this.artist = artist;
+                ArtistInfoStack.Visibility = Visibility.Visible;
                 Albums.Clear();
                 artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].year.CompareTo(SongListStorage.AlbumDict[x].year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
                 foreach (string albumid in artist.Albums)
@@ -113,6 +114,8 @@ namespace Music_thing
             }
             else
             {
+                ArtistInfoStack.Visibility = Visibility.Collapsed;
+                TheBigGrid.RowDefinitions.RemoveAt(0);
                 this.artist = null;
                 Albums = SongListStorage.Albums;
             }
