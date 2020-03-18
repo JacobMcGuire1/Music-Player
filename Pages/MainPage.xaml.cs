@@ -92,6 +92,7 @@ namespace Music_thing
 
         public void DisplayLoading(int songsloaded, int totalfiles, int filesscanned, bool complete)
         {
+            progressbartextblock.Visibility = Visibility.Visible;
             if (!complete)
             {
                 progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
@@ -434,6 +435,12 @@ namespace Music_thing
 
             ContentFrame.GoBack();
             return true;
+        }
+
+        private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            progressbar.Visibility = Visibility.Collapsed;
+            progressbartextblock.Visibility = Visibility.Collapsed;
         }
     }
 }

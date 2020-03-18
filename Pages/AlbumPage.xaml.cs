@@ -371,5 +371,23 @@ namespace Music_thing
             //neeed to order tabs then save flavours.
 
         }
+
+        private async void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (BigArt.Height == 250)
+            {
+                BigArt.Height = 700;
+                BigArt.Width = 700;
+                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(1000, SongListStorage.SongDict);
+                Bindings.Update();
+            }
+            else
+            {
+                BigArt.Height = 250;
+                BigArt.Width = 250;
+                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
+                Bindings.Update();
+            }
+        }
     }
 }

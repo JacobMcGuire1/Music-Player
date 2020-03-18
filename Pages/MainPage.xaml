@@ -88,7 +88,7 @@
                     </MediaPlayerElement.TransportControls>
                 </MediaPlayerElement>
 
-                <StackPanel Orientation="Vertical" Grid.Column="2">
+                <StackPanel Orientation="Vertical" Grid.Column="2" Tapped="StackPanel_Tapped">
                     <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="WrapWholeWords" Width="300"/>
                     <ProgressBar x:Name="progressbar" IsIndeterminate="False" Visibility="Collapsed" HorizontalAlignment="Center" Width="300" Margin="0,10,0,0" />
                 </StackPanel>
