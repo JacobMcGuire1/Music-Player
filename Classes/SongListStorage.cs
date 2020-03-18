@@ -57,6 +57,11 @@ namespace Music_thing
             return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetArt(size);
         }
 
+        public static async Task<StorageFile> GetCurrentSongFile()
+        {
+            return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetFile();
+        }
+
         public static string GetCurrentSongName()
         {
             return PlaylistRepresentation[CurrentPlaceInPlaylist].Title;

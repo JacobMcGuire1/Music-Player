@@ -137,6 +137,27 @@ namespace Music_thing
                 );
                 Currenttitle = SongListStorage.GetCurrentSongName();
                 Currentartist = SongListStorage.GetCurrentArtistName();
+
+                //set the system transport controls
+                //mediaPlayer.SystemMediaTransportControls.IsEnabled = true;
+                var props = mediaPlayer.SystemMediaTransportControls.DisplayUpdater;
+                props.Type = Windows.Media.MediaPlaybackType.Music;
+                //props.AppMediaId = "TOAST";
+                //props.MusicProperties.Title = "TEST";
+                //props.Update();
+                //var musicprops = props.MusicProperties;
+                var file = await SongListStorage.GetCurrentSongFile();
+                bool ok = await props.CopyFromFileAsync(Windows.Media.MediaPlaybackType.Music,file);
+                //props.AppMediaId = "dwioahjdioaw";
+                //props.Type = Windows.Media.MediaPlaybackType.Music;
+                props.Update();
+
+
+                //musicprops.Title = Currenttitle;
+                //musicprops.Artist = Currentartist;
+                //var thing = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(await SongListStorage.GetCurrentSongArtURI());
+                //props.Thumbnail = thing;
+
             }
             SongListStorage.SaveNowPlaying();
         }
