@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -50,21 +51,25 @@ namespace Music_thing
             //GoBack.Key = VirtualKey.GoBack;
             //GoBack.Invoked += BackInvoked;
             //KeyboardAccelerator AltLeft = new KeyboardAccelerator();
-           //AltLeft.Key = VirtualKey.Left;
-           // AltLeft.Invoked += BackInvoked;
-      ///    //  KeyboardAccelerator t = new KeyboardAccelerator();
-         //   t.Key = VirtualKey.Back;
-          //  t.Invoked += BackInvoked;
-         //   this.KeyboardAccelerators.Add(GoBack);
-          //  this.KeyboardAccelerators.Add(AltLeft);
-          //  this.KeyboardAccelerators.Add(t);
+            //AltLeft.Key = VirtualKey.Left;
+            // AltLeft.Invoked += BackInvoked;
+            ///    //  KeyboardAccelerator t = new KeyboardAccelerator();
+            //   t.Key = VirtualKey.Back;
+            //  t.Invoked += BackInvoked;
+            //   this.KeyboardAccelerators.Add(GoBack);
+            //  this.KeyboardAccelerators.Add(AltLeft);
+            //  this.KeyboardAccelerators.Add(t);
             // ALT routes here
-         //   AltLeft.Modifiers = VirtualKeyModifiers.Menu;
+            //   AltLeft.Modifiers = VirtualKeyModifiers.Menu;
 
 
 
             //SongListStorage.GetSongList(); //Should change/remove this.
             //Database.GetSongs(); //Temp
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+            //Window.Current.SetTitleBar(AppTitleBar);
+
             Database.LoadMusicFromJSON();
 
             //SongListStorage.FindArtists();

@@ -78,7 +78,7 @@ namespace Music_thing
                 Window.Current.Activate();
             }
             // Hide default title bar.
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            //CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
 
         }

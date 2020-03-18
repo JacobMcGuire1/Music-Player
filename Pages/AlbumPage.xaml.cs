@@ -243,7 +243,10 @@ namespace Music_thing
         private async void SongVersionTabs_TabClosing(object sender, TabClosingEventArgs e)
         {
             var tab = (TabViewItem)e.Tab;
-            String flavourname = (String)tab.Header;
+            var hdr = (StackPanel)tab.Header;
+            var chldn = hdr.Children;
+            var child1 = chldn[1];
+            String flavourname = ((tab.Header as StackPanel).Children[1] as TextBlock).Text as String;
             List<Flavour> flavours = SongListStorage.AlbumFlavourDict[CurrentAlbum];
             int index = -1;
             for(int i = 0; i < flavours.Count; i++)
