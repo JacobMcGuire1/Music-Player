@@ -168,13 +168,13 @@ namespace Music_thing
 
                         TextBlock nametb = new TextBlock
                         {
-                            Text = flavour.name
+                            Text = flavour.Name
                         };
                         //nametb.FontWeight = FontWeights.Bold; 
 
                         TextBlock artisttb = new TextBlock
                         {
-                            Text = flavour.artist + " - " + flavour.albumname,
+                            Text = flavour.Artist + " - " + flavour.albumname,
                             FontWeight = FontWeights.ExtraLight,
                             FontSize = 12
                         };
@@ -224,8 +224,8 @@ namespace Music_thing
                         //The details needed to reference the corresponding flavour.
                         var dict = new Dictionary<String, String>
                         {
-                            { "albumkey", flavour.artist + flavour.albumname },
-                            { "flavourname", flavour.name }
+                            { "albumkey", flavour.Artist + flavour.albumname },
+                            { "flavourname", flavour.Name }
                         };
                         navigationViewItem.Tag = dict;
 

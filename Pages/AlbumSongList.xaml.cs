@@ -79,14 +79,14 @@ namespace Music_thing
 
         
 
-        private async void playButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             int songid = (int)((Button)sender).Tag;
 
             await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
 
-        private async void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
@@ -97,7 +97,7 @@ namespace Music_thing
             Song song = SongListStorage.SongDict[songid];
             App.GetForCurrentView().NotificationMessage("Added '" + song.Artist + " - " + song.Title + "' to now playing.");
 
-            await Media.Instance.addSong(songid);
+            await Media.Instance.AddSong(songid);
         }
 
         private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)

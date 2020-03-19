@@ -84,7 +84,7 @@ namespace Music_thing
 
                     Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
                     {
-                        id = "",
+                        ID = "",
                         Title = musicProperties.Title,
                         Album = musicProperties.Album,
                         AlbumArtist = musicProperties.AlbumArtist,
@@ -92,7 +92,7 @@ namespace Music_thing
                         Year = musicProperties.Year,
                         Duration = musicProperties.Duration,
                         TrackNumber = (int)musicProperties.TrackNumber,
-                        isFlavour = false, //MAY NEED TO REMOVE
+                        IsFlavour = false, //MAY NEED TO REMOVE
                         Path = ((StorageFile)file).Path
                         //Need discnumber
                     };
@@ -101,7 +101,7 @@ namespace Music_thing
                     string id = "";
                     String props = song.Title + song.Album + song.AlbumArtist + song.Artist;
                     id = props.Replace(",", "");
-                    song.id = id;
+                    song.ID = id;
 
                     if (SongDict.TryAdd(id, song))
                     {
@@ -137,10 +137,10 @@ namespace Music_thing
 
         public static async Task<IReadOnlyList<StorageFile>> GetSongList()
         {
-            QueryOptions queryOption = new QueryOptions
-                (CommonFileQuery.DefaultQuery, new string[] { "*" });
-
-            queryOption.FolderDepth = FolderDepth.Deep;
+            QueryOptions queryOption = new QueryOptions(CommonFileQuery.DefaultQuery, new string[] { "*" })
+            {
+                FolderDepth = FolderDepth.Deep
+            };
 
             Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
 
@@ -262,10 +262,10 @@ namespace Music_thing
 
             Album album = new Album()
             {
-                artist = artistname,
-                name = albumname,
-                key = key,
-                year = (int)song.Year,
+                Artist = artistname,
+                Name = albumname,
+                Key = key,
+                Year = (int)song.Year,
                 Songids = new List<string>()
             };
             album.AddSong(songid, SongDict);

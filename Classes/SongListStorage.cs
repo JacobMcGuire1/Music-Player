@@ -205,7 +205,7 @@ namespace Music_thing
                     List<Flavour> flavours = AlbumFlavourDict[albumkey];
                     foreach (Flavour flavour in flavours)
                     {
-                        if (flavour.name == flavourname) // TODO: Must make flavour names unique
+                        if (flavour.Name == flavourname) // TODO: Must make flavour names unique
                         {
                             return flavour;
                         }
@@ -240,7 +240,7 @@ namespace Music_thing
                 string[] arr = new string[PlaylistRepresentation.Count()];
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    arr[i] = PlaylistRepresentation[i].id;
+                    arr[i] = PlaylistRepresentation[i].ID;
                 }
                 var temp = String.Join(",", arr.Select(i => i.ToString()).ToArray());
                 return temp;
@@ -289,6 +289,8 @@ namespace Music_thing
 
                     //TimeSpan timeeeee = new TimeSpan()
                     Media.Instance.SetSongTime(time);
+
+                    Media.Instance.mediaPlayer.Pause();
                 }
             }
 
@@ -342,8 +344,8 @@ namespace Music_thing
                     }
                     catch (Exception E)
                     {
-                        
-
+                        Debug.WriteLine("Couldn't load flavours.");
+                        Debug.WriteLine(E.Message);
                     }
                     
                 }

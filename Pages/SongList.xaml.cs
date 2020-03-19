@@ -44,14 +44,14 @@ namespace Music_thing
         }
 
 
-        private async void playButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
 
             string song = (string)((Button)sender).Tag;
 
-            await Media.Instance.playSong(song);
+            await Media.Instance.PlaySong(song);
         }
 
 
@@ -95,7 +95,7 @@ namespace Music_thing
             //listView.ItemsSource = files;
         }*/
 
-        private async void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
@@ -104,7 +104,7 @@ namespace Music_thing
 
             string song = (string)(((Button)sender).Tag);
 
-            await Media.Instance.addSong(song);
+            await Media.Instance.AddSong(song);
         }
     }
 }

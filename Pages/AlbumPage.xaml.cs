@@ -51,7 +51,7 @@ namespace Music_thing
         public void ChangeAlbum(Album album)
         {
             Songs = album.ObserveSongs(SongListStorage.SongDict);
-            CurrentAlbum = album.key;
+            CurrentAlbum = album.Key;
         }
 
         public async Task SetAlbumArt()
@@ -63,12 +63,12 @@ namespace Music_thing
 
         public string GetAlbumName()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].name;
+            return SongListStorage.AlbumDict[CurrentAlbum].Name;
         }
 
         public string GetArtistName()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].artist;
+            return SongListStorage.AlbumDict[CurrentAlbum].Artist;
         }
 
         public string GetYear()
@@ -121,13 +121,13 @@ namespace Music_thing
             OrderTabs();
         }
 
-        private async void playButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             int songid = (int)((Button)sender).Tag;
             await Media.Instance.PlayPlaylist(Songs, songid, true);
         }
 
-        private async void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
@@ -136,7 +136,7 @@ namespace Music_thing
 
             string song = (string)(((Button)sender).Tag);
 
-            await Media.Instance.addSong(song);
+            await Media.Instance.AddSong(song);
         }
 
         private void NewTabButton_Click(object sender, RoutedEventArgs e)
@@ -156,7 +156,7 @@ namespace Music_thing
             {
                 for (int i = 0; i < SongListStorage.AlbumFlavourDict[CurrentAlbum].Count; i++)
                 {
-                    currentflavournames.Add(SongListStorage.AlbumFlavourDict[CurrentAlbum][i].name);
+                    currentflavournames.Add(SongListStorage.AlbumFlavourDict[CurrentAlbum][i].Name);
                 }
             }
             string flavourname = "";
@@ -203,10 +203,10 @@ namespace Music_thing
 
             Flavour flavour = new Flavour()
             {
-                name = flavourname,
-                albumname = SongListStorage.AlbumDict[CurrentAlbum].name,
-                albumkey = SongListStorage.AlbumDict[CurrentAlbum].key,
-                artist = SongListStorage.AlbumDict[CurrentAlbum].artist,
+                Name = flavourname,
+                albumname = SongListStorage.AlbumDict[CurrentAlbum].Name,
+                albumkey = SongListStorage.AlbumDict[CurrentAlbum].Key,
+                Artist = SongListStorage.AlbumDict[CurrentAlbum].Artist,
                 Songids = new List<string>(SongListStorage.AlbumDict[CurrentAlbum].Songids),
                 pinned = true,
             };
@@ -251,7 +251,7 @@ namespace Music_thing
             int index = -1;
             for(int i = 0; i < flavours.Count; i++)
             {
-                if (flavours[i].name == flavourname)
+                if (flavours[i].Name == flavourname)
                 {
                     index = i;
                 }
@@ -343,8 +343,8 @@ namespace Music_thing
             else
             {
                 frame.Navigate(typeof(AlbumSongList), flavour);
-                pinbutton.Tag = flavour.name;
-                nametextblock.Text = flavour.name;
+                pinbutton.Tag = flavour.Name;
+                nametextblock.Text = flavour.Name;
             }
         }
 

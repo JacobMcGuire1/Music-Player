@@ -68,11 +68,11 @@ namespace Music_thing
         }
 
         //Used to inform the UI that something about the currently playing song has changed.
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private async void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
 
             // Your UI update code goes here!
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -223,7 +223,7 @@ namespace Music_thing
         }
 
         //Plays the specified song
-        public async Task playSong(string songid)
+        public async Task PlaySong(string songid)
         {
             Playlist.Items.Clear();
             var song = SongListStorage.SongDict[songid];
@@ -239,31 +239,22 @@ namespace Music_thing
         //Plays the playlist
         public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos, bool play)
         {
-            if (!play)
-            {
-                mediaPlayer.Pause();
-            }
-            else
-            {
-                mediaPlayer.Play();
-            }
-           
+            mediaPlayer.Pause();
             Playlist.Items.Clear(); //Clears the playlist
             SongListStorage.CurrentPlaceInPlaylist = 0;
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
-                await addSong(song.id);
-                if (!play)
-                {
-                    mediaPlayer.Pause();
-                }
+                await AddSong(song.ID);
+                if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             }
-            Playlist.MoveTo((uint)Pos - 1);
+            if (Pos > 1) Playlist.MoveTo((uint)Pos - 1);
+            if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
+            //if (!play) mediaPlayer.Pause();
         }
 
         //Appends a song to the playlist.
-        public async Task addSong(string songid)
+        public async Task AddSong(string songid)
         {
             var song = SongListStorage.SongDict[songid];
             var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));

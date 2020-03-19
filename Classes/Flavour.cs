@@ -21,7 +21,7 @@ namespace Music_thing
         //[JsonIgnore]
         //public ImageSource thumbnail;
 
-        public new ObservableCollection<Song> ObserveSongs()
+        public ObservableCollection<Song> ObserveSongs()
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
 
@@ -35,7 +35,7 @@ namespace Music_thing
 
                     Song newSong = new Song()
                     {
-                        id = song.id, //dont Remove this id
+                        ID = song.ID, //dont Remove this id
                         Title = song.Title,
                         Album = song.Album,
                         AlbumArtist = song.AlbumArtist,
@@ -43,7 +43,7 @@ namespace Music_thing
                         Year = song.Year,
                         Duration = song.Duration,
                         TrackNumber = i + 1,
-                        isFlavour = true, //MAY NEED TO REMOVE
+                        IsFlavour = true, //MAY NEED TO REMOVE
                         Path = song.Path
                     };
 
@@ -76,7 +76,7 @@ namespace Music_thing
             return ObserveSongs();
         }
 
-        public new List<string> AddSong(string songid)
+        public List<string> AddSong(string songid)
         {
             Songids.Add(songid);
             return Songids;
@@ -94,7 +94,7 @@ namespace Music_thing
         {
             for (int i = 0; i < Songs.Count; i++)
             {
-                Songids[i] = Songs[i].id;
+                Songids[i] = Songs[i].ID;
             }
         }
 

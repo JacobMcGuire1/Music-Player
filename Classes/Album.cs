@@ -21,13 +21,13 @@ namespace Music_thing
 {
     public class Album : INotifyPropertyChanged
     {
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string artist { get; set; }
+        public string Artist { get; set; }
 
-        public string key { get; set; }
+        public string Key { get; set; }
 
-        public int year { get; set; }
+        public int Year { get; set; }
 
         //public int priorityflavour = -1;
 
@@ -37,7 +37,7 @@ namespace Music_thing
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string albumartsongid { get; set; }
+        public string AlbumArtSongId { get; set; }
 
         public List<string> Songids { get; set; }
         = new List<string>();
@@ -49,7 +49,7 @@ namespace Music_thing
             foreach (string songid in Songids)
             {
                 Song song = SongDict[songid];
-                song.isFlavour = false; //MB REMOVE
+                song.IsFlavour = false; //MB REMOVE
                 Songs.Add(song);
             }
 
@@ -65,9 +65,9 @@ namespace Music_thing
         {
             foreach (String songid in Songids)
             {
-                await Media.Instance.addSong(songid);
+                await Media.Instance.AddSong(songid);
             }
-            App.GetForCurrentView().NotificationMessage("Added " + artist + " - " + name + " to now playing.");
+            App.GetForCurrentView().NotificationMessage("Added " + Artist + " - " + Name + " to now playing.");
         }
 
 
@@ -98,11 +98,11 @@ namespace Music_thing
 
         public string GetStringYear()
         {
-            if (year == 0)
+            if (Year == 0)
             {
                 return "N/A";
             }
-            return year.ToString();
+            return Year.ToString();
         }
 
         //Function to sort songs by track number.
@@ -117,26 +117,28 @@ namespace Music_thing
         public async void SetAlbumArt(string songid, ConcurrentDictionary<string, Song> SongDict)
         {
             Song song = SongDict[songid];
-            if (albumartsongid == null || SongDict[songid].TrackNumber == 1)
+            if (AlbumArtSongId == null || SongDict[songid].TrackNumber == 1)
             {
                 var file = await song.GetFile();
                 var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView);
                 if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
                 {
-                    albumartsongid = songid;
+                    AlbumArtSongId = songid;
                 }
             }
         }
 
         public async Task<ImageSource> GetAlbumArt(int size, ConcurrentDictionary<string, Song> SongDict)
         {
-            if (albumartsongid != null)
+            if (AlbumArtSongId != null)
             {
-                return await SongDict[albumartsongid].GetArt(size);
+                return await SongDict[AlbumArtSongId].GetArt(size);
             }
-            BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
-            bitmapImage.DecodePixelHeight = size;
-            bitmapImage.DecodePixelWidth = size;
+            BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"))
+            {
+                DecodePixelHeight = size,
+                DecodePixelWidth = size
+            };
             return bitmapImage;
         }
 
@@ -158,11 +160,11 @@ namespace Music_thing
             }
         }
 
-        public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        public async void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
 
             // Your UI update code goes here!
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

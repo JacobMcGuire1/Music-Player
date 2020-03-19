@@ -105,7 +105,7 @@ namespace Music_thing
                 this.artist = artist;
                 ArtistInfoStack.Visibility = Visibility.Visible;
                 Albums.Clear();
-                artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].year.CompareTo(SongListStorage.AlbumDict[x].year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
+                artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
                 foreach (string albumid in artist.Albums)
                 {
                     Albums.Add(SongListStorage.AlbumDict[albumid]);
@@ -139,7 +139,7 @@ namespace Music_thing
         private void Jess_ItemClick(object sender, ItemClickEventArgs e)
         {
             Album album = (Album)e.ClickedItem;
-            this.Frame.Navigate(typeof(AlbumPage), album.key);
+            this.Frame.Navigate(typeof(AlbumPage), album.Key);
         }
 
         private void Jess_DragItemsStarting(object sender, DragItemsStartingEventArgs e)

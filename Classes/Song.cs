@@ -13,7 +13,7 @@ namespace Music_thing
 {
     public class Song
     {
-        public string id { get; set; }
+        public string ID { get; set; }
         public string FileName { get; set; }
         public string Title { get; set; }
         public string Artist { get; set; }
@@ -26,7 +26,7 @@ namespace Music_thing
         public string Path { get; set; }
 
 
-        public bool isFlavour { get; set; }
+        public bool IsFlavour { get; set; }
 
         public uint Bitrate { get; set; }
         //public StorageFile File { get; set; }
@@ -41,7 +41,7 @@ namespace Music_thing
 
         public override bool Equals(object obj)
         {
-            if (this.id == (obj as Song).id) return true;
+            if (this.ID == (obj as Song).ID) return true;
             return false;
         }
 
@@ -53,12 +53,12 @@ namespace Music_thing
 
         public async Task Play()
         {
-            await Media.Instance.playSong(id);
+            await Media.Instance.PlaySong(ID);
         }
 
         public async Task AddToPlaylist()
         {
-            await Media.Instance.addSong(id);
+            await Media.Instance.AddSong(ID);
             App.GetForCurrentView().NotificationMessage("Added " + Artist + " - " + Title + " to now playing.");
         }
 
@@ -86,7 +86,7 @@ namespace Music_thing
 
         public Visibility CheckIfFlavour()
         {
-            if (isFlavour)
+            if (IsFlavour)
             {
                 return 0;
             }
@@ -112,6 +112,11 @@ namespace Music_thing
             bitmapImage.DecodePixelHeight = size;
             bitmapImage.DecodePixelWidth = size;
             return bitmapImage;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1877310944 + EqualityComparer<string>.Default.GetHashCode(ID);
         }
 
         /*public async void SetAlbumArt()
