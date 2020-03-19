@@ -97,7 +97,7 @@ namespace Music_thing
             Song song = SongListStorage.SongDict[songid];
             App.GetForCurrentView().NotificationMessage("Added '" + song.Artist + " - " + song.Title + "' to now playing.");
 
-            await Media.Instance.AddSong(songid);
+            await Media.Instance.AddSong(songid, true);
         }
 
         private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)

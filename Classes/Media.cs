@@ -31,9 +31,9 @@ namespace Music_thing
 
         private bool hasFixedvol = true;
 
-        public int globalVol = 10; //TODO: Get it from the settings
+        public int globalVol = 100; //TODO: Get it from the settings
 
-        private int chosenVol = 50;
+        public int chosenVol = 10;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -98,6 +98,7 @@ namespace Music_thing
             {
                 hasFixedvol = false;
             }
+            SongListStorage.SaveVolume();
 
         }
 
@@ -159,7 +160,7 @@ namespace Music_thing
                 //props.Thumbnail = thing;
 
             }
-            SongListStorage.SaveNowPlaying();
+            await SongListStorage.SaveNowPlaying();
         }
 
         //Allows the following properties to be accessed
@@ -233,6 +234,7 @@ namespace Music_thing
             mediaPlayer.Play();
             SongListStorage.PlaylistRepresentation.Clear();
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
+            await SongListStorage.SaveNowPlaying();
 
         }
 
@@ -245,21 +247,23 @@ namespace Music_thing
             SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
             foreach (Song song in Songs)
             {
-                await AddSong(song.ID);
+                await AddSong(song.ID, false);
                 if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             }
             if (Pos > 1) Playlist.MoveTo((uint)Pos - 1);
             if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             //if (!play) mediaPlayer.Pause();
+            await SongListStorage.SaveNowPlaying();
         }
 
         //Appends a song to the playlist.
-        public async Task AddSong(string songid)
+        public async Task AddSong(string songid, bool save)
         {
             var song = SongListStorage.SongDict[songid];
             var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
             Playlist.Items.Add(mediaPlaybackItem);
             SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
+            if (save) await SongListStorage.SaveNowPlaying();
         }
 
 

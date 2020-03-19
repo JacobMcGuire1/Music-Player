@@ -79,6 +79,8 @@ namespace Music_thing
             UpdateAndOrderAlbums();
         }
 
+        
+
         //Updates the list of albums from the dictionary. This is done so that the observable list of albums is smoothly updated as they are discovered asynchronously by the file finder threads. 
         public static void UpdateAndOrderAlbums()
         {
@@ -199,121 +201,187 @@ namespace Music_thing
             
             }   */     
 
-            //Returns a flavour/playlist based on the album it is sourced from and its name.
-            public static Flavour GetFlavourByName(String albumkey, String flavourname)
-            {
-                    List<Flavour> flavours = AlbumFlavourDict[albumkey];
-                    foreach (Flavour flavour in flavours)
-                    {
-                        if (flavour.Name == flavourname) // TODO: Must make flavour names unique
-                        {
-                            return flavour;
-                        }
-                    }
-            return null;
-            }
-
-            //Returns the songs that contain the query as a substring to allow searching.
-            public static ObservableCollection<Song> SearchSongs(String query)
-            {
-                var Results = new ObservableCollection<Song>();
-                foreach (Song song in Songs)
+        //Returns a flavour/playlist based on the album it is sourced from and its name.
+        public static Flavour GetFlavourByName(String albumkey, String flavourname)
+        {
+                List<Flavour> flavours = AlbumFlavourDict[albumkey];
+                foreach (Flavour flavour in flavours)
                 {
-                    if (song.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()))
+                    if (flavour.Name == flavourname) // TODO: Must make flavour names unique
                     {
-                        Results.Add(song);
+                        return flavour;
                     }
                 }
-                return Results;
-            }
+        return null;
+        }
 
-            //The following functions are for saving and loading data for when the program is ended and started.
-
-
-            public static void SongsToJson()
+        //Returns the songs that contain the query as a substring to allow searching.
+        public static ObservableCollection<Song> SearchSongs(String query)
+        {
+            var Results = new ObservableCollection<Song>();
+            foreach (Song song in Songs)
             {
-                string json = JsonConvert.SerializeObject(SongDict);            
-            }
-
-            public static string NowPlayingToString()
-            {
-                string[] arr = new string[PlaylistRepresentation.Count()];
-                for (int i = 0; i < arr.Length; i++)
+                if (song.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()))
                 {
-                    arr[i] = PlaylistRepresentation[i].ID;
+                    Results.Add(song);
                 }
-                var temp = String.Join(",", arr.Select(i => i.ToString()).ToArray());
-                return temp;
             }
+            return Results;
+        }
 
-            public static void SaveNowPlaying()
+        //The following functions are for saving and loading data for when the program is ended and started.
+
+
+        public static void SongsToJson()
+        {
+            string json = JsonConvert.SerializeObject(SongDict);            
+        }
+
+        public static string NowPlayingToString()
+        {
+            string[] arr = new string[PlaylistRepresentation.Count()];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = PlaylistRepresentation[i].ID;
+            }
+            var temp = String.Join(",", arr.Select(i => i.ToString()).ToArray());
+            return temp;
+        }
+
+        public async static Task<bool> SaveNowPlaying()
+        {
+            try
             {
                 if (PlaylistRepresentation.Count > 0)
                 {
-                    var roamingSettings =
-                        Windows.Storage.ApplicationData.Current.RoamingSettings;
-                    roamingSettings.Values["nowplaying"] = SongListStorage.NowPlayingToString();
-                    roamingSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
-                    roamingSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
-                }
-            }
+                    StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
-            public static async Task GetNowPlaying()
+                    StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                    await FileIO.WriteTextAsync(nowplayingfile, SongListStorage.NowPlayingToString());
+                    var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                    localSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+                    localSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
+                }
+                return true;
+            }
+            catch (FileLoadException E)
             {
-                var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                Debug.WriteLine("Couldn't save now playing.");
+                Debug.WriteLine(E.Message);
+                return false;
+            }
+            
+        }
+
+        public static void SaveVolume()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["chosenvol"] = Media.Instance.chosenVol;
+            localSettings.Values["globalVol"] = Media.Instance.globalVol;
+        }
+
+        public static void LoadVolume()
+        {
+            try
+            {
+                var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                Media.Instance.chosenVol = (int)localSettings.Values["chosenvol"];
+                Media.Instance.globalVol = (int)localSettings.Values["globalVol"];
+            }
+            catch (NullReferenceException E)
+            {
+                Debug.WriteLine("Couldn't load volume.");
+                Debug.WriteLine(E.Message);
+            }
+        }
+
+        public static async Task GetNowPlaying()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            try
+            {
+                StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                StorageFile nowplayingfile = await storageFolder.GetFileAsync("nowplaying.txt");
+                string nowplayingstring = await FileIO.ReadTextAsync(nowplayingfile);;
+
+                await LoadNowPlaying(nowplayingstring, (int)localSettings.Values["nowplayingplace"], (TimeSpan)localSettings.Values["nowplayingtime"]);
+                Debug.WriteLine("Loaded now playing");
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine("Couldn't load now playing yet.");
+                Debug.WriteLine(E.Message);
+            }
+        }
+
+        public static async Task LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
+        {
+            if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
+            {
+                var loadedplaylist = new ObservableCollection<Song>();
+                string[] arr = nowplayingstring.Split(',').ToArray();
+                foreach (string id in arr)
+                {
+                    loadedplaylist.Add(SongDict[id]);
+                }
+                await Media.Instance.PlayPlaylist(loadedplaylist, place, false); //need to get the position too.
+
+                Media.Instance.mediaPlayer.Pause();
+
+                //TimeSpan timeeeee = new TimeSpan()
+                Media.Instance.SetSongTime(time);
+
+                Media.Instance.mediaPlayer.Pause();
+            }
+        }
+
+        //Converts the flavours/playlists into JSON format.
+        public static string SerializeFlavours()
+        {
+            var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.Indented);
+            return x;
+        }
+
+        public static async Task GetFlavours()
+        {
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            try
+            {
+                int flavourcount = (int)roamingSettings.Values["flavourcount"];
+                string flavourstr = "";
+                for (int i = 0; i <= flavourcount; i++)
+                {
+                    flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
+                }
+                await LoadFlavours(flavourstr);
+
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine("Couldn't load flavours.");
+                Debug.WriteLine(E.Message);
+            }
+        }
+
+        public static Album GetPinnedFlavourForAlbum(string albumid)
+        {
+            if (AlbumFlavourDict.ContainsKey(albumid))
+            {
+                foreach (Flavour flavour in AlbumFlavourDict[albumid])
+                    if (flavour.pinnedinalbum) return flavour;
+            }
+            return AlbumDict[albumid];
+        }
+
+        public static async Task LoadFlavours(String flavours)
+        {
+            if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
+            {
                 try
                 {
-                    await LoadNowPlaying((string)roamingSettings.Values["nowplaying"], (int)roamingSettings.Values["nowplayingplace"], (TimeSpan)roamingSettings.Values["nowplayingtime"]);
-                    Debug.WriteLine("Loaded now playing");
-                }
-                catch (Exception E)
-                {
-                    Debug.WriteLine("Couldn't load now playing yet.");
-                    Debug.WriteLine(E.Message);
-                }
-            }
-
-            public static async Task LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
-            {
-                if (PlaylistRepresentation.Count == 0) //&& loadednowplaying == true
-                {
-                    var loadedplaylist = new ObservableCollection<Song>();
-                    string[] arr = nowplayingstring.Split(',').ToArray();
-                    foreach (string id in arr)
-                    {
-                        loadedplaylist.Add(SongDict[id]);
-                    }
-                    await Media.Instance.PlayPlaylist(loadedplaylist, place, false); //need to get the position too.
-
-                    Media.Instance.mediaPlayer.Pause();
-
-                    //TimeSpan timeeeee = new TimeSpan()
-                    Media.Instance.SetSongTime(time);
-
-                    Media.Instance.mediaPlayer.Pause();
-                }
-            }
-
-            //Converts the flavours/playlists into JSON format.
-            public static string SerializeFlavours()
-            {
-                var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.Indented);
-                return x;
-            }
-
-            public static async Task GetFlavours()
-            {
-                var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-                try
-                {
-                    int flavourcount = (int)roamingSettings.Values["flavourcount"];
-                    string flavourstr = "";
-                    for (int i = 0; i <= flavourcount; i++)
-                    {
-                        flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
-                    }
-                    await LoadFlavours(flavourstr);
-
+                    var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
+                    AlbumFlavourDict = flavourdict;
+                    await App.GetForCurrentView().LoadPinnedFlavours();
                 }
                 catch (Exception E)
                 {
@@ -321,43 +389,7 @@ namespace Music_thing
                     Debug.WriteLine(E.Message);
                 }
             }
-
-            public static Album GetPinnedFlavourForAlbum(string albumid)
-            {
-                if (AlbumFlavourDict.ContainsKey(albumid))
-                {
-                    foreach (Flavour flavour in AlbumFlavourDict[albumid])
-                        if (flavour.pinnedinalbum) return flavour;
-                }
-                return AlbumDict[albumid];
-            }
-
-            public static async Task LoadFlavours(String flavours)
-            {
-                if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
-                {
-                    try
-                    {
-                        var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
-                        AlbumFlavourDict = flavourdict;
-                        await App.GetForCurrentView().LoadPinnedFlavours();
-                    }
-                    catch (Exception E)
-                    {
-                        Debug.WriteLine("Couldn't load flavours.");
-                        Debug.WriteLine(E.Message);
-                    }
-                    
-                }
-            
-            }
-
-
+        }
     }
-
-    
-
-
-
 }
 

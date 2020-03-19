@@ -58,7 +58,7 @@ namespace Music_thing
 
         public async Task AddToPlaylist()
         {
-            await Media.Instance.AddSong(ID);
+            await Media.Instance.AddSong(ID, true);
             App.GetForCurrentView().NotificationMessage("Added " + Artist + " - " + Title + " to now playing.");
         }
 

@@ -43,7 +43,7 @@ namespace Music_thing
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = (Frame)Window.Current.Content;
 
@@ -79,7 +79,7 @@ namespace Music_thing
             }
             // Hide default title bar.
             //CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-
+            await Database.LoadMusicFromJSON();
 
         }
 
@@ -104,11 +104,15 @@ namespace Music_thing
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            SongListStorage.SaveNowPlaying();
+            bool k = false;
+            while (!k)
+            {
+                k = await SongListStorage.SaveNowPlaying();
+            }
             SongListStorage.SaveFlavours();
             deferral.Complete();
         }

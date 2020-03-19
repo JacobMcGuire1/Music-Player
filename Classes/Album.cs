@@ -65,9 +65,10 @@ namespace Music_thing
         {
             foreach (String songid in Songids)
             {
-                await Media.Instance.AddSong(songid);
+                await Media.Instance.AddSong(songid, false);
             }
             App.GetForCurrentView().NotificationMessage("Added " + Artist + " - " + Name + " to now playing.");
+            await SongListStorage.SaveNowPlaying();
         }
 
 

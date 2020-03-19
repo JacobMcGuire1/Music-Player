@@ -28,6 +28,7 @@ namespace Music_thing
         public SettingsPage()
         {
             this.InitializeComponent();
+            globalvol.Value = Media.Instance.globalVol;
         }
 
         private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

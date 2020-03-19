@@ -70,14 +70,19 @@ namespace Music_thing
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(AppTitleBar);
 
-            Database.LoadMusicFromJSON();
+            
 
             //SongListStorage.FindArtists();
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
 
-            LoadPinnedFlavours();
+            
 
+        }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await LoadPinnedFlavours();
         }
 
         //Returns the instance of the media instance to allow information from it to be accessed.

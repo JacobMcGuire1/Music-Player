@@ -228,8 +228,10 @@ namespace Music_thing
             await SongListStorage.GetNowPlaying();
             SongListStorage.UpdateAndOrderMusic();
             await SongListStorage.GetFlavours();
+            SongListStorage.LoadVolume();
+            Media.Instance.VolChanged();
             //SongListStorage.GetSongList();
-            
+
 
 
         }

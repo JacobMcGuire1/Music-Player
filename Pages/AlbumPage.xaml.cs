@@ -136,7 +136,7 @@ namespace Music_thing
 
             string song = (string)(((Button)sender).Tag);
 
-            await Media.Instance.AddSong(song);
+            await Media.Instance.AddSong(song, true);
         }
 
         private void NewTabButton_Click(object sender, RoutedEventArgs e)
@@ -212,10 +212,12 @@ namespace Music_thing
             };
 
             //List<List<int>> flavours = SongListStorage.AlbumFlavours[CurrentAlbum];
-            List<Flavour> flavours = new List<Flavour>();
-            flavours.Add(flavour);
+            List<Flavour> flavours = new List<Flavour>
+            {
+                flavour
+            };
             //flavours.Add(songids);
-            
+
             SongListStorage.AlbumFlavourDict.AddOrUpdate(CurrentAlbum, flavours, (CurrentAlbum2, existingflavours) => AddNewFlavour(existingflavours, flavour));
 
             //frame.Navigate(typeof(AlbumSongList), flavour);

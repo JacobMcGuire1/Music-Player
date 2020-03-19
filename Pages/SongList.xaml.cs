@@ -104,7 +104,7 @@ namespace Music_thing
 
             string song = (string)(((Button)sender).Tag);
 
-            await Media.Instance.AddSong(song);
+            await Media.Instance.AddSong(song, true);
         }
     }
 }
