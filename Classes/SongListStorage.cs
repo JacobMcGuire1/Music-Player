@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using TagLib;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Search;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media;
 
@@ -46,10 +47,11 @@ namespace Music_thing
 
         //Key is artistname + albumname
         public static ConcurrentDictionary<String, Album> AlbumDict = new ConcurrentDictionary<String, Album>();
-        
-        public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
-        //public static HashSet<int> SongsInCollection = new HashSet<int>();
+        public static ConcurrentDictionary<long, Playlist> PlaylistDict = new ConcurrentDictionary<long, Playlist>();
+        public static ConcurrentDictionary<string, HashSet<long>> AlbumPlaylistDict = new ConcurrentDictionary<string, HashSet<long>>();
+
+        //public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
@@ -128,30 +130,15 @@ namespace Music_thing
             }
         }
 
-        public static void SaveFlavours()
+        /*public static async Task SaveFlavours()
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            var flavstr = SerializeFlavours();
-
-            //int l = sizeof(char);
-            float t = (flavstr.Length * sizeof(char)) / 8000;
-            var flavourcount = (int)Math.Ceiling(t);
-            if (AlbumFlavourDict.Values.Count >= 0)
+            foreach (Playlist playlist in PlaylistDict.Values)
             {
-                roamingSettings.Values["flavourcount"] = flavourcount;
-                for (int i = 0; i <= flavourcount; i++)
-                {
-                    int place = i * 4000;
-                    int length = 4000;
-                    if (length + place > flavstr.Length)
-                    {
-                        length = flavstr.Length - place;
-                    }
-                    string str = flavstr.Substring(place, length);
-                    roamingSettings.Values["flavourstr" + i] = str;
-                }
+                await playlist.SavePlaylistFile(false);
             }
-        }
+
+        }*/
+
 
         //Updates the list of songs from the dictionary. This is done so that the observable list of songs is smoothly updated as they are discovered asynchronously by the file finder threads. 
         public static void UpdateAndOrderSongs()
@@ -202,7 +189,7 @@ namespace Music_thing
             }   */     
 
         //Returns a flavour/playlist based on the album it is sourced from and its name.
-        public static Flavour GetFlavourByName(String albumkey, String flavourname)
+        /*public static Flavour GetFlavourByName(String albumkey, String flavourname)
         {
                 List<Flavour> flavours = AlbumFlavourDict[albumkey];
                 foreach (Flavour flavour in flavours)
@@ -213,7 +200,7 @@ namespace Music_thing
                     }
                 }
         return null;
-        }
+        }*/
 
         //Returns the songs that contain the query as a substring to allow searching.
         public static ObservableCollection<Song> SearchSongs(String query)
@@ -248,7 +235,7 @@ namespace Music_thing
             return temp;
         }
 
-        public async static Task<bool> SaveNowPlaying()
+        public async static Task<bool> OldSaveNowPlaying()
         {
             try
             {
@@ -258,9 +245,7 @@ namespace Music_thing
 
                     StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
                     await FileIO.WriteTextAsync(nowplayingfile, SongListStorage.NowPlayingToString());
-                    var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-                    localSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
-                    localSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
+                    SavePlace();
                 }
                 return true;
             }
@@ -271,6 +256,37 @@ namespace Music_thing
                 return false;
             }
             
+        }
+
+        public async static Task<bool> SaveNowPlaying()
+        {
+            while (true)
+            {
+                try
+                {
+                    if (PlaylistRepresentation.Count > 0)
+                    {
+                        StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                        StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                        await FileIO.WriteTextAsync(nowplayingfile, SongListStorage.NowPlayingToString());
+                        SavePlace();
+                    }
+                    return true;
+                }
+                catch (FileLoadException E)
+                {
+                    Debug.WriteLine("Couldn't save now playing.");
+                    Debug.WriteLine(E.Message);
+                    //return false;
+                }
+            }
+        }
+
+        public static void SavePlace()
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["nowplayingplace"] = SongListStorage.CurrentPlaceInPlaylist + 1;
+            localSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
         }
 
         public static void SaveVolume()
@@ -302,7 +318,7 @@ namespace Music_thing
             {
                 StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 StorageFile nowplayingfile = await storageFolder.GetFileAsync("nowplaying.txt");
-                string nowplayingstring = await FileIO.ReadTextAsync(nowplayingfile);;
+                string nowplayingstring = await FileIO.ReadTextAsync(nowplayingfile);
 
                 await LoadNowPlaying(nowplayingstring, (int)localSettings.Values["nowplayingplace"], (TimeSpan)localSettings.Values["nowplayingtime"]);
                 Debug.WriteLine("Loaded now playing");
@@ -336,11 +352,11 @@ namespace Music_thing
         }
 
         //Converts the flavours/playlists into JSON format.
-        public static string SerializeFlavours()
+        /*public static string SerializeFlavours()
         {
             var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.Indented);
             return x;
-        }
+        }*/
 
         public static async Task GetFlavours()
         {
@@ -365,30 +381,54 @@ namespace Music_thing
 
         public static Album GetPinnedFlavourForAlbum(string albumid)
         {
-            if (AlbumFlavourDict.ContainsKey(albumid))
+            foreach(Playlist playlist in PlaylistDict.Values)
+            {
+                if (playlist.isflavour && playlist.albumkey == albumid && playlist.pinnedinalbum)
+                {
+                    return playlist;
+                }
+            }
+            /*if (AlbumFlavourDict.ContainsKey(albumid))
             {
                 foreach (Flavour flavour in AlbumFlavourDict[albumid])
                     if (flavour.pinnedinalbum) return flavour;
-            }
+            }*/
             return AlbumDict[albumid];
         }
 
         public static async Task LoadFlavours(String flavours)
         {
-            if (AlbumFlavourDict.Values.Count == 0 && flavours != "") //May need to change this condition to a loaded bool.
+            StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+            QueryOptions queryOption = new QueryOptions(CommonFileQuery.DefaultQuery, new string[] { ".playlist" })
             {
-                try
+                FolderDepth = FolderDepth.Deep
+            };
+
+            Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
+
+            var files = await storageFolder.CreateFileQueryWithOptions
+              (queryOption).GetFilesAsync();
+
+            foreach(StorageFile file in files)
+            {
+                string playliststring = await FileIO.ReadTextAsync(file);
+                if (playliststring != "")
                 {
-                    var flavourdict = JsonConvert.DeserializeObject<ConcurrentDictionary<String, List<Flavour>>>(flavours);
-                    AlbumFlavourDict = flavourdict;
-                    await App.GetForCurrentView().LoadPinnedFlavours();
+                    Playlist playlist = JsonConvert.DeserializeObject<Playlist>(playliststring);
+                    if (PlaylistDict.TryAdd(playlist.PlaylistID, playlist))
+                    {
+                        string albumkey = playlist.albumkey;
+                        if (!AlbumPlaylistDict.ContainsKey(albumkey))
+                        {
+                            AlbumPlaylistDict.TryAdd(albumkey, new HashSet<long>());
+                        }
+                        AlbumPlaylistDict[playlist.albumkey].Add(playlist.PlaylistID);
+                    }
                 }
-                catch (Exception E)
-                {
-                    Debug.WriteLine("Couldn't load flavours.");
-                    Debug.WriteLine(E.Message);
-                }
+                
             }
+
+            await App.GetForCurrentView().LoadPinnedFlavours();
         }
     }
 }

@@ -101,6 +101,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\Database.cs" />
+    <Compile Include="Classes\Playlist.cs" />
     <Compile Include="Classes\ImageConverter.cs" />
     <Compile Include="Pages\AlbumList.xaml.cs">
       <DependentUpon>AlbumList.xaml</DependentUpon>

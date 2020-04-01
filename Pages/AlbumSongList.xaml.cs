@@ -29,24 +29,24 @@ namespace Music_thing
 
         public Album album;
 
-        public Flavour flavour;
+        public Playlist flavour;
 
         public AlbumSongList()
         {
             this.InitializeComponent();
         }
 
-        private void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             flavour.ReorderSongs(Songs);
-            SongListStorage.SaveFlavours();
+            await flavour.SavePlaylistFile(false);
         }
 
         //arg is a struct containing album id and an int representing which flavour of the album this is.
         //Original album is -1.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (!(e.Parameter is Flavour))
+            if (!(e.Parameter is Playlist))
             {
                 album = (Album)e.Parameter;
                 flavour = null;
@@ -54,7 +54,7 @@ namespace Music_thing
             }
             else
             {
-                flavour = (Flavour)e.Parameter;
+                flavour = (Playlist)e.Parameter;
                 //album = SongListStorage.AlbumDict[flavour.alb]
                 album = null;
                 ListViewSongs.CanReorderItems = true;
@@ -71,10 +71,10 @@ namespace Music_thing
 
         }
 
-        private void ListViewSongs_Drop(object sender, DragEventArgs e)
+        private async void ListViewSongs_Drop(object sender, DragEventArgs e)
         {
             flavour.ReorderSongs(Songs);
-            SongListStorage.SaveFlavours();
+            await flavour.SavePlaylistFile(false);
         }
 
         
@@ -100,7 +100,7 @@ namespace Music_thing
             await Media.Instance.AddSong(songid, true);
         }
 
-        private void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)
+        private async void RemoveFromFlavourButton_Click(object sender, RoutedEventArgs e)
         {
             int TrackNumber = (int)((Button)sender).Tag - 1;
             ObservableCollection<Song> NewSongs = flavour.RemoveSong(TrackNumber);
@@ -111,7 +111,8 @@ namespace Music_thing
                 Songs[i] = NewSongs[i];
             }
 
-            SongListStorage.SaveFlavours();
+            //await SongListStorage.SaveFlavours();
+            await flavour.SavePlaylistFile(false);
 
 
         }

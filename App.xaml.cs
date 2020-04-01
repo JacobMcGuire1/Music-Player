@@ -113,7 +113,7 @@ namespace Music_thing
             {
                 k = await SongListStorage.SaveNowPlaying();
             }
-            SongListStorage.SaveFlavours();
+            //await SongListStorage.SaveFlavours();
             deferral.Complete();
         }
     }

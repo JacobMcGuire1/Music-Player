@@ -160,7 +160,8 @@ namespace Music_thing
                 //props.Thumbnail = thing;
 
             }
-            await SongListStorage.SaveNowPlaying();
+            //await SongListStorage.SaveNowPlaying();
+            SongListStorage.SavePlace();
         }
 
         //Allows the following properties to be accessed

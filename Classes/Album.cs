@@ -42,6 +42,63 @@ namespace Music_thing
         public List<string> Songids { get; set; }
         = new List<string>();
 
+       // public HashSet<long> Flavours { get; set; }
+      //  = new HashSet<long>();
+
+        public String GetSongCount()
+        {
+            int count = Songids.Count;
+            return count.ToString();
+            /*switch (count)
+            {
+                case 0:
+                    return "0 songs";
+                case 1:
+                    return "1 song";
+                default:
+                    return count + " songs";
+            }*/
+        }
+
+        public List<Playlist> GetFlavourList()
+        {
+            HashSet<long> Flavours;
+            if (SongListStorage.AlbumPlaylistDict.ContainsKey(Key))
+            {
+                Flavours = SongListStorage.AlbumPlaylistDict[Key];
+            }
+            else
+            {
+                return new List<Playlist>();
+            }
+
+            var ids = Flavours.ToList<long>();
+            var flavours = new List<Playlist>();
+            foreach (long id in ids)
+            {
+                flavours.Add(SongListStorage.PlaylistDict[id]);
+            }
+            return flavours;
+        }
+
+        public bool AddFlavour(long flavourid)
+        {
+            if (!SongListStorage.AlbumPlaylistDict.ContainsKey(Key))
+            {
+                SongListStorage.AlbumPlaylistDict.TryAdd(Key, new HashSet<long>());
+            }
+            return SongListStorage.AlbumPlaylistDict[Key].Add(flavourid);
+        }
+
+        public bool RemoveFlavour(long flavourid)
+        {
+            if (!SongListStorage.AlbumPlaylistDict.ContainsKey(Key))
+            {
+                return false;
+            }
+            return SongListStorage.AlbumPlaylistDict[Key].Remove(flavourid);
+        }
+
         public ObservableCollection<Song> ObserveSongs(ConcurrentDictionary<string, Song> SongDict)
         {
             ObservableCollection<Song> Songs = new ObservableCollection<Song>();
