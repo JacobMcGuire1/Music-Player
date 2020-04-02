@@ -42,8 +42,6 @@ namespace Music_thing
         {
             this.InitializeComponent();
 
-            PageGateway.MainPage = this;
-
             currentid = 0;
 
             //BAck stuff

@@ -311,12 +311,6 @@ namespace Music_thing
 
         }
 
-        private List<Flavour> AddNewFlavour(List<Flavour> existingflavours, Flavour newflavour)
-        {
-            existingflavours.Add(newflavour);
-            return existingflavours;
-        }
-
         private void OpenArtistPageButton_Click(object sender, RoutedEventArgs e)
         {
             string artistid = (string)((HyperlinkButton)sender).Tag;

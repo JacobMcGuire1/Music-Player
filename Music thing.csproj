@@ -120,7 +120,6 @@
     </Compile>
     <Compile Include="Classes\Artist.cs" />
     <Compile Include="Classes\Album.cs" />
-    <Compile Include="Classes\Flavour.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -128,7 +127,6 @@
     <Compile Include="Pages\NowPlaying.xaml.cs">
       <DependentUpon>NowPlaying.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\PageGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\RecentlyPlayed.xaml.cs">
       <DependentUpon>RecentlyPlayed.xaml</DependentUpon>
