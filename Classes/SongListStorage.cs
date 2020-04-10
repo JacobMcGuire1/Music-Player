@@ -242,29 +242,6 @@ namespace Music_thing
             return temp;
         }
 
-        public async static Task<bool> OldSaveNowPlaying()
-        {
-            try
-            {
-                if (PlaylistRepresentation.Count > 0)
-                {
-                    StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-                    StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                    await FileIO.WriteTextAsync(nowplayingfile, SongListStorage.NowPlayingToString());
-                    SavePlace();
-                }
-                return true;
-            }
-            catch (FileLoadException E)
-            {
-                Debug.WriteLine("Couldn't save now playing.");
-                Debug.WriteLine(E.Message);
-                return false;
-            }
-            
-        }
-
         public async static Task<bool> SaveNowPlaying()
         {
             while (true)
@@ -273,9 +250,10 @@ namespace Music_thing
                 {
                     if (PlaylistRepresentation.Count > 0)
                     {
+                        string nowplayingstring = SongListStorage.NowPlayingToString();
                         StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-                        StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                        await FileIO.WriteTextAsync(nowplayingfile, SongListStorage.NowPlayingToString());
+                        StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                        await FileIO.WriteTextAsync(nowplayingfile, nowplayingstring);
                         SavePlace();
                     }
                     return true;
