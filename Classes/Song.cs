@@ -24,6 +24,8 @@ namespace Music_thing
         public int TrackNumber { get; set; }
         public string DiscNumber { get; set; }
         public string Path { get; set; }
+        public string AlbumKey { get; set; }
+        public string ArtistKey { get; set; }
 
 
         public bool IsFlavour { get; set; }

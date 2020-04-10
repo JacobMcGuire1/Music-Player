@@ -33,6 +33,7 @@ namespace Music_thing
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
 
             
         }

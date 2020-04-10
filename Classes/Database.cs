@@ -121,6 +121,10 @@ namespace Music_thing
                 SongListStorage.AlbumDict = AlbumDict;
                 SongListStorage.ArtistDict = ArtistDict;
             }
+            else
+            {
+                await SongListStorage.LoadFlavours();
+            }
 
             //Should also display a message saying that all files have been loaded.
             Debug.WriteLine("Loaded " + songsloaded + " songs.");
@@ -227,7 +231,7 @@ namespace Music_thing
             }
             await SongListStorage.GetNowPlaying();
             SongListStorage.UpdateAndOrderMusic();
-            await SongListStorage.GetFlavours();
+            await SongListStorage.LoadFlavours();
             SongListStorage.LoadVolume();
             Media.Instance.VolChanged();
             //SongListStorage.GetSongList();
@@ -283,6 +287,9 @@ namespace Music_thing
             };
 
             ArtistDict.AddOrUpdate(artistname, artist, (albumname2, existingartist) => AddAlbumToArtist(existingartist, key));
+
+            song.AlbumKey = key;
+            song.ArtistKey = artistname;
         }
 
         //Adds an album to an artist's collection in a threadsafe way.

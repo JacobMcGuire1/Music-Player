@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -56,25 +57,45 @@ namespace Music_thing
 
         public async Task SetAlbumArt()
         {
-            //return SongListStorage.AlbumDict[CurrentAlbum].albumart250;
-            albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
+            if (CurrentAlbum != null)
+            {
+                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
+            }
+            else
+            {
+                var art = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+                art.DecodePixelHeight = 250;
+                art.DecodePixelWidth = 250;
+                albumart = art;
+            }
             Bindings.Update();
         }
 
         public string GetAlbumName()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].Name;
+            if (CurrentAlbum != null)
+            {
+                return SongListStorage.AlbumDict[CurrentAlbum].Name;
+            }
+            return "";
         }
 
         public string GetArtistName()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].Artist;
+            if (CurrentAlbum != null)
+            {
+               return SongListStorage.AlbumDict[CurrentAlbum].Artist;
+            }
+            return "";
         }
 
         public string GetYear()
         {
-            return SongListStorage.AlbumDict[CurrentAlbum].GetStringYear();
-            
+            if (CurrentAlbum != null)
+            {
+                return SongListStorage.AlbumDict[CurrentAlbum].GetStringYear();
+            }
+            return "";
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -90,19 +111,28 @@ namespace Music_thing
             {
                 //Album page is clicked from a flavour, so the flavour is navigated to.
                 var playlistid = (long)e.Parameter;
-                Album album = SongListStorage.AlbumDict[SongListStorage.PlaylistDict[playlistid].albumkey];
-                ChangeAlbum(album);
-                AddExistingFlavourTabs();
-
-                for (int i = 0; i < TabItems.Count(); i++)
+                var playlist = SongListStorage.PlaylistDict[playlistid];
+                if (playlist.isflavour)
                 {
-                    var tab = (TabViewItem)TabItems[i];
-                    //var nametextblock = (TextBlock)headerstackpanel.Children[1];
-                    if (tab.Tag is long id && id == playlistid)
+                    Album album = SongListStorage.AlbumDict[SongListStorage.PlaylistDict[playlistid].albumkey];
+                    ChangeAlbum(album);
+                    AddExistingFlavourTabs();
+
+                    for (int i = 0; i < TabItems.Count(); i++)
                     {
-                        SongVersionTabs.SelectedIndex = i;
+                        var tab = (TabViewItem)TabItems[i];
+                        //var nametextblock = (TextBlock)headerstackpanel.Children[1];
+                        if (tab.Tag is long id && id == playlistid)
+                        {
+                            SongVersionTabs.SelectedIndex = i;
+                        }
                     }
                 }
+                else
+                {
+                    CreateTab(playlist);
+                }
+                
             }
             try
             {

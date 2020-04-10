@@ -51,6 +51,8 @@ namespace Music_thing
         public static ConcurrentDictionary<long, Playlist> PlaylistDict = new ConcurrentDictionary<long, Playlist>();
         public static ConcurrentDictionary<string, HashSet<long>> AlbumPlaylistDict = new ConcurrentDictionary<string, HashSet<long>>();
 
+        public static bool ShowUnpinnedFlavours = false;
+
         //public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
@@ -72,6 +74,11 @@ namespace Music_thing
         public static string GetCurrentArtistName()
         {
             return PlaylistRepresentation[CurrentPlaceInPlaylist].Artist;
+        }
+
+        public static Song GetCurrentSong()
+        {
+            return PlaylistRepresentation[CurrentPlaceInPlaylist];
         }
 
         public static void UpdateAndOrderMusic()
@@ -357,28 +364,6 @@ namespace Music_thing
             var x = JsonConvert.SerializeObject(AlbumFlavourDict, Formatting.Indented);
             return x;
         }*/
-
-        public static async Task GetFlavours()
-        {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            try
-            {
-                int flavourcount = (int)roamingSettings.Values["flavourcount"];
-                string flavourstr = "";
-                for (int i = 0; i <= flavourcount; i++)
-                {
-                    flavourstr = flavourstr + roamingSettings.Values["flavourstr" + i];
-                }
-                await LoadFlavours(flavourstr);
-
-            }
-            catch (Exception E)
-            {
-                Debug.WriteLine("Couldn't load flavours.");
-                Debug.WriteLine(E.Message);
-            }
-        }
-
         public static Album GetPinnedFlavourForAlbum(string albumid)
         {
             foreach(Playlist playlist in PlaylistDict.Values)
@@ -396,8 +381,11 @@ namespace Music_thing
             return AlbumDict[albumid];
         }
 
-        public static async Task LoadFlavours(String flavours)
+        public static async Task LoadFlavours()
         {
+            var c = ApplicationData.Current.RoamingStorageQuota;
+            //await ApplicationData.Current.ClearAsync(ApplicationDataLocality.Roaming);
+
             StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
             QueryOptions queryOption = new QueryOptions(CommonFileQuery.DefaultQuery, new string[] { ".playlist" })
             {
@@ -415,7 +403,7 @@ namespace Music_thing
                 if (playliststring != "")
                 {
                     Playlist playlist = JsonConvert.DeserializeObject<Playlist>(playliststring);
-                    if (PlaylistDict.TryAdd(playlist.PlaylistID, playlist))
+                    if (PlaylistDict.TryAdd(playlist.PlaylistID, playlist) && playlist.isflavour)
                     {
                         string albumkey = playlist.albumkey;
                         if (!AlbumPlaylistDict.ContainsKey(albumkey))

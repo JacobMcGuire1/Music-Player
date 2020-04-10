@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -74,7 +75,6 @@ namespace Music_thing
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
 
-            
 
         }
 
@@ -137,7 +137,7 @@ namespace Music_thing
             //Loops through the playlists to load the necessary ones.
             foreach(Playlist playlist in playlists)
             {
-                if (playlist.pinned && !inlist.Contains(playlist.PlaylistID))
+                if ((playlist.pinned || SongListStorage.ShowUnpinnedFlavours) && !inlist.Contains(playlist.PlaylistID))
                 {
                     await LoadFlavour(playlist);
                 }
@@ -148,7 +148,7 @@ namespace Music_thing
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var key = (long)menuitem.Tag;
-                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || !SongListStorage.PlaylistDict[key].pinned)
+                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && SongListStorage.ShowUnpinnedFlavours))
                     {
                         menuitem.Visibility = Visibility.Collapsed;
                     }
@@ -175,9 +175,10 @@ namespace Music_thing
             };
             //nametb.FontWeight = FontWeights.Bold; 
 
+            string desctext = playlist.isflavour ? playlist.Artist + " - " + playlist.albumname : "Playlist";
             TextBlock artisttb = new TextBlock
             {
-                Text = playlist.Artist + " - " + playlist.albumname,
+                Text = desctext,
                 FontWeight = FontWeights.ExtraLight,
                 FontSize = 12
             };
@@ -190,7 +191,18 @@ namespace Music_thing
             Image icon = new Image();
             try
             {
-                icon.Source = await SongListStorage.AlbumDict[playlist.albumkey].GetAlbumArt(15, SongListStorage.SongDict);
+                if (playlist.isflavour)
+                {
+                    icon.Source = await SongListStorage.AlbumDict[playlist.albumkey].GetAlbumArt(15, SongListStorage.SongDict);
+                }
+                else
+                {
+                    var art = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+                    art.DecodePixelHeight = 15;
+                    art.DecodePixelWidth = 15;
+                    icon.Source = art;
+                }
+                
             }
             catch { }
             icon.Width = 20;
@@ -396,123 +408,90 @@ namespace Music_thing
             progressbartextblock.Visibility = Visibility.Collapsed;
         }
 
-        /*public async Task LoadPinnedFlavours() //Could probably be done more efficiently
+        private async void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-
-            //navigationViewItem.Content = "TEst";
-
-            List<String> inlist = new List<string>();
-            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
+            string playlistname = "";
+            bool err = false;
+            while (playlistname == "")
             {
-                
-                if (menuitem.Name.Equals("Flavour"))
+                playlistname = "New Playlist";
+                ContentDialog nameFlavourDialog = new ContentDialog()
                 {
-                    var tag = (Dictionary<String, string>)menuitem.Tag;
-                    inlist.Add(tag["albumkey"] + tag["flavourname"]);
-                    //menuitem.Visibility = Visibility.Collapsed;
+                    Title = "Name your playlist",
+                    CloseButtonText = "Ok"
+                };
+                TextBox textBox = new TextBox()
+                {
+
+                };
+                if (!err)
+                {
+                    nameFlavourDialog.Content = textBox;
                 }
-            }
-
-            var flavourlists = SongListStorage.AlbumFlavourDict.Values;
-            foreach (List<Flavour> flavourlist in flavourlists)
-            {
-                foreach (Flavour flavour in flavourlist)
+                else
                 {
-                    if (flavour.pinned)
+                    var stackpanel = new StackPanel()
                     {
-                        NavigationViewItem navigationViewItem = new NavigationViewItem();
-                        var stackpanelouter = new StackPanel
-                        {
-                            Orientation = Orientation.Horizontal
-                        };
-
-                        var stackpanel = new StackPanel
-                        {
-                            Orientation = Orientation.Vertical
-                        };
-
-                        TextBlock nametb = new TextBlock
-                        {
-                            Text = flavour.Name
-                        };
-                        //nametb.FontWeight = FontWeights.Bold; 
-
-                        TextBlock artisttb = new TextBlock
-                        {
-                            Text = flavour.Artist + " - " + flavour.albumname,
-                            FontWeight = FontWeights.ExtraLight,
-                            FontSize = 12
-                        };
-
-                        stackpanel.Children.Add(nametb);
-                        stackpanel.Children.Add(artisttb);
-
-                        //IMAGESTUFF
-
-                        Image icon = new Image();
-                        try
-                        {
-                            icon.Source = await SongListStorage.AlbumDict[flavour.albumkey].GetAlbumArt(15, SongListStorage.SongDict);
-                        }
-                        catch { }
-                        icon.Width = 20;
-                        icon.Height = 20;
-                        icon.Margin = new Thickness(0,0,14,0);
-                        //icon.Opacity = 0.5;
-                        //icon.ren
-                        //icon.
-
-                        //IMAGESTUFF
-
-                        stackpanelouter.Children.Add(icon);
-                        stackpanelouter.Children.Add(stackpanel);
-                        //stackpanel.Children.Add(albumtb);
-
-
-                        // stackpanelhor.Children.Add(stackpanel);
-
-                        //navigationViewItem.Content = flavour.artist + " - " + flavour.albumname + ": " + flavour.name;
-                        navigationViewItem.Content = stackpanelouter;
-                        navigationViewItem.Name = "Flavour";
-                        navigationViewItem.AllowDrop = true;
-                        navigationViewItem.Drop += NavigationViewItem_Drop;
-                        navigationViewItem.DragOver += NavigationViewItem_DragOver;
-
-                        //The details needed to reference the corresponding flavour.
-                        var dict = new Dictionary<String, String>
-                        {
-                            { "albumkey", flavour.Artist + flavour.albumname },
-                            { "flavourname", flavour.Name }
-                        };
-                        navigationViewItem.Tag = playlist.PlaylistID;
-
-                        //navigationViewItem.Tapped = 
-                        if (!inlist.Contains(dict["albumkey"] + dict["flavourname"]))
-                        {
-                            NavView.MenuItems.Add(navigationViewItem);
-                        }
-                        
-                    }
-                }
-                
-            }
-            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
-            {
-                if (menuitem.Name.Equals("Flavour"))
-                {
-                    var tag = (Dictionary<String, string>)menuitem.Tag;
-                    if (SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]) == null || !SongListStorage.GetFlavourByName(tag["albumkey"], tag["flavourname"]).pinned)
+                        Orientation = Orientation.Vertical
+                    };
+                    TextBlock errormsgtext = new TextBlock()
                     {
-                        menuitem.Visibility = Visibility.Collapsed;
-                    }
+                        Text = "Error: Please try another name."
+                    };
+                    stackpanel.Children.Add(textBox);
+                    stackpanel.Children.Add(errormsgtext);
+                    nameFlavourDialog.Content = stackpanel;
                 }
+                await nameFlavourDialog.ShowAsync();
 
-                //if (menuitem.Name.Equals("Flavour"))
-                //{
-                    //inlist.Add(tag["albumkey"] + tag["flavourname"]);
-                  //  menuitem.Visibility = Visibility.Collapsed;
-               // }
+                playlistname = textBox.Text;
+                err = true;
             }
-        }*/
+
+            //Flavour flavour = new Flavour()
+            Playlist playlist = new Playlist(playlistname);
+            await playlist.SavePlaylistFile(true);
+            SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
+
+            await App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
+            //await SongListStorage.SaveFlavours();
+        }
+
+        private async void ShowUnpinnedButton_Click(object sender, RoutedEventArgs e)
+        {
+            SongListStorage.ShowUnpinnedFlavours = !SongListStorage.ShowUnpinnedFlavours;
+            await App.GetForCurrentView().LoadPinnedFlavours();
+        }
+
+        private void SongNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var songfile = SongListStorage.GetCurrentSong();
+            ContentFrame.Navigate(typeof(AlbumPage), songfile.AlbumKey);
+        }
+
+        private void CurrentArtistsTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var songfile = SongListStorage.GetCurrentSong();
+            //Navigates to the artist if it exists, otherwise the albumartist.
+            if (SongListStorage.ArtistDict.ContainsKey(songfile.ArtistKey))
+            {
+                ContentFrame.Navigate(typeof(AlbumList), songfile.ArtistKey);
+            }
+            else
+            {
+                if (SongListStorage.ArtistDict.ContainsKey(songfile.AlbumArtist))
+                {
+                    ContentFrame.Navigate(typeof(AlbumList), songfile.AlbumArtist);
+                }
+            }
+        }
+
+        private void AlbumArtImage_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var songfile = SongListStorage.GetCurrentSong();
+            ContentFrame.Navigate(typeof(AlbumPage), songfile.AlbumKey);
+        }
+
+       
     }
 }

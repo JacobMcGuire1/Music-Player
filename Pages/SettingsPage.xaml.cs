@@ -38,9 +38,10 @@ namespace Music_thing
             Media.Instance.VolChanged();
         }
 
-        private void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
+        private async void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
         {
             Database.GetSongs(false);
+            await App.GetForCurrentView().LoadPinnedFlavours();
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Music_thing
             //Artist artist = SongListStorage.ArtistDict[key];
             ChangeArtist(artistid);
 
-            if (!artloaded)
+            if (true)
             {
                 foreach (Album album in Albums)
                 {
