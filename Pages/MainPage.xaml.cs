@@ -142,18 +142,33 @@ namespace Music_thing
                     await LoadFlavour(playlist);
                 }
             }
-
-            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
+            for (int i = NavView.MenuItems.Count - 1; i >= 0; i--)
+            {
+                NavigationViewItemBase menuitem = (NavigationViewItemBase)NavView.MenuItems[i];
+                if (menuitem.Name.Equals("Flavour"))
+                {
+                    var key = (long)menuitem.Tag;
+                    var tempname = SongListStorage.PlaylistDict[key].Name;
+                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && !SongListStorage.ShowUnpinnedFlavours))
+                    {
+                        NavView.MenuItems.Remove(menuitem);
+                        //menuitem.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+            /*foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
             {
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var key = (long)menuitem.Tag;
-                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && SongListStorage.ShowUnpinnedFlavours))
+                    var tempname = SongListStorage.PlaylistDict[key].Name;
+                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && !SongListStorage.ShowUnpinnedFlavours))
                     {
-                        menuitem.Visibility = Visibility.Collapsed;
+                        NavView.MenuItems.Remove(menuitem);
+                        //menuitem.Visibility = Visibility.Collapsed;
                     }
                 }
-            }
+            }*/
         }
 
         private async Task LoadFlavour(Playlist playlist)

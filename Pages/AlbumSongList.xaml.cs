@@ -120,7 +120,11 @@ namespace Music_thing
         private async void AddSongButton_Click(object sender, RoutedEventArgs e)
         {
             //Put the flavour in the panel on the left to allow songs to be dragged onto it.
-            flavour.pinned = true;
+            if (flavour.isflavour)
+            {
+                flavour.pinned = !flavour.pinned;
+            }
+            await flavour.SavePlaylistFile(false);
             await App.GetForCurrentView().LoadPinnedFlavours();
         }
 
