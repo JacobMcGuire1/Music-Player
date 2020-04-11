@@ -231,6 +231,7 @@ namespace Music_thing
             }
             await SongListStorage.GetNowPlaying();
             SongListStorage.UpdateAndOrderMusic();
+            await Windows.System.Threading.ThreadPool.RunAsync(SongListStorage.PeriodicallySave, Windows.System.Threading.WorkItemPriority.High);
             await SongListStorage.LoadFlavours();
             SongListStorage.LoadVolume();
             Media.Instance.VolChanged();

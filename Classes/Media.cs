@@ -240,7 +240,7 @@ namespace Music_thing
         }
 
         //Plays the playlist
-        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos, bool play)
+        public async Task PlayPlaylist(ObservableCollection<Song> Songs, int Pos, string songid, bool play)
         {
             mediaPlayer.Pause();
             Playlist.Items.Clear(); //Clears the playlist
@@ -251,7 +251,25 @@ namespace Music_thing
                 await AddSong(song.ID, false);
                 if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             }
-            if (Pos > 1) Playlist.MoveTo((uint)Pos - 1);
+            if (Pos > 1 && SongListStorage.PlaylistRepresentation.Count >= Pos)
+            {
+                Playlist.MoveTo((uint)Pos - 1);
+            }
+            else
+            {
+                if (songid != null && songid != "")
+                {
+                    for (int i = 0; i < SongListStorage.PlaylistRepresentation.Count; i++)
+                    {
+                        if (SongListStorage.PlaylistRepresentation[i].ID == songid)
+                        {
+                            Playlist.MoveTo((uint)i);
+                            break;
+                        }
+
+                    }
+                }
+            }
             if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             //if (!play) mediaPlayer.Pause();
             await SongListStorage.SaveNowPlaying();

@@ -154,7 +154,7 @@ namespace Music_thing
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             int songid = (int)((Button)sender).Tag;
-            await Media.Instance.PlayPlaylist(Songs, songid, true);
+            await Media.Instance.PlayPlaylist(Songs, songid, null, true);
         }
 
         private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
@@ -350,35 +350,17 @@ namespace Music_thing
         private async void SongVersionTabs_TabClosing(object sender, TabClosingEventArgs e)
         {
             var tab = (TabViewItem)e.Tab;
-            //var hdr = (StackPanel)tab.Header;
-            //var chldn = hdr.Children;
-            //var child1 = chldn[1];
-            //String flavourname = ((tab.Header as StackPanel).Children[1] as TextBlock).Text as String;
-            //long flavourid = (long)tab.Tag;
             if (tab.Tag is long flavourid)
             {
                 var flavour = SongListStorage.PlaylistDict[flavourid];
-                SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
+                if (flavour.isflavour) SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
                 await flavour.DeleteFile();
                 TabItems.Remove(tab);
                 SongListStorage.PlaylistDict.Remove(flavourid, out flavour);
 
                 await App.GetForCurrentView().LoadPinnedFlavours();
-                //await SongListStorage.SaveFlavours();
+                if (!flavour.isflavour) this.Frame.Navigate(typeof(AlbumList));
             }
-            /*List<Playlist> flavours = SongListStorage.AlbumDict[CurrentAlbum].GetFlavourList();
-            int index = -1;
-            for(int i = 0; i < flavours.Count; i++)
-            {
-                if (flavours[i].Name == flavourname)
-                {
-                    index = i;
-                }
-            }
-            flavours.RemoveAt(index);
-            TabItems.Remove(tab);
-            await App.GetForCurrentView().LoadPinnedFlavours();
-            await SongListStorage.SaveFlavours();*/
         }
 
         /*private void SongVersionTabs_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
@@ -506,19 +488,22 @@ namespace Music_thing
 
         private async void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (BigArt.Height == 250)
+            if (CurrentAlbum != null)
             {
-                BigArt.Height = 700;
-                BigArt.Width = 700;
-                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(700, SongListStorage.SongDict);
-                Bindings.Update();
-            }
-            else
-            {
-                BigArt.Height = 250;
-                BigArt.Width = 250;
-                albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
-                Bindings.Update();
+                if (BigArt.Height == 250)
+                {
+                    BigArt.Height = 700;
+                    BigArt.Width = 700;
+                    albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(700, SongListStorage.SongDict);
+                    Bindings.Update();
+                }
+                else
+                {
+                    BigArt.Height = 250;
+                    BigArt.Width = 250;
+                    albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
+                    Bindings.Update();
+                }
             }
         }
     }

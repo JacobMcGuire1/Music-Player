@@ -177,37 +177,18 @@ namespace Music_thing
             Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
         }*/
 
-        //This is the UI thread. It updates and orders the visible lists of songs and loads and newly created flavours/playlists.
-       /* public static async void DisplayFiles(Windows.Foundation.IAsyncAction action)
+        //Saves the position in the song every second,
+       public static async void PeriodicallySave(Windows.Foundation.IAsyncAction action)
             {
-                //var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-
                 while (true)
                 {
                     await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        //Should do something similar to the flavourschanged bool here.
-                        
+                        SavePlace();
                     });
-                
-                    Thread.Sleep(100); //update rate of the lists used for the ui
+                    Thread.Sleep(1000); //Updates every second.
                 }
-            
-            }   */     
-
-        //Returns a flavour/playlist based on the album it is sourced from and its name.
-        /*public static Flavour GetFlavourByName(String albumkey, String flavourname)
-        {
-                List<Flavour> flavours = AlbumFlavourDict[albumkey];
-                foreach (Flavour flavour in flavours)
-                {
-                    if (flavour.Name == flavourname) // TODO: Must make flavour names unique
-                    {
-                        return flavour;
-                    }
-                }
-        return null;
-        }*/
+       }        
 
         //Returns the songs that contain the query as a substring to allow searching.
         public static ObservableCollection<Song> SearchSongs(String query)
@@ -325,7 +306,7 @@ namespace Music_thing
                 {
                     loadedplaylist.Add(SongDict[id]);
                 }
-                await Media.Instance.PlayPlaylist(loadedplaylist, place, false); //need to get the position too.
+                await Media.Instance.PlayPlaylist(loadedplaylist, place, null, false); //need to get the position too.
 
                 Media.Instance.mediaPlayer.Pause();
 

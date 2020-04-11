@@ -81,9 +81,12 @@ namespace Music_thing
 
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            int songid = (int)((Button)sender).Tag;
+            int tracknumber = (int)((Button)sender).Tag;
 
-            await Media.Instance.PlayPlaylist(Songs, songid, true);
+            var parent = VisualTreeHelper.GetParent((Button)sender) as UIElement;
+            string songid = (string)(parent as StackPanel).Tag;
+
+            await Media.Instance.PlayPlaylist(Songs, tracknumber, songid, true);
         }
 
         private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)

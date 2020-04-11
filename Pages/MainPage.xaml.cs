@@ -148,7 +148,6 @@ namespace Music_thing
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var key = (long)menuitem.Tag;
-                    var tempname = SongListStorage.PlaylistDict[key].Name;
                     if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && !SongListStorage.ShowUnpinnedFlavours))
                     {
                         NavView.MenuItems.Remove(menuitem);
@@ -156,6 +155,7 @@ namespace Music_thing
                     }
                 }
             }
+            
             /*foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
             {
                 if (menuitem.Name.Equals("Flavour"))
