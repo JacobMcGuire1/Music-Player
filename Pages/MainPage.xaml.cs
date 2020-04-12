@@ -69,8 +69,12 @@ namespace Music_thing
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(AppTitleBar);
+            try
+            {
+                VolumeSlider.Value = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"] * 100;
+            }
+            catch { VolumeSlider.Value = 30; }
 
-            
 
             //SongListStorage.FindArtists();
 
@@ -79,6 +83,7 @@ namespace Music_thing
             {
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
             }
+            ShowUnpinnedCheckBox.IsChecked = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
 
         }
 
@@ -160,7 +165,18 @@ namespace Music_thing
                     }
                 }
             }
-            NavView.MenuItems.OrderBy(x => ((Playlist)x).Name); //get rid of
+          
+
+            /*newlist.Add((long)(test as NavigationViewItem).Tag);
+            for (int i = NavView.MenuItems.Count - 1; i >= 0; i--)
+            {
+                NavigationViewItemBase menuitem = (NavigationViewItemBase)NavView.MenuItems[i];
+                if (menuitem.Name.Equals("Flavour") && (NavigationViewItem)menuitem != test)
+                {
+                    NavView.MenuItems.Remove(menuitem);
+                }
+            }*/
+            //var orderedlist = NavView.MenuItems.OrderBy(x => ((Playlist)x).Name); //get rid of
             //NavView.MenuItems.orde
             //artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year));
 
@@ -276,7 +292,7 @@ namespace Music_thing
                 e.AcceptedOperation = DataPackageOperation.Copy;
                 //await SongListStorage.SaveFlavours();
                 await flavour.SavePlaylistFile(false);
-                App.GetForCurrentView().NotificationMessage("Added song(s) to flavour '" + SongListStorage.PlaylistDict[playlistid].Name + "'.");
+                App.GetForCurrentView().NotificationMessage("Added song(s) to playlist '" + SongListStorage.PlaylistDict[playlistid].Name + "'.");
                 def.Complete();
             }
         }
@@ -297,6 +313,12 @@ namespace Music_thing
                 {
                     HandleFlavourClick(item);
                 }
+                /*else if (item.Name.Equals("ButtonHolder"))
+                {
+                    //args.
+                    sender.SelectedItem = null; //doesnt work
+                    //sender.sel
+                }*/
                 else
                 {
                     switch (item.Tag.ToString())
@@ -486,12 +508,7 @@ namespace Music_thing
             //await SongListStorage.SaveFlavours();
         }
 
-        private async void ShowUnpinnedButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool showunpinnedflavours = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = !showunpinnedflavours;
-            await App.GetForCurrentView().LoadPinnedFlavours();
-        }
+        
 
         private void SongNameTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -586,30 +603,108 @@ namespace Music_thing
         {
             SmolGrid.Children.Clear();
             BottomGrid.Children.Clear();
+            VolumeNowPlayingGrid.Children.Clear();
             SongTextStackPanel.Children.Remove(mediaPlayerElement);
-            if (size < 1000.0)
+            SongInfoStackPanel.Children.Remove(VolumeStack);
+            if (size < 800.0)
             {
+                Grid.SetColumn(VolumeStack, 1);
+                VolumeNowPlayingGrid.Children.Add(SongInfoStackPanel);
+                VolumeNowPlayingGrid.Children.Add(VolumeStack);
+                //VolumeStack.HorizontalAlignment = HorizontalAlignment.Right;
+                ProgressStackPanel.Visibility = Visibility.Collapsed;
                 SongNameTextBlock.Margin = new Thickness(0, 0, 0, 0);
-                SongTextStackPanel.Children.Add(mediaPlayerElement);
+                //SongTextStackPanel.Children.Add(mediaPlayerElement);
                 mediaPlayerElement.MaxWidth = 400;
                 mediaPlayerElement.TransportControls.IsCompact = true;
-               
-                SmolGrid.Children.Add(SongInfoStackPanel);
+
+                SmolGrid.Children.Add(VolumeNowPlayingGrid);
+                SmolGrid.Children.Add(mediaPlayerElement);
                 SmolGrid.Visibility = Visibility.Visible;
                 BottomGrid.Visibility = Visibility.Collapsed;
             }
-            else
+            else if(size < 1200.0)
             {
+                Grid.SetColumn(VolumeStack, 2);
+                ProgressStackPanel.Visibility = Visibility.Collapsed;
+                VolumeStack.Visibility = Visibility.Visible;
                 SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
                 mediaPlayerElement.MaxWidth = 321312;
                 mediaPlayerElement.TransportControls.IsCompact = false;
                 BottomGrid.Children.Add(SongInfoStackPanel);
                 BottomGrid.Children.Add(mediaPlayerElement);
+                //BottomGrid.Children.Add(ProgressStackPanel);
+                BottomGrid.Children.Add(VolumeStack);
+                SmolGrid.Visibility = Visibility.Collapsed;
+                BottomGrid.Visibility = Visibility.Visible;
+                var coldef = new ColumnDefinition()
+                {
+                    Width = new GridLength(0, GridUnitType.Star)
+                };
+                BottomGrid.ColumnDefinitions[3] = coldef;
+            }
+            else
+            {
+                Grid.SetColumn(VolumeStack, 2);
+                ProgressStackPanel.Visibility = Visibility.Visible;
+                var coldef = new ColumnDefinition()
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                };
+                BottomGrid.ColumnDefinitions[3] = coldef;
+                SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
+                mediaPlayerElement.MaxWidth = 321312;
+                mediaPlayerElement.TransportControls.IsCompact = false;
+                BottomGrid.Children.Add(SongInfoStackPanel);
+                BottomGrid.Children.Add(mediaPlayerElement);
+                BottomGrid.Children.Add(VolumeStack);
                 BottomGrid.Children.Add(ProgressStackPanel);
                 SmolGrid.Visibility = Visibility.Collapsed;
                 BottomGrid.Visibility = Visibility.Visible;
             }
             
+        }
+
+        private void VolumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            var volume = e.NewValue / 100;
+            Media.Instance.chosenVol = volume;
+            Media.Instance.ChangeVolume();
+            VolumeLevel.Text = e.NewValue.ToString();
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenvol"] = Media.Instance.chosenVol;
+            if (Media.Instance.chosenVol == 0)
+            {
+                MuteButton.Content = "\xE74F";
+            }
+            else
+            {
+                MuteButton.Content = "\xE767";
+            }
+        }
+
+        private void MuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Media.Instance.Muted)
+            {
+                MuteButton.Content = "\xE74F";
+            }
+            else
+            {
+                MuteButton.Content = "\xE767";
+            }
+            Media.Instance.ToggleMute();
+        }
+
+        private async void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            bool showunpinnedflavours = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = !showunpinnedflavours;
+            await App.GetForCurrentView().LoadPinnedFlavours();
+        }
+
+        private void ButtonHolder_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
         }
     }
 }

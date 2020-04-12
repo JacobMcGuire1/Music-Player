@@ -31,13 +31,13 @@ namespace Music_thing
 
         private bool hasFixedvol = true;
 
-        public int globalVol = 100; //TODO: Get it from the settings
+        public double globalVol; //TODO: Get it from the settings
 
-        public int chosenVol = 10;
+        public double chosenVol;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+        public bool Muted = false;
 
 
 
@@ -53,9 +53,22 @@ namespace Music_thing
 
             Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
 
-            mediaPlayer.Volume = 0.01;
+            try
+            {
+                globalVol = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"];
+                chosenVol = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"];
+            }
+            catch
+            {
+                globalVol = 1.0;
+                chosenVol = 0.3;
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"] = globalVol;
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"] = chosenVol;
+            }
+            ChangeVolume();
+            //mediaPlayer.Volume = chosenVol * globalVol;
 
-            mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
+            //mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
 
             //The placeholder album art TODO: make it work?
             BitmapImage bitmapImage =
@@ -80,10 +93,28 @@ namespace Music_thing
         }
 
         //Changes the volume and notifies of this.
-        private void MediaPlayer_VolumeChanged(MediaPlayer sender, object args)
+        /*private void MediaPlayer_VolumeChanged(MediaPlayer sender, object args)
         {
             chosenVol = (int)(mediaPlayer.Volume * 100);
             VolChanged();
+        }*/
+        public void ToggleMute()
+        {
+            if (!Muted)
+            {
+                mediaPlayer.Volume = 0.0;
+                Muted = true;
+            }
+            else
+            {
+                ChangeVolume();
+                Muted = false;
+            }
+        }
+
+        public void ChangeVolume()
+        {
+            mediaPlayer.Volume = chosenVol * globalVol;
         }
 
         //Dodgy volume stuff

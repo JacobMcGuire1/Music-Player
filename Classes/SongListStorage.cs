@@ -257,24 +257,24 @@ namespace Music_thing
 
         public static void SaveVolume()
         {
-            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["chosenvol"] = Media.Instance.chosenVol;
-            localSettings.Values["globalVol"] = Media.Instance.globalVol;
+            //var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //localSettings.Values["chosenvol"] = Media.Instance.chosenVol;
+            //localSettings.Values["globalVol"] = Media.Instance.globalVol;
         }
 
         public static void LoadVolume()
         {
-            try
+            /*try
             {
                 var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-                Media.Instance.chosenVol = (int)localSettings.Values["chosenvol"];
-                Media.Instance.globalVol = (int)localSettings.Values["globalVol"];
+                Media.Instance.chosenVol = (double)localSettings.Values["chosenvol"];
+                Media.Instance.globalVol = (double)localSettings.Values["globalVol"];
             }
             catch (NullReferenceException E)
             {
                 Debug.WriteLine("Couldn't load volume.");
                 Debug.WriteLine(E.Message);
-            }
+            }*/
         }
 
         public static async Task GetNowPlaying()

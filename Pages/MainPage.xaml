@@ -32,7 +32,7 @@
     </Page.Resources>
 
     <Grid>
-        <Grid x:Name="PageGrid">
+        <Grid x:Name="PageGrid" SizeChanged="Grid_SizeChanged">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -46,11 +46,12 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Albums" x:Name="AlbumsButton" Icon="Rotate" Tag="albums"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
-                    <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
-                    <NavigationViewItem Tag="Buttons">
-                        <StackPanel Orientation="Horizontal" Margin="45,0,0,0">
+                    <NavigationViewItemHeader Content="Your Playlists"/>
+                    <NavigationViewItem Tag="Buttons" x:Name="ButtonHolder" Tapped="ButtonHolder_Tapped">
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Button x:Name="NewPlaylistButton" Click="NewPlaylistButton_Click">New Playlist</Button>
-                            <Button x:Name="ShowUnpinnedButton" Click="ShowUnpinnedButton_Click">Show/Hide</Button>
+                            <TextBlock Margin="20,5,10,0">Show Unpinned</TextBlock>
+                            <CheckBox x:Name="ShowUnpinnedCheckBox" Click="CheckBox_Click"></CheckBox>
                         </StackPanel>
                     </NavigationViewItem>
                 </NavigationView.MenuItems>
@@ -78,17 +79,24 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" x:Name="VolumeNowPlayingGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
                     </Grid>
                 </Grid>
             </NavigationView>
-            <Grid Grid.Row="1" SizeChanged="Grid_SizeChanged" x:Name="BottomGrid">
+            <Grid Grid.Row="1"  x:Name="BottomGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
                 <!--Button-->
-                <StackPanel Orientation="Horizontal" x:Name="SongInfoStackPanel" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" x:Name="SongInfoStackPanel" Grid.Row="0" Grid.Column="0">
                     <Image x:Name="AlbumArtImage" Height="100" Width="100" Source="{x:Bind MediaProxy.Currentart, Mode=TwoWay}" Tapped="AlbumArtImage_Tapped"/>
                     <StackPanel Orientation="Vertical" Padding="5,0,0,0" x:Name="SongTextStackPanel">
                         <TextBlock x:Name="SongNameTextBlock" Text="{x:Bind MediaProxy.Currenttitle, Mode=TwoWay}" FontSize="20" Margin="0,25,0,0" Tapped="SongNameTextBlock_Tapped"/>
@@ -103,14 +111,24 @@
                                             IsPreviousTrackButtonVisible="True"
                                             IsFullWindowButtonVisible="False"
                                                 IsZoomButtonVisible="False"
+                                                IsVolumeEnabled="False"
+                                                IsVolumeButtonVisible="False"
+                                                
                                                 
                     />
                     </MediaPlayerElement.TransportControls>
                 </MediaPlayerElement>
-                <StackPanel Orientation="Vertical" Grid.Column="2" Tapped="StackPanel_Tapped" x:Name="ProgressStackPanel">
+                <StackPanel x:Name="VolumeStack" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" >
+                    <Button x:Name="MuteButton" Click="MuteButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE767;" Width="44" Height="44" Margin="5,0,5,8" Background="Transparent"/>
+                    <Slider x:Name="VolumeSlider" Width="100" ValueChanged="VolumeSlider_ValueChanged" VerticalAlignment="Center" />
+                    <TextBlock x:Name="VolumeLevel" Margin="5,0,0,8" Text="100" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="3" Tapped="StackPanel_Tapped" x:Name="ProgressStackPanel" >
                     <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="WrapWholeWords" Width="Auto"/>
                     <ProgressBar x:Name="progressbar" IsIndeterminate="False" Visibility="Collapsed" HorizontalAlignment="Center" Width="220" Margin="0,10,0,0" />
+                    
                 </StackPanel>
+                
             </Grid>
         </Grid>
     </Grid>

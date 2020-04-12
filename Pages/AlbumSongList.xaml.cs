@@ -64,11 +64,24 @@ namespace Music_thing
                 Songs.CollectionChanged += Songs_CollectionChanged;
                 addSongButton.Visibility = (Visibility)0;
                 addSongText.Visibility = (Visibility)0;
+                if (flavour.isflavour)
+                {
+                    PinButtonPanel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    PinButtonPanel.Visibility = Visibility.Collapsed;
+                }
+
+                if (flavour.pinned)
+                {
+                    addSongText.Text = "Unpin this flavour from the side panel";
+                }
+                else
+                {
+                    addSongText.Text = "Pin your flavour to the side panel";
+                }
             }
-
-            
-
-
         }
 
         private async void ListViewSongs_Drop(object sender, DragEventArgs e)
@@ -126,6 +139,14 @@ namespace Music_thing
             if (flavour.isflavour)
             {
                 flavour.pinned = !flavour.pinned;
+            }
+            if (flavour.pinned)
+            {
+                addSongText.Text = "Unpin this flavour from the side panel";
+            }
+            else
+            {
+                addSongText.Text = "Pin your flavour to the side panel";
             }
             await flavour.SavePlaylistFile(false);
             await App.GetForCurrentView().LoadPinnedFlavours();

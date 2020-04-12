@@ -9,13 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="addSongButton" Click="AddSongButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="44" Background="Transparent" Margin="12,0,5,0" Visibility="Collapsed"/>
-            <TextBlock x:Name="addSongText" Text="Add a song to your flavour" Visibility="Collapsed" VerticalAlignment="Center"></TextBlock>
+        <StackPanel Orientation="Horizontal" x:Name="PinButtonPanel">
+            <Button x:Name="addSongButton" Click="AddSongButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE718;" Width="44" Height="44" Background="Transparent" Margin="0" Visibility="Collapsed"/>
+            <TextBlock x:Name="addSongText" Text="Pin your flavour to the side panel" Visibility="Collapsed" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="PlayAlbumButton" Click="PlayAlbumButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent"></Button>
-            <Button x:Name="AddAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="44" Background="Transparent"></Button>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="PlayAlbumButton" Click="PlayAlbumButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="44" Background="Transparent"></Button>
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Play Album</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddAlbumToPlaylistButton" Click="AddAlbumToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="44" Background="Transparent"></Button>
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Add to Now Playing</TextBlock>
+            </StackPanel>
         </StackPanel>
         <ListView x:Name="ListViewSongs" Margin="20,20,20,0" ItemsSource="{x:Bind Songs, Mode=OneWay}" CanDragItems="True" CanReorderItems="False" Drop="ListViewSongs_Drop">
             <ListView.ItemTemplate>

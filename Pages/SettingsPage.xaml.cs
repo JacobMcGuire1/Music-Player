@@ -28,14 +28,14 @@ namespace Music_thing
         public SettingsPage()
         {
             this.InitializeComponent();
-            globalvol.Value = Media.Instance.globalVol;
+            globalvol.Value = Media.Instance.globalVol * 100;
         }
 
         private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            Media.Instance.globalVol = (int)e.NewValue;
-
-            Media.Instance.VolChanged();
+            Media.Instance.globalVol = e.NewValue / 100;
+            Media.Instance.ChangeVolume();
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"] = Media.Instance.globalVol;
         }
 
         private async void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
