@@ -63,10 +63,10 @@ namespace Music_thing
             String artistid = e.Parameter as string;
             //Artist artist = SongListStorage.ArtistDict[key];
             ChangeArtist(artistid);
-
+            var albumscopy = Albums.ToList<Album>();
             if (true)
             {
-                foreach (Album album in Albums)
+                foreach (Album album in albumscopy)
                 {
                     if (album.Albumart == null)
                     {
@@ -116,7 +116,8 @@ namespace Music_thing
                     TheBigGrid.RowDefinitions.RemoveAt(0);
                 }
                 this.artist = null;
-                Albums = SongListStorage.Albums;
+                //SongListStorage.UpdateAndOrderAlbums(); //Resets albums in case it has been changed.
+                Albums = new ObservableCollection<Album>(SongListStorage.Albums);
             }
             Bindings.Update();
             

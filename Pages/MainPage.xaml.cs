@@ -159,7 +159,7 @@ namespace Music_thing
                     }
                 }
             }
-            NavView.MenuItems.OrderBy(x => ((Playlist)x).Name);
+            NavView.MenuItems.OrderBy(x => ((Playlist)x).Name); //get rid of
             //NavView.MenuItems.orde
             //artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year));
 
@@ -422,6 +422,14 @@ namespace Music_thing
             return true;
         }
 
+        private bool On_ForwardRequested()
+        {
+            if (!ContentFrame.CanGoForward)
+                return false;
+            ContentFrame.GoForward();
+            return true;
+        }
+
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
             progressbar.Visibility = Visibility.Collapsed;
@@ -513,6 +521,39 @@ namespace Music_thing
             ContentFrame.Navigate(typeof(AlbumPage), songfile.AlbumKey);
         }
 
-       
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            
+        }
+
+        private void Page_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            Windows.UI.Xaml.Input.Pointer ptr = e.Pointer;
+            if (ptr.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
+            {
+                Windows.UI.Input.PointerPoint ptrPt = e.GetCurrentPoint(this);
+                if (ptrPt.Properties.IsXButton1Pressed)
+                {
+                    //On_BackRequested();
+                }
+            }
+        }
+
+        private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            Windows.UI.Xaml.Input.Pointer ptr = e.Pointer;
+            if (ptr.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
+            {
+                Windows.UI.Input.PointerPoint ptrPt = e.GetCurrentPoint(this);
+                if (ptrPt.Properties.IsXButton1Pressed)
+                {
+                    On_BackRequested();
+                }
+                else if(ptrPt.Properties.IsXButton2Pressed)
+                {
+                    On_ForwardRequested();
+                }
+            }
+        }
     }
 }
