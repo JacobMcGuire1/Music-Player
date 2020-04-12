@@ -32,12 +32,12 @@
     </Page.Resources>
 
     <Grid>
-        <Grid>
+        <Grid x:Name="PageGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested" CompactModeThresholdWidth="0">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
@@ -48,7 +48,7 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
                     <NavigationViewItem Tag="Buttons">
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="45,0,0,0">
                             <Button x:Name="NewPlaylistButton" Click="NewPlaylistButton_Click">New Playlist</Button>
                             <Button x:Name="ShowUnpinnedButton" Click="ShowUnpinnedButton_Click">Show/Hide</Button>
                         </StackPanel>
@@ -63,6 +63,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="AppTitleBar" Height="30" Background="Transparent"></Grid>
                     <Frame x:Name="ContentFrame" Margin="0,32,0,0" Grid.Row="1">
@@ -72,44 +73,43 @@
                             </TransitionCollection>
                         </Frame.ContentTransitions>
                     </Frame>
+                    <Grid Grid.Row="2" x:Name ="SmolGrid" Visibility="Collapsed" SizeChanged="Grid_SizeChanged">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
                 </Grid>
-                
-                
             </NavigationView>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" SizeChanged="Grid_SizeChanged" x:Name="BottomGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--Button-->
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" x:Name="SongInfoStackPanel" Grid.Row="0">
                     <Image x:Name="AlbumArtImage" Height="100" Width="100" Source="{x:Bind MediaProxy.Currentart, Mode=TwoWay}" Tapped="AlbumArtImage_Tapped"/>
-                    <StackPanel Orientation="Vertical" Padding="5,0,0,0">
+                    <StackPanel Orientation="Vertical" Padding="5,0,0,0" x:Name="SongTextStackPanel">
                         <TextBlock x:Name="SongNameTextBlock" Text="{x:Bind MediaProxy.Currenttitle, Mode=TwoWay}" FontSize="20" Margin="0,25,0,0" Tapped="SongNameTextBlock_Tapped"/>
                         <TextBlock x:Name="CurrentArtistsTextBlock" Text="{x:Bind MediaProxy.Currentartist, Mode=TwoWay}" FontSize="16" Tapped="CurrentArtistsTextBlock_Tapped"/>
                     </StackPanel>
-
                     <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html
                     V IMPORTANT-->
-
                 </StackPanel>
-
-
-
-                <MediaPlayerElement Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto">
+                <MediaPlayerElement Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto" Grid.Row="1">
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"
                                             IsFullWindowButtonVisible="False"
-                                            
+                                                IsZoomButtonVisible="False"
+                                                
                     />
                     </MediaPlayerElement.TransportControls>
                 </MediaPlayerElement>
-
-                <StackPanel Orientation="Vertical" Grid.Column="2" Tapped="StackPanel_Tapped">
-                    <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="WrapWholeWords" Width="300"/>
-                    <ProgressBar x:Name="progressbar" IsIndeterminate="False" Visibility="Collapsed" HorizontalAlignment="Center" Width="300" Margin="0,10,0,0" />
+                <StackPanel Orientation="Vertical" Grid.Column="2" Tapped="StackPanel_Tapped" x:Name="ProgressStackPanel">
+                    <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="WrapWholeWords" Width="Auto"/>
+                    <ProgressBar x:Name="progressbar" IsIndeterminate="False" Visibility="Collapsed" HorizontalAlignment="Center" Width="220" Margin="0,10,0,0" />
                 </StackPanel>
             </Grid>
         </Grid>

@@ -556,5 +556,60 @@ namespace Music_thing
                 }
             }
         }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            var k = e.NewSize.Width;
+            SmallScreenBeams(k);
+            /*if (k < 1000.0)
+            {
+                //SmallScreenBeams(true);
+                var coldef = new ColumnDefinition()
+                {
+                    Width = new GridLength(0, GridUnitType.Star)
+                };
+                BottomGrid.ColumnDefinitions[2] = coldef;
+            }
+            else
+            {
+                //SmallScreenBeams(false);
+                var coldef = new ColumnDefinition()
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                };
+                BottomGrid.ColumnDefinitions[2] = coldef;
+            }*/
+        }
+
+        private void SmallScreenBeams(double size)
+        {
+            SmolGrid.Children.Clear();
+            BottomGrid.Children.Clear();
+            SongTextStackPanel.Children.Remove(mediaPlayerElement);
+            if (size < 1000.0)
+            {
+                SongNameTextBlock.Margin = new Thickness(0, 0, 0, 0);
+                SongTextStackPanel.Children.Add(mediaPlayerElement);
+                mediaPlayerElement.MaxWidth = 400;
+                mediaPlayerElement.TransportControls.IsCompact = true;
+               
+                SmolGrid.Children.Add(SongInfoStackPanel);
+                SmolGrid.Visibility = Visibility.Visible;
+                BottomGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
+                mediaPlayerElement.MaxWidth = 321312;
+                mediaPlayerElement.TransportControls.IsCompact = false;
+                BottomGrid.Children.Add(SongInfoStackPanel);
+                BottomGrid.Children.Add(mediaPlayerElement);
+                BottomGrid.Children.Add(ProgressStackPanel);
+                SmolGrid.Visibility = Visibility.Collapsed;
+                BottomGrid.Visibility = Visibility.Visible;
+            }
+            
+        }
     }
 }
