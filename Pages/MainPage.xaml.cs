@@ -604,8 +604,8 @@ namespace Music_thing
             SmolGrid.Children.Clear();
             BottomGrid.Children.Clear();
             VolumeNowPlayingGrid.Children.Clear();
-            SongTextStackPanel.Children.Remove(mediaPlayerElement);
-            SongInfoStackPanel.Children.Remove(VolumeStack);
+            //SongTextStackPanel.Children.Remove(mediaPlayerElement);
+            //SongInfoStackPanel.Children.Remove(VolumeStack);
             if (size < 800.0)
             {
                 Grid.SetColumn(VolumeStack, 1);
@@ -613,7 +613,7 @@ namespace Music_thing
                 VolumeNowPlayingGrid.Children.Add(VolumeStack);
                 //VolumeStack.HorizontalAlignment = HorizontalAlignment.Right;
                 ProgressStackPanel.Visibility = Visibility.Collapsed;
-                SongNameTextBlock.Margin = new Thickness(0, 0, 0, 0);
+                //SongNameTextBlock.Margin = new Thickness(0, 0, 0, 0);
                 //SongTextStackPanel.Children.Add(mediaPlayerElement);
                 mediaPlayerElement.MaxWidth = 400;
                 mediaPlayerElement.TransportControls.IsCompact = true;
@@ -628,7 +628,7 @@ namespace Music_thing
                 Grid.SetColumn(VolumeStack, 2);
                 ProgressStackPanel.Visibility = Visibility.Collapsed;
                 VolumeStack.Visibility = Visibility.Visible;
-                SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
+                //SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
                 mediaPlayerElement.MaxWidth = 321312;
                 mediaPlayerElement.TransportControls.IsCompact = false;
                 BottomGrid.Children.Add(SongInfoStackPanel);
@@ -652,7 +652,7 @@ namespace Music_thing
                     Width = new GridLength(1, GridUnitType.Star)
                 };
                 BottomGrid.ColumnDefinitions[3] = coldef;
-                SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
+                //SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
                 mediaPlayerElement.MaxWidth = 321312;
                 mediaPlayerElement.TransportControls.IsCompact = false;
                 BottomGrid.Children.Add(SongInfoStackPanel);
