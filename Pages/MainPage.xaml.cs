@@ -1,4 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas.Effects;
+using Music_thing.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -504,13 +505,13 @@ namespace Music_thing
             //Navigates to the artist if it exists, otherwise the albumartist.
             if (SongListStorage.ArtistDict.ContainsKey(songfile.ArtistKey))
             {
-                ContentFrame.Navigate(typeof(AlbumList), songfile.ArtistKey);
+                ContentFrame.Navigate(typeof(ArtistPage), songfile.ArtistKey);
             }
             else
             {
                 if (SongListStorage.ArtistDict.ContainsKey(songfile.AlbumArtist))
                 {
-                    ContentFrame.Navigate(typeof(AlbumList), songfile.AlbumArtist);
+                    ContentFrame.Navigate(typeof(ArtistPage), songfile.AlbumArtist);
                 }
             }
         }

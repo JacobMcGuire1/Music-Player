@@ -14,45 +14,37 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Music_thing
+namespace Music_thing.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AlbumList : Page
+    public sealed partial class ArtistPage : Page
     {
         public ObservableCollection<Album> Albums { get; set; }
         = new ObservableCollection<Album>();
 
-        public bool artloaded = false;
+        public Artist artist;
 
-        public AlbumList()
+        public ArtistPage()
         {
             this.InitializeComponent();
-            Albums = SongListStorage.Albums;
         }
 
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
-        {
-            //Button b = (Button)sender;
-            //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-
-            //Song song = ((Button)sender).Tag as Song;
-
+        { 
             String albumkey = (string)(((Button)sender).Tag);
-
             this.Frame.Navigate(typeof(AlbumPage), albumkey);
-
-            //Media.Instance.addSong(song);
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            String artistid = e.Parameter as string;
+            ChangeArtist(artistid);
             if (true)
             {
                 foreach (Album album in Albums)
@@ -62,7 +54,6 @@ namespace Music_thing
                         try
                         {
                             album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
-                            //Bindings.Update();
                         }
                         catch
                         {
@@ -70,8 +61,21 @@ namespace Music_thing
                         }
                     }
                 }
-                artloaded = true;
             }
+        }
+
+        public void ChangeArtist(string artistid)
+        {
+            Artist artist = SongListStorage.ArtistDict[artistid];
+            this.artist = artist;
+            Albums.Clear();
+            artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
+            foreach (string albumid in artist.Albums)
+            {
+                Albums.Add(SongListStorage.AlbumDict[albumid]);
+            }
+            Bindings.Update();
+
         }
 
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)
@@ -108,13 +112,12 @@ namespace Music_thing
             }
             var t = items.ToString();
             e.Data.SetText(items.ToString());
-
-            //args.Data.SetData("", songids);
             e.Data.RequestedOperation = DataPackageOperation.Copy;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
-        {
+        { 
         }
     }
 }
+

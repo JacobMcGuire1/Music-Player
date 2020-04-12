@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using Music_thing.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -344,7 +345,7 @@ namespace Music_thing
         private void OpenArtistPageButton_Click(object sender, RoutedEventArgs e)
         {
             string artistid = (string)((HyperlinkButton)sender).Tag;
-            this.Frame.Navigate(typeof(AlbumList), artistid);
+            this.Frame.Navigate(typeof(ArtistPage), artistid);
         }
 
         private async void SongVersionTabs_TabClosing(object sender, TabClosingEventArgs e)

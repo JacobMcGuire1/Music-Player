@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Music_thing.Pages;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -51,7 +52,7 @@ namespace Music_thing
 
             //e.Parameter = 
 
-            this.Frame.Navigate(typeof(AlbumList), artistid);
+            this.Frame.Navigate(typeof(ArtistPage), artistid);
         }
     }
 }
