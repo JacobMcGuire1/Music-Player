@@ -229,6 +229,10 @@ namespace Music_thing
                 Debug.WriteLine(E.Message);
                 GetSongs(true);
             }
+            if (!Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ShowUnpinnedFlavours"))
+            {
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
+            }
             await SongListStorage.GetNowPlaying();
             SongListStorage.UpdateAndOrderMusic();
             await Windows.System.Threading.ThreadPool.RunAsync(SongListStorage.PeriodicallySave, Windows.System.Threading.WorkItemPriority.High);

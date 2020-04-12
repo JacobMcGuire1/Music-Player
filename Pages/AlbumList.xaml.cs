@@ -79,17 +79,6 @@ namespace Music_thing
                         {
 
                         }
-                        /*catch
-                        {
-                            //BitmapImage bitmapImage = new BitmapImage();
-                            //bitmapImage.UriSource = new Uri("Assets/Album.png");
-                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_thing]/Assets/Album.png"));
-                            BitmapImage bitmapImage = new BitmapImage(new Uri(this.BaseUri, "/Assets/Album.png"));
-                            //BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///[Music_Thing]/Assets/Album.png"));
-                            bitmapImage.DecodePixelHeight = 200;
-                            bitmapImage.DecodePixelWidth = 200;
-                            album.Albumart = bitmapImage;
-                        }*/
                     }
                 }
                 artloaded = true;
@@ -103,6 +92,13 @@ namespace Music_thing
             {
                 Artist artist = SongListStorage.ArtistDict[artistid];
                 this.artist = artist;
+                if (TheBigGrid.RowDefinitions.Count == 1)
+                {
+                    var height = new GridLength(50.0);
+                    var rowdef = new RowDefinition() { Height = height };
+                    TheBigGrid.RowDefinitions.Insert(0, rowdef);
+                }
+                
                 ArtistInfoStack.Visibility = Visibility.Visible;
                 Albums.Clear();
                 artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
@@ -115,10 +111,14 @@ namespace Music_thing
             else
             {
                 ArtistInfoStack.Visibility = Visibility.Collapsed;
-                TheBigGrid.RowDefinitions.RemoveAt(0);
+                if (TheBigGrid.RowDefinitions.Count > 1)
+                {
+                    TheBigGrid.RowDefinitions.RemoveAt(0);
+                }
                 this.artist = null;
                 Albums = SongListStorage.Albums;
             }
+            Bindings.Update();
             
         }
 

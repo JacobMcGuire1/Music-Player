@@ -74,7 +74,10 @@ namespace Music_thing
             //SongListStorage.FindArtists();
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
-
+            if (!Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ShowUnpinnedFlavours"))
+            {
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
+            }
 
         }
 
@@ -124,6 +127,7 @@ namespace Music_thing
         public async Task LoadPinnedFlavours()
         {
             List<long> inlist = new List<long>();
+            bool showunpinnedflavours = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
             foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
             {
 
@@ -137,7 +141,7 @@ namespace Music_thing
             //Loops through the playlists to load the necessary ones.
             foreach(Playlist playlist in playlists)
             {
-                if ((playlist.pinned || SongListStorage.ShowUnpinnedFlavours) && !inlist.Contains(playlist.PlaylistID))
+                if ((playlist.pinned || showunpinnedflavours) && !inlist.Contains(playlist.PlaylistID))
                 {
                     await LoadFlavour(playlist);
                 }
@@ -148,14 +152,17 @@ namespace Music_thing
                 if (menuitem.Name.Equals("Flavour"))
                 {
                     var key = (long)menuitem.Tag;
-                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && !SongListStorage.ShowUnpinnedFlavours))
+                    if (!SongListStorage.PlaylistDict.ContainsKey(key) || (!SongListStorage.PlaylistDict[key].pinned && !showunpinnedflavours))
                     {
                         NavView.MenuItems.Remove(menuitem);
                         //menuitem.Visibility = Visibility.Collapsed;
                     }
                 }
             }
-            
+            NavView.MenuItems.OrderBy(x => ((Playlist)x).Name);
+            //NavView.MenuItems.orde
+            //artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year));
+
             /*foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
             {
                 if (menuitem.Name.Equals("Flavour"))
@@ -291,8 +298,6 @@ namespace Music_thing
                 }
                 else
                 {
-                    currentpage = item.Tag.ToString(); //Probs remove
-
                     switch (item.Tag.ToString())
                     {
                         case "songs":
@@ -474,7 +479,8 @@ namespace Music_thing
 
         private async void ShowUnpinnedButton_Click(object sender, RoutedEventArgs e)
         {
-            SongListStorage.ShowUnpinnedFlavours = !SongListStorage.ShowUnpinnedFlavours;
+            bool showunpinnedflavours = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = !showunpinnedflavours;
             await App.GetForCurrentView().LoadPinnedFlavours();
         }
 

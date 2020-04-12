@@ -44,7 +44,7 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your pinned album flavours and playlists"/>
-                    <NavigationViewItem>
+                    <NavigationViewItem Tag="Buttons">
                         <StackPanel Orientation="Horizontal" >
                             <Button x:Name="NewPlaylistButton" Click="NewPlaylistButton_Click">New Playlist</Button>
                             <Button x:Name="ShowUnpinnedButton" Click="ShowUnpinnedButton_Click">Show/Hide</Button>
