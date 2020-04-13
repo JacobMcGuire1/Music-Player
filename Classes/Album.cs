@@ -192,7 +192,7 @@ namespace Music_thing
             {
                 return await SongDict[AlbumArtSongId].GetArt(size);
             }
-            BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"))
+            BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"))
             {
                 DecodePixelHeight = size,
                 DecodePixelWidth = size

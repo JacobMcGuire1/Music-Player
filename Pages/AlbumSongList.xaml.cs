@@ -162,13 +162,16 @@ namespace Music_thing
 
         private async void PlayAlbumButton_Click(object sender, RoutedEventArgs e)
         {
-            if (flavour == null)
+            if (Songs.Count > 0)
             {
-                await album.Play();
-            }
-            else
-            {
-                await flavour.Play();
+                if (flavour == null)
+                {
+                    await album.Play();
+                }
+                else
+                {
+                    await flavour.Play();
+                }
             }
                 
         }
@@ -176,14 +179,18 @@ namespace Music_thing
 
         private async void AddAlbumToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            if (flavour == null)
+            if (Songs.Count > 0)
             {
-                await album.AddToPlaylist();
+                if (flavour == null)
+                {
+                    await album.AddToPlaylist();
+                }
+                else
+                {
+                    await flavour.AddToPlaylist();
+                }
             }
-            else
-            {
-                await flavour.AddToPlaylist();
-            }
+            
         }
     }
 }

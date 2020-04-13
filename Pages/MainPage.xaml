@@ -48,9 +48,9 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your Playlists"/>
                     <NavigationViewItem Tag="Buttons" x:Name="ButtonHolder" Tapped="ButtonHolder_Tapped">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
                             <Button x:Name="NewPlaylistButton" Click="NewPlaylistButton_Click">New Playlist</Button>
-                            <TextBlock Margin="20,5,10,0">Show Unpinned</TextBlock>
+                            <TextBlock Margin="10,5,5,0">Show Unpinned</TextBlock>
                             <CheckBox x:Name="ShowUnpinnedCheckBox" Click="CheckBox_Click"></CheckBox>
                         </StackPanel>
                     </NavigationViewItem>
@@ -79,12 +79,9 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" x:Name="VolumeNowPlayingGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
+                        <StackPanel Grid.Row="0" x:Name="VolumeNowPlayingGrid" Orientation="Horizontal">
+                            
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </NavigationView>
@@ -92,7 +89,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="175"/>
                     <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
                 <!--Button-->
@@ -120,8 +117,8 @@
                 </MediaPlayerElement>
                 <StackPanel x:Name="VolumeStack" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="MuteButton" Click="MuteButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE767;" Width="44" Height="44" Margin="5,0,5,8" Background="Transparent"/>
-                    <Slider x:Name="VolumeSlider" Width="100" ValueChanged="VolumeSlider_ValueChanged" VerticalAlignment="Center" />
-                    <TextBlock x:Name="VolumeLevel" Margin="5,0,0,8" Text="100" VerticalAlignment="Center"/>
+                    <Slider x:Name="VolumeSlider" Width="100"  ValueChanged="VolumeSlider_ValueChanged" VerticalAlignment="Center" />
+                    <TextBlock x:Name="VolumeLevel" Margin="5,0,0,8" Text="100" VerticalAlignment="Center" Visibility="Collapsed"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="3" Tapped="StackPanel_Tapped" x:Name="ProgressStackPanel" VerticalAlignment="Center">
                     <TextBlock x:Name="progressbartextblock" Text="" HorizontalAlignment="Center" Margin="0,0,10,8" TextWrapping="WrapWholeWords" Width="Auto" />

@@ -66,7 +66,7 @@ namespace Music_thing
             }
             else
             {
-                var art = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+                var art = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
                 art.DecodePixelHeight = 250;
                 art.DecodePixelWidth = 250;
                 albumart = art;
@@ -327,8 +327,9 @@ namespace Music_thing
             Frame frame = new Frame();
             var headerstackpanel = new StackPanel()
             {
-                Orientation = Orientation.Horizontal
+                Orientation = Orientation.Horizontal,
             };
+            
             var pinbutton = new Button()
             {
                 FontFamily = new FontFamily("Segoe MDL2 Assets"),
@@ -338,6 +339,7 @@ namespace Music_thing
             
             pinbutton.Click += Pinbutton_Click;
             var nametextblock = new TextBlock();
+            nametextblock.Margin = new Thickness(5);
             headerstackpanel.Children.Add(pinbutton);
             headerstackpanel.Children.Add(nametextblock);
             TabViewItem tab = new TabViewItem
@@ -348,6 +350,7 @@ namespace Music_thing
             TabItems.Add(tab);
             if (playlist == null)
             {
+                headerstackpanel.IsRightTapEnabled = false;
                 frame.Navigate(typeof(AlbumSongList), SongListStorage.AlbumDict[CurrentAlbum]);
                 //tab.Header = "Original Album"; //Need to add support for flavour names
                 //tab.Content = frame;
@@ -358,12 +361,93 @@ namespace Music_thing
             }
             else
             {
+                
+                //headerstackpanel.ContextFlyout = new MenuFlyout();
+                //Button RenameButton = new Button() { Content = "Rename", Tag = playlist.PlaylistID, Name = "RenameButton" };
+                //RenameButton.Click += RenameButton_Click;
+                var flyout = new MenuFlyout();
+                var flyoutitem = new MenuFlyoutItem() { Text = "Rename", Tag = playlist.PlaylistID };
+                flyoutitem.Click += RenameButton_Click;
+                flyout.Items.Add(flyoutitem);
+                //flyout.
+                headerstackpanel.Tag = playlist.PlaylistID;
+                headerstackpanel.ContextFlyout = flyout;
+                //headerstackpanel.ContextFlyout.
+                //headerstackpanel.RightTapped += Headerstackpanel_RightTapped;
+                //headerstackpanel.IsRightTapEnabled = true;
+                //headerstackpanel.Tag = playlist.PlaylistID;
                 frame.Navigate(typeof(AlbumSongList), playlist);
                 pinbutton.Tag = playlist.PlaylistID;
                 nametextblock.Text = playlist.Name;
                 tab.Tag = playlist.PlaylistID;
             }
         }
+
+        private async void RenameButton_Click(object sender, RoutedEventArgs e)
+        {
+            var menuflyoutitem = (MenuFlyoutItem)sender;
+            
+            var playlist = SongListStorage.PlaylistDict[(long)menuflyoutitem.Tag];
+            //playlist.Name = 
+
+            string flavourname = "";
+            bool err = false;
+            while (flavourname == "")
+            {
+                flavourname = playlist.Name;
+                ContentDialog nameFlavourDialog = new ContentDialog()
+                {
+                    Title = "Name your flavour",
+                    CloseButtonText = "Ok"
+                };
+                TextBox textBox = new TextBox()
+                {
+
+                };
+                if (!err)
+                {
+                    nameFlavourDialog.Content = textBox;
+                }
+                else
+                {
+                    var stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Vertical
+                    };
+                    TextBlock errormsgtext = new TextBlock()
+                    {
+                        Text = "Error: Please try another name."
+                    };
+                    stackpanel.Children.Add(textBox);
+                    stackpanel.Children.Add(errormsgtext);
+                    nameFlavourDialog.Content = stackpanel;
+                }
+                await nameFlavourDialog.ShowAsync();
+
+                flavourname = textBox.Text;
+                err = true;
+            }
+            playlist.Name = flavourname;
+            PlaylistName = flavourname;
+            foreach(TabViewItem tab in TabItems)
+            {
+                if (((StackPanel)tab.Header).Tag is long playlistid && playlistid == playlist.PlaylistID)
+                {
+                    ((TextBlock)((StackPanel)tab.Header).Children[1]).Text = flavourname;
+                }
+            }
+            Bindings.Update();
+            App.GetForCurrentView().UpdatePlaylistName(playlist.PlaylistID);
+            await playlist.SavePlaylistFile(false);
+            
+
+        }
+
+        /*private void Headerstackpanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var stack = sender as StackPanel;
+            var playlistid = stack.Tag;
+        }*/
 
         private async void Pinbutton_Click(object sender, RoutedEventArgs e)
         {

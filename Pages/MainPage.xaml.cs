@@ -128,6 +128,26 @@ namespace Music_thing
             }
         }
 
+        public void UpdatePlaylistName(long playlistid)
+        {
+            var newname = SongListStorage.PlaylistDict[playlistid].Name;
+            foreach (NavigationViewItemBase menuitem in NavView.MenuItems)
+            {
+
+                if (menuitem.Name.Equals("Flavour"))
+                {
+                    var tag = (long)menuitem.Tag;
+                    if (tag == playlistid)
+                    {
+                        var stack1 = (StackPanel)((NavigationViewItem)menuitem).Content;
+                        var innerstack = (StackPanel)stack1.Children[1];
+                        var nametb = (TextBlock)innerstack.Children[0];
+                        nametb.Text = newname;
+                    }
+                }
+            }
+        }
+
         //Loads the pinned flavours and playlists into the list on the left of the screen.
 
         public async Task LoadPinnedFlavours()
@@ -236,7 +256,7 @@ namespace Music_thing
                 }
                 else
                 {
-                    var art = new BitmapImage(new Uri("ms-appx:///Assets/Album.png"));
+                    var art = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
                     art.DecodePixelHeight = 15;
                     art.DecodePixelWidth = 15;
                     icon.Source = art;
