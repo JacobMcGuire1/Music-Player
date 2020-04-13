@@ -39,7 +39,8 @@ namespace Music_thing
 
         public bool Muted = false;
 
-
+        BitmapImage DefaultArt =
+                     new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
 
         //public Song CurrentSong;
 
@@ -71,10 +72,9 @@ namespace Music_thing
             //mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
 
             //The placeholder album art TODO: make it work?
-            BitmapImage bitmapImage =
-                     new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
+            
 
-            Currentart = bitmapImage;
+            Currentart = DefaultArt;
             NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
@@ -255,6 +255,24 @@ namespace Music_thing
             }
         }
 
+        public async Task RemoveSong(int index)
+        {
+            if (SongListStorage.CurrentPlaceInPlaylist == index)
+            {
+                Playlist.MovePrevious();
+            }
+            Playlist.Items.RemoveAt(index);
+            SongListStorage.PlaylistRepresentation.RemoveAt(index);
+            await SongListStorage.SaveNowPlaying();
+            /*if (SongListStorage.PlaylistRepresentation.Count == 0)
+            {
+                mediaPlayer.Source = new MediaPlaybackList();
+                Currentart = DefaultArt;
+                Currentartist = "";
+                Currenttitle = "";
+            }*/
+        }
+
         //Plays the specified song
         public async Task PlaySong(string songid)
         {
@@ -309,17 +327,14 @@ namespace Music_thing
         //Appends a song to the playlist.
         public async Task AddSong(string songid, bool save)
         {
-            var song = SongListStorage.SongDict[songid];
-            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
-            Playlist.Items.Add(mediaPlaybackItem);
-            SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
-            if (save) await SongListStorage.SaveNowPlaying();
+            if (SongListStorage.SongDict.ContainsKey(songid))
+            {
+                var song = SongListStorage.SongDict[songid];
+                var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
+                Playlist.Items.Add(mediaPlaybackItem);
+                SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
+                if (save) await SongListStorage.SaveNowPlaying();
+            }
         }
-
-
-        
-
-
-
     }
 }

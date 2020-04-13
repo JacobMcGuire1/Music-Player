@@ -305,7 +305,7 @@ namespace Music_thing
             NavView.MenuItems.Add(navigationViewItem);
         }
 
-        private void FlyoutUnpin_Click(object sender, RoutedEventArgs e)
+        private async void FlyoutUnpin_Click(object sender, RoutedEventArgs e)
         {
             var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
             var playlist = SongListStorage.PlaylistDict[playlistid];
@@ -319,7 +319,7 @@ namespace Music_thing
                 ((MenuFlyoutItem)sender).Text = "Unpin";
                 playlist.pinned = true;
             }
-            
+            await LoadPinnedFlavours();
         }
 
         private async void FlyoutDelete_Click(object sender, RoutedEventArgs e)
@@ -331,7 +331,7 @@ namespace Music_thing
             await playlist.DeleteFile();
             SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
 
-            await App.GetForCurrentView().LoadPinnedFlavours();
+            await LoadPinnedFlavours();
         }
 
         private async void FlyoutPlay_Click(object sender, RoutedEventArgs e)

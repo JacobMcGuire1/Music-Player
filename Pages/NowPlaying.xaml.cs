@@ -49,7 +49,19 @@ namespace Music_thing
 
         private void Removebutton_Click(object sender, RoutedEventArgs e)
         {
+            var thing = VisualTreeHelper.GetParent(sender as Button);
 
+            //thing11.
+            int index = -1;
+            while (index == -1)
+            {
+                index = ListViewPlayList.IndexFromContainer(thing);
+                thing = VisualTreeHelper.GetParent(thing);
+            }
+            Media.Instance.RemoveSong(index);
+            //var songid = (string)((Button)sender).Tag;
+            //var song = SongListStorage.SongDict[songid];
+            //int index = Playlist.IndexOf(song);
         }
     }
 }

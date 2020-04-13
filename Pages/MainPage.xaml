@@ -79,9 +79,16 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" x:Name="VolumeNowPlayingGrid" Orientation="Horizontal">
+                        <Grid Grid.Row="0" x:Name="VolumeNowPlayingGrid" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                        </Grid>
+                        <!--StackPanel Grid.Row="0" x:Name="VolumeNowPlayingGrid" Orientation="Horizontal">
                             
-                        </StackPanel>
+                        </-->
                     </Grid>
                 </Grid>
             </NavigationView>
@@ -115,7 +122,7 @@
                     />
                     </MediaPlayerElement.TransportControls>
                 </MediaPlayerElement>
-                <StackPanel x:Name="VolumeStack" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel x:Name="VolumeStack" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <Button x:Name="MuteButton" Click="MuteButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE767;" Width="44" Height="44" Margin="5,0,5,8" Background="Transparent"/>
                     <Slider x:Name="VolumeSlider" Width="100"  ValueChanged="VolumeSlider_ValueChanged" VerticalAlignment="Center" />
                     <TextBlock x:Name="VolumeLevel" Margin="5,0,0,8" Text="100" VerticalAlignment="Center" Visibility="Collapsed"/>
