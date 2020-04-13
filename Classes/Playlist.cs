@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace Music_thing
@@ -64,6 +65,51 @@ namespace Music_thing
             }
             
         }*/
+
+        public async Task<string> Rename()
+        {
+            string flavourname = "";
+            bool err = false;
+            while (flavourname == "")
+            {
+                flavourname = Name;
+                ContentDialog nameFlavourDialog = new ContentDialog()
+                {
+                    Title = "Name your flavour",
+                    CloseButtonText = "Ok"
+                };
+                TextBox textBox = new TextBox()
+                {
+
+                };
+                if (!err)
+                {
+                    nameFlavourDialog.Content = textBox;
+                }
+                else
+                {
+                    var stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Vertical
+                    };
+                    TextBlock errormsgtext = new TextBlock()
+                    {
+                        Text = "Error: Please try another name."
+                    };
+                    stackpanel.Children.Add(textBox);
+                    stackpanel.Children.Add(errormsgtext);
+                    nameFlavourDialog.Content = stackpanel;
+                }
+                await nameFlavourDialog.ShowAsync();
+
+                flavourname = textBox.Text;
+                err = true;
+            }
+            Name = flavourname;
+            App.GetForCurrentView().UpdatePlaylistName(PlaylistID);
+            await SavePlaylistFile(false);
+            return Name;
+        }
 
         public async Task<bool> SavePlaylistFile(bool fail)
         {

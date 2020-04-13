@@ -279,10 +279,78 @@ namespace Music_thing
 
             navigationViewItem.Tag = playlist.PlaylistID;
 
+            var flyout = new MenuFlyout();
+
+            var flyoutRename = new MenuFlyoutItem() { Text = "Rename", Tag = playlist.PlaylistID };
+            var flyoutPlay = new MenuFlyoutItem() { Text = "Play", Tag = playlist.PlaylistID };
+            var flyoutAddToNowPLaying = new MenuFlyoutItem() { Text = "Add To Now Playing", Tag = playlist.PlaylistID };
+            var flyoutDelete = new MenuFlyoutItem() { Text = "Delete", Tag = playlist.PlaylistID };
+
+            var flyoutUnpin = new MenuFlyoutItem() { Text = "Unpin", Tag = playlist.PlaylistID };
+            if (!playlist.pinned) flyoutUnpin.Text = "Pin";
+
+            flyoutRename.Click += FlyoutRename_Click;
+            flyoutAddToNowPLaying.Click += FlyoutAddToNowPLaying_Click;
+            flyoutPlay.Click += FlyoutPlay_Click;
+            flyoutDelete.Click += FlyoutDelete_Click;
+            flyoutUnpin.Click += FlyoutUnpin_Click;
+
+            flyout.Items.Add(flyoutPlay);
+            flyout.Items.Add(flyoutAddToNowPLaying);
+            if (playlist.isflavour) flyout.Items.Add(flyoutUnpin);
+            flyout.Items.Add(flyoutRename);
+            flyout.Items.Add(flyoutDelete);
+            navigationViewItem.ContextFlyout = flyout;
+
             NavView.MenuItems.Add(navigationViewItem);
         }
 
+        private void FlyoutUnpin_Click(object sender, RoutedEventArgs e)
+        {
+            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+            var playlist = SongListStorage.PlaylistDict[playlistid];
+            if (playlist.pinned)
+            {
+                ((MenuFlyoutItem)sender).Text = "Pin";
+                playlist.pinned = false;
+            }
+            else
+            {
+                ((MenuFlyoutItem)sender).Text = "Unpin";
+                playlist.pinned = true;
+            }
+            
+        }
 
+        private async void FlyoutDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+            var playlist = SongListStorage.PlaylistDict[playlistid];
+
+            if (playlist.isflavour) SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
+            await playlist.DeleteFile();
+            SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
+
+            await App.GetForCurrentView().LoadPinnedFlavours();
+        }
+
+        private async void FlyoutPlay_Click(object sender, RoutedEventArgs e)
+        {
+            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+            await SongListStorage.PlaylistDict[playlistid].Play();
+        }
+
+        private async void FlyoutAddToNowPLaying_Click(object sender, RoutedEventArgs e)
+        {
+            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+            await SongListStorage.PlaylistDict[playlistid].AddToPlaylist();
+        }
+
+        private async void FlyoutRename_Click(object sender, RoutedEventArgs e)
+        {
+            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+            await SongListStorage.PlaylistDict[playlistid].Rename();
+        }
 
         private void NavigationViewItem_DragOver(object sender, DragEventArgs e)
         {

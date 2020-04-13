@@ -115,7 +115,11 @@ namespace Music_thing
 
         public async Task Play()
         {
-            await Media.Instance.PlayPlaylist(ObserveSongs(SongListStorage.SongDict), 1, null, true); //mb 1?
+            if (Songids.Count > 0)
+            {
+                await Media.Instance.PlayPlaylist(ObserveSongs(SongListStorage.SongDict), 1, null, true); //mb 1?
+            }
+            
         }
 
         public async Task AddToPlaylist()

@@ -275,14 +275,19 @@ namespace Music_thing
             var tab = (TabViewItem)e.Tab;
             if (tab.Tag is long flavourid)
             {
-                var flavour = SongListStorage.PlaylistDict[flavourid];
-                if (flavour.isflavour) SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
-                await flavour.DeleteFile();
-                TabItems.Remove(tab);
-                SongListStorage.PlaylistDict.Remove(flavourid, out flavour);
+                try
+                {
+                    var flavour = SongListStorage.PlaylistDict[flavourid];
+                    if (flavour.isflavour) SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
+                    await flavour.DeleteFile();
+                    TabItems.Remove(tab);
+                    SongListStorage.PlaylistDict.Remove(flavourid, out flavour);
 
-                await App.GetForCurrentView().LoadPinnedFlavours();
-                if (!flavour.isflavour) this.Frame.Navigate(typeof(AlbumList));
+                    await App.GetForCurrentView().LoadPinnedFlavours();
+                    if (!flavour.isflavour) this.Frame.Navigate(typeof(AlbumList));
+                }
+                catch { }
+                
             }
         }
 
@@ -389,58 +394,16 @@ namespace Music_thing
             
             var playlist = SongListStorage.PlaylistDict[(long)menuflyoutitem.Tag];
             //playlist.Name = 
-
-            string flavourname = "";
-            bool err = false;
-            while (flavourname == "")
-            {
-                flavourname = playlist.Name;
-                ContentDialog nameFlavourDialog = new ContentDialog()
-                {
-                    Title = "Name your flavour",
-                    CloseButtonText = "Ok"
-                };
-                TextBox textBox = new TextBox()
-                {
-
-                };
-                if (!err)
-                {
-                    nameFlavourDialog.Content = textBox;
-                }
-                else
-                {
-                    var stackpanel = new StackPanel()
-                    {
-                        Orientation = Orientation.Vertical
-                    };
-                    TextBlock errormsgtext = new TextBlock()
-                    {
-                        Text = "Error: Please try another name."
-                    };
-                    stackpanel.Children.Add(textBox);
-                    stackpanel.Children.Add(errormsgtext);
-                    nameFlavourDialog.Content = stackpanel;
-                }
-                await nameFlavourDialog.ShowAsync();
-
-                flavourname = textBox.Text;
-                err = true;
-            }
-            playlist.Name = flavourname;
-            PlaylistName = flavourname;
-            foreach(TabViewItem tab in TabItems)
+            string newname = await playlist.Rename();
+            PlaylistName = newname;
+            foreach (TabViewItem tab in TabItems)
             {
                 if (((StackPanel)tab.Header).Tag is long playlistid && playlistid == playlist.PlaylistID)
                 {
-                    ((TextBlock)((StackPanel)tab.Header).Children[1]).Text = flavourname;
+                    ((TextBlock)((StackPanel)tab.Header).Children[1]).Text = newname;
                 }
             }
             Bindings.Update();
-            App.GetForCurrentView().UpdatePlaylistName(playlist.PlaylistID);
-            await playlist.SavePlaylistFile(false);
-            
-
         }
 
         /*private void Headerstackpanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
