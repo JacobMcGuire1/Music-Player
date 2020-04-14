@@ -125,6 +125,7 @@ namespace Music_thing
             {
                 await SongListStorage.LoadFlavours();
             }
+            await App.GetForCurrentView().ResetFlavours();
 
             //Should also display a message saying that all files have been loaded.
             Debug.WriteLine("Loaded " + songsloaded + " songs.");

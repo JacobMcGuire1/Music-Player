@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ListView x:Name="ListViewPlayList" Margin="20,20,0,0" ItemsSource="{x:Bind Playlist}" CanReorderItems="True" CanDragItems="False" AllowDrop="True" ReorderMode="Enabled">
+    <ListView x:Name="ListViewPlayList" Margin="20,20,0,0" ItemsSource="{x:Bind Playlist}" CanReorderItems="True" CanDragItems="False" AllowDrop="True" ReorderMode="Enabled" >
         <ListView.ItemTemplate >
             <DataTemplate x:DataType="local:Song">
                 <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0" CanDrag="True">

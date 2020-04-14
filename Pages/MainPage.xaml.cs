@@ -109,7 +109,7 @@ namespace Music_thing
             {
                 progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
                 progressbar.Visibility = Visibility.Visible;
-                if (totalfiles == 0)
+                if (songsloaded == 0)
                 {
                     progressbar.IsIndeterminate = true;
                 }
@@ -146,6 +146,21 @@ namespace Music_thing
                     }
                 }
             }
+        }
+
+        public async Task ResetFlavours()
+        {
+            //Removes each one
+            for (int i = NavView.MenuItems.Count - 1; i >= 0; i--)
+            {
+                NavigationViewItemBase menuitem = (NavigationViewItemBase)NavView.MenuItems[i];
+                if (menuitem.Name.Equals("Flavour"))
+                {
+                    NavView.MenuItems.Remove(menuitem);
+                }
+            }
+            //Loads them
+            await LoadPinnedFlavours();
         }
 
         //Loads the pinned flavours and playlists into the list on the left of the screen.
