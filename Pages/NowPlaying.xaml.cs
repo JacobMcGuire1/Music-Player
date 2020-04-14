@@ -31,7 +31,7 @@ namespace Music_thing
         = new ObservableCollection<Song>();
 
         private int oldmoveindex = -1;
-        private int oldcount;
+        private bool lastremovewasdel = false;
 
 
         public NowPlaying()
@@ -49,18 +49,18 @@ namespace Music_thing
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
             {
-                oldmoveindex = e.OldStartingIndex;
-                oldcount = e.OldItems.Count;
+                if (!lastremovewasdel)
+                {
+                    oldmoveindex = e.OldStartingIndex;
+                }
+                lastremovewasdel = false;
             }
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                int newlength = Playlist.Count;
                 int newmoveindex = e.NewStartingIndex;
-                if (oldmoveindex != -1 && Playlist.Count == oldcount)
+                if (oldmoveindex != -1)
                 {
-                    //Do stuff here.
                     var currenttime = Media.Instance.GetSongTime();
-                    //Media.Instance.Playlist.Items.Clear(); //Clears the playlist
                     int place = SongListStorage.CurrentPlaceInPlaylist;
                     if (oldmoveindex == place)
                     {
@@ -115,7 +115,7 @@ namespace Music_thing
         {
             var button = sender as Button;
             int index = GetIndexFromButton(button);
-
+            lastremovewasdel = true;
             await Media.Instance.RemoveSong(index);
         }
 
