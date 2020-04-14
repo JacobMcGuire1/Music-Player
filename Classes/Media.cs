@@ -145,7 +145,7 @@ namespace Music_thing
 
 
         //Updates song details when the song changes.
-        private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
+        public async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
             uint thign = Playlist.CurrentItemIndex;
             if (thign == 4294967295) //Magic number?? Perfectly totient.
@@ -261,8 +261,18 @@ namespace Music_thing
             {
                 Playlist.MovePrevious();
             }
+            
             Playlist.Items.RemoveAt(index);
             SongListStorage.PlaylistRepresentation.RemoveAt(index);
+            int place = (int)Playlist.CurrentItemIndex;
+            if (Playlist.CurrentItemIndex == 4294967295) //Magic number?? Perfectly totient.
+            {
+                SongListStorage.CurrentPlaceInPlaylist = 0;
+            }
+            else
+            {
+                SongListStorage.CurrentPlaceInPlaylist = place;
+            }
             await SongListStorage.SaveNowPlaying();
             /*if (SongListStorage.PlaylistRepresentation.Count == 0)
             {
@@ -271,6 +281,18 @@ namespace Music_thing
                 Currentartist = "";
                 Currenttitle = "";
             }*/
+        }
+
+        public bool MoveTo(int index)
+        {
+            if (index >= 0 && index < SongListStorage.PlaylistRepresentation.Count)
+            {
+                Playlist.MoveTo((uint)index);
+                mediaPlayer.Play();
+                SongListStorage.SavePlace();
+                return true;
+            }
+            return false;
         }
 
         //Plays the specified song
