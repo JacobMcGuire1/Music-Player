@@ -46,50 +46,53 @@ namespace Music_thing
 
         private async void Playlist_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (e.NewStartingIndex == -1)
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                oldmoveindex = e.OldStartingIndex;
-            }
-            else
-            {
-                int newmoveindex = e.NewStartingIndex;
-                if (oldmoveindex != -1)
+                if (e.NewStartingIndex == -1)
                 {
-                    //Do stuff here.
-                    var currenttime = Media.Instance.GetSongTime();
-                    //Media.Instance.Playlist.Items.Clear(); //Clears the playlist
-                    int place = SongListStorage.CurrentPlaceInPlaylist;
-                    if (oldmoveindex == place)
-                    {
-                        place = newmoveindex;
-                    }
-                    else
-                    {
-                        if (oldmoveindex < place && newmoveindex >= place)
-                        {
-                            place--;
-                        }
-                        if (oldmoveindex > place && newmoveindex <= place)
-                        {
-                            place++;
-                        }
-                    }
-                    var newplaylist = new MediaPlaybackList();
-                    foreach (Song song in Playlist)
-                    {
-                        var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
-                        newplaylist.Items.Add(mediaPlaybackItem);
-                    }
-                    newplaylist.CurrentItemChanged += Media.Instance.Playlist_CurrentItemChanged;
-                    currenttime = Media.Instance.GetSongTime();
-                    Media.Instance.mediaPlayer.Source = newplaylist;
-                    Media.Instance.Playlist = newplaylist;
-                    newplaylist.MoveTo((uint)place);
-                    SongListStorage.CurrentPlaceInPlaylist = place;
-                    Media.Instance.SetSongTime(currenttime);
+                    oldmoveindex = e.OldStartingIndex;
                 }
-                oldmoveindex = -1;
-                await SongListStorage.SaveNowPlaying();
+                else
+                {
+                    int newmoveindex = e.NewStartingIndex;
+                    if (oldmoveindex != -1)
+                    {
+                        //Do stuff here.
+                        var currenttime = Media.Instance.GetSongTime();
+                        //Media.Instance.Playlist.Items.Clear(); //Clears the playlist
+                        int place = SongListStorage.CurrentPlaceInPlaylist;
+                        if (oldmoveindex == place)
+                        {
+                            place = newmoveindex;
+                        }
+                        else
+                        {
+                            if (oldmoveindex < place && newmoveindex >= place)
+                            {
+                                place--;
+                            }
+                            if (oldmoveindex > place && newmoveindex <= place)
+                            {
+                                place++;
+                            }
+                        }
+                        var newplaylist = new MediaPlaybackList();
+                        foreach (Song song in Playlist)
+                        {
+                            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
+                            newplaylist.Items.Add(mediaPlaybackItem);
+                        }
+                        newplaylist.CurrentItemChanged += Media.Instance.Playlist_CurrentItemChanged;
+                        currenttime = Media.Instance.GetSongTime();
+                        Media.Instance.mediaPlayer.Source = newplaylist;
+                        Media.Instance.Playlist = newplaylist;
+                        newplaylist.MoveTo((uint)place);
+                        SongListStorage.CurrentPlaceInPlaylist = place;
+                        Media.Instance.SetSongTime(currenttime);
+                    }
+                    oldmoveindex = -1;
+                    await SongListStorage.SaveNowPlaying();
+                }
             }
         }
 

@@ -168,6 +168,7 @@
     <Content Include="Assets\Album.targetsize-256.png" />
     <Content Include="Assets\Album.targetsize-32.png" />
     <Content Include="Assets\Album.targetsize-48.png" />
+    <Content Include="Assets\album44x44logo.png" />
     <Content Include="Assets\DefaultAlbumArt.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
