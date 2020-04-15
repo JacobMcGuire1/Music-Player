@@ -90,9 +90,9 @@ namespace Music_thing
                     newplaylist.MoveTo((uint)place);
                     SongListStorage.CurrentPlaceInPlaylist = place;
                     Media.Instance.SetSongTime(currenttime);
+                    await SongListStorage.SaveNowPlaying();
                 }
                 oldmoveindex = -1;
-                await SongListStorage.SaveNowPlaying();
             }
         }
 

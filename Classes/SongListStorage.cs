@@ -53,6 +53,8 @@ namespace Music_thing
 
         public static bool ShowUnpinnedFlavours = false;
 
+        private static Mutex NowPlayingFileLock = new Mutex();
+
         //public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
@@ -234,16 +236,22 @@ namespace Music_thing
                         string nowplayingstring = SongListStorage.NowPlayingToString();
                         StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                         StorageFile nowplayingfile = await storageFolder.CreateFileAsync("nowplaying.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+                        //storageFolder.
                         await FileIO.WriteTextAsync(nowplayingfile, nowplayingstring);
                         SavePlace();
                     }
+                    
                     return true;
                 }
                 catch (FileLoadException E)
                 {
                     Debug.WriteLine("Couldn't save now playing.");
                     Debug.WriteLine(E.Message);
-                    //return false;
+                }
+                catch (IOException E)
+                {
+                    Debug.WriteLine("Couldn't save now playing.");
+                    Debug.WriteLine(E.Message);
                 }
             }
         }
