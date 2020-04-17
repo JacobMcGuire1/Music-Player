@@ -32,9 +32,9 @@ namespace Music_thing
             }
             var files = await GetSongList();
 
-            var SongDict = new ConcurrentDictionary<String, Song>();
-            var ArtistDict = new ConcurrentDictionary<String, Artist>();
-            var AlbumDict = new ConcurrentDictionary<String, Album>();
+            ConcurrentDictionary<String, Song> SongDict;
+            ConcurrentDictionary<String, Artist> ArtistDict;
+            ConcurrentDictionary<String, Album> AlbumDict;
 
             int songsloaded = 0;
 
@@ -43,6 +43,12 @@ namespace Music_thing
                 SongDict = SongListStorage.SongDict;
                 AlbumDict = SongListStorage.AlbumDict;
                 ArtistDict = SongListStorage.ArtistDict;
+            }
+            else
+            {
+                SongDict = new ConcurrentDictionary<String, Song>();
+                ArtistDict = new ConcurrentDictionary<String, Artist>();
+                AlbumDict = new ConcurrentDictionary<String, Album>();
             }
 
             try
@@ -76,7 +82,7 @@ namespace Music_thing
                         }
                         catch { }
                     }
-                    if (songsfound % 200 == 0)
+                    if (songsfound % 50 == 0)
                     {
                         if (FirstTime) SongListStorage.UpdateAndOrderMusic();
                     }

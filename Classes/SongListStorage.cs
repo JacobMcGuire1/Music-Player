@@ -93,7 +93,7 @@ namespace Music_thing
         
 
         //Updates the list of albums from the dictionary. This is done so that the observable list of albums is smoothly updated as they are discovered asynchronously by the file finder threads. 
-        public static void UpdateAndOrderAlbums()
+        public static async Task UpdateAndOrderAlbums()
         {
             if (Albums.Count != AlbumDict.Count)
             {
@@ -104,13 +104,18 @@ namespace Music_thing
                 }
                 if (Albumkeys != null)
                 {
-                    Albumkeys.Sort();//((x, y) => );
-                    ObservableCollection<Album> Newalbums = new ObservableCollection<Album>();
-                    foreach (string albumkey in Albumkeys)
+                    Albumkeys.Sort();
+                    Albums.Clear();
+                    for (int i = 0; i < Albumkeys.Count; i++)
                     {
-                        Newalbums.Add(AlbumDict[albumkey]);
+                        string albumkey = Albumkeys[i];
+                        var album = AlbumDict[albumkey];
+                        if (album.Albumart == null)
+                        {
+                            album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
+                        }
+                        Albums.Add(album);
                     }
-                    Albums = Newalbums;
                 }
             }
         }
@@ -128,27 +133,14 @@ namespace Music_thing
                 if (Artistkeys != null)
                 {
                     Artistkeys.Sort();//((x, y) => );
-                    ObservableCollection<Artist> NewArtists = new ObservableCollection<Artist>();
+                    Artists.Clear();
                     foreach (string artistkey in Artistkeys)
                     {
-                        NewArtists.Add(ArtistDict[artistkey]);
+                        Artists.Add(ArtistDict[artistkey]);
                     }
-                    Artists = NewArtists;
-
                 }
             }
         }
-
-        /*public static async Task SaveFlavours()
-        {
-            foreach (Playlist playlist in PlaylistDict.Values)
-            {
-                await playlist.SavePlaylistFile(false);
-            }
-
-        }*/
-
-
         //Updates the list of songs from the dictionary. This is done so that the observable list of songs is smoothly updated as they are discovered asynchronously by the file finder threads. 
         public static void UpdateAndOrderSongs()
         {
@@ -163,12 +155,11 @@ namespace Music_thing
                 {
                     Songkeys.Sort();//((x, y) => );
                     Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
-                    ObservableCollection<Song> Newsongs = new ObservableCollection<Song>();
+                    Songs.Clear();
                     foreach (string songkey in Songkeys)
                     {
-                        Newsongs.Add(SongDict[songkey]);
+                        Songs.Add(SongDict[songkey]);
                     }
-                    Songs = Newsongs;
                 }
             }
         }

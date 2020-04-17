@@ -40,9 +40,7 @@ namespace Music_thing
             this.InitializeComponent();
 
             Songs = SongListStorage.Songs;
-
         }
-
 
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {

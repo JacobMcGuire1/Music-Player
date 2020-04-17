@@ -53,7 +53,7 @@ namespace Music_thing
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (true)
+            /*if (true)
             {
                 foreach (Album album in Albums)
                 {
@@ -71,7 +71,7 @@ namespace Music_thing
                     }
                 }
                 artloaded = true;
-            }
+            }*/
         }
 
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)

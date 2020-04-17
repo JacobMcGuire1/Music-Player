@@ -33,26 +33,6 @@ namespace Music_thing
 
             currentid = 0;
 
-            //BAck stuff
-            //KeyboardAccelerator GoBack = new KeyboardAccelerator();
-            //GoBack.Key = VirtualKey.GoBack;
-            //GoBack.Invoked += BackInvoked;
-            //KeyboardAccelerator AltLeft = new KeyboardAccelerator();
-            //AltLeft.Key = VirtualKey.Left;
-            // AltLeft.Invoked += BackInvoked;
-            ///    //  KeyboardAccelerator t = new KeyboardAccelerator();
-            //   t.Key = VirtualKey.Back;
-            //  t.Invoked += BackInvoked;
-            //   this.KeyboardAccelerators.Add(GoBack);
-            //  this.KeyboardAccelerators.Add(AltLeft);
-            //  this.KeyboardAccelerators.Add(t);
-            // ALT routes here
-            //   AltLeft.Modifiers = VirtualKeyModifiers.Menu;
-
-
-
-            //SongListStorage.GetSongList(); //Should change/remove this.
-            //Database.GetSongs(); //Temp
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(AppTitleBar);
@@ -354,14 +334,24 @@ namespace Music_thing
 
         private async void FlyoutPlay_Click(object sender, RoutedEventArgs e)
         {
-            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
-            await SongListStorage.PlaylistDict[playlistid].Play();
+            try
+            {
+                var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+                await SongListStorage.PlaylistDict[playlistid].Play();
+            }
+            catch { }
+            
         }
 
         private async void FlyoutAddToNowPLaying_Click(object sender, RoutedEventArgs e)
         {
-            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
-            await SongListStorage.PlaylistDict[playlistid].AddToPlaylist();
+            try
+            {
+                var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+                await SongListStorage.PlaylistDict[playlistid].AddToPlaylist();
+            }
+            catch { }
+            
         }
 
         private async void FlyoutRename_Click(object sender, RoutedEventArgs e)
@@ -473,7 +463,10 @@ namespace Music_thing
         {
             var id = (long)item.Tag;
             //ContentFrame.Navigate(typeof(AlbumPage), dict["albumkey"]);
-            ContentFrame.Navigate(typeof(AlbumPage), id);
+            if (SongListStorage.PlaylistDict.ContainsKey(id))
+            {
+                ContentFrame.Navigate(typeof(AlbumPage), id);
+            }
         }
 
         public enum MediaState

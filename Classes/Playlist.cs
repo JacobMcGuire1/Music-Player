@@ -175,8 +175,8 @@ namespace Music_thing
 
             for (int i = 0; i < Songids.Count; i++)
             {
-                try
-                {
+                if (SongListStorage.SongDict.ContainsKey(Songids[i]))
+                { 
                     Song song = SongListStorage.SongDict[Songids[i]];
                     //song.isFlavour = true;
                     //song.TrackNumber = i;
@@ -196,13 +196,7 @@ namespace Music_thing
                     };
 
                     Songs.Add(newSong);
-                }
-                catch(KeyNotFoundException E)
-                {
-                    //Debug.WriteLine("Couldn't fine key " + Songids[i] + " in the collection.");
-                    Debug.WriteLine(E.Message);
-                }
-                
+                }  
             }
 
             //OrderByTrack(); //Should get rid of this

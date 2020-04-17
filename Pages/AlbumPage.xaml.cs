@@ -78,7 +78,11 @@ namespace Music_thing
         {
             if (CurrentAlbum != null)
             {
-                return SongListStorage.AlbumDict[CurrentAlbum].Name;
+                if (SongListStorage.AlbumDict.ContainsKey(CurrentAlbum))
+                {
+                    return SongListStorage.AlbumDict[CurrentAlbum].Name;
+                }
+                return "Album not yet loaded.";
             }
             return PlaylistName;
         }
@@ -87,7 +91,11 @@ namespace Music_thing
         {
             if (CurrentAlbum != null)
             {
-               return SongListStorage.AlbumDict[CurrentAlbum].Artist;
+                if (SongListStorage.AlbumDict.ContainsKey(CurrentAlbum))
+                {
+                    return SongListStorage.AlbumDict[CurrentAlbum].Artist;
+                }
+                return "";
             }
             return "";
         }
@@ -96,7 +104,11 @@ namespace Music_thing
         {
             if (CurrentAlbum != null)
             {
-                return SongListStorage.AlbumDict[CurrentAlbum].GetStringYear();
+                if (SongListStorage.AlbumDict.ContainsKey(CurrentAlbum))
+                {
+                    return SongListStorage.AlbumDict[CurrentAlbum].GetStringYear();
+                }
+                return "";
             }
             return "";
         }
@@ -117,19 +129,27 @@ namespace Music_thing
                 var playlist = SongListStorage.PlaylistDict[playlistid];
                 if (playlist.isflavour)
                 {
-                    NewTabButton.Visibility = Visibility.Visible;
-                    Album album = SongListStorage.AlbumDict[SongListStorage.PlaylistDict[playlistid].albumkey];
-                    ChangeAlbum(album);
-                    AddExistingFlavourTabs();
-
-                    for (int i = 0; i < TabItems.Count(); i++)
+                    if (SongListStorage.AlbumDict.ContainsKey(SongListStorage.PlaylistDict[playlistid].albumkey))
                     {
-                        var tab = (TabViewItem)TabItems[i];
-                        //var nametextblock = (TextBlock)headerstackpanel.Children[1];
-                        if (tab.Tag is long id && id == playlistid)
+                        NewTabButton.Visibility = Visibility.Visible;
+                        Album album = SongListStorage.AlbumDict[SongListStorage.PlaylistDict[playlistid].albumkey];
+                        ChangeAlbum(album);
+                        AddExistingFlavourTabs();
+
+                        for (int i = 0; i < TabItems.Count(); i++)
                         {
-                            SongVersionTabs.SelectedIndex = i;
+                            var tab = (TabViewItem)TabItems[i];
+                            //var nametextblock = (TextBlock)headerstackpanel.Children[1];
+                            if (tab.Tag is long id && id == playlistid)
+                            {
+                                SongVersionTabs.SelectedIndex = i;
+                            }
                         }
+                    }
+                    else
+                    {
+                        CurrentAlbum = "Album not yet loaded.";
+                        NewTabButton.Visibility = Visibility.Collapsed;
                     }
                 }
                 else
