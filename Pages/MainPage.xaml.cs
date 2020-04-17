@@ -326,6 +326,12 @@ namespace Music_thing
                 ((MenuFlyoutItem)sender).Text = "Unpin";
                 playlist.pinned = true;
             }
+
+            if (ContentFrame.Content is AlbumPage albumPage)
+            {
+                albumPage.ToggledPinned(playlistid);
+            }
+
             await LoadPinnedFlavours();
         }
 
@@ -337,6 +343,11 @@ namespace Music_thing
             if (playlist.isflavour) SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
             await playlist.DeleteFile();
             SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
+
+            if (ContentFrame.Content is AlbumPage albumPage)
+            {
+                albumPage.DeletedPlaylist(playlistid);
+            }
 
             await LoadPinnedFlavours();
         }
@@ -357,6 +368,12 @@ namespace Music_thing
         {
             var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
             await SongListStorage.PlaylistDict[playlistid].Rename();
+
+            if (ContentFrame.Content is AlbumPage albumPage)
+            {
+                albumPage.RenamedPlaylist(playlistid);
+            }
+
         }
 
         private void NavigationViewItem_DragOver(object sender, DragEventArgs e)
@@ -388,6 +405,12 @@ namespace Music_thing
                 //await SongListStorage.SaveFlavours();
                 await flavour.SavePlaylistFile(false);
                 App.GetForCurrentView().NotificationMessage("Added song(s) to playlist '" + SongListStorage.PlaylistDict[playlistid].Name + "'.");
+                //var c = ContentFrame;
+                //var p = ContentFrame.Content;
+                if (ContentFrame.Content is AlbumPage albumPage)
+                {
+                    albumPage.PlaylistChanged(playlistid);
+                }
                 def.Complete();
             }
         }

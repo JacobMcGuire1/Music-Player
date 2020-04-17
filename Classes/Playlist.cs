@@ -80,7 +80,7 @@ namespace Music_thing
                 };
                 TextBox textBox = new TextBox()
                 {
-
+                    Text = Name
                 };
                 if (!err)
                 {

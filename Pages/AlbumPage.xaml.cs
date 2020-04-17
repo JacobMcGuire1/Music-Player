@@ -388,6 +388,44 @@ namespace Music_thing
             }
         }
 
+        internal void DeletedPlaylist(long playlistid)
+        {
+            /*foreach (TabViewItem tab in TabItems)
+            {
+                if (((tab.Header as StackPanel).Children[0] as Button).Tag is long pid && pid == playlistid)
+                {
+                    TabItems.Remove(tab);
+                    break;
+                }
+            }*/
+            OrderTabs();
+        }
+
+        public void RenamedPlaylist(long playlistid)
+        {
+            var playlist = SongListStorage.PlaylistDict[playlistid];
+            foreach (TabViewItem tab in TabItems)
+            {
+                if (((tab.Header as StackPanel).Children[0] as Button).Tag is long pid && pid == playlistid)
+                {
+                    ((TextBlock)((StackPanel)tab.Header).Children[1]).Text = playlist.Name;
+                }
+            }
+            PlaylistName = playlist.Name;
+            Bindings.Update();
+        }
+
+        public void ToggledPinned(long playlistid)
+        {
+            foreach (TabViewItem tab in TabItems)
+            {
+                if (((tab.Header as StackPanel).Children[0] as Button).Tag is long pid && pid == playlistid)
+                {
+                    ((tab.Content as Frame).Content as AlbumSongList).ToggledPinned();
+                }
+            }
+        }
+
         private async void RenameButton_Click(object sender, RoutedEventArgs e)
         {
             var menuflyoutitem = (MenuFlyoutItem)sender;
@@ -464,6 +502,17 @@ namespace Music_thing
                     BigArt.Width = 250;
                     albumart = await SongListStorage.AlbumDict[CurrentAlbum].GetAlbumArt(250, SongListStorage.SongDict);
                     Bindings.Update();
+                }
+            }
+        }
+
+        public void PlaylistChanged(long playlistid)
+        {
+            foreach(TabViewItem tab in TabItems)
+            {
+                if (((tab.Header as StackPanel).Children[0] as Button).Tag is long pid && pid == playlistid)
+                {
+                    ((tab.Content as Frame).Content as AlbumSongList).ReloadSongs();
                 }
             }
         }

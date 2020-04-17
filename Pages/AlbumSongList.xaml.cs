@@ -42,6 +42,13 @@ namespace Music_thing
             await flavour.SavePlaylistFile(false);
         }
 
+        public void ReloadSongs()
+        {
+            Songs = flavour.ObserveSongs();
+            Songs.CollectionChanged += Songs_CollectionChanged;
+            Bindings.Update();
+        }
+
         //arg is a struct containing album id and an int representing which flavour of the album this is.
         //Original album is -1.
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -191,6 +198,18 @@ namespace Music_thing
                 }
             }
             
+        }
+
+        internal void ToggledPinned()
+        {
+            if (flavour.pinned)
+            {
+                addSongText.Text = "Unpin this flavour from the side panel";
+            }
+            else
+            {
+                addSongText.Text = "Pin your flavour to the side panel";
+            }
         }
     }
 }
