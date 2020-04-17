@@ -1,27 +1,14 @@
-﻿using Microsoft.Graphics.Canvas.Effects;
-using Music_thing.Pages;
+﻿using Music_thing.Pages;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
-using Windows.Storage;
-using Windows.System;
-using Windows.UI.Composition;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -75,7 +62,7 @@ namespace Music_thing
             }
             catch { VolumeSlider.Value = 30; }
 
-
+            
             //SongListStorage.FindArtists();
 
             mediaPlayerElement.SetMediaPlayer(Media.Instance.mediaPlayer);
@@ -84,6 +71,9 @@ namespace Music_thing
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
             }
             ShowUnpinnedCheckBox.IsChecked = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"];
+
+            
+
 
         }
 
@@ -100,15 +90,16 @@ namespace Music_thing
             progressbar.Visibility = Visibility.Collapsed;
             progressbartextblock.Visibility = Visibility.Visible;
             progressbartextblock.Text = Message;
+            progressbartextblock.HorizontalAlignment = HorizontalAlignment.Center;
+            Notification.Show(5000);
         }
 
         public void DisplayLoading(int songsloaded, int totalfiles, int filesscanned, bool complete)
         {
-            progressbartextblock.Visibility = Visibility.Visible;
             if (!complete)
             {
-                progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
                 progressbar.Visibility = Visibility.Visible;
+                progressbartextblock.Text = "Scanning for music. Found " + songsloaded.ToString() + " songs so far.";
                 if (songsloaded == 0)
                 {
                     progressbar.IsIndeterminate = true;
@@ -126,6 +117,7 @@ namespace Music_thing
                 progressbartextblock.Text = "Loaded " + songsloaded + " songs.";
                 progressbar.Visibility = Visibility.Collapsed;
             }
+            Notification.Show(5000);
         }
 
         public void UpdatePlaylistName(long playlistid)
@@ -558,6 +550,7 @@ namespace Music_thing
 
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            
             progressbar.Visibility = Visibility.Collapsed;
             progressbartextblock.Visibility = Visibility.Collapsed;
         }
@@ -715,7 +708,7 @@ namespace Music_thing
                 VolumeNowPlayingGrid.Children.Add(SongInfoStackPanel);
                 VolumeNowPlayingGrid.Children.Add(VolumeStack);
                 //VolumeStack.HorizontalAlignment = HorizontalAlignment.Right;
-                ProgressStackPanel.Visibility = Visibility.Collapsed;
+                //ProgressStackPanel.Visibility = Visibility.Collapsed;
                 //SongNameTextBlock.Margin = new Thickness(0, 0, 0, 0);
                 //SongTextStackPanel.Children.Add(mediaPlayerElement);
                 mediaPlayerElement.MaxWidth = 400;
@@ -729,7 +722,7 @@ namespace Music_thing
             else if(size < 1200.0)
             {
                 Grid.SetColumn(VolumeStack, 2);
-                ProgressStackPanel.Visibility = Visibility.Collapsed;
+                //ProgressStackPanel.Visibility = Visibility.Collapsed;
                 VolumeStack.Visibility = Visibility.Visible;
                 //SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
                 mediaPlayerElement.MaxWidth = 321312;
@@ -740,28 +733,18 @@ namespace Music_thing
                 BottomGrid.Children.Add(VolumeStack);
                 SmolGrid.Visibility = Visibility.Collapsed;
                 BottomGrid.Visibility = Visibility.Visible;
-                var coldef = new ColumnDefinition()
-                {
-                    Width = new GridLength(0, GridUnitType.Star)
-                };
-                BottomGrid.ColumnDefinitions[3] = coldef;
             }
             else
             {
                 Grid.SetColumn(VolumeStack, 2);
-                ProgressStackPanel.Visibility = Visibility.Visible;
-                var coldef = new ColumnDefinition()
-                {
-                    Width = new GridLength(1, GridUnitType.Star)
-                };
-                BottomGrid.ColumnDefinitions[3] = coldef;
+                //ProgressStackPanel.Visibility = Visibility.Visible;
                 //SongNameTextBlock.Margin = new Thickness(0, 25, 0, 0);
                 mediaPlayerElement.MaxWidth = 321312;
                 mediaPlayerElement.TransportControls.IsCompact = false;
                 BottomGrid.Children.Add(SongInfoStackPanel);
                 BottomGrid.Children.Add(mediaPlayerElement);
                 BottomGrid.Children.Add(VolumeStack);
-                BottomGrid.Children.Add(ProgressStackPanel);
+                //.Children.Add(ProgressStackPanel);
                 SmolGrid.Visibility = Visibility.Collapsed;
                 BottomGrid.Visibility = Visibility.Visible;
             }
