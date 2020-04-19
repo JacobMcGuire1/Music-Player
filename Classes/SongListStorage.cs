@@ -83,11 +83,11 @@ namespace Music_thing
             return PlaylistRepresentation[CurrentPlaceInPlaylist];
         }
 
-        public static void UpdateAndOrderMusic()
+        public static async Task UpdateAndOrderMusic()
         {
             UpdateAndOrderSongs();
             UpdateAndOrderArtists();
-            UpdateAndOrderAlbums();
+            await UpdateAndOrderAlbums();
         }
 
         
@@ -105,7 +105,7 @@ namespace Music_thing
                 if (Albumkeys != null)
                 {
                     Albumkeys.Sort();
-                    Albums.Clear();
+                    //Albums.Clear();
                     for (int i = 0; i < Albumkeys.Count; i++)
                     {
                         string albumkey = Albumkeys[i];
@@ -114,7 +114,14 @@ namespace Music_thing
                         {
                             album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
                         }
-                        Albums.Add(album);
+                        if (i < Albums.Count)
+                        {
+                            Albums[i] = album;
+                        }
+                        else
+                        {
+                            Albums.Add(album);
+                        }
                     }
                 }
             }
@@ -133,10 +140,18 @@ namespace Music_thing
                 if (Artistkeys != null)
                 {
                     Artistkeys.Sort();//((x, y) => );
-                    Artists.Clear();
-                    foreach (string artistkey in Artistkeys)
+                    //Artists.Clear();
+                    for (int i = 0; i < Artistkeys.Count; i++)
                     {
-                        Artists.Add(ArtistDict[artistkey]);
+                        String artistkey = Artistkeys[i];
+                        if (i < Artists.Count)
+                        {
+                            Artists[i] = ArtistDict[artistkey];
+                        }
+                        else
+                        {
+                            Artists.Add(ArtistDict[artistkey]);
+                        }
                     }
                 }
             }
@@ -155,10 +170,19 @@ namespace Music_thing
                 {
                     Songkeys.Sort();//((x, y) => );
                     Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
-                    Songs.Clear();
-                    foreach (string songkey in Songkeys)
+                    //Songs.Clear();
+                    for (int i = 0; i < Songkeys.Count; i++)
                     {
-                        Songs.Add(SongDict[songkey]);
+                        string songkey = Songkeys[i];
+                        Songs.Insert(i, SongDict[songkey]);
+                        if (i < Songs.Count)
+                        {
+                            Songs[i] = SongDict[songkey];
+                        }
+                        else
+                        {
+                            Songs.Add(SongDict[songkey]);
+                        }
                     }
                 }
             }

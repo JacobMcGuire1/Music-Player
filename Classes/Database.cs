@@ -19,7 +19,7 @@ namespace Music_thing
     public static class Database
     {
         //Gets a collection of song files.
-        public static async void GetSongs(bool FirstTime)
+        public static async Task GetSongs(bool FirstTime)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Music_thing
                     }
                     if (songsfound % 50 == 0)
                     {
-                        if (FirstTime) SongListStorage.UpdateAndOrderMusic();
+                        if (FirstTime) await SongListStorage.UpdateAndOrderMusic();
                     }
                     MusicProperties musicProperties = await (file as StorageFile).Properties.GetMusicPropertiesAsync();
 
@@ -140,7 +140,7 @@ namespace Music_thing
                 App.GetForCurrentView().DisplayLoading(songsfound, files.Count, filesscanned, true);
             }
             catch { }
-            SongListStorage.UpdateAndOrderMusic();
+            await SongListStorage.UpdateAndOrderMusic();
 
             await MusicToJSON();
 
@@ -234,14 +234,14 @@ namespace Music_thing
             {
                 Debug.WriteLine("Couldn't load music.");
                 Debug.WriteLine(E.Message);
-                GetSongs(true);
+                await GetSongs(true);
             }
             if (!Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ShowUnpinnedFlavours"))
             {
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
             }
             await SongListStorage.GetNowPlaying();
-            SongListStorage.UpdateAndOrderMusic();
+            await SongListStorage.UpdateAndOrderMusic();
             await Windows.System.Threading.ThreadPool.RunAsync(SongListStorage.PeriodicallySave, Windows.System.Threading.WorkItemPriority.High);
             await SongListStorage.LoadFlavours();
             SongListStorage.LoadVolume();

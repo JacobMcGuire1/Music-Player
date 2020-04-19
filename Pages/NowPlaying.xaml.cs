@@ -55,7 +55,7 @@ namespace Music_thing
                 }
                 lastremovewasdel = false;
             }
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add) //Bugged when adding songs
             {
                 int newmoveindex = e.NewStartingIndex;
                 if (oldmoveindex != -1)
@@ -113,7 +113,7 @@ namespace Music_thing
 
         private async void Removebutton_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
+            var button = (Button)sender;
             int index = GetIndexFromButton(button);
             lastremovewasdel = true;
             await Media.Instance.RemoveSong(index);

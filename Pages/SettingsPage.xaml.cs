@@ -40,7 +40,7 @@ namespace Music_thing
 
         private async void Updatemusicbutton_Click(object sender, RoutedEventArgs e)
         {
-            Database.GetSongs(false);
+            await Database.GetSongs(false);
             await App.GetForCurrentView().LoadPinnedFlavours();
         }
     }
