@@ -53,6 +53,7 @@ namespace Music_thing
             mediaPlayer.Source = Playlist;
 
             Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
             try
             {
@@ -78,6 +79,12 @@ namespace Music_thing
             NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
+        }
+
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            MoveTo(0);
+            mediaPlayer.Pause();
         }
 
         //Used to inform the UI that something about the currently playing song has changed.
