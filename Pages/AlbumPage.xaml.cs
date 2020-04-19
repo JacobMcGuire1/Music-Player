@@ -7,7 +7,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -257,31 +259,9 @@ namespace Music_thing
             await playlist.SavePlaylistFile(true);
             SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
 
-            /*{
-                Name = flavourname,
-                albumname = SongListStorage.AlbumDict[CurrentAlbum].Name,
-                albumkey = SongListStorage.AlbumDict[CurrentAlbum].Key,
-                Artist = SongListStorage.AlbumDict[CurrentAlbum].Artist,
-                Songids = new List<string>(SongListStorage.AlbumDict[CurrentAlbum].Songids),
-                pinned = true,
-            };*/
-
-            /*List<Flavour> flavours = new List<Flavour>
-            {
-                flavour
-            };*/
-            //flavours.Add(songids);
-
-            //SongListStorage.AlbumFlavourDict.AddOrUpdate(CurrentAlbum, flavours, (CurrentAlbum2, existingflavours) => AddNewFlavour(existingflavours, flavour));
-
-            //frame.Navigate(typeof(AlbumSongList), flavour);
-            //newtab.Content = frame;
-            //TabItems.Add(newtab);
             CreateTab(playlist);
 
-            await App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
-            //await SongListStorage.SaveFlavours();
-
+            await App.GetForCurrentView().LoadPinnedFlavours();
         }
 
         private void OpenArtistPageButton_Click(object sender, RoutedEventArgs e)
@@ -382,14 +362,16 @@ namespace Music_thing
                 tab.IsClosable = false;
                 //pinbutton.Tag = "";
                 nametextblock.Text = "Original Album";
+                frame.Tag = CurrentAlbum;
                 // TabItems.Add(tab);
             }
             else
             {
-                
+
                 //headerstackpanel.ContextFlyout = new MenuFlyout();
                 //Button RenameButton = new Button() { Content = "Rename", Tag = playlist.PlaylistID, Name = "RenameButton" };
                 //RenameButton.Click += RenameButton_Click;
+                frame.Tag = playlist.PlaylistID;
                 var flyout = new MenuFlyout();
                 var flyoutitem = new MenuFlyoutItem() { Text = "Rename", Tag = playlist.PlaylistID };
                 flyoutitem.Click += RenameButton_Click;
@@ -535,6 +517,32 @@ namespace Music_thing
                     ((tab.Content as Frame).Content as AlbumSongList).ReloadSongs();
                 }
             }
+        }
+
+        private void SongVersionTabs_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            var c = (Frame)e.Items[0];
+            Album album = new Album();
+            if (c.Tag is long playlistid)
+            {
+                album = SongListStorage.PlaylistDict[playlistid];
+            }
+            else if (c.Tag is string albumid)
+            {
+                album = SongListStorage.AlbumDict[albumid];
+            }
+            var songids = album.Songids;
+
+            var items = new StringBuilder();
+            foreach (String songid in songids)
+            {
+                if (items.Length > 0) items.AppendLine();
+                items.Append(songid);
+            }
+            var t = items.ToString();
+            e.Data.SetText(items.ToString());
+
+            e.Data.RequestedOperation = DataPackageOperation.Copy;
         }
     }
 }

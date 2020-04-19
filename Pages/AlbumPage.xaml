@@ -30,10 +30,11 @@
                 <controls:TabView x:Name="SongVersionTabs" 
                           CanCloseTabs="True"
                           IsCloseButtonOverlay="False"
-                          CanDragItems="False"
+                          CanDragItems="True"
                           CanReorderItems="False"
                           AllowDrop="True"
                           TabClosing="SongVersionTabs_TabClosing"
+                                  DragItemsStarting="SongVersionTabs_DragItemsStarting"
                           >
                     <controls:TabView.Resources>
                         <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>
