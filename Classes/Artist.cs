@@ -22,6 +22,11 @@ namespace Music_thing
             return false;
         }
 
+        public string GetStringAlbumCount()
+        {
+            return (" " + Albums.Count.ToString() + " album(s)");
+        }
+
         //Add functions to order albums by year etc.
 
     }
