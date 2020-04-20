@@ -68,10 +68,16 @@ namespace Music_thing
             }
             else
             {
-                var art = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
-                art.DecodePixelHeight = 250;
-                art.DecodePixelWidth = 250;
-                albumart = art;
+                try
+                {
+                    var art = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"))
+                    {
+                        DecodePixelHeight = 250,
+                        DecodePixelWidth = 250
+                    };
+                    albumart = art;
+                }
+                catch { }
             }
             Bindings.Update();
         }

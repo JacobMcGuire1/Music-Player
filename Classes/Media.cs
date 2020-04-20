@@ -39,8 +39,7 @@ namespace Music_thing
 
         public bool Muted = false;
 
-        BitmapImage DefaultArt =
-                     new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
+        public BitmapImage DefaultArt;
 
         //public Song CurrentSong;
 
@@ -48,6 +47,11 @@ namespace Music_thing
 
         private Media()
         {
+            try
+            {
+                DefaultArt = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
+            }
+            catch { }
             mediaPlayer.AudioCategory = MediaPlayerAudioCategory.Media;
 
             mediaPlayer.Source = Playlist;

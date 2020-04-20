@@ -51,29 +51,6 @@ namespace Music_thing
             //Media.Instance.addSong(song);
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            /*if (true)
-            {
-                foreach (Album album in Albums)
-                {
-                    if (album.Albumart == null)
-                    {
-                        try
-                        {
-                            album.Albumart = await album.GetAlbumArt(200, SongListStorage.SongDict);
-                            //Bindings.Update();
-                        }
-                        catch
-                        {
-
-                        }
-                    }
-                }
-                artloaded = true;
-            }*/
-        }
-
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)
         {
             string albumid = (string)((Button)sender).Tag;
