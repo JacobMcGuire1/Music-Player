@@ -78,6 +78,7 @@ namespace Music_thing
                 else
                 {
                     PinButtonPanel.Visibility = Visibility.Collapsed;
+                    
                 }
 
                 if (flavour.pinned)
@@ -161,7 +162,7 @@ namespace Music_thing
 
         private void StackPanel_DragStarting(UIElement sender, DragStartingEventArgs args)
         {
-            StackPanel send = (StackPanel)sender;
+            Grid send = (Grid)sender;
             var songid = send.Tag.ToString();
             args.Data.SetText(songid);
             args.Data.RequestedOperation = DataPackageOperation.Copy;
@@ -209,6 +210,26 @@ namespace Music_thing
             else
             {
                 addSongText.Text = "Pin your flavour to the side panel";
+            }
+        }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            var artistname = (TextBlock)grid.FindName("SongArtistNameTextBlock");
+            if (flavour == null)
+            {
+                grid.ColumnDefinitions[6] = new ColumnDefinition() { Width = new GridLength(0.0, GridUnitType.Star) };
+            }
+            if (e.NewSize.Width <= 800)
+            {
+                artistname.Visibility = Visibility.Collapsed;
+                grid.ColumnDefinitions[4] = new ColumnDefinition() { Width = new GridLength(0.0, GridUnitType.Star) };
+            }
+            else
+            {
+                artistname.Visibility = Visibility.Visible;
+                grid.ColumnDefinitions[4] = new ColumnDefinition() { Width = new GridLength(1.5, GridUnitType.Star) };
             }
         }
     }

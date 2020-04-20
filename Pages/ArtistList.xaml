@@ -11,13 +11,21 @@
 
     <Grid>
         <ListView x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Artists}" ItemClick="ListViewArtists_ItemClick" IsItemClickEnabled="True">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Artist">
-                    <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0" Tag="{x:Bind name}">
-                        <TextBlock Text="{x:Bind name}" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBlock Text=" - " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBlock Text="{x:Bind GetStringAlbumCount()}" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    </StackPanel>
+                    <Grid Height="44" Margin="0,0,0,0" Tag="{x:Bind name}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{x:Bind name}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBlock Grid.Column="1" Text="{x:Bind GetStringAlbumCount()}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
