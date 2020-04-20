@@ -808,5 +808,12 @@ namespace Music_thing
         {
 
         }
+
+        private void VolumeStack_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            var v = e.GetCurrentPoint((StackPanel)sender);
+            var k = v.Properties.MouseWheelDelta;
+            VolumeSlider.Value += (k / 50);
+        }
     }
 }

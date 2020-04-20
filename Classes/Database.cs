@@ -241,11 +241,13 @@ namespace Music_thing
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
             }
             await SongListStorage.GetNowPlaying();
-            await SongListStorage.UpdateAndOrderMusic();
-            await Windows.System.Threading.ThreadPool.RunAsync(SongListStorage.PeriodicallySave, Windows.System.Threading.WorkItemPriority.High);
             await SongListStorage.LoadFlavours();
             SongListStorage.LoadVolume();
             Media.Instance.VolChanged();
+            await SongListStorage.UpdateAndOrderMusic();
+            await Windows.System.Threading.ThreadPool.RunAsync(SongListStorage.PeriodicallySave, Windows.System.Threading.WorkItemPriority.High);
+            
+            
             //SongListStorage.GetSongList();
 
 
