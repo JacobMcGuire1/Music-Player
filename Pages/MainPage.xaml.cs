@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Popups;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -317,19 +318,29 @@ namespace Music_thing
 
         private async void FlyoutDelete_Click(object sender, RoutedEventArgs e)
         {
-            var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
-            var playlist = SongListStorage.PlaylistDict[playlistid];
+            MessageDialog dialog = new MessageDialog("Are you sure you want to delete this playlist?");
+            dialog.Commands.Add(new UICommand("Yes", null));
+            dialog.Commands.Add(new UICommand("No", null));
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 1;
+            var cmd = await dialog.ShowAsync();
 
-            if (playlist.isflavour) SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
-            await playlist.DeleteFile();
-            SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
-
-            if (ContentFrame.Content is AlbumPage albumPage)
+            if (cmd.Label == "Yes")
             {
-                albumPage.DeletedPlaylist(playlistid);
-            }
+                var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
+                var playlist = SongListStorage.PlaylistDict[playlistid];
 
-            await LoadPinnedFlavours();
+                if (playlist.isflavour) SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
+                await playlist.DeleteFile();
+                SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
+
+                if (ContentFrame.Content is AlbumPage albumPage)
+                {
+                    albumPage.DeletedPlaylist(playlistid);
+                }
+                await LoadPinnedFlavours();
+            }
+                
         }
 
         private async void FlyoutPlay_Click(object sender, RoutedEventArgs e)

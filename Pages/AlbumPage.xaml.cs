@@ -278,22 +278,35 @@ namespace Music_thing
 
         private async void SongVersionTabs_TabClosing(object sender, TabClosingEventArgs e)
         {
+            e.Cancel = true;
             var tab = (TabViewItem)e.Tab;
-            if (tab.Tag is long flavourid)
-            {
-                try
-                {
-                    var flavour = SongListStorage.PlaylistDict[flavourid];
-                    if (flavour.isflavour) SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
-                    await flavour.DeleteFile();
-                    TabItems.Remove(tab);
-                    SongListStorage.PlaylistDict.Remove(flavourid, out flavour);
 
-                    await App.GetForCurrentView().LoadPinnedFlavours();
-                    if (!flavour.isflavour) this.Frame.Navigate(typeof(AlbumList));
+            MessageDialog dialog = new MessageDialog("Are you sure you want to delete this playlist?");
+            dialog.Commands.Add(new UICommand("Yes", null));
+            dialog.Commands.Add(new UICommand("No", null));
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 1;
+            var cmd = await dialog.ShowAsync();
+
+            if (cmd.Label == "Yes")
+            {
+                if (tab.Tag is long flavourid)
+                {
+                    e.Cancel = false;
+                    try
+                    {
+                        var flavour = SongListStorage.PlaylistDict[flavourid];
+                        if (flavour.isflavour) SongListStorage.AlbumDict[CurrentAlbum].RemoveFlavour(flavourid);
+                        await flavour.DeleteFile();
+                        TabItems.Remove(tab);
+                        SongListStorage.PlaylistDict.Remove(flavourid, out flavour);
+
+                        await App.GetForCurrentView().LoadPinnedFlavours();
+                        if (!flavour.isflavour) this.Frame.Navigate(typeof(AlbumList));
+                    }
+                    catch { }
+
                 }
-                catch { }
-                
             }
         }
 
