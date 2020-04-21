@@ -68,7 +68,21 @@ namespace Music_thing
 
         public async Task<string> Rename()
         {
-            string flavourname = "";
+            TextBox textBox = new TextBox()
+            {
+                Text = Name
+            };
+            ContentDialog nameFlavourDialog = new ContentDialog()
+            {
+                Title = "Name your flavour",
+                Content = textBox,
+                CloseButtonText = "Cancel",
+                PrimaryButtonText = "Ok",
+                DefaultButton = ContentDialogButton.Primary
+            };
+            //nameFlavourDialog.
+            ContentDialogResult result = await nameFlavourDialog.ShowAsync();
+            /*string flavourname = "";
             bool err = false;
             while (flavourname == "")
             {
@@ -104,11 +118,18 @@ namespace Music_thing
 
                 flavourname = textBox.Text;
                 err = true;
+            }*/
+            if (result == ContentDialogResult.Primary)
+            {
+                Name = textBox.Text;
+                App.GetForCurrentView().UpdatePlaylistName(PlaylistID);
+                await SavePlaylistFile(false);
+                return Name;
             }
-            Name = flavourname;
-            App.GetForCurrentView().UpdatePlaylistName(PlaylistID);
-            await SavePlaylistFile(false);
-            return Name;
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<bool> SavePlaylistFile(bool fail)
