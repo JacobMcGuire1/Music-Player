@@ -213,61 +213,30 @@ namespace Music_thing
 
         private async void CreateAlbumVersion()
         {
-            //Generate a list of the current flavour names to ensure this one is unique.
-            /*List<String> currentflavournames = new List<string>();
-            if (SongListStorage.AlbumFlavourDict.ContainsKey(CurrentAlbum))
+            string playlistname = "New Playlist";
+            TextBox textBox = new TextBox()
             {
-                for (int i = 0; i < SongListStorage.AlbumFlavourDict[CurrentAlbum].Count; i++)
-                {
-                    currentflavournames.Add(SongListStorage.AlbumFlavourDict[CurrentAlbum][i].Name);
-                }
-            }*/
-            string flavourname = "";
-            bool err = false;
-            while (flavourname == "")
+                Text = playlistname
+            };
+            ContentDialog nameFlavourDialog = new ContentDialog()
             {
-                flavourname = "New Flavour";
-                ContentDialog nameFlavourDialog = new ContentDialog()
-                {
-                    Title = "Name your flavour",
-                    CloseButtonText = "Ok"
-                };
-                TextBox textBox = new TextBox()
-                {
-
-                };
-                if (!err)
-                {
-                    nameFlavourDialog.Content = textBox;
-                }
-                else
-                {
-                    var stackpanel = new StackPanel()
-                    {
-                        Orientation = Orientation.Vertical
-                    };
-                    TextBlock errormsgtext = new TextBlock()
-                    {
-                        Text = "Error: Please try another name."
-                    };
-                    stackpanel.Children.Add(textBox);
-                    stackpanel.Children.Add(errormsgtext);
-                    nameFlavourDialog.Content = stackpanel;
-                }
-                await nameFlavourDialog.ShowAsync();
-
-                flavourname = textBox.Text;
-                err = true;
+                Title = "Name your playlist",
+                Content = textBox,
+                CloseButtonText = "Cancel",
+                PrimaryButtonText = "Ok",
+                DefaultButton = ContentDialogButton.Primary
+            };
+            ContentDialogResult result = await nameFlavourDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                playlistname = textBox.Text;
+                Playlist playlist = new Playlist(playlistname, CurrentAlbum);
+                await playlist.SavePlaylistFile(true);
+                SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
+                CreateTab(playlist);
+                await App.GetForCurrentView().LoadPinnedFlavours();
             }
-
-            //Flavour flavour = new Flavour()
-            Playlist playlist = new Playlist(flavourname, CurrentAlbum);
-            await playlist.SavePlaylistFile(true);
-            SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
-
-            CreateTab(playlist);
-
-            await App.GetForCurrentView().LoadPinnedFlavours();
+            
         }
 
         private void OpenArtistPageButton_Click(object sender, RoutedEventArgs e)
@@ -419,7 +388,17 @@ namespace Music_thing
                     break;
                 }
             }*/
-            OrderTabs();
+            if (CurrentAlbum != null)
+            {
+                OrderTabs();
+            }
+            else
+            {
+                if ((long)((Frame)TabItems[0].Content).Tag == playlistid)
+                {
+                    this.Frame.Navigate(typeof(AlbumList));
+                }
+            }
         }
 
         public void RenamedPlaylist(long playlistid)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -126,6 +127,14 @@ namespace Music_thing
             return 1877310944 + EqualityComparer<string>.Default.GetHashCode(ID);
         }
 
+        public Brush GetBackgroundColour()
+        {
+            if (SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID == ID)
+            {
+                return new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+            }
+            return new SolidColorBrush(Color.FromArgb(0,0,0,0));
+        }
         /*public async void SetAlbumArt()
         {
             var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 300);

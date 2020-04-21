@@ -330,7 +330,10 @@ namespace Music_thing
                 var playlistid = (long)(((MenuFlyoutItem)sender).Tag);
                 var playlist = SongListStorage.PlaylistDict[playlistid];
 
-                if (playlist.isflavour) SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
+                if (playlist.isflavour)
+                {
+                    SongListStorage.AlbumDict[playlist.albumkey].RemoveFlavour(playlistid);
+                }
                 await playlist.DeleteFile();
                 SongListStorage.PlaylistDict.Remove(playlistid, out playlist);
 
@@ -432,12 +435,14 @@ namespace Music_thing
                 {
                     HandleFlavourClick(item);
                 }
-                /*else if (item.Name.Equals("ButtonHolder"))
+                else if (item.Name.Equals("ButtonHolder"))
                 {
                     //args.
                     sender.SelectedItem = null; //doesnt work
+                    ((NavigationViewItem)args.SelectedItem).IsSelected = false;
+                    //args.SelectedItem = null;
                     //sender.sel
-                }*/
+                }
                 else
                 {
                     switch (item.Tag.ToString())
@@ -584,51 +589,28 @@ namespace Music_thing
 
         private async void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            string playlistname = "";
-            bool err = false;
-            while (playlistname == "")
+            string playlistname = "New Playlist";
+            TextBox textBox = new TextBox()
             {
-                playlistname = "New Playlist";
-                ContentDialog nameFlavourDialog = new ContentDialog()
-                {
-                    Title = "Name your playlist",
-                    CloseButtonText = "Ok"
-                };
-                TextBox textBox = new TextBox()
-                {
-
-                };
-                if (!err)
-                {
-                    nameFlavourDialog.Content = textBox;
-                }
-                else
-                {
-                    var stackpanel = new StackPanel()
-                    {
-                        Orientation = Orientation.Vertical
-                    };
-                    TextBlock errormsgtext = new TextBlock()
-                    {
-                        Text = "Error: Please try another name."
-                    };
-                    stackpanel.Children.Add(textBox);
-                    stackpanel.Children.Add(errormsgtext);
-                    nameFlavourDialog.Content = stackpanel;
-                }
-                await nameFlavourDialog.ShowAsync();
-
+                Text = playlistname
+            };
+            ContentDialog nameFlavourDialog = new ContentDialog()
+            {
+                Title = "Name your playlist",
+                Content = textBox,
+                CloseButtonText = "Cancel",
+                PrimaryButtonText = "Ok",
+                DefaultButton = ContentDialogButton.Primary
+            };
+            ContentDialogResult result = await nameFlavourDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
                 playlistname = textBox.Text;
-                err = true;
+                Playlist playlist = new Playlist(playlistname);
+                await playlist.SavePlaylistFile(true);
+                SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
+                await App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
             }
-
-            //Flavour flavour = new Flavour()
-            Playlist playlist = new Playlist(playlistname);
-            await playlist.SavePlaylistFile(true);
-            SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
-
-            await App.GetForCurrentView().LoadPinnedFlavours(); //Because the flavour is pinned by default the list is updated in the UI.
-            //await SongListStorage.SaveFlavours();
         }
 
         
@@ -817,7 +799,7 @@ namespace Music_thing
 
         private void ButtonHolder_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            e.Handled = true;
         }
 
         private void VolumeStack_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
@@ -825,6 +807,21 @@ namespace Music_thing
             var v = e.GetCurrentPoint((StackPanel)sender);
             var k = v.Properties.MouseWheelDelta;
             VolumeSlider.Value += (k / 50);
+        }
+
+        private void ButtonHolder_ManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
+        {
+            ((NavigationViewItem)sender).IsSelected = false;
+            e.Handled = true;
+        }
+
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            //if (args.InvokedItem is StackPanel stackpanel && stackpanel.Tag.Equals("ButtonHolderStack")) //&& item.Name.Equals("ButtonHolder"))
+            //{
+                //args.
+            //}
+
         }
     }
 }

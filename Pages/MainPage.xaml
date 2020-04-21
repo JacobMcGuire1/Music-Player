@@ -38,7 +38,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested" CompactModeThresholdWidth="0">
+            <NavigationView SelectionChanged="NavView_SelectionChanged" Header="" AlwaysShowHeader="False" x:Name="NavView" Grid.Row="0" AllowDrop="True" IsBackEnabled="True" BackRequested="NavView_BackRequested" CompactModeThresholdWidth="0" ItemInvoked="NavView_ItemInvoked">
                 <NavigationView.MenuItems >
                     <NavigationViewItemHeader Content="Your Music"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Songs" x:Name="SongsButton" Icon="Audio" Tag="songs"/>
@@ -48,8 +48,8 @@
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Recently Played" x:Name="RecentPlayedButton" Icon="Undo" Tag="recentlyPlayed"/>
                     <NavigationViewItem Tapped="NavView_Tapped" Content="Now Playing" x:Name="NowPlayingButton"   Icon="Play" Tag="nowPlaying"/>
                     <NavigationViewItemHeader Content="Your Playlists"/>
-                    <NavigationViewItem Tag="Buttons" x:Name="ButtonHolder" Tapped="ButtonHolder_Tapped">
-                        <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
+                    <NavigationViewItem Tag="Buttons" x:Name="ButtonHolder" Tapped="ButtonHolder_Tapped" ManipulationStarting="ButtonHolder_ManipulationStarting">
+                        <StackPanel Orientation="Horizontal" Margin="35,0,0,0" Tag="ButtonHolderStack">
                             <Button x:Name="NewPlaylistButton" Click="NewPlaylistButton_Click" Background="Transparent">New Playlist</Button>
                             <TextBlock Margin="10,5,5,0">Show Unpinned</TextBlock>
                             <CheckBox x:Name="ShowUnpinnedCheckBox" Click="CheckBox_Click"></CheckBox>

@@ -4,11 +4,14 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -41,8 +44,22 @@ namespace Music_thing
             Playlist = SongListStorage.PlaylistRepresentation;
 
             Playlist.CollectionChanged += Playlist_CollectionChanged;
+            Media.Instance.Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
+
+
+            var g = ListViewPlayList.Items[0];
 
             //ListViewPlayList
+        }
+
+        private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
+        {
+            
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                Bindings.Update();
+            });
         }
 
         private async void Playlist_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

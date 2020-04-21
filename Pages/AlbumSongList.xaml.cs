@@ -105,7 +105,7 @@ namespace Music_thing
             int tracknumber = (int)((Button)sender).Tag;
 
             var parent = VisualTreeHelper.GetParent((Button)sender) as UIElement;
-            string songid = (string)(parent as StackPanel).Tag;
+            string songid = (string)(parent as Grid).Tag;
 
             await Media.Instance.PlayPlaylist(Songs, tracknumber, songid, true);
         }

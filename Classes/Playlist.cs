@@ -80,45 +80,7 @@ namespace Music_thing
                 PrimaryButtonText = "Ok",
                 DefaultButton = ContentDialogButton.Primary
             };
-            //nameFlavourDialog.
             ContentDialogResult result = await nameFlavourDialog.ShowAsync();
-            /*string flavourname = "";
-            bool err = false;
-            while (flavourname == "")
-            {
-                flavourname = Name;
-                ContentDialog nameFlavourDialog = new ContentDialog()
-                {
-                    Title = "Name your flavour",
-                    CloseButtonText = "Ok"
-                };
-                TextBox textBox = new TextBox()
-                {
-                    Text = Name
-                };
-                if (!err)
-                {
-                    nameFlavourDialog.Content = textBox;
-                }
-                else
-                {
-                    var stackpanel = new StackPanel()
-                    {
-                        Orientation = Orientation.Vertical
-                    };
-                    TextBlock errormsgtext = new TextBlock()
-                    {
-                        Text = "Error: Please try another name."
-                    };
-                    stackpanel.Children.Add(textBox);
-                    stackpanel.Children.Add(errormsgtext);
-                    nameFlavourDialog.Content = stackpanel;
-                }
-                await nameFlavourDialog.ShowAsync();
-
-                flavourname = textBox.Text;
-                err = true;
-            }*/
             if (result == ContentDialogResult.Primary)
             {
                 Name = textBox.Text;
