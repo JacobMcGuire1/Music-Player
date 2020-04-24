@@ -56,6 +56,8 @@ namespace Music_thing
 
             mediaPlayer.Source = Playlist;
 
+            mediaPlayer.CurrentStateChanged += MediaPlayer_CurrentStateChanged;
+
             Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
@@ -83,6 +85,10 @@ namespace Music_thing
             NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
+        }
+
+        private void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
+        {
         }
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)

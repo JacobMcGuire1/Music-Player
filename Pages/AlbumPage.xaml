@@ -37,6 +37,7 @@
                           AllowDrop="True"
                           TabClosing="SongVersionTabs_TabClosing"
                                   DragItemsStarting="SongVersionTabs_DragItemsStarting"
+                                  TabWidthBehavior="Actual"    
                           >
                     <controls:TabView.Resources>
                         <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>

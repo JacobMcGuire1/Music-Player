@@ -12,7 +12,7 @@
         <ListView.ItemTemplate >
             <DataTemplate x:DataType="local:Song">
                 <StackPanel Orientation="Horizontal" Height="44" Margin="0,0,0,0" CanDrag="True" Background="{x:Bind GetBackgroundColour()}" Tag="{x:Bind ID}">
-                    <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind ID}"/>
+                    <Button x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="0,0,5,0" Tag="{x:Bind ID}"/>
                     <Button x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
                     <Button x:Name="removebutton" Click="Removebutton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE738;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
                     <!--TextBlock Text="{x:Bind id}" VerticalAlignment="Center" Width="400" Margin="0,0,5,0"/-->

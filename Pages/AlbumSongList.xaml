@@ -34,8 +34,8 @@
                     <Grid Height="44" Margin="0,0,0,0" CanDrag="True" DragStarting="StackPanel_DragStarting" Tag="{x:Bind ID}"  SizeChanged="Grid_SizeChanged">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1.5*"/>
                             <ColumnDefinition Width="50"/>
@@ -43,7 +43,7 @@
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" x:Name="playButton" Click="PlayButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind TrackNumber}"/>
                         <Button Grid.Column="1" x:Name="addToPlaylistButton" Click="AddToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
-                        <TextBlock Grid.Column="2" Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="100"/>
+                        <TextBlock Grid.Column="2" Text="{x:Bind TrackNumber}" VerticalAlignment="Center" Width="Auto"/>
                         <TextBlock Grid.Column="3" Text="{x:Bind Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" Margin="0,0,5,0"/>
                         <TextBlock Grid.Column="4" x:Name="SongArtistNameTextBlock" Text="{x:Bind Artist}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="250" Margin="0,0,5,0"/>
                         <TextBlock Grid.Column="5" Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="Auto" Margin="0,0,5,0"/>
