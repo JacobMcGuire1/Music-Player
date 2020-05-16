@@ -38,8 +38,15 @@ namespace Music_thing
 
         public async Task<StorageFile> GetFile()
         {
-            StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
-            return file;
+            try
+            {
+                StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
+                return file;
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                return null;
+            }
         }
 
         public override bool Equals(object obj)
@@ -102,23 +109,31 @@ namespace Music_thing
         public async Task<ImageSource> GetArt(int size)
         {
             var file = await GetFile();
-            var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, (uint)size);
             var bitmapImage = new BitmapImage();
-            if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+            if (file != null)
             {
-                bitmapImage.SetSource(thumbnail);
+                var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.MusicView, (uint)size);
+                
+                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
+                {
+                    bitmapImage.SetSource(thumbnail);
+                }
+                else
+                {
+                    try
+                    {
+                        bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
+                    }
+                    catch { }
+                }
+                bitmapImage.DecodePixelHeight = size;
+                bitmapImage.DecodePixelWidth = size;
             }
             else
             {
-                try
-                {
-                    bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
-                }
-                catch { }
-                 
+                bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/DefaultAlbumArt.png"));
             }
-            bitmapImage.DecodePixelHeight = size;
-            bitmapImage.DecodePixelWidth = size;
+            
             return bitmapImage;
         }
 

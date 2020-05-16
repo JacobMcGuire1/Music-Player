@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -115,8 +116,24 @@ namespace Music_thing.Pages
             e.Data.RequestedOperation = DataPackageOperation.Copy;
         }
 
+        private async Task PlayRandomAlbum()
+        {
+            if (Albums.Count > 0)
+            {
+                var rand = new Random();
+                int chosen = rand.Next(Albums.Count);
+                Album album = Albums[chosen];
+                await album.Play();
+            }
+        }
+
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         { 
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await PlayRandomAlbum();
         }
     }
 }
