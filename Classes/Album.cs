@@ -60,6 +60,18 @@ namespace Music_thing
             }*/
         }
 
+        public String GetStringTotalDuration()
+        {
+            return GetTotalDuration().ToString(@"mm\:ss");
+        }
+
+        public TimeSpan GetTotalDuration()
+        {
+            var ticks = Songids.Aggregate(0L, (acc, x) => SongListStorage.SongDict[x].Duration.Ticks + acc);
+            TimeSpan t = new TimeSpan(ticks);
+            return t;
+        }
+
         public List<Playlist> GetFlavourList()
         {
             HashSet<long> Flavours;

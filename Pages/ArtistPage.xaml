@@ -17,7 +17,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical" x:Name="ArtistInfoStack" Margin="20,0,0,0">
             <TextBlock Text="{x:Bind artist.name}" FontSize="37" />
-            <Button Grid.Row="0" Margin="0,3,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Margin="0,3,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
+                <Button x:Name="RandomAlbumButton" Margin="20,0,0,0" HorizontalAlignment="Left" Click="RandomAlbumButton_Click">Go to a random album</Button>
+            </StackPanel>
         </StackPanel>
         <GridView Grid.Row="1" ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
             <GridView.ItemTemplate>

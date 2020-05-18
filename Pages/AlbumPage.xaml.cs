@@ -121,6 +121,19 @@ namespace Music_thing
             return "";
         }
 
+        public string GetStringTotalDuration()
+        {
+            if (CurrentAlbum != null)
+            {
+                if (SongListStorage.AlbumDict.ContainsKey(CurrentAlbum))
+                {
+                    return SongListStorage.AlbumDict[CurrentAlbum].GetStringTotalDuration();
+                }
+                return "";
+            }
+            return "";
+        }
+
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is string)

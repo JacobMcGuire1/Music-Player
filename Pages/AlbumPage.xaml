@@ -26,7 +26,7 @@
                         <TextBlock Padding="16" FontSize="37" Margin="0,-25,0,0" Text="{x:Bind GetAlbumName()}" TextWrapping="WrapWholeWords"/>
                         <HyperlinkButton x:Name="OpenArtistPageButton" Padding="16,-20,0,0" FontSize="15" Margin="0,0,0,0" Content="{x:Bind GetArtistName()}" Click="OpenArtistPageButton_Click" Tapped="OpenArtistPageButton_Click" Tag="{x:Bind GetArtistName()}"/>
                         <TextBlock  FontSize="15" Padding="16,5,0,0" Text="{x:Bind GetYear()}"/>
-                        
+                        <TextBlock FontSize="15" Padding="16,5,0,0" Text="{x:Bind GetStringTotalDuration()}"/>                
                     </StackPanel>
                 </Grid>
                 <controls:TabView x:Name="SongVersionTabs" 

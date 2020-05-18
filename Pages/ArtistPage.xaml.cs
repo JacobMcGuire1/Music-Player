@@ -127,6 +127,17 @@ namespace Music_thing.Pages
             }
         }
 
+        private void GoToRandomAlbum()
+        {
+            if (Albums.Count > 0)
+            {
+                var rand = new Random();
+                int chosen = rand.Next(Albums.Count);
+                Album album = Albums[chosen];
+                this.Frame.Navigate(typeof(AlbumPage), album.Key);
+            }
+        }
+
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         { 
         }
@@ -134,6 +145,11 @@ namespace Music_thing.Pages
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             await PlayRandomAlbum();
+        }
+
+        private void RandomAlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            GoToRandomAlbum();
         }
     }
 }
