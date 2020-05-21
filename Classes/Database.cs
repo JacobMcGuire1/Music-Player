@@ -92,8 +92,8 @@ namespace Music_thing
                     IDictionary<string, object> returnedProps = await file.Properties.RetrievePropertiesAsync(new string[] { "System.Music.PartOfSet" } );
                     string discnumber = (string)returnedProps["System.Music.PartOfSet"];
                     if (discnumber == null) discnumber = "1";
-                    //String.
-                    Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
+                    
+                    Song song = new Song()
                     {
                         ID = "",
                         Title = musicProperties.Title,

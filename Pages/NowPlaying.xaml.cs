@@ -47,17 +47,26 @@ namespace Music_thing
             Media.Instance.Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
 
 
-            var g = ListViewPlayList.Items[0];
+            
 
             //ListViewPlayList
         }
 
         private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
+            var g = ListViewPlayList.Items[0];
             
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
+                var k = ListViewPlayList.ItemsPanelRoot;
+                foreach (ListViewItem listViewItem in k.Children)
+                {
+                    listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+                }
+                var c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
+                c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                //var l = ListViewPlayList.ItemsPanel;
                 Bindings.Update();
             });
         }
