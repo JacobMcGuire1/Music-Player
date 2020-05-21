@@ -23,7 +23,7 @@ namespace Music_thing
         public TimeSpan Duration { get; set; }
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
-        public int DiscNumber { get; set; }
+        public string DiscNumber { get; set; }
         public string Path { get; set; }
         public string AlbumKey { get; set; }
         public string ArtistKey { get; set; }
@@ -47,6 +47,20 @@ namespace Music_thing
             {
                 return null;
             }
+        }
+
+        public int GetDiscInt()
+        {
+            try
+            {
+                int k = int.Parse(DiscNumber[0].ToString());
+                return k;
+            }
+            catch
+            {
+                return 1;
+            }
+            
         }
 
         public override bool Equals(object obj)

@@ -185,7 +185,8 @@ namespace Music_thing
             //Need to add disk number support
             //Songids = Songids.OrderBy(x => SongListStorage.SongDict[x].TrackNumber) as List<int>;
 
-            Songids.Sort((x, y) => SongDict[x].TrackNumber - SongDict[y].TrackNumber);
+            Songids.Sort((x, y) => (SongDict[x].GetDiscInt() - SongDict[y].GetDiscInt()) * 1000 + SongDict[x].TrackNumber - SongDict[y].TrackNumber);
+            
         }
 
         public async void SetAlbumArt(string songid, ConcurrentDictionary<string, Song> SongDict)

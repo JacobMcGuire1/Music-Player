@@ -90,8 +90,9 @@ namespace Music_thing
                     MusicProperties musicProperties = await (file as StorageFile).Properties.GetMusicPropertiesAsync();
 
                     IDictionary<string, object> returnedProps = await file.Properties.RetrievePropertiesAsync(new string[] { "System.Music.PartOfSet" } );
-                    var discnumber = returnedProps["System.Music.PartOfSet"];
-
+                    string discnumber = (string)returnedProps["System.Music.PartOfSet"];
+                    if (discnumber == null) discnumber = "1";
+                    //String.
                     Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
                     {
                         ID = "",
@@ -104,7 +105,7 @@ namespace Music_thing
                         TrackNumber = (int)musicProperties.TrackNumber,
                         IsFlavour = false, //MAY NEED TO REMOVE
                         Path = ((StorageFile)file).Path,
-                        DiscNumber = (int)discnumber
+                        DiscNumber = discnumber
                     };
 
 
@@ -235,6 +236,12 @@ namespace Music_thing
                 
             }
             catch(FileNotFoundException E)
+            {
+                Debug.WriteLine("Couldn't load music.");
+                Debug.WriteLine(E.Message);
+                await GetSongs(true);
+            }
+            catch(Newtonsoft.Json.JsonSerializationException E)
             {
                 Debug.WriteLine("Couldn't load music.");
                 Debug.WriteLine(E.Message);
