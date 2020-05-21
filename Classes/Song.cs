@@ -23,7 +23,7 @@ namespace Music_thing
         public TimeSpan Duration { get; set; }
         public uint Year { get; set; }
         public int TrackNumber { get; set; }
-        public string DiscNumber { get; set; }
+        public int DiscNumber { get; set; }
         public string Path { get; set; }
         public string AlbumKey { get; set; }
         public string ArtistKey { get; set; }

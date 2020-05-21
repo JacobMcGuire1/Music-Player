@@ -13,6 +13,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.IO;
+using TagLib;
 
 namespace Music_thing
 {
@@ -88,6 +89,9 @@ namespace Music_thing
                     }
                     MusicProperties musicProperties = await (file as StorageFile).Properties.GetMusicPropertiesAsync();
 
+                    IDictionary<string, object> returnedProps = await file.Properties.RetrievePropertiesAsync(new string[] { "System.Music.PartOfSet" } );
+                    var discnumber = returnedProps["System.Music.PartOfSet"];
+
                     Song song = new Song() //TODO: NEED TO FIND DISC NUMBER TO ORDER ALBUMS PROPERLY.
                     {
                         ID = "",
@@ -99,8 +103,8 @@ namespace Music_thing
                         Duration = musicProperties.Duration,
                         TrackNumber = (int)musicProperties.TrackNumber,
                         IsFlavour = false, //MAY NEED TO REMOVE
-                        Path = ((StorageFile)file).Path
-                        //Need discnumber
+                        Path = ((StorageFile)file).Path,
+                        DiscNumber = (int)discnumber
                     };
 
 
