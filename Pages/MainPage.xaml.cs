@@ -526,10 +526,16 @@ namespace Music_thing
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 var results = SongListStorage.SearchSongs(SearchBox.Text);
-                var textresults = new List<String>();
+                var textresults = new List<TextBlock>();
                 foreach(Song song in results)
                 {
-                    textresults.Add(song.Title);
+                    TextBlock textblock = new TextBlock()
+                    {
+                        Text = song.Title,
+                        Tag = song.ID
+                    };
+
+                    textresults.Add(textblock);
                 }
                 SearchBox.ItemsSource = textresults;
             }
@@ -537,7 +543,9 @@ namespace Music_thing
         
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-
+            string chosensongid = (string)((TextBlock)args.SelectedItem).Tag;
+            Song song = SongListStorage.SongDict[chosensongid];
+            ContentFrame.Navigate(typeof(AlbumPage), song.AlbumKey);
         }
 
         private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

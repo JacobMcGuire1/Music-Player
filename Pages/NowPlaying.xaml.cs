@@ -36,6 +36,8 @@ namespace Music_thing
         private int oldmoveindex = -1;
         private bool lastremovewasdel = false;
 
+        private bool initialised = false;
+
 
         public NowPlaying()
         {
@@ -47,28 +49,33 @@ namespace Music_thing
             Media.Instance.Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
 
 
-            
+            ShowCurrentlyPlayingSong();
 
             //ListViewPlayList
         }
 
         private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
-            var g = ListViewPlayList.Items[0];
-            
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
-                var k = ListViewPlayList.ItemsPanelRoot;
+                ShowCurrentlyPlayingSong();
+            });
+        }
+
+        private void ShowCurrentlyPlayingSong()
+        {
+            var k = ListViewPlayList.ItemsPanelRoot;
+            if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count == SongListStorage.PlaylistRepresentation.Count)
+            {
+                initialised = true;
                 foreach (ListViewItem listViewItem in k.Children)
                 {
                     listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
                 }
                 var c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
                 c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
-                //var l = ListViewPlayList.ItemsPanel;
-                Bindings.Update();
-            });
+            }
         }
 
         private async void Playlist_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -163,5 +170,14 @@ namespace Music_thing
             return index;
         }
 
+        private void ListViewPlayList_Loaded(object sender, RoutedEventArgs e)
+        {
+            //ShowCurrentlyPlayingSong();
+        }
+
+        private void ListViewPlayList_LayoutUpdated(object sender, object e)
+        {
+            if (!initialised) ShowCurrentlyPlayingSong();
+        }
     }
 }
