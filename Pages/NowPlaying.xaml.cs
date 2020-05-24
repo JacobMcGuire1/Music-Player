@@ -66,7 +66,7 @@ namespace Music_thing
         private void ShowCurrentlyPlayingSong()
         {
             var k = ListViewPlayList.ItemsPanelRoot;
-            if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count == SongListStorage.PlaylistRepresentation.Count)
+            if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count - 1 >= SongListStorage.CurrentPlaceInPlaylist)
             {
                 initialised = true;
                 foreach (ListViewItem listViewItem in k.Children)
@@ -74,7 +74,11 @@ namespace Music_thing
                     listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
                 }
                 var c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
-                c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                if (c.Content != null && ((Song)c.Content).ID.Equals(SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID))
+                {
+                    c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                }
+                
             }
         }
 
@@ -178,6 +182,13 @@ namespace Music_thing
         private void ListViewPlayList_LayoutUpdated(object sender, object e)
         {
             if (!initialised) ShowCurrentlyPlayingSong();
+        }
+
+        private void ListViewPlayList_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+
+        private void SongInfoGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }

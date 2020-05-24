@@ -113,7 +113,7 @@
                     <!--https://developercommunity.visualstudio.com/content/problem/56832/compilation-of-xbind-to-static-fields-fails-if-no.html
                     V IMPORTANT-->
                 </StackPanel>
-                <MediaPlayerElement Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AutoPlay="True" AreTransportControlsEnabled="True" Width="Auto" Grid.Row="1">
+                <MediaPlayerElement Style="{StaticResource MediaPlayerElementStyle1}" Grid.Column="1" x:Name="mediaPlayerElement" AreTransportControlsEnabled="True" Width="Auto" Grid.Row="1">
                     <MediaPlayerElement.TransportControls>
                         <MediaTransportControls IsNextTrackButtonVisible="True"
                                             IsPreviousTrackButtonVisible="True"

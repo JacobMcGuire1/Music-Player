@@ -164,16 +164,20 @@ namespace Music_thing
         //Updates song details when the song changes.
         public async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
-            uint thign = Playlist.CurrentItemIndex;
-            if (thign == 4294967295) //Magic number?? Perfectly totient.
+            await UpdateNowPlaying();
+        }
+
+        public async Task UpdateNowPlaying()
+        {
+            uint position = Playlist.CurrentItemIndex;
+            if (position == 4294967295) //Magic number?? Perfectly totient.
             {
                 SongListStorage.CurrentPlaceInPlaylist = 0;
             }
             else
             {
-                SongListStorage.CurrentPlaceInPlaylist = (int)Playlist.CurrentItemIndex;
+                SongListStorage.CurrentPlaceInPlaylist = (int)position;
             }
-
             if (SongListStorage.PlaylistRepresentation.Count > 0)
             {
 
@@ -196,19 +200,11 @@ namespace Music_thing
                 //props.Update();
                 //var musicprops = props.MusicProperties;
                 var file = await SongListStorage.GetCurrentSongFile();
-                bool ok = await props.CopyFromFileAsync(Windows.Media.MediaPlaybackType.Music,file);
+                bool ok = await props.CopyFromFileAsync(Windows.Media.MediaPlaybackType.Music, file);
                 //props.AppMediaId = "dwioahjdioaw";
                 //props.Type = Windows.Media.MediaPlaybackType.Music;
                 props.Update();
-
-
-                //musicprops.Title = Currenttitle;
-                //musicprops.Artist = Currentartist;
-                //var thing = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(await SongListStorage.GetCurrentSongArtURI());
-                //props.Thumbnail = thing;
-
             }
-            //await SongListStorage.SaveNowPlaying();
             SongListStorage.SavePlace();
         }
 
@@ -359,6 +355,57 @@ namespace Music_thing
                 }
             }
             if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
+            //if (!play) mediaPlayer.Pause();
+            await SongListStorage.SaveNowPlaying();
+        }
+
+        //Plays the playlist
+        public async Task LoadNowPlaying(ObservableCollection<Song> Songs, int Pos, TimeSpan time)
+        {
+            mediaPlayer.Pause();
+            Playlist.Items.Clear(); //Clears the playlist
+            SongListStorage.CurrentPlaceInPlaylist = 0;
+            SongListStorage.PlaylistRepresentation.Clear(); //MAY BE BAD?
+
+            Song currentsong = Songs[Pos - 1];
+
+            await AddSong(currentsong.ID, false);
+            SetSongTime(time);
+            bool b = mediaPlayer.PlaybackSession.CanPause;
+            //mediaPlayer.Pause();
+
+            await UpdateNowPlaying();
+            //bool k .CanPause;
+            
+
+            int counter = 0;
+            for (int i = 0; i < Songs.Count; i++)
+            {
+                var song = Songs[i];
+                var title = song.Title;
+                var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
+
+                if (i < Pos - 1)
+                {
+                    Playlist.Items.Insert(counter, mediaPlaybackItem);
+                    SongListStorage.PlaylistRepresentation.Insert(counter, song);
+                    counter++;
+                }
+                if (i > Pos - 1)
+                {
+                    Playlist.Items.Add(mediaPlaybackItem);
+                    SongListStorage.PlaylistRepresentation.Add(song);
+                }
+                
+                //await AddSong(song.ID, false);
+                //if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
+            }
+            await UpdateNowPlaying();
+            //if (Pos > 1 && SongListStorage.PlaylistRepresentation.Count >= Pos)
+            //{
+            //    Playlist.MoveTo((uint)Pos - 1);
+            //}
+            //if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             //if (!play) mediaPlayer.Pause();
             await SongListStorage.SaveNowPlaying();
         }

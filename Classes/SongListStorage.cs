@@ -60,27 +60,62 @@ namespace Music_thing
         public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
             //return AlbumDict[String.Concat(PlaylistRepresentation[CurrentPlaceInPlaylist].Artist, PlaylistRepresentation[CurrentPlaceInPlaylist].Album)].albumart100;
-            return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetArt(size);
+            if (CurrentPlaceInPlaylist < PlaylistRepresentation.Count)
+            {
+                return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetArt(size);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static async Task<StorageFile> GetCurrentSongFile()
         {
-            return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetFile();
+            if (CurrentPlaceInPlaylist < PlaylistRepresentation.Count)
+            {
+                return await PlaylistRepresentation[CurrentPlaceInPlaylist].GetFile();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static string GetCurrentSongName()
         {
-            return PlaylistRepresentation[CurrentPlaceInPlaylist].Title;
+            if (CurrentPlaceInPlaylist < PlaylistRepresentation.Count)
+            {
+                return PlaylistRepresentation[CurrentPlaceInPlaylist].Title;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static string GetCurrentArtistName()
         {
-            return PlaylistRepresentation[CurrentPlaceInPlaylist].Artist;
+            if (CurrentPlaceInPlaylist < PlaylistRepresentation.Count)
+            {
+                return PlaylistRepresentation[CurrentPlaceInPlaylist].Artist;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static Song GetCurrentSong()
         {
-            return PlaylistRepresentation[CurrentPlaceInPlaylist];
+            if (CurrentPlaceInPlaylist < PlaylistRepresentation.Count)
+            {
+                return PlaylistRepresentation[CurrentPlaceInPlaylist];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static async Task UpdateAndOrderMusic()
@@ -303,20 +338,20 @@ namespace Music_thing
         public static async Task GetNowPlaying()
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            try
-            {
+            //try
+            //{
                 StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 StorageFile nowplayingfile = await storageFolder.GetFileAsync("nowplaying.txt");
                 string nowplayingstring = await FileIO.ReadTextAsync(nowplayingfile);
 
                 await LoadNowPlaying(nowplayingstring, (int)localSettings.Values["nowplayingplace"], (TimeSpan)localSettings.Values["nowplayingtime"]);
                 Debug.WriteLine("Loaded now playing");
-            }
-            catch (Exception E)
-            {
-                Debug.WriteLine("Couldn't load now playing yet.");
-                Debug.WriteLine(E.Message);
-            }
+            //}
+            ///catch (Exception E)
+            //{
+            //    Debug.WriteLine("Couldn't load now playing yet.");
+            //    Debug.WriteLine(E.Message);
+            //}
         }
 
         public static async Task LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
@@ -327,16 +362,19 @@ namespace Music_thing
                 string[] arr = nowplayingstring.Split(',').ToArray();
                 foreach (string id in arr)
                 {
-                    loadedplaylist.Add(SongDict[id]);
+                    if (SongListStorage.SongDict.ContainsKey(id))
+                    {
+                        loadedplaylist.Add(SongDict[id]);
+                    }
                 }
-                await Media.Instance.PlayPlaylist(loadedplaylist, place, null, false); //need to get the position too.
+                await Media.Instance.LoadNowPlaying(loadedplaylist, place, time); //need to get the position too.
 
-                Media.Instance.mediaPlayer.Pause();
+                //Media.Instance.mediaPlayer.Pause();
 
                 //TimeSpan timeeeee = new TimeSpan()
-                Media.Instance.SetSongTime(time);
+                //Media.Instance.SetSongTime(time);
 
-                Media.Instance.mediaPlayer.Pause();
+                //Media.Instance.mediaPlayer.Pause();
             }
         }
 
