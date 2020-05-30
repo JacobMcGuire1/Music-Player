@@ -383,22 +383,25 @@ namespace Music_thing
             {
                 var song = Songs[i];
                 var title = song.Title;
-                var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
 
-                if (i < Pos - 1)
+                var file = await song.GetFile();
+
+                if (file != null)
                 {
-                    Playlist.Items.Insert(counter, mediaPlaybackItem);
-                    SongListStorage.PlaylistRepresentation.Insert(counter, song);
-                    counter++;
+                    var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(file));
+
+                    if (i < Pos - 1)
+                    {
+                        Playlist.Items.Insert(counter, mediaPlaybackItem);
+                        SongListStorage.PlaylistRepresentation.Insert(counter, song);
+                        counter++;
+                    }
+                    if (i > Pos - 1)
+                    {
+                        Playlist.Items.Add(mediaPlaybackItem);
+                        SongListStorage.PlaylistRepresentation.Add(song);
+                    }
                 }
-                if (i > Pos - 1)
-                {
-                    Playlist.Items.Add(mediaPlaybackItem);
-                    SongListStorage.PlaylistRepresentation.Add(song);
-                }
-                
-                //await AddSong(song.ID, false);
-                //if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
             }
             await UpdateNowPlaying();
             //if (Pos > 1 && SongListStorage.PlaylistRepresentation.Count >= Pos)
@@ -416,9 +419,14 @@ namespace Music_thing
             if (SongListStorage.SongDict.ContainsKey(songid))
             {
                 var song = SongListStorage.SongDict[songid];
-                var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(await song.GetFile()));
-                Playlist.Items.Add(mediaPlaybackItem);
-                SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
+                var file = await song.GetFile();
+                if (file != null)
+                {
+                    var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(file));
+                    Playlist.Items.Add(mediaPlaybackItem);
+                    SongListStorage.PlaylistRepresentation.Add(SongListStorage.SongDict[songid]);
+                }
+                
                 if (save) await SongListStorage.SaveNowPlaying();
             }
         }

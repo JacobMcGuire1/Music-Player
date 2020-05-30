@@ -47,6 +47,11 @@ namespace Music_thing
             {
                 return null;
             }
+            catch(UnauthorizedAccessException B)
+            {
+                return null;
+            }
+
         }
 
         public int GetDiscInt()

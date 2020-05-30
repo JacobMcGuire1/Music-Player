@@ -338,20 +338,20 @@ namespace Music_thing
         public static async Task GetNowPlaying()
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            //try
-            //{
+            try
+            {
                 StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 StorageFile nowplayingfile = await storageFolder.GetFileAsync("nowplaying.txt");
                 string nowplayingstring = await FileIO.ReadTextAsync(nowplayingfile);
 
                 await LoadNowPlaying(nowplayingstring, (int)localSettings.Values["nowplayingplace"], (TimeSpan)localSettings.Values["nowplayingtime"]);
                 Debug.WriteLine("Loaded now playing");
-            //}
-            ///catch (Exception E)
-            //{
-            //    Debug.WriteLine("Couldn't load now playing yet.");
-            //    Debug.WriteLine(E.Message);
-            //}
+            }
+            catch (Exception E)
+            {
+                Debug.WriteLine("Couldn't load now playing yet.");
+                Debug.WriteLine(E.Message);
+            }
         }
 
         public static async Task LoadNowPlaying(string nowplayingstring, int place, TimeSpan time)
