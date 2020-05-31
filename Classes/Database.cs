@@ -247,6 +247,12 @@ namespace Music_thing
                 Debug.WriteLine(E.Message);
                 await GetSongs(true);
             }
+            catch(Exception E)
+            {
+                Debug.WriteLine("Couldn't load music.");
+                Debug.WriteLine(E.Message);
+                await GetSongs(true);
+            }
             if (!Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ShowUnpinnedFlavours"))
             {
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;

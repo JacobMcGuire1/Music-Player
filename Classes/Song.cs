@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,10 +46,14 @@ namespace Music_thing
             }
             catch (System.IO.FileNotFoundException e)
             {
+                Debug.WriteLine("Couldn't get file for song " + ID);
+                Debug.WriteLine(e.Message);
                 return null;
             }
             catch(UnauthorizedAccessException B)
             {
+                Debug.WriteLine("Couldn't get file for song " + ID);
+                Debug.WriteLine(B.Message);
                 return null;
             }
 

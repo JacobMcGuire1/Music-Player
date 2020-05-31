@@ -419,20 +419,29 @@ namespace Music_thing
 
             foreach(StorageFile file in files)
             {
-                string playliststring = await FileIO.ReadTextAsync(file);
-                if (playliststring != "")
+                try
                 {
-                    Playlist playlist = JsonConvert.DeserializeObject<Playlist>(playliststring);
-                    if (PlaylistDict.TryAdd(playlist.PlaylistID, playlist) && playlist.isflavour)
+                    string playliststring = await FileIO.ReadTextAsync(file);
+                    if (playliststring != "")
                     {
-                        string albumkey = playlist.albumkey;
-                        if (!AlbumPlaylistDict.ContainsKey(albumkey))
+                        Playlist playlist = JsonConvert.DeserializeObject<Playlist>(playliststring);
+                        if (PlaylistDict.TryAdd(playlist.PlaylistID, playlist) && playlist.isflavour)
                         {
-                            AlbumPlaylistDict.TryAdd(albumkey, new HashSet<long>());
+                            string albumkey = playlist.albumkey;
+                            if (!AlbumPlaylistDict.ContainsKey(albumkey))
+                            {
+                                AlbumPlaylistDict.TryAdd(albumkey, new HashSet<long>());
+                            }
+                            AlbumPlaylistDict[playlist.albumkey].Add(playlist.PlaylistID);
                         }
-                        AlbumPlaylistDict[playlist.albumkey].Add(playlist.PlaylistID);
                     }
                 }
+                catch (Exception E)
+                {
+                    Debug.WriteLine("Couldn't load playlist '" + file.Name + "'");
+                    Debug.WriteLine(E.Message);
+                }
+                
                 
             }
 

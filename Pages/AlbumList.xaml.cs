@@ -44,7 +44,8 @@ namespace Music_thing
             {
                 var rand = new Random();
                 int chosen = rand.Next(Albums.Count);
-                Album album = Albums[chosen];
+                var albumkey = Albums[chosen].Key;
+                Album album = SongListStorage.GetPinnedFlavourForAlbum(albumkey);
                 await album.Play();
             }
         }
