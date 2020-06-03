@@ -31,9 +31,23 @@ namespace Music_thing.Pages
 
         public Artist artist;
 
+        private SongListStorage.SortDirection SortDirection = SongListStorage.SortDirection.Desc;
+        private SongListStorage.SortType SortType = SongListStorage.SortType.Year;
+
         public ArtistPage()
         {
             this.InitializeComponent();
+
+            DurationSort.Tag = SongListStorage.SortType.Duration;
+            SongCountSort.Tag = SongListStorage.SortType.SongCount;
+            AlbumNameSort.Tag = SongListStorage.SortType.AlbumName;
+            YearSort.Tag = SongListStorage.SortType.Year;
+
+            AscSort.Tag = SongListStorage.SortDirection.Asc;
+            DescSort.Tag = SongListStorage.SortDirection.Desc;
+
+            SortTypeComboBox.SelectedItem = YearSort;
+            SortDirectionComboBox.SelectedItem = DescSort;
         }
 
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
@@ -70,13 +84,23 @@ namespace Music_thing.Pages
             Artist artist = SongListStorage.ArtistDict[artistid];
             this.artist = artist;
             Albums.Clear();
-            artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
-            foreach (string albumid in artist.Albums)
-            {
-                Albums.Add(SongListStorage.AlbumDict[albumid]);
-            }
+            SortAlbums();
+            //artist.Albums.Sort((x, y) => SongListStorage.AlbumDict[y].Year.CompareTo(SongListStorage.AlbumDict[x].Year)); //Sorts the albums by year. Should change this to allow choice of sorting method?
             Bindings.Update();
 
+        }
+
+        private void SortAlbums()
+        {
+            if (artist != null)
+            {
+                SongListStorage.SortAlbumKeyList(artist.Albums, SortType, SortDirection);
+                Albums.Clear();
+                foreach (string albumid in artist.Albums)
+                {
+                    Albums.Add(SongListStorage.AlbumDict[albumid]);
+                }
+            }
         }
 
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)
@@ -151,6 +175,26 @@ namespace Music_thing.Pages
         private void RandomAlbumButton_Click(object sender, RoutedEventArgs e)
         {
             GoToRandomAlbum();
+        }
+
+        private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var NewSort = (SongListStorage.SortType)((((ComboBox)sender).SelectedItem) as ComboBoxItem).Tag;
+            if (NewSort != SortType)
+            {
+                SortType = NewSort;
+                SortAlbums();
+            }
+        }
+
+        private void SortDirectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var NewSort = (SongListStorage.SortDirection)((((ComboBox)sender).SelectedItem) as ComboBoxItem).Tag;
+            if (NewSort != SortDirection)
+            {
+                SortDirection = NewSort;
+                SortAlbums();
+            }
         }
     }
 }

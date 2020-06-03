@@ -36,6 +36,17 @@ namespace Music_thing
         {
             this.InitializeComponent();
             Albums = SongListStorage.Albums;
+
+            ArtistSort.Tag = SongListStorage.SortType.Artist;
+            DurationSort.Tag = SongListStorage.SortType.Duration;
+            SongCountSort.Tag = SongListStorage.SortType.SongCount;
+            AlbumNameSort.Tag = SongListStorage.SortType.AlbumName;
+
+            AscSort.Tag = SongListStorage.SortDirection.Asc;
+            DescSort.Tag = SongListStorage.SortDirection.Desc;
+
+            SortTypeComboBox.SelectedItem = ArtistSort;
+            SortDirectionComboBox.SelectedItem = AscSort;
         }
 
         private async Task PlayRandomAlbum()
@@ -126,6 +137,29 @@ namespace Music_thing
         private void RandomAlbumButton_Click(object sender, RoutedEventArgs e)
         {
             GoToRandomAlbum();
+        }
+
+        private async void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var NewSort = (SongListStorage.SortType)((((ComboBox)sender).SelectedItem) as ComboBoxItem).Tag;
+            if (NewSort != SongListStorage.AlbumListSortType)
+            {
+                SongListStorage.AlbumListSortType = NewSort;
+                await SongListStorage.UpdateAndOrderAlbums(true);
+            }
+        }
+
+        private async void SortDirectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //SongListStorage.AlbumListSortDirection = (SongListStorage.SortDirection)((((ComboBox)sender).SelectedItem) as ComboBoxItem).Tag;
+            //await SongListStorage.UpdateAndOrderAlbums();
+
+            var NewSort = (SongListStorage.SortDirection)((((ComboBox)sender).SelectedItem) as ComboBoxItem).Tag;
+            if (NewSort != SongListStorage.AlbumListSortDirection)
+            {
+                SongListStorage.AlbumListSortDirection = NewSort;
+                await SongListStorage.UpdateAndOrderAlbums(true);
+            }
         }
     }
 }

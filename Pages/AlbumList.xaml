@@ -21,6 +21,17 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
             <Button x:Name="RandomAlbumButton" Margin="20,0,0,0" HorizontalAlignment="Left" Click="RandomAlbumButton_Click">Go to a random album</Button>
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">Sort by</TextBlock>
+            <ComboBox Margin="10,0,0,0" x:Name="SortTypeComboBox" VerticalAlignment="Center" SelectionChanged="SortTypeComboBox_SelectionChanged">
+                <ComboBoxItem x:Name="ArtistSort">Artist Name</ComboBoxItem>
+                <ComboBoxItem x:Name="AlbumNameSort">Album Name</ComboBoxItem>
+                <ComboBoxItem x:Name="DurationSort">Duration</ComboBoxItem>
+                <ComboBoxItem x:Name="SongCountSort">Number of Songs</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Margin="10,0,0,0" x:Name="SortDirectionComboBox" VerticalAlignment="Center" SelectionChanged="SortDirectionComboBox_SelectionChanged">
+                <ComboBoxItem x:Name="AscSort">Ascending</ComboBoxItem>
+                <ComboBoxItem x:Name="DescSort">Descending</ComboBoxItem>
+            </ComboBox>
         </StackPanel>
         <GridView Grid.Row="1" ItemsSource="{x:Bind Albums}" x:Name="jess" CanDragItems="True" SelectionMode="None" IsItemClickEnabled="True" ItemClick="Jess_ItemClick" DragItemsStarting="Jess_DragItemsStarting">
             <GridView.ItemTemplate>

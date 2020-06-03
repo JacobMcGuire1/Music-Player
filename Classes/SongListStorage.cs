@@ -55,7 +55,23 @@ namespace Music_thing
 
         private static Mutex NowPlayingFileLock = new Mutex();
 
-        //public static ConcurrentDictionary<String, List<Flavour>> AlbumFlavourDict = new ConcurrentDictionary<String, List<Flavour>>();
+        public static SortDirection AlbumListSortDirection = SortDirection.Asc;
+        public static SortType AlbumListSortType = SortType.Artist;
+
+        public enum SortDirection
+        {
+            Asc,
+            Desc
+        }
+
+        public enum SortType
+        {
+            Artist,
+            Duration,
+            SongCount,
+            AlbumName,
+            Year
+        }
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
         {
@@ -122,25 +138,26 @@ namespace Music_thing
         {
             UpdateAndOrderSongs();
             UpdateAndOrderArtists();
-            await UpdateAndOrderAlbums();
+            await UpdateAndOrderAlbums(false);
         }
 
         
 
         //Updates the list of albums from the dictionary. This is done so that the observable list of albums is smoothly updated as they are discovered asynchronously by the file finder threads. 
-        public static async Task UpdateAndOrderAlbums()
+        public static async Task UpdateAndOrderAlbums(bool ChangedOrder)
         {
-            if (Albums.Count != AlbumDict.Count)
+            if (Albums.Count != AlbumDict.Count || ChangedOrder)
             {
-                List<string> Albumkeys = new List<string>(); // ArtistDict.Keys as List<string>;
+                List<string> Albumkeys = new List<string>();
                 foreach (string key in AlbumDict.Keys)
                 {
                     Albumkeys.Add(key);
                 }
+
+                SortAlbumKeyList(Albumkeys, AlbumListSortType, AlbumListSortDirection);
+
                 if (Albumkeys != null)
                 {
-                    Albumkeys.Sort();
-                    //Albums.Clear();
                     for (int i = 0; i < Albumkeys.Count; i++)
                     {
                         string albumkey = Albumkeys[i];
@@ -159,6 +176,35 @@ namespace Music_thing
                         }
                     }
                 }
+            }
+        }
+
+        public static void SortAlbumKeyList(List<String> albumKeys, SortType sortType, SortDirection sortDirection)
+        {
+            if (albumKeys.Count <= 1) return;
+            switch (sortType)
+            {
+                case SortType.AlbumName:
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Name.CompareTo(AlbumDict[y].Name)));
+                    else albumKeys.Sort((x, y) => (AlbumDict[y].Name.CompareTo(AlbumDict[x].Name)));
+                    break;
+                case SortType.Duration:
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].GetTotalDuration().Ticks.CompareTo(AlbumDict[y].GetTotalDuration().Ticks)));
+                    else albumKeys.Sort((x, y) => (AlbumDict[y].GetTotalDuration().Ticks.CompareTo(AlbumDict[x].GetTotalDuration().Ticks)));
+                    break;
+                case SortType.SongCount:
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Songids.Count.CompareTo(AlbumDict[y].Songids.Count)));
+                    else albumKeys.Sort((x, y) => (AlbumDict[y].Songids.Count.CompareTo(AlbumDict[x].Songids.Count)));
+                    break;
+                case SortType.Year:
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Year.CompareTo(AlbumDict[y].Year)));
+                    else albumKeys.Sort((x, y) => (AlbumDict[y].Year.CompareTo(AlbumDict[x].Year)));
+                    break;
+                default:
+                case SortType.Artist:
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (x.CompareTo(y)));
+                    else albumKeys.Sort((x, y) => (y.CompareTo(x)));
+                    break;
             }
         }
 

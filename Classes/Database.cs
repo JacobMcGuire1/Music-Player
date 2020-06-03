@@ -6,14 +6,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
-using Microsoft.Data.Sqlite;
 using Windows.Storage.FileProperties;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.IO;
-using TagLib;
 
 namespace Music_thing
 {
