@@ -41,6 +41,7 @@ namespace Music_thing
             DurationSort.Tag = SongListStorage.SortType.Duration;
             SongCountSort.Tag = SongListStorage.SortType.SongCount;
             AlbumNameSort.Tag = SongListStorage.SortType.AlbumName;
+            RandomSort.Tag = SongListStorage.SortType.Random;
 
             AscSort.Tag = SongListStorage.SortDirection.Asc;
             DescSort.Tag = SongListStorage.SortDirection.Desc;

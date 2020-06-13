@@ -70,7 +70,8 @@ namespace Music_thing
             Duration,
             SongCount,
             AlbumName,
-            Year
+            Year,
+            Random
         }
 
         public static async Task<ImageSource> GetCurrentSongArt(int size)
@@ -199,6 +200,10 @@ namespace Music_thing
                 case SortType.Year:
                     if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Year.CompareTo(AlbumDict[y].Year)));
                     else albumKeys.Sort((x, y) => (AlbumDict[y].Year.CompareTo(AlbumDict[x].Year)));
+                    break;
+                case SortType.Random:
+                    var c = new Random();
+                    albumKeys.Sort(((x, y) => c.Next() - c.Next()));
                     break;
                 default:
                 case SortType.Artist:

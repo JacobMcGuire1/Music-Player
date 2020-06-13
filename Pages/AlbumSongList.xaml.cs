@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,9 +34,48 @@ namespace Music_thing
 
         public Playlist flavour;
 
+        private bool initialised = false;
+
         public AlbumSongList()
         {
             this.InitializeComponent();
+            Media.Instance.Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
+            ShowCurrentlyPlayingSong();
+        }
+
+        private async void Playlist_CurrentItemChanged(Windows.Media.Playback.MediaPlaybackList sender, Windows.Media.Playback.CurrentMediaPlaybackItemChangedEventArgs args)
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
+            {
+                ShowCurrentlyPlayingSong();
+            });
+        }
+
+        private void ShowCurrentlyPlayingSong()
+        {
+            var k = ListViewSongs.ItemsPanelRoot;
+            if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count - 1 >= SongListStorage.CurrentPlaceInPlaylist)
+            {
+                initialised = true;
+                foreach (ListViewItem listViewItem in k.Children)
+                {
+                    if (((Song)listViewItem.Content).ID.Equals(SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID))
+                    {
+                        listViewItem.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                    }
+                    else
+                    {
+                        listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+                    }
+                }
+                /*var c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
+                if (c.Content != null && ((Song)c.Content).ID.Equals())
+                {
+                    c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                }*/
+
+            }
         }
 
         private async void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -231,6 +273,11 @@ namespace Music_thing
                 artistname.Visibility = Visibility.Visible;
                 grid.ColumnDefinitions[4] = new ColumnDefinition() { Width = new GridLength(1.5, GridUnitType.Star) };
             }
+        }
+
+        private void ListViewSongs_LayoutUpdated(object sender, object e)
+        {
+            if (!initialised) ShowCurrentlyPlayingSong();
         }
     }
 }

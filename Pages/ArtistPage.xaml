@@ -26,6 +26,7 @@
                     <ComboBoxItem x:Name="AlbumNameSort">Album Name</ComboBoxItem>
                     <ComboBoxItem x:Name="DurationSort">Duration</ComboBoxItem>
                     <ComboBoxItem x:Name="SongCountSort">Number of Songs</ComboBoxItem>
+                    <ComboBoxItem x:Name="RandomSort">Random</ComboBoxItem>
                 </ComboBox>
                 <ComboBox Margin="10,0,0,0" x:Name="SortDirectionComboBox" VerticalAlignment="Center" SelectionChanged="SortDirectionComboBox_SelectionChanged">
                     <ComboBoxItem x:Name="AscSort">Ascending</ComboBoxItem>

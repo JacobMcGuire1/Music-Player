@@ -42,6 +42,7 @@ namespace Music_thing.Pages
             SongCountSort.Tag = SongListStorage.SortType.SongCount;
             AlbumNameSort.Tag = SongListStorage.SortType.AlbumName;
             YearSort.Tag = SongListStorage.SortType.Year;
+            RandomSort.Tag = SongListStorage.SortType.Random;
 
             AscSort.Tag = SongListStorage.SortDirection.Asc;
             DescSort.Tag = SongListStorage.SortDirection.Desc;
