@@ -95,13 +95,7 @@ namespace Music_thing
 
         private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-
-            //Song song = ((Button)sender).Tag as Song;
-
             string song = (string)(((Button)sender).Tag);
-
             await Media.Instance.AddSong(song, true);
         }
     }
