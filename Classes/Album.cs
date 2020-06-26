@@ -62,7 +62,7 @@ namespace Music_thing
 
         public String GetStringTotalDuration()
         {
-            return GetTotalDuration().ToString(@"mm\:ss");
+            return GetTotalDuration().ToString(@"hh\:mm\:ss");
         }
 
         public TimeSpan GetTotalDuration()
