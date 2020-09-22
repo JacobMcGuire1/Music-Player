@@ -7,33 +7,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
 
-    <ListView x:Name="ListViewPlayList" Margin="5" ItemsSource="{x:Bind Playlist}" CanReorderItems="True" CanDragItems="False" AllowDrop="True" ReorderMode="Enabled" Loaded="ListViewPlayList_Loaded" LayoutUpdated="ListViewPlayList_LayoutUpdated" SelectionChanged="ListViewPlayList_SelectionChanged">
-        <ListView.ItemContainerStyle>
-            <Style TargetType="ListViewItem">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            </Style>
-        </ListView.ItemContainerStyle>
-        <ListView.ItemTemplate >
-            <DataTemplate x:DataType="local:Song">
-                <Grid x:Name="SongInfoGrid" Height="44" Margin="0,0,0,0" CanDrag="True" Tag="{x:Bind ID}" SizeChanged="SongInfoGrid_SizeChanged">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="44"/>
-                        <ColumnDefinition Width="44"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind ID}"/>
-                    <Button Grid.Column="1" x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
-                    <Button Grid.Column="2" x:Name="removebutton" Click="Removebutton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE738;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
-                    <TextBlock Grid.Column="3" Text="{x:Bind Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
-                    <TextBlock Grid.Column="4" x:Name="SongArtistNameTextBlock" Text="{x:Bind Artist}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
-                    <TextBlock Grid.Column="5" Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="Auto" Margin="0,0,5,0"/>
-                </Grid>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Margin="10" Grid.Row="0" Click="Button_Click">Convert songs to a new playlist</Button>
+        <ListView Grid.Row="1" x:Name="ListViewPlayList" Margin="5" ItemsSource="{x:Bind Playlist}" CanReorderItems="True" CanDragItems="False" AllowDrop="True" ReorderMode="Enabled" Loaded="ListViewPlayList_Loaded" LayoutUpdated="ListViewPlayList_LayoutUpdated" SelectionChanged="ListViewPlayList_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="local:Song">
+                    <Grid x:Name="SongInfoGrid" Height="44" Margin="0,0,0,0" CanDrag="True" Tag="{x:Bind ID}" SizeChanged="SongInfoGrid_SizeChanged">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="playButton" Click="playButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE768;" Width="44" Height="100" Background="Transparent" Margin="-12,0,5,0" Tag="{x:Bind ID}"/>
+                        <Button Grid.Column="1" x:Name="addToPlaylistButton" Click="addToPlaylistButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE948;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
+                        <Button Grid.Column="2" x:Name="removebutton" Click="Removebutton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE738;" Width="44" Height="100" Background="Transparent" Margin="-5,0,5,0" Tag="{x:Bind ID}"/>
+                        <TextBlock Grid.Column="3" Text="{x:Bind Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+                        <TextBlock Grid.Column="4" x:Name="SongArtistNameTextBlock" Text="{x:Bind Artist}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+                        <TextBlock Grid.Column="5" Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="Auto" Margin="0,0,5,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+    
 </Page>

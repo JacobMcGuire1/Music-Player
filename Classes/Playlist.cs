@@ -26,6 +26,8 @@ namespace Music_thing
         //public ImageSource thumbnail;
 
         public Playlist() { }
+
+        //Empty Playlist
         public Playlist(String name)
         {
             Name = name;
@@ -35,6 +37,18 @@ namespace Music_thing
             PlaylistID = GenerateID();
         }
 
+        //Playlist from now playing
+        public Playlist(String name, List<string> songids)
+        {
+            Name = name;
+            pinned = true;
+            isflavour = false;
+            albumname = "";
+            PlaylistID = GenerateID();
+            Songids = new List<string>(songids);
+        }
+
+        //Playlist from album
         public Playlist(string flavourname, string albumid)
         {
             Album album = SongListStorage.AlbumDict[albumid];

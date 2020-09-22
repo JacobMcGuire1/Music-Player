@@ -190,5 +190,36 @@ namespace Music_thing
         {
 
         }
+
+        private async void ConvertToPlaylist()
+        {
+            string playlistname = "New Playlist";
+            TextBox textBox = new TextBox()
+            {
+                Text = playlistname
+            };
+            ContentDialog nameFlavourDialog = new ContentDialog()
+            {
+                Title = "Name your playlist",
+                Content = textBox,
+                CloseButtonText = "Cancel",
+                PrimaryButtonText = "Ok",
+                DefaultButton = ContentDialogButton.Primary
+            };
+            ContentDialogResult result = await nameFlavourDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                playlistname = textBox.Text;
+                Playlist playlist = new Playlist(playlistname, Playlist.Select(x => x.ID).ToList<string>());
+                await playlist.SavePlaylistFile(true);
+                SongListStorage.PlaylistDict.TryAdd(playlist.PlaylistID, playlist);
+                await App.GetForCurrentView().LoadPinnedFlavours();
+            }
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertToPlaylist();
+        }
     }
 }
