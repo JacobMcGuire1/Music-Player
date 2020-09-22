@@ -154,11 +154,6 @@ namespace Music_thing
 
         private async void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-
-            //Song song = ((Button)sender).Tag as Song;
-
             string songid = (string)(((Button)sender).Tag);
             Song song = SongListStorage.SongDict[songid];
             App.GetForCurrentView().NotificationMessage("Added '" + song.Artist + " - " + song.Title + "' to now playing.");

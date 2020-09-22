@@ -75,16 +75,9 @@ namespace Music_thing
 
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
         {
-            //Button b = (Button)sender;
-            //b.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-
-            //Song song = ((Button)sender).Tag as Song;
-
             String albumkey = (string)(((Button)sender).Tag);
 
             this.Frame.Navigate(typeof(AlbumPage), albumkey);
-
-            //Media.Instance.addSong(song);
         }
 
         private async void playalbumButton_Click(object sender, RoutedEventArgs e)
