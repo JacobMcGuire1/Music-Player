@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -35,12 +36,16 @@ namespace Music_thing
 
         public double chosenVol;
 
+        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool Muted = false;
 
         public BitmapImage DefaultArt;
 
+        int Listeneventcount = 0;
+        bool SongListenInDB = false;
         //public Song CurrentSong;
 
         static Media() { }
@@ -60,6 +65,7 @@ namespace Music_thing
 
             Playlist.CurrentItemChanged += Playlist_CurrentItemChanged;
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            mediaPlayer.PlaybackSession.PositionChanged += PlaybackSession_PositionChanged;
 
             try
             {
@@ -85,6 +91,25 @@ namespace Music_thing
             NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
+        }
+
+        private void PlaybackSession_PositionChanged(MediaPlaybackSession sender, object args)
+        {
+            //if (lastpos != null) Debug.WriteLine(sender.Position - lastpos);
+            //lastpos = sender.Position;
+            //Debug.WriteLine(++Listeneventcount);
+            //Debug.WriteLine(SongListStorage.GetCurrentSong().Duration.TotalSeconds * 4);
+            var totalticks = SongListStorage.GetCurrentSong().Duration.TotalSeconds * 4;
+            if (++Listeneventcount > totalticks / 2 && !SongListenInDB)
+            {
+                AddListenToDB(SongListStorage.GetCurrentSong().ID);
+                SongListenInDB = true;
+            }
+        }
+
+        private void AddListenToDB(string songid)
+        {
+
         }
 
         private void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
@@ -164,6 +189,8 @@ namespace Music_thing
         //Updates song details when the song changes.
         public async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
+            SongListenInDB = false;
+            Listeneventcount = 0;
             await UpdateNowPlaying();
         }
 
