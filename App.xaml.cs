@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Core;
+using Music_thing.Classes;
 
 namespace Music_thing
 {
@@ -33,9 +34,10 @@ namespace Music_thing
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            
+            SongLog.InitialiseDatabase();
 
-            
+
+
         }
 
 

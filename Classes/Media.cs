@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Music_thing.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -109,7 +110,7 @@ namespace Music_thing
 
         private void AddListenToDB(string songid)
         {
-
+            SongLog.AddListen(songid);
         }
 
         private void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
