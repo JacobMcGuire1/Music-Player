@@ -525,27 +525,107 @@ namespace Music_thing
             
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var results = SongListStorage.SearchSongs(SearchBox.Text);
-                var textresults = new List<TextBlock>();
-                foreach(Song song in results)
+                var textresults = new List<StackPanel>();
+
+                //Get Artists
+                var artistsresults = SongListStorage.SearchArtists(SearchBox.Text);
+                foreach (Artist artist in artistsresults)
                 {
+                    StackPanel stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal
+                    };
+                    stackpanel.Tag = artist;
+
+                    SymbolIcon symbol = new SymbolIcon()
+                    {
+                        Symbol = Symbol.Contact,
+                        Margin = new Thickness() { Right = 5 }
+                    };
+                    stackpanel.Children.Add(symbol);
+
+                    TextBlock textblock = new TextBlock()
+                    {
+                        Text = artist.name,
+                    };
+                    stackpanel.Children.Add(textblock);
+
+                    textresults.Add(stackpanel);
+                }
+
+                //Get Albums
+                var albumresults = SongListStorage.SearchAlbums(SearchBox.Text);
+                foreach (Album album in albumresults)
+                {
+                    StackPanel stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal
+                    };
+                    stackpanel.Tag = album;
+
+                    SymbolIcon symbol = new SymbolIcon()
+                    {
+                        Symbol = Symbol.Rotate,
+                        Margin = new Thickness() { Right = 5 }
+                    };
+                    stackpanel.Children.Add(symbol);
+
+                    TextBlock textblock = new TextBlock()
+                    {
+                        Text = album.Name,
+                    };
+                    stackpanel.Children.Add(textblock);
+
+                    textresults.Add(stackpanel);
+                }
+
+                //Get Songs
+                var songresults = SongListStorage.SearchSongs(SearchBox.Text);
+                foreach(Song song in songresults)
+                {
+                    StackPanel stackpanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal
+                    };
+                    stackpanel.Tag = song;
+
+                    SymbolIcon symbol = new SymbolIcon() 
+                    { 
+                        Symbol = Symbol.Audio,
+                        Margin = new Thickness() { Right = 5 }
+                    };
+                    stackpanel.Children.Add(symbol);
+
                     TextBlock textblock = new TextBlock()
                     {
                         Text = song.Title,
-                        Tag = song.ID
                     };
+                    stackpanel.Children.Add(textblock);
 
-                    textresults.Add(textblock);
+                    textresults.Add(stackpanel);
                 }
+
                 SearchBox.ItemsSource = textresults;
             }
         }
         
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            string chosensongid = (string)((TextBlock)args.SelectedItem).Tag;
-            Song song = SongListStorage.SongDict[chosensongid];
-            ContentFrame.Navigate(typeof(AlbumPage), song.AlbumKey);
+            var tag = ((StackPanel)args.SelectedItem).Tag;
+            if (tag is Song)
+            {
+                ContentFrame.Navigate(typeof(AlbumPage), (tag as Song).AlbumKey);
+            }
+            if (tag is Album)
+            {
+                ContentFrame.Navigate(typeof(AlbumPage), (tag as Album).Key);
+            }
+
+            if (tag is Artist)
+            {
+                ContentFrame.Navigate(typeof(ArtistPage), (tag as Artist).name);
+            }
+
         }
 
         private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

@@ -47,7 +47,6 @@ namespace Music_thing
 
         int Listeneventcount = 0;
         bool SongListenInDB = false;
-        //public Song CurrentSong;
 
         static Media() { }
 
@@ -432,12 +431,12 @@ namespace Music_thing
                 }
             }
             await UpdateNowPlaying();
-            //if (Pos > 1 && SongListStorage.PlaylistRepresentation.Count >= Pos)
-            //{
-            //    Playlist.MoveTo((uint)Pos - 1);
-            //}
-            //if (play) mediaPlayer.Play(); else mediaPlayer.Pause();
-            //if (!play) mediaPlayer.Pause();
+
+            //var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Listeneventcount = (int)localSettings.Values["Listeneventcount"];
+            //SongListenInDB = (bool)localSettings.Values["nowplayingtime"];
+
+
             await SongListStorage.SaveNowPlaying();
         }
 

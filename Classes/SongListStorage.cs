@@ -307,6 +307,32 @@ namespace Music_thing
             return Results;
         }
 
+        public static ObservableCollection<Album> SearchAlbums(String query)
+        {
+            var Results = new ObservableCollection<Album>();
+            foreach (Album album in Albums)
+            {
+                if (album.Name.ToLowerInvariant().Contains(query.ToLowerInvariant()))
+                {
+                    Results.Add(album);
+                }
+            }
+            return Results;
+        }
+
+        public static ObservableCollection<Artist> SearchArtists(String query)
+        {
+            var Results = new ObservableCollection<Artist>();
+            foreach (Artist artist in Artists)
+            {
+                if (artist.name.ToLowerInvariant().Contains(query.ToLowerInvariant()))
+                {
+                    Results.Add(artist);
+                }
+            }
+            return Results;
+        }
+
         //The following functions are for saving and loading data for when the program is ended and started.
 
 
