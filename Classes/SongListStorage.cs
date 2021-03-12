@@ -186,7 +186,7 @@ namespace Music_thing
             switch (sortType)
             {
                 case SortType.AlbumName:
-                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Name.CompareTo(AlbumDict[y].Name)));
+                    if (sortDirection == SortDirection.Asc) albumKeys.Sort((x, y) => (AlbumDict[x].Name.Replace("The ", "").CompareTo(AlbumDict[y].Name.Replace("The ", ""))));
                     else albumKeys.Sort((x, y) => (AlbumDict[y].Name.CompareTo(AlbumDict[x].Name)));
                     break;
                 case SortType.Duration:
@@ -225,7 +225,7 @@ namespace Music_thing
                 }
                 if (Artistkeys != null)
                 {
-                    Artistkeys.Sort();//((x, y) => );
+                    Artistkeys.Sort((x, y) => x.Replace("The ", "").CompareTo(y.Replace("The ", "")));//((x, y) => );
                     //Artists.Clear();
                     for (int i = 0; i < Artistkeys.Count; i++)
                     {
@@ -255,7 +255,7 @@ namespace Music_thing
                 if (Songkeys != null)
                 {
                     Songkeys.Sort();//((x, y) => );
-                    Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.CompareTo(SongListStorage.SongDict[y].Title));
+                    Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.Replace("The " , "").CompareTo(SongListStorage.SongDict[y].Title.Replace("The ", "")));
                     //Songs.Clear();
                     for (int i = 0; i < Songkeys.Count; i++)
                     {

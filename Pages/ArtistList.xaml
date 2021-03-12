@@ -9,14 +9,14 @@
     NavigationCacheMode="Enabled"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <ListView x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Artists}" ItemClick="ListViewArtists_ItemClick" IsItemClickEnabled="True">
+    <Grid >
+        <ListView Loaded="ListViewArtists_Loaded" KeyDown="ListViewArtists_KeyDown" x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Artists}" ItemClick="ListViewArtists_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate> 
                 <DataTemplate x:DataType="local:Artist">
                     <Grid Height="44" Margin="0,0,0,0" Tag="{x:Bind name}">
                         <Grid.ColumnDefinitions>
