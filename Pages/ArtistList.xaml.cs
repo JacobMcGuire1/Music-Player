@@ -31,12 +31,14 @@ namespace Music_thing
 
         private string searchterm = "";
 
+
         public ArtistList()
         {
             this.InitializeComponent();
 
 
             Artists = SongListStorage.Artists;
+
 
         }
 
@@ -45,42 +47,70 @@ namespace Music_thing
             this.Frame.Navigate(typeof(ArtistPage), ((Artist)e.ClickedItem).name);
         }
 
+        //Doesn't work for numbers.
         private async void ListViewArtists_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Back && searchterm.Length > 0)
+            if (e.Key.ToString() == "Back")
             {
-                searchterm = searchterm.Remove(searchterm.Length - 1);
+                if (searchterm.Length > 0)
+                {
+                    searchterm = searchterm.Remove(searchterm.Length - 1);
+                    SearchTextBlock.Text = searchterm;
+                }
                 return;
             }
-            var listview = ListViewArtists;
-            searchterm = searchterm + e.Key.ToString().ToLowerInvariant();
-            Artist result = null;
-            foreach (Artist artist in Artists)
+            if (e.Key.ToString().Length == 1)
             {
-                if (artist.name.Length >= searchterm.Length && artist.name.Substring(0, searchterm.Length).ToLowerInvariant() == searchterm)
+                SearchPopup.IsOpen = true;
+                var listview = ListViewArtists;
+                searchterm = searchterm + e.Key.ToString().ToLowerInvariant();
+                Artist result = null;
+                foreach (Artist artist in Artists)
                 {
-                    result = artist;
-                    break;
+                    if (artist.name.Length >= searchterm.Length && artist.name.Substring(0, searchterm.Length).ToLowerInvariant() == searchterm)
+                    {
+                        result = artist;
+                        break;
+                    }
+                }
+                if (result == null)
+                {
+                    var r = SongListStorage.SearchArtists(searchterm);
+                    if (r.Count > 0) result = r[0];
+                }
+                if (result != null)
+                {
+                    listview.ScrollIntoView(result);
+                    listview.SelectedItem = result;
+                }
+                var oldsearchterm = searchterm;
+                SearchTextBlock.Text = searchterm;
+                await Task.Delay(1000);
+                if (searchterm.Equals(oldsearchterm))
+                {
+                    SearchPopup.IsOpen = false;
+                    searchterm = "";
+                    SearchTextBlock.Text = "";
                 }
             }
-            if (result == null)
-            {
-                var r = SongListStorage.SearchArtists(searchterm);
-                if (r.Count > 0) result = r[0];
-            }
-            if (result != null)
-            {
-                listview.ScrollIntoView(result);
-                listview.SelectedItem = result;
-            }
-            var oldsearchterm = searchterm;
-            await Task.Delay(1000);
-            if (searchterm.Equals(oldsearchterm)) 
-            {
-                searchterm = "";
-            }
-            
         }
+
+        private void centrePopup()
+        {
+            var h = ((Frame)Window.Current.Content).ActualHeight;
+            var w = ((Frame)Window.Current.Content).ActualWidth;
+            SearchPopup.VerticalOffset = h / 2;
+            SearchPopup.HorizontalOffset = w / 2;
+        }
+
+
+        /*private void placeTextInCentre()
+        {
+            double primScreenHeight = System.Windows.SystemParameters.FullPrimaryScreenHeight;
+            double primScreenWidth = System.Windows.SystemParameters.FullPrimaryScreenWidth;
+            SearchTextBlock. = (primScreenHeight - SearchTextBlock.Height) / 2;
+            SearchTextBlock.Left = (primScreenWidth - SearchTextBlock.Width) / 2;
+        }*/
 
         private void ListViewArtists_Loaded(object sender, RoutedEventArgs e)
         {

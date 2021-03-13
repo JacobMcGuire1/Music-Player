@@ -29,6 +29,7 @@ namespace Music_thing
         {
             this.InitializeComponent();
             globalvol.Value = Media.Instance.globalVol * 100;
+            AudioBalanceSlider.Value = Media.Instance.mediaPlayer.AudioBalance / 100;
         }
 
         private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -42,6 +43,11 @@ namespace Music_thing
         {
             await Database.GetSongs(false);
             await App.GetForCurrentView().LoadPinnedFlavours();
+        }
+
+        private void AudioBalanceSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Media.Instance.mediaPlayer.AudioBalance = (sender as Slider).Value / 100;
         }
     }
 }

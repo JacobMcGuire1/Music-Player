@@ -10,6 +10,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
+        <Popup VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="SearchPopup">
+            <TextBlock x:Name="SearchTextBlock" Text=""/>
+        </Popup>
+        
         <ListView Loaded="ListViewArtists_Loaded" KeyDown="ListViewArtists_KeyDown" x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Artists}" ItemClick="ListViewArtists_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

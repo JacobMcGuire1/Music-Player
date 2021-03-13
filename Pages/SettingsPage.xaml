@@ -16,7 +16,12 @@
                 Minimum="0" 
                 Maximum="100"
                 ValueChanged="Globalvol_ValueChanged"/>
+            <TextBlock Text="Audio Balance:" Margin="0,0,0,5"/>
+            <Slider x:Name="AudioBalanceSlider" Minimum="-100" Maximum="100" ValueChanged="AudioBalanceSlider_ValueChanged"/>
+
             <Button x:Name="updatemusicbutton" Click="Updatemusicbutton_Click" >Update Music</Button>
+            
+            
 
             <!--TextBlock Text="Slider with ValueChanged event handler:" Margin="0,25,0,0"/>
             <Slider x:Name="slider2"  

@@ -18,6 +18,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Popup VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="SearchPopup">
+            <TextBlock x:Name="SearchTextBlock" Text=""/>
+        </Popup>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
             <Button x:Name="RandomAlbumButton" Margin="20,0,0,0" HorizontalAlignment="Left" Click="RandomAlbumButton_Click">Go to a random album</Button>
