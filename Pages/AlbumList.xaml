@@ -22,8 +22,8 @@
             <TextBlock x:Name="SearchTextBlock" Text=""/>
         </Popup>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
             <Button x:Name="RandomAlbumButton" Margin="20,0,0,0" HorizontalAlignment="Left" Click="RandomAlbumButton_Click">Go to a random album</Button>
+            <Button Margin="20,0,0,0" HorizontalAlignment="Left" Click="Button_Click">Play a random album</Button>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">Sort by</TextBlock>
             <ComboBox Margin="10,0,0,0" x:Name="SortTypeComboBox" VerticalAlignment="Center" SelectionChanged="SortTypeComboBox_SelectionChanged">
                 <ComboBoxItem x:Name="ArtistSort">Artist Name</ComboBoxItem>
