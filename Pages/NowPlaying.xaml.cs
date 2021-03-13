@@ -54,6 +54,11 @@ namespace Music_thing
             //ListViewPlayList
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ShowCurrentlyPlayingSong();
+        }
+
         private async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -66,20 +71,55 @@ namespace Music_thing
         private void ShowCurrentlyPlayingSong()
         {
             var k = ListViewPlayList.ItemsPanelRoot;
-            if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count - 1 >= SongListStorage.CurrentPlaceInPlaylist)
+            if (k != null)
+            {
+                ListViewItem currentsongitem = null;
+                for (int i = 0; i < k.Children.Count; i++)
+                {
+                    ListViewItem listViewItem = k.Children[i] as ListViewItem;
+                    if (listViewItem.Content != null && (listViewItem.Content as Song).ID == SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID)
+                    {
+                        if (i == SongListStorage.CurrentPlaceInPlaylist)
+                        {
+                            currentsongitem = listViewItem;
+                        }
+                        if (currentsongitem == null)
+                        {
+                            currentsongitem = listViewItem;
+                        }
+                    }
+                }
+                if (currentsongitem != null)
+                {
+                    foreach (ListViewItem listViewItem in k.Children)
+                    {
+                        listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+                    }
+                    currentsongitem.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
+                }
+            }
+            
+
+            /*if (SongListStorage.PlaylistRepresentation.Count != 0 && k != null && k.Children.Count - 1 >= SongListStorage.CurrentPlaceInPlaylist)
             {
                 initialised = true;
                 foreach (ListViewItem listViewItem in k.Children)
                 {
                     listViewItem.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
                 }
+                //var a  = 
+                var a = k.Children.Count;
                 var c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
-                if (c.Content != null && ((Song)c.Content).ID.Equals(SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID))
+                while (c.Content == null) 
+                {
+                    c = (ListViewItem)k.Children[SongListStorage.CurrentPlaceInPlaylist];
+                }
+                if (((Song)c.Content).ID.Equals(SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID))
                 {
                     c.Background = new SolidColorBrush(Color.FromArgb(100, 48, 179, 221));
                 }
                 
-            }
+            }*/
         }
 
         private async void Playlist_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

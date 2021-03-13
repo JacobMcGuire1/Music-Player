@@ -548,6 +548,8 @@ namespace Music_thing
                     {
                         Text = artist.name,
                     };
+
+                    
                     stackpanel.Children.Add(textblock);
 
                     textresults.Add(stackpanel);
@@ -576,6 +578,19 @@ namespace Music_thing
                     };
                     stackpanel.Children.Add(textblock);
 
+                    /*Button playbutton = new Button() 
+                    { 
+                        Content = new SymbolIcon() 
+                        {
+                            Symbol = Symbol.Play,
+                            Margin = new Thickness() { Right = 5 },
+                            Tag = album
+                        },
+                    };
+                    playbutton.Click += Playbutton_Click;
+                    stackpanel.Children.Add(playbutton);*/
+                    
+
                     textresults.Add(stackpanel);
                 }
 
@@ -602,13 +617,41 @@ namespace Music_thing
                     };
                     stackpanel.Children.Add(textblock);
 
+                    /*Button playbutton = new Button()
+                    {
+                        Content = new SymbolIcon()
+                        {
+                            Symbol = Symbol.Play,
+                            Margin = new Thickness() { Right = 5 },
+                            Tag = song
+                        },
+                    };
+                    playbutton.Click += Playbutton_Click;
+                    stackpanel.Children.Add(playbutton);*/
+
+
+
                     textresults.Add(stackpanel);
                 }
 
                 SearchBox.ItemsSource = textresults;
             }
         }
-        
+
+        private async void Playbutton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button.Tag is Song song)
+            {
+                await Media.Instance.PlaySong(song.ID);
+            }
+
+            if (button.Tag is Album album)
+            {
+                await album.Play();
+            }
+        }
+
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var tag = ((StackPanel)args.SelectedItem).Tag;
