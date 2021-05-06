@@ -19,9 +19,9 @@
             <TextBlock Text="Audio Balance:" Margin="0,0,0,5"/>
             <Slider x:Name="AudioBalanceSlider" Minimum="-100" Maximum="100" ValueChanged="AudioBalanceSlider_ValueChanged"/>
 
-            <Button x:Name="updatemusicbutton" Click="Updatemusicbutton_Click" >Update Music</Button>
-            
-            
+            <Button x:Name="updatemusicbutton" Click="Updatemusicbutton_Click" Margin="5">Update Music</Button>
+
+            <Button x:Name="OpenfolderButton" Click="OpenfolderButton_Click" Margin="5">Open Data Folder</Button>
 
             <!--TextBlock Text="Slider with ValueChanged event handler:" Margin="0,25,0,0"/>
             <Slider x:Name="slider2"  

@@ -24,7 +24,9 @@ namespace Music_thing.Classes
 
                 String tableCommand = "CREATE TABLE IF NOT " +
                     "EXISTS SongKeys (SongKey NVARCHAR(2048) PRIMARY KEY NOT NULL); " +
-                    "CREATE TABLE IF NOT EXISTS Listens (SongKey NVARCHAR(2048), Time integer, FOREIGN KEY(SongKey) REFERENCES SongKeys(SongKey));";
+                    "CREATE TABLE IF NOT EXISTS Listens (SongKey NVARCHAR(2048), Time integer, FOREIGN KEY(SongKey) REFERENCES SongKeys(SongKey));" +
+                    "CREATE TABLE IF NOT EXISTS AlbumKeys (AlbumKey NVARCHAR(2048) PRIMARY KEY NOT NULL);" +
+                    "CREATE TABLE IF NOT EXISTS AlbumStartListens (AlbumKey NVARCHAR(2048), Time integer, FOREIGN KEY(AlbumKey) REFERENCES AlbumKeys(AlbumKey));";
 
                 SqliteCommand createTable = new SqliteCommand(tableCommand, db);
 
@@ -47,7 +49,6 @@ namespace Music_thing.Classes
                     SqliteCommand insertCommand = new SqliteCommand();
                     insertCommand.Connection = db;
 
-                    // Use parameterized query to prevent SQL injection attacks
                     insertCommand.CommandText = "INSERT INTO SongKeys VALUES (@Entry);";
                     insertCommand.Parameters.AddWithValue("@Entry", songkey);
 
@@ -94,6 +95,80 @@ namespace Music_thing.Classes
                 SqliteCommand selectCommand = new SqliteCommand
                     ("SELECT * from SongKeys where SongKey = @Entry", db);
                 selectCommand.Parameters.AddWithValue("@Entry", songid);
+
+                SqliteDataReader query = selectCommand.ExecuteReader();
+
+                while (query.Read())
+                {
+                    entries.Add(query.GetString(0));
+                }
+
+                db.Close();
+            }
+
+            return entries.Count != 0;
+        }
+
+
+        public static void AddAlbum(string albumkey)
+        {
+            if (!CheckIfAlbumExists(albumkey))
+            {
+                string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
+                using (SqliteConnection db =
+                  new SqliteConnection($"Filename={dbpath}"))
+                {
+                    db.Open();
+
+                    SqliteCommand insertCommand = new SqliteCommand();
+                    insertCommand.Connection = db;
+
+                    insertCommand.CommandText = "INSERT INTO AlbumKeys VALUES (@Entry);";
+                    insertCommand.Parameters.AddWithValue("@Entry", albumkey);
+
+                    insertCommand.ExecuteReader();
+
+                    db.Close();
+                }
+            }
+        }
+
+        public static void AddAlbumListen(string albumkey)
+        {
+            AddAlbum(albumkey);
+
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
+            using (SqliteConnection db =
+              new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+
+                SqliteCommand insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+
+                // Use parameterized query to prevent SQL injection attacks
+                insertCommand.CommandText = "INSERT INTO AlbumListens VALUES (@Entry, @Time);";
+                insertCommand.Parameters.AddWithValue("@Entry", albumkey);
+                insertCommand.Parameters.AddWithValue("@Time", DateTime.Now.Ticks);
+                insertCommand.ExecuteReader();
+
+                db.Close();
+            }
+        }
+
+        private static bool CheckIfAlbumExists(string albumkey)
+        {
+            List<String> entries = new List<string>();
+
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
+            using (SqliteConnection db =
+               new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+
+                SqliteCommand selectCommand = new SqliteCommand
+                    ("SELECT * from AlbumKeys where AlbumKey = @Entry", db);
+                selectCommand.Parameters.AddWithValue("@Entry", albumkey);
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 

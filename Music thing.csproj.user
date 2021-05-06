@@ -8,7 +8,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
@@ -21,5 +21,6 @@
     <AppIconSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</AppIconSource>
     <SplashScreenSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</SplashScreenSource>
     <PackageLogoSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</PackageLogoSource>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
   </PropertyGroup>
 </Project>

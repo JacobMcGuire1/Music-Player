@@ -63,11 +63,11 @@ namespace Music_thing
             {
                 SearchPopup.IsOpen = true;
                 var listview = ListViewArtists;
-                searchterm = searchterm + e.Key.ToString().ToLowerInvariant();
+                searchterm = searchterm + e.Key.ToString().ToUpperInvariant();
                 Artist result = null;
                 foreach (Artist artist in Artists)
                 {
-                    if (artist.name.Length >= searchterm.Length && artist.name.Substring(0, searchterm.Length).ToLowerInvariant() == searchterm)
+                    if (artist.name.Length >= searchterm.Length && artist.name.Substring(0, searchterm.Length).ToLowerInvariant() == searchterm.ToLowerInvariant())
                     {
                         result = artist;
                         break;

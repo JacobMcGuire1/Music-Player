@@ -11,7 +11,7 @@
 
     <Grid >
         <Popup VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="SearchPopup">
-            <TextBlock x:Name="SearchTextBlock" Text=""/>
+            <TextBlock x:Name="SearchTextBlock" FontWeight="SemiBold" FontSize="50" Text=""/>
         </Popup>
         
         <ListView Loaded="ListViewArtists_Loaded" KeyDown="ListViewArtists_KeyDown" x:Name="ListViewArtists" Margin="20,20,20,0" ItemsSource="{x:Bind Artists}" ItemClick="ListViewArtists_ItemClick" IsItemClickEnabled="True">
