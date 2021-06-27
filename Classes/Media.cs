@@ -47,6 +47,7 @@ namespace Music_thing
 
         int Listeneventcount = 0;
         bool SongListenInDB = false;
+        bool initialload = true;
 
         static Media() { }
 
@@ -67,6 +68,8 @@ namespace Music_thing
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             mediaPlayer.PlaybackSession.PositionChanged += PlaybackSession_PositionChanged;
 
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
             try
             {
                 globalVol = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"];
@@ -80,14 +83,21 @@ namespace Music_thing
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"] = chosenVol;
             }
             ChangeVolume();
-            //mediaPlayer.Volume = chosenVol * globalVol;
 
-            //mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
+            //Load DB Save info for this song
+            if (localSettings.Values.ContainsKey("Listeneventcount") && localSettings.Values.ContainsKey("SongListenInDB"))
+            {
+                Listeneventcount = (int)localSettings.Values["Listeneventcount"];
+                SongListenInDB = (bool)localSettings.Values["SongListenInDB"];
+            }
+                //mediaPlayer.Volume = chosenVol * globalVol;
 
-            //The placeholder album art TODO: make it work?
-            
+                //mediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
 
-            Currentart = DefaultArt;
+                //The placeholder album art TODO: make it work?
+
+
+                Currentart = DefaultArt;
             NotifyPropertyChanged();
 
             //CurrentSong = new StorageFile();
@@ -95,16 +105,13 @@ namespace Music_thing
 
         private void PlaybackSession_PositionChanged(MediaPlaybackSession sender, object args)
         {
-            //if (lastpos != null) Debug.WriteLine(sender.Position - lastpos);
-            //lastpos = sender.Position;
-            //Debug.WriteLine(++Listeneventcount);
-            //Debug.WriteLine(SongListStorage.GetCurrentSong().Duration.TotalSeconds * 4);
             var totalticks = SongListStorage.GetCurrentSong().Duration.TotalSeconds * 4;
             if (++Listeneventcount > totalticks / 2 && !SongListenInDB)
             {
                 AddListenToDB(SongListStorage.GetCurrentSong().ID);
                 SongListenInDB = true;
             }
+            SongListStorage.SaveDBInfo(Listeneventcount, SongListenInDB);
         }
 
         private void AddListenToDB(string songid)
@@ -189,8 +196,16 @@ namespace Music_thing
         //Updates song details when the song changes.
         public async void Playlist_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
-            SongListenInDB = false;
-            Listeneventcount = 0;
+            if (!initialload)
+            {
+                SongListenInDB = false;
+                Listeneventcount = 0;
+            }
+            else
+            {
+                initialload = false;
+            }
+            
             await UpdateNowPlaying();
         }
 

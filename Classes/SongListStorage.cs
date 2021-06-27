@@ -390,6 +390,13 @@ namespace Music_thing
             localSettings.Values["nowplayingtime"] = Media.Instance.GetSongTime();
         }
 
+        public static void SaveDBInfo(int Listeneventcount, bool SongListenInDB)
+        {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["Listeneventcount"] = Listeneventcount;
+            localSettings.Values["SongListenInDB"] = SongListenInDB;
+        }
+
         public static void SaveVolume()
         {
             //var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
