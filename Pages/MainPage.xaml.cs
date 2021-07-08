@@ -37,11 +37,16 @@ namespace Music_thing
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(AppTitleBar);
-            try
+
+            var localsettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localsettings.Values.ContainsKey("chosenVol"))
             {
                 VolumeSlider.Value = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"] * 100;
             }
-            catch { VolumeSlider.Value = 30; }
+            else
+            {
+                VolumeSlider.Value = 30;
+            }
 
             
             //SongListStorage.FindArtists();

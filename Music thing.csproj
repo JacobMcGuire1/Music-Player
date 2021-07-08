@@ -156,6 +156,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\discordrpc\DiscordRPC.Example.exe.config" />
     <None Include="key.pfx" />
     <None Include="Music thing_TemporaryKey.pfx" />
   </ItemGroup>
@@ -178,6 +179,12 @@
     <Content Include="Assets\Album.targetsize-48.png" />
     <Content Include="Assets\album44x44logo.png" />
     <Content Include="Assets\DefaultAlbumArt.png" />
+    <Content Include="Assets\discordrpc\DiscordRP.exe" />
+    <Content Include="Assets\discordrpc\DiscordRPC.dll" />
+    <Content Include="Assets\discordrpc\DiscordRPC.Example.pdb" />
+    <Content Include="Assets\discordrpc\DiscordRPC.pdb" />
+    <Content Include="Assets\discordrpc\DiscordRPC.xml" />
+    <Content Include="Assets\discordrpc\Newtonsoft.Json.dll" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -285,6 +292,11 @@
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3">
       <Version>2.0.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.17134.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

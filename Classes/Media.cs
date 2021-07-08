@@ -8,7 +8,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation.Metadata;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.Storage;
@@ -70,19 +72,30 @@ namespace Music_thing
 
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-            try
+            if (localSettings.Values.ContainsKey("globalvol"))
             {
-                globalVol = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"];
-                chosenVol = (double)Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"];
+                globalVol = (double)localSettings.Values["globalvol"];
             }
-            catch
+            else
             {
                 globalVol = 1.0;
-                chosenVol = 0.3;
-                Windows.Storage.ApplicationData.Current.LocalSettings.Values["globalvol"] = globalVol;
-                Windows.Storage.ApplicationData.Current.LocalSettings.Values["chosenVol"] = chosenVol;
+                localSettings.Values["globalvol"] = globalVol;
             }
+
+            if (localSettings.Values.ContainsKey("chosenVol"))
+            {
+                chosenVol = (double)localSettings.Values["chosenVol"];
+            }
+            else
+            {
+                chosenVol = 0.3;
+                localSettings.Values["chosenVol"] = chosenVol;
+            }
+
             ChangeVolume();
+
+            SetDiscordRichPresence();
+            saveRichPresenceInfo();
 
             //Load DB Save info for this song
             if (localSettings.Values.ContainsKey("Listeneventcount") && localSettings.Values.ContainsKey("SongListenInDB"))
@@ -99,6 +112,7 @@ namespace Music_thing
 
                 Currentart = DefaultArt;
             NotifyPropertyChanged();
+            
 
             //CurrentSong = new StorageFile();
         }
@@ -471,6 +485,52 @@ namespace Music_thing
                 
                 if (save) await SongListStorage.SaveNowPlaying();
             }
+        }
+
+        private async void SetDiscordRichPresence()
+        {
+            try
+            {
+                if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
+                {
+                    await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
+                }
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Debug.WriteLine("Couldn't Launch Discord Rich Presence.");
+            }
+        }
+
+        private async Task saveRichPresenceInfo()
+        {
+            //var storageFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
+            //var f = new StorageFolder(new Uri("ms - appx:///Assets/discordrpc"));
+            //Windows.Storage.ApplicationData.Current.
+            //KnownFolders.MusicLibrary.CreateFileAsync
+            var localfolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            var file = await localfolder.CreateFileAsync("RichPresenceInfo.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            while (true)
+            {
+                await Task.Delay(500);
+                //var musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
+                //musicLibrary.
+                //Debug.WriteLine(musicLibrary.SaveFolder.Path);
+                
+                //var file = await KnownFolders.MusicLibrary.CreateFileAsync("RichPresenceInfo.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                long timeleft = 0;
+                var song = SongListStorage.GetCurrentSong();
+                if (song != null)
+                {
+                    timeleft = song.Duration.Subtract(mediaPlayer.PlaybackSession.Position).Ticks;
+                }
+
+                await FileIO.WriteTextAsync(file, currentartist + "\n" + currenttitle + "\n" + timeleft + "\n" + DateTime.UtcNow.Ticks + "\n" + mediaPlayer.PlaybackSession.PlaybackState);
+                Debug.WriteLine("Hopefully wrote to file at " + DateTime.Now.ToString());
+                
+            }
+            
         }
     }
 }
