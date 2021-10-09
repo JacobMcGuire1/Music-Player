@@ -76,7 +76,12 @@ namespace Music_thing.Classes
                 insertCommand.CommandText = "INSERT INTO Listens VALUES (@Entry, @Time);";
                 insertCommand.Parameters.AddWithValue("@Entry", songkey);
                 insertCommand.Parameters.AddWithValue("@Time", DateTime.Now.Ticks);
-                insertCommand.ExecuteReader();
+                var result = insertCommand.ExecuteReader();
+
+                if (result.RecordsAffected == 1)
+                {
+                    SongListStorage.LastLoggedSong = songkey;
+                }
 
                 db.Close();
             }

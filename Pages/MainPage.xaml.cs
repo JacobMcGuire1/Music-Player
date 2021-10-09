@@ -561,7 +561,7 @@ namespace Music_thing
                 }
 
                 //Get Albums
-                var albumresults = SongListStorage.SearchAlbums(SearchBox.Text);
+                var albumresults = SongListStorage.SearchAlbums(SearchBox.Text, SongListStorage.Albums);
                 foreach (Album album in albumresults)
                 {
                     StackPanel stackpanel = new StackPanel()

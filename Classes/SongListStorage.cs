@@ -58,6 +58,8 @@ namespace Music_thing
         public static SortDirection AlbumListSortDirection = SortDirection.Asc;
         public static SortType AlbumListSortType = SortType.Artist;
 
+        public static string LastLoggedSong = "None";
+
         public enum SortDirection
         {
             Asc,
@@ -307,7 +309,7 @@ namespace Music_thing
             return Results;
         }
 
-        public static ObservableCollection<Album> SearchAlbums(String query)
+        public static ObservableCollection<Album> SearchAlbums(String query, ObservableCollection<Album> Albums)
         {
             var Results = new ObservableCollection<Album>();
             foreach (Album album in Albums)

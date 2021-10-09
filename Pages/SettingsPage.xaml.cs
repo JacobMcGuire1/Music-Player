@@ -28,11 +28,14 @@ namespace Music_thing
     {
         private ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
+        private string LastLoggedSong;
+
         public SettingsPage()
         {
             this.InitializeComponent();
             globalvol.Value = Media.Instance.globalVol * 100;
             AudioBalanceSlider.Value = Media.Instance.mediaPlayer.AudioBalance / 100;
+            LastLoggedSong = SongListStorage.LastLoggedSong;
         }
 
         private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

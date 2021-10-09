@@ -77,7 +77,7 @@ namespace Music_thing
                 for (int i = 0; i < k.Children.Count; i++)
                 {
                     ListViewItem listViewItem = k.Children[i] as ListViewItem;
-                    if (listViewItem.Content != null && (listViewItem.Content as Song).ID == SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID)
+                    if (listViewItem.Content != null && SongListStorage.PlaylistRepresentation.Count > 0 && (listViewItem.Content as Song).ID == SongListStorage.PlaylistRepresentation[SongListStorage.CurrentPlaceInPlaylist].ID)
                     {
                         if (i == SongListStorage.CurrentPlaceInPlaylist)
                         {

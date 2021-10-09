@@ -34,6 +34,8 @@ namespace Music_thing.Pages
         private SongListStorage.SortDirection SortDirection = SongListStorage.SortDirection.Desc;
         private SongListStorage.SortType SortType = SongListStorage.SortType.Year;
 
+        private string searchterm = "";
+
         public ArtistPage()
         {
             this.InitializeComponent();
@@ -51,6 +53,54 @@ namespace Music_thing.Pages
             SortDirectionComboBox.SelectedItem = DescSort;
         }
 
+        private async void jess_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key.ToString() == "Back")
+            {
+                if (searchterm.Length > 0)
+                {
+                    searchterm = searchterm.Remove(searchterm.Length - 1);
+                    SearchTextBlock.Text = searchterm;
+                }
+                return;
+            }
+            if (e.Key.ToString().Length == 1)
+            {
+                SearchPopup.IsOpen = true;
+                var listview = jess;
+                searchterm = searchterm + e.Key.ToString().ToUpperInvariant();
+                Album result = null;
+                foreach (Album album in Albums)
+                {
+                    if (album.Name.Length >= searchterm.Length && album.Name.Substring(0, searchterm.Length).ToLowerInvariant() == searchterm.ToLowerInvariant())
+                    {
+                        result = album;
+                        break;
+                    }
+                }
+                if (result == null)
+                {
+                    //Need to change this to albums
+                    var r = SongListStorage.SearchAlbums(searchterm, Albums);
+                    if (r.Count > 0) result = r[0];
+                }
+                if (result != null)
+                {
+                    listview.ScrollIntoView(result);
+                    listview.SelectedItem = result;
+                }
+                var oldsearchterm = searchterm;
+                SearchTextBlock.Text = searchterm;
+                await Task.Delay(1000);
+                if (searchterm.Equals(oldsearchterm))
+                {
+                    SearchPopup.IsOpen = false;
+                    searchterm = "";
+                    SearchTextBlock.Text = "";
+                }
+            }
+        }
+
         private void Albumbutton_Click(object sender, RoutedEventArgs e)
         { 
             String albumkey = (string)(((Button)sender).Tag);
@@ -61,6 +111,7 @@ namespace Music_thing.Pages
         {
             String artistid = e.Parameter as string;
             ChangeArtist(artistid);
+            jess.Focus(FocusState.Programmatic);
             if (true)
             {
                 foreach (Album album in Albums)
@@ -197,6 +248,13 @@ namespace Music_thing.Pages
                 SortAlbums();
             }
         }
+
+        private void jess_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as GridView).Focus(FocusState.Programmatic);
+        }
+
+
     }
 }
 

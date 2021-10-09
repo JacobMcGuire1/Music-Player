@@ -23,6 +23,9 @@
 
             <Button x:Name="OpenfolderButton" Click="OpenfolderButton_Click" Margin="5">Open Data Folder</Button>
 
+            <TextBlock Text="Last Logged Song:" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Bind LastLoggedSong, Mode=TwoWay}" Margin="0,0,0,5"/>
+
             <!--TextBlock Text="Slider with ValueChanged event handler:" Margin="0,25,0,0"/>
             <Slider x:Name="slider2"  
             Minimum="0" 
