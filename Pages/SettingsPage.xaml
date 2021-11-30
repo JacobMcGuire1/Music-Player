@@ -26,6 +26,11 @@
             <TextBlock Text="Last Logged Song:" Margin="0,0,0,5"/>
             <TextBlock Text="{x:Bind LastLoggedSong, Mode=TwoWay}" Margin="0,0,0,5"/>
 
+            <Button x:Name="OneDriveButton" Click="OneDriveButton_Click" Margin="5">Authenticate Onedrive</Button>
+
+            <Button x:Name="PickPlayListFolderButton" Click="PickPlayListFolderButton_Click" Margin="5">Choose Playlist Folder</Button>
+            <TextBlock x:Name="ChosenFolderText" Text="" Margin="0,0,0,5"/>
+
             <!--TextBlock Text="Slider with ValueChanged event handler:" Margin="0,25,0,0"/>
             <Slider x:Name="slider2"  
             Minimum="0" 

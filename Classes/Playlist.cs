@@ -10,6 +10,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
+
 namespace Music_thing
 {
     public class Playlist : Album
@@ -114,7 +115,9 @@ namespace Music_thing
             {
                 try
                 {
-                    StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+                    StorageFolder storageFolder = SongListStorage.PlayListFolder;
+                    //Windows.Storage
+                    
                     //StorageFile file = await storageFolder.CreateFileAsync(PlaylistID.ToString() + ".playlist", Windows.Storage.CreationCollisionOption.ReplaceExisting);
                     StorageFile file = fail ? await storageFolder.CreateFileAsync(PlaylistID.ToString() + ".playlist", Windows.Storage.CreationCollisionOption.FailIfExists) : await storageFolder.CreateFileAsync(PlaylistID.ToString() + ".playlist", Windows.Storage.CreationCollisionOption.ReplaceExisting);
                     await FileIO.WriteTextAsync(file, ConvertToJSON());
@@ -132,7 +135,7 @@ namespace Music_thing
             {
                 try
                 {
-                    StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+                    StorageFolder storageFolder = SongListStorage.PlayListFolder;
                     StorageFile file = await storageFolder.GetFileAsync(PlaylistID.ToString() + ".playlist");
                     await file.DeleteAsync();
                     return;

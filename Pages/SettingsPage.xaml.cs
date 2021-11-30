@@ -14,8 +14,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System; //Launcher
-
 using Windows.Storage; //Files File.AccessMode
+using Microsoft.OneDrive.Sdk;
+using System.Collections.Concurrent;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,6 +30,8 @@ namespace Music_thing
         private ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
         private string LastLoggedSong;
+
+        
 
         public SettingsPage()
         {
@@ -61,6 +64,44 @@ namespace Music_thing
             var folder = Windows.Storage.ApplicationData.Current.LocalFolder;
             await Launcher.LaunchFolderAsync(folder);
 
+        }
+
+        private async void OneDriveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var scopes = new[]
+            {
+              "onedrive.readwrite",
+              "onedrive.appfolder",
+              "wl.signin"
+            };
+            SongListStorage._client = OneDriveClientExtensions.GetClientUsingOnlineIdAuthenticator(scopes);
+            var session = await SongListStorage._client.AuthenticateAsync();
+            
+            //Debug.WriteLine($"Token: {session.AccessToken}");
+        }
+
+        private async void PickPlayListFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            folderPicker.FileTypeFilter.Add("*");
+
+            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                // Application now has read/write access to all contents in the picked folder
+                // (including other sub-folder contents)
+                Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.AddOrReplace("PlaylistFolder", folder);
+                ChosenFolderText.Text = "Picked folder: " + folder.Name;
+                SongListStorage.PlaylistDict = new ConcurrentDictionary<long, Playlist>();
+                SongListStorage.LoadFlavours();
+                SongListStorage.PlayListFolder = folder;
+            }
+            else
+            {
+                ChosenFolderText.Text = "No Folder Found.";
+            }
         }
     }
 }

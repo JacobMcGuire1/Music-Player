@@ -256,6 +256,7 @@ namespace Music_thing
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowUnpinnedFlavours"] = true;
             }
             await SongListStorage.GetNowPlaying();
+            await SongListStorage.GetPlaylistFolder();
             await SongListStorage.LoadFlavours();
             SongListStorage.LoadVolume();
             Media.Instance.VolChanged();

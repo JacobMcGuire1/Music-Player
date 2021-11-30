@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.OneDrive.Sdk;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
@@ -59,6 +59,11 @@ namespace Music_thing
         public static SortType AlbumListSortType = SortType.Artist;
 
         public static string LastLoggedSong = "None";
+
+        public static StorageFolder PlayListFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+
+        //For onedrive
+        public static IOneDriveClient _client;
 
         public enum SortDirection
         {
@@ -144,7 +149,7 @@ namespace Music_thing
             await UpdateAndOrderAlbums(false);
         }
 
-        
+
 
         //Updates the list of albums from the dictionary. This is done so that the observable list of albums is smoothly updated as they are discovered asynchronously by the file finder threads. 
         public static async Task UpdateAndOrderAlbums(bool ChangedOrder)
@@ -257,7 +262,7 @@ namespace Music_thing
                 if (Songkeys != null)
                 {
                     Songkeys.Sort();//((x, y) => );
-                    Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.Replace("The " , "").CompareTo(SongListStorage.SongDict[y].Title.Replace("The ", "")));
+                    Songkeys.Sort((x, y) => SongListStorage.SongDict[x].Title.Replace("The ", "").CompareTo(SongListStorage.SongDict[y].Title.Replace("The ", "")));
                     //Songs.Clear();
                     for (int i = 0; i < Songkeys.Count; i++)
                     {
@@ -277,23 +282,23 @@ namespace Music_thing
         }
 
         //Loads the user's songs from their files. Should only be done to initially discover their music in the future.
-       /* public static void GetSongList()
-        {
-            Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
-        }*/
+        /* public static void GetSongList()
+         {
+             Windows.System.Threading.ThreadPool.RunAsync(DisplayFiles, Windows.System.Threading.WorkItemPriority.High);
+         }*/
 
         //Saves the position in the song every second,
-       public static async void PeriodicallySave(Windows.Foundation.IAsyncAction action)
+        public static async void PeriodicallySave(Windows.Foundation.IAsyncAction action)
+        {
+            while (true)
             {
-                while (true)
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        SavePlace();
-                    });
-                    Thread.Sleep(1000); //Updates every second.
-                }
-       }        
+                    SavePlace();
+                });
+                Thread.Sleep(1000); //Updates every second.
+            }
+        }
 
         //Returns the songs that contain the query as a substring to allow searching.
         public static ObservableCollection<Song> SearchSongs(String query)
@@ -340,7 +345,7 @@ namespace Music_thing
 
         public static void SongsToJson()
         {
-            string json = JsonConvert.SerializeObject(SongDict);            
+            string json = JsonConvert.SerializeObject(SongDict);
         }
 
         public static string NowPlayingToString()
@@ -369,7 +374,7 @@ namespace Music_thing
                         await FileIO.WriteTextAsync(nowplayingfile, nowplayingstring);
                         SavePlace();
                     }
-                    
+
                     return true;
                 }
                 catch (FileLoadException E)
@@ -472,7 +477,7 @@ namespace Music_thing
         }*/
         public static Album GetPinnedFlavourForAlbum(string albumid)
         {
-            foreach(Playlist playlist in PlaylistDict.Values)
+            foreach (Playlist playlist in PlaylistDict.Values)
             {
                 if (playlist.isflavour && playlist.albumkey == albumid && playlist.pinnedinalbum)
                 {
@@ -487,12 +492,30 @@ namespace Music_thing
             return AlbumDict[albumid];
         }
 
+        /*private static StorageFolder GetPlaylistFolder()
+        {
+
+        }*/
+
+
+        public static async Task GetPlaylistFolder()
+        {
+            if (Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.ContainsItem("PlaylistFolder"))
+            {
+                PlayListFolder = (StorageFolder)(await Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.GetItemAsync("PlaylistFolder"));
+            }
+        }
+
+
+
         public static async Task LoadFlavours()
         {
             var c = ApplicationData.Current.RoamingStorageQuota;
             //await ApplicationData.Current.ClearAsync(ApplicationDataLocality.Roaming);
 
-            StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+            StorageFolder storageFolder = PlayListFolder;
             QueryOptions queryOption = new QueryOptions(CommonFileQuery.DefaultQuery, new string[] { ".playlist" })
             {
                 FolderDepth = FolderDepth.Deep
