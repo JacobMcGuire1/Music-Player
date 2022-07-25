@@ -188,7 +188,7 @@ namespace Music_thing.Classes
             return entries.Count != 0;
         }
 
-        private static List<String> Select(string selectcommand)
+        /*private static List<String> Select(string selectcommand)
         {
             List<String> entries = new List<string>();
 
@@ -212,6 +212,38 @@ namespace Music_thing.Classes
             }
 
             return entries;
+        }*/
+
+        public static string GetSongListenCount(string songkey)
+        {
+            List<String> entries = new List<string>();
+
+            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
+            using (SqliteConnection db =
+               new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+
+                SqliteCommand selectCommand = new SqliteCommand
+                    ("SELECT COUNT(SongKey) from Listens where SongKey = @Entry", db);
+                selectCommand.Parameters.AddWithValue("@Entry", songkey);
+
+                SqliteDataReader query = selectCommand.ExecuteReader();
+
+                while (query.Read())
+                {
+                    entries.Add(query.GetString(0));
+                }
+
+                db.Close();
+            }
+
+            if (entries.Count != 0)
+            {
+                return entries[0];
+            }
+            return "0";
+            
         }
     }
 }

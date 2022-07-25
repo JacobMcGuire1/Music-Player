@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Music_thing.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -111,7 +112,7 @@ namespace Music_thing
 
         public string GetListenCount()
         {
-            return "1";
+            return SongLog.GetSongListenCount(ID);
         }
 
         public string GetStringYear()
