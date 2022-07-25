@@ -38,6 +38,7 @@
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="44"/>
                         </Grid.ColumnDefinitions>
@@ -46,8 +47,9 @@
                         <TextBlock Grid.Column="2" Text="{x:Bind TrackNumber}" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="3" Text="{x:Bind Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
                         <TextBlock Grid.Column="4" x:Name="SongArtistNameTextBlock" Text="{x:Bind Artist}" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="250" Margin="0,0,5,0"/>
-                        <TextBlock Grid.Column="5" Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="Auto" Margin="0,0,5,0"/>
-                        <Button Grid.Column="6" Visibility="{x:Bind CheckIfFlavour()}" Click="RemoveFromFlavourButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE894;" Width="44" Height="100" Background="Transparent" Margin="0,0,0,0" Tag="{x:Bind TrackNumber}"/>
+                        <TextBlock Grid.Column="5" Text="{x:Bind GetListenCount()}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="6" Text="{x:Bind GetDuration()}" VerticalAlignment="Center" Width="50" Margin="0,0,5,0"/>
+                        <Button Grid.Column="7" Visibility="{x:Bind CheckIfFlavour()}" Click="RemoveFromFlavourButton_Click"  FontFamily="Segoe MDL2 Assets" Content="&#xE894;" Width="44" Height="100" Background="Transparent" Margin="0,0,0,0" Tag="{x:Bind TrackNumber}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

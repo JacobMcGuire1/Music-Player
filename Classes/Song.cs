@@ -109,6 +109,11 @@ namespace Music_thing
             return Duration.ToString(@"mm\:ss");
         }
 
+        public string GetListenCount()
+        {
+            return "1";
+        }
+
         public string GetStringYear()
         {
             if (Year == 0)

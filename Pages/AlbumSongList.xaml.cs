@@ -111,8 +111,8 @@ namespace Music_thing
                 ListViewSongs.Drop += ListViewSongs_Drop;
                 Songs = flavour.ObserveSongs();
                 Songs.CollectionChanged += Songs_CollectionChanged;
-                addSongButton.Visibility = (Visibility)0;
-                addSongText.Visibility = (Visibility)0;
+                addSongButton.Visibility = Visibility.Visible;
+                addSongText.Visibility = Visibility.Visible;
                 if (flavour.isflavour)
                 {
                     PinButtonPanel.Visibility = Visibility.Visible;
@@ -256,7 +256,7 @@ namespace Music_thing
             var artistname = (TextBlock)grid.FindName("SongArtistNameTextBlock");
             if (flavour == null)
             {
-                grid.ColumnDefinitions[6] = new ColumnDefinition() { Width = new GridLength(0.0, GridUnitType.Star) };
+                grid.ColumnDefinitions[7] = new ColumnDefinition() { Width = new GridLength(0.0, GridUnitType.Star) };
             }
             if (e.NewSize.Width <= 800)
             {

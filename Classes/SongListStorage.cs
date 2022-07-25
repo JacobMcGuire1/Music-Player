@@ -500,11 +500,10 @@ namespace Music_thing
 
         public static async Task GetPlaylistFolder()
         {
-            if (Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.ContainsItem("PlaylistFolder"))
+            var FutureAccessList = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList;
+            if (FutureAccessList.ContainsItem("PlaylistFolder"))
             {
-                PlayListFolder = (StorageFolder)(await Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.GetItemAsync("PlaylistFolder"));
+                PlayListFolder = (StorageFolder)(await FutureAccessList.GetItemAsync("PlaylistFolder"));
             }
         }
 

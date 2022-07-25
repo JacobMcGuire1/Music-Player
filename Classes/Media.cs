@@ -249,6 +249,7 @@ namespace Music_thing
 
                 //set the system transport controls
                 //mediaPlayer.SystemMediaTransportControls.IsEnabled = true;
+                
                 var props = mediaPlayer.SystemMediaTransportControls.DisplayUpdater;
                 props.Type = Windows.Media.MediaPlaybackType.Music;
                 //props.AppMediaId = "TOAST";

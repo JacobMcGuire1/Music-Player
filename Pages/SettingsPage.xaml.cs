@@ -39,6 +39,7 @@ namespace Music_thing
             globalvol.Value = Media.Instance.globalVol * 100;
             AudioBalanceSlider.Value = Media.Instance.mediaPlayer.AudioBalance / 100;
             LastLoggedSong = SongListStorage.LastLoggedSong;
+            ChosenFolderText.Text = "Picked folder: " + SongListStorage.PlayListFolder.Name;
         }
 
         private void Globalvol_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -95,12 +96,12 @@ namespace Music_thing
                 FutureAccessList.AddOrReplace("PlaylistFolder", folder);
                 ChosenFolderText.Text = "Picked folder: " + folder.Name;
                 SongListStorage.PlaylistDict = new ConcurrentDictionary<long, Playlist>();
-                SongListStorage.LoadFlavours();
+                await SongListStorage.LoadFlavours();
                 SongListStorage.PlayListFolder = folder;
             }
             else
             {
-                ChosenFolderText.Text = "No Folder Found.";
+                //ChosenFolderText.Text = "No Folder Found.";
             }
         }
     }
