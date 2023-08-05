@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <PackageCertificatePassword>testkey</PackageCertificatePassword>
-    <PackageCertificateThumbprint>5694A81224B1B873AC93227E67BA923CA2945389</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>4812D88974EDA53B238A3D5FC25D05AE97D54E22</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
