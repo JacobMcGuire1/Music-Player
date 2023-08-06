@@ -15,10 +15,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Music_thing.App">
-      <uap:VisualElements DisplayName="Music thing" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\album44x44logo.png" Description="Music thing" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Music" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\album44x44logo.png" Description="Music Player" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>

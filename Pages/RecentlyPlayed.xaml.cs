@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Music_thing.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,8 +25,9 @@ namespace Music_thing
     /// </summary>
     public sealed partial class RecentlyPlayed : Page
     {
-
-        
+        public static int Count = 100;
+        public ObservableCollection<Song> Songs { get; set; }
+        = new ObservableCollection<Song>();
 
 
         public RecentlyPlayed()
@@ -34,6 +37,24 @@ namespace Music_thing
             
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var songData = SongLog.GetRecentListens(Count);
+
+            Songs = new ObservableCollection<Song>(songData.Select(x => SongListStorage.SongDict[x.Item1]));
+        }
+
+        private async void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            await SongListStorage.SongDict[button.Tag as string].Play();
+        }
+
+        private async void addToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            await SongListStorage.SongDict[button.Tag as string].AddToPlaylist();
+        }
 
     }
 }

@@ -12,6 +12,7 @@ namespace Music_thing.Classes
     public static class SongLog
     {
         private const string dbname = "songlog.db";
+        private const string externalDbs = "externaldbs";
 
         public async static void InitialiseDatabase()
         {
@@ -216,7 +217,53 @@ namespace Music_thing.Classes
 
         public static string GetSongListenCount(string songkey)
         {
+            List<string> dbs = new List<string>();
+            string folderPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, externalDbs);
+
+            if (Directory.Exists(folderPath))
+            {
+                dbs = (from file in Directory.EnumerateFiles(folderPath) select file).ToList();
+            }
+            
             List<String> entries = new List<string>();
+
+            string maindbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
+            dbs.Add(maindbpath);
+
+            foreach (string dbpath in dbs)
+            {
+                using (SqliteConnection db =
+                new SqliteConnection($"Filename={dbpath}"))
+                {
+                    db.Open();
+
+                    SqliteCommand selectCommand = new SqliteCommand
+                        ("SELECT COUNT(SongKey) from Listens where SongKey = @Entry", db);
+                    selectCommand.Parameters.AddWithValue("@Entry", songkey);
+
+                    SqliteDataReader query = selectCommand.ExecuteReader();
+
+                    while (query.Read())
+                    {
+                        entries.Add(query.GetString(0));
+                    }
+
+                    db.Close();
+                }
+            }
+            
+
+            if (entries.Count != 0)
+            {
+                return entries[0];
+            }
+            return "0";
+            
+        }
+
+        public static List<(string, string)> GetRecentListens(int count)
+        {
+            List<(string, string)> entries = new List<(string, string)>();
 
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
             using (SqliteConnection db =
@@ -225,25 +272,22 @@ namespace Music_thing.Classes
                 db.Open();
 
                 SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT COUNT(SongKey) from Listens where SongKey = @Entry", db);
-                selectCommand.Parameters.AddWithValue("@Entry", songkey);
+                    ("SELECT * from Listens " +
+                    "ORDER BY Time desc " +
+                    "LIMIT @Count", db);
+                selectCommand.Parameters.AddWithValue("@Count", count);
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 
                 while (query.Read())
                 {
-                    entries.Add(query.GetString(0));
+                    entries.Add((query.GetString(0), query.GetString(1)));
                 }
 
                 db.Close();
             }
 
-            if (entries.Count != 0)
-            {
-                return entries[0];
-            }
-            return "0";
-            
+            return entries;
         }
     }
 }

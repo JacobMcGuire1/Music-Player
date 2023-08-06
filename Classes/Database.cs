@@ -142,7 +142,11 @@ namespace Music_thing
             {
                 App.GetForCurrentView().DisplayLoading(songsfound, files.Count, filesscanned, true);
             }
-            catch { }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             await SongListStorage.UpdateAndOrderMusic();
 
             await MusicToJSON();

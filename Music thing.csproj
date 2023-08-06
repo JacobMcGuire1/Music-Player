@@ -11,16 +11,16 @@
     <AssemblyName>Music thing</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>
-    </PackageCertificateKeyFile>
-    <PackageCertificatePassword>testkey</PackageCertificatePassword>
-    <PackageCertificateThumbprint>4812D88974EDA53B238A3D5FC25D05AE97D54E22</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>Music thing_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificatePassword>
+    </PackageCertificatePassword>
+    <PackageCertificateThumbprint>DCDE4586FB1D41A2310F5320630D83A516FC7EF7</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
@@ -177,7 +177,32 @@
     <Content Include="Assets\Album.targetsize-256.png" />
     <Content Include="Assets\Album.targetsize-32.png" />
     <Content Include="Assets\Album.targetsize-48.png" />
+    <Content Include="Assets\album44x44logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\album44x44logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\album44x44logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\album44x44logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\album44x44logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\album44x44logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\album44x44logo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\album44x44logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\album44x44logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\album44x44logo.altform-unplated_targetsize-48.png" />
     <Content Include="Assets\album44x44logo.png" />
+    <Content Include="Assets\album44x44logo.scale-100.png" />
+    <Content Include="Assets\album44x44logo.scale-125.png" />
+    <Content Include="Assets\album44x44logo.scale-150.png" />
+    <Content Include="Assets\album44x44logo.scale-200.png" />
+    <Content Include="Assets\album44x44logo.scale-400.png" />
+    <Content Include="Assets\album44x44logo.targetsize-16.png" />
+    <Content Include="Assets\album44x44logo.targetsize-24.png" />
+    <Content Include="Assets\album44x44logo.targetsize-256.png" />
+    <Content Include="Assets\album44x44logo.targetsize-32.png" />
+    <Content Include="Assets\album44x44logo.targetsize-48.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\DefaultAlbumArt.png" />
     <Content Include="Assets\discordrpc\DiscordRP.exe" />
     <Content Include="Assets\discordrpc\DiscordRPC.dll" />
@@ -298,7 +323,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsDesktop, Version=10.0.17134.0">
+    <SDKReference Include="WindowsDesktop, Version=10.0.18362.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>

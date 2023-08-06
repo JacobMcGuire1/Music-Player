@@ -13,14 +13,15 @@
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
-    <Source>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</Source>
-    <SmallTileSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</SmallTileSource>
-    <MediumTileSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</MediumTileSource>
-    <WideTileSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</WideTileSource>
-    <LargeTileSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</LargeTileSource>
-    <AppIconSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</AppIconSource>
-    <SplashScreenSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</SplashScreenSource>
-    <PackageLogoSource>C:\Users\jacob\source\repos\Music Player\Music-Player\Assets\Album.png</PackageLogoSource>
+    <Source>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</Source>
+    <SmallTileSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</SmallTileSource>
+    <MediumTileSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</MediumTileSource>
+    <WideTileSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</WideTileSource>
+    <LargeTileSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</LargeTileSource>
+    <AppIconSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</AppIconSource>
+    <SplashScreenSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\jacob\source\repos\Music-Player\Assets\music player logo.png</PackageLogoSource>
     <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <BadgeLogoSource>C:\Users\jacob\source\repos\Music-Player\Assets\old\music player logo.png</BadgeLogoSource>
   </PropertyGroup>
 </Project>
