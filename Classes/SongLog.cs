@@ -25,7 +25,7 @@ namespace Music_thing.Classes
 
                 String tableCommand = "CREATE TABLE IF NOT " +
                     "EXISTS SongKeys (SongKey NVARCHAR(2048) PRIMARY KEY NOT NULL); " +
-                    "CREATE TABLE IF NOT EXISTS Listens (SongKey NVARCHAR(2048), Time integer, FOREIGN KEY(SongKey) REFERENCES SongKeys(SongKey));" +
+                    "CREATE TABLE IF NOT EXISTS Listens (SongKey NVARCHAR(2048), Time integer, Logged INTEGER DEFAULT 0 NOT NULL, FOREIGN KEY(SongKey) REFERENCES SongKeys(SongKey));" +
                     "CREATE TABLE IF NOT EXISTS AlbumKeys (AlbumKey NVARCHAR(2048) PRIMARY KEY NOT NULL);" +
                     "CREATE TABLE IF NOT EXISTS AlbumStartListens (AlbumKey NVARCHAR(2048), Time integer, FOREIGN KEY(AlbumKey) REFERENCES AlbumKeys(AlbumKey));";
 
@@ -74,7 +74,7 @@ namespace Music_thing.Classes
                 insertCommand.Connection = db;
 
                 // Use parameterized query to prevent SQL injection attacks
-                insertCommand.CommandText = "INSERT INTO Listens VALUES (@Entry, @Time);";
+                insertCommand.CommandText = "INSERT INTO Listens VALUES (@Entry, @Time, 0);";
                 insertCommand.Parameters.AddWithValue("@Entry", songkey);
                 insertCommand.Parameters.AddWithValue("@Time", DateTime.Now.Ticks);
                 var result = insertCommand.ExecuteReader();
