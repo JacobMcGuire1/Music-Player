@@ -122,15 +122,15 @@ namespace Music_thing
             var totalticks = SongListStorage.GetCurrentSong().Duration.TotalSeconds * 4;
             if (++Listeneventcount > totalticks / 2 && !SongListenInDB)
             {
-                AddListenToDB(SongListStorage.GetCurrentSong().ID);
+                AddListenToDB(SongListStorage.GetCurrentSong());
                 SongListenInDB = true;
             }
             SongListStorage.SaveDBInfo(Listeneventcount, SongListenInDB);
         }
 
-        private void AddListenToDB(string songid)
+        private void AddListenToDB(Song song)
         {
-            SongLog.AddListen(songid);
+            SongLog.AddListen(song);
         }
 
         private void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)

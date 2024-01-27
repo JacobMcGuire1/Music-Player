@@ -13,6 +13,7 @@ namespace Music_thing.Classes
     {
         private const string dbname = "songlog.db";
         private const string externalDbs = "externaldbs";
+        private static LastFm lastFmClient;
 
         public async static void InitialiseDatabase()
         {
@@ -35,6 +36,8 @@ namespace Music_thing.Classes
 
                 //db.Close();
             }
+
+            lastFmClient = await LastFm.InitialiseLastFm();
         }
 
         public static void AddSong(string songkey)
@@ -60,8 +63,11 @@ namespace Music_thing.Classes
             }
         }
 
-        public static void AddListen(string songkey)
+        public async static void AddListen(Song song)
         {
+            var songkey = song.ID;
+            var loggedToLastFM = await lastFmClient.ScrobbleSong(song);
+
             AddSong(songkey);
 
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
@@ -74,9 +80,10 @@ namespace Music_thing.Classes
                 insertCommand.Connection = db;
 
                 // Use parameterized query to prevent SQL injection attacks
-                insertCommand.CommandText = "INSERT INTO Listens VALUES (@Entry, @Time, 0);";
+                insertCommand.CommandText = "INSERT INTO Listens VALUES (@Entry, @Time, @Logged);";
                 insertCommand.Parameters.AddWithValue("@Entry", songkey);
                 insertCommand.Parameters.AddWithValue("@Time", DateTime.Now.Ticks);
+                insertCommand.Parameters.AddWithValue("@Logged", loggedToLastFM ? 1 : 0);
                 var result = insertCommand.ExecuteReader();
 
                 if (result.RecordsAffected == 1)
