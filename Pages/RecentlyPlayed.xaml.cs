@@ -33,8 +33,6 @@ namespace Music_thing
         public RecentlyPlayed()
         {
             this.InitializeComponent();
-
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
