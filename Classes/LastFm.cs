@@ -48,8 +48,15 @@ namespace Music_thing.Classes
 
         public static async Task<bool> Login(LastfmClient client, Dictionary<string, string> creds)
         {
-            var loginresponse = await client.Auth.GetSessionTokenAsync(creds["LASTFM_USERNAME"], creds["LASTFM_PASSWORD"]);
-            return loginresponse.Success;
+            try
+            {
+                var loginresponse = await client.Auth.GetSessionTokenAsync(creds["LASTFM_USERNAME"], creds["LASTFM_PASSWORD"]);
+                return loginresponse.Success;
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            
         }
 
         private async Task<bool> CheckOrRetrySetup()

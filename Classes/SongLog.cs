@@ -17,6 +17,7 @@ namespace Music_thing.Classes
 
         public async static void InitialiseDatabase()
         {
+            
             await ApplicationData.Current.LocalFolder.CreateFileAsync(dbname, CreationCollisionOption.OpenIfExists);
             string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbname);
             using (SqliteConnection db =
@@ -66,7 +67,7 @@ namespace Music_thing.Classes
         public async static void AddListen(Song song)
         {
             var songkey = song.ID;
-            var loggedToLastFM = await lastFmClient.ScrobbleSong(song);
+            var loggedToLastFM = lastFmClient != null ? (await lastFmClient?.ScrobbleSong(song)) : false;
 
             AddSong(songkey);
 
