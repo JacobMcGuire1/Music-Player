@@ -98,7 +98,7 @@ namespace Music_thing.Classes
 
         public async Task<bool> SetNowPlaying(Song song)
         {
-            if (!(await CheckOrRetrySetup())) return false;
+            if (!(await CheckOrRetrySetup()) || song == null) return false;
 
             Scrobble scrobble = new Scrobble(song.AlbumArtist, song.Album, song.Title, DateTimeOffset.Now);            
 
