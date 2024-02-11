@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Protection.PlayReady;
 using Windows.Storage;
 
 namespace Music_thing.Classes
@@ -52,7 +53,8 @@ namespace Music_thing.Classes
             {
                 var loginresponse = await client.Auth.GetSessionTokenAsync(creds["LASTFM_USERNAME"], creds["LASTFM_PASSWORD"]);
                 return loginresponse.Success;
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 return false;
             }
@@ -82,7 +84,7 @@ namespace Music_thing.Classes
         {
             if (!(await CheckOrRetrySetup())) return false;
 
-            Scrobble scrobble = new Scrobble(song.Artist, song.Album, song.Title, DateTimeOffset.Now);
+            Scrobble scrobble = new Scrobble(song.AlbumArtist, song.Album, song.Title, DateTimeOffset.Now);
 
             var response = await client.Scrobbler.ScrobbleAsync(new List<Scrobble> { scrobble });
 
@@ -92,6 +94,17 @@ namespace Music_thing.Classes
         public async Task GetRecentSongs()
         {
             var result = await client.User.GetRecentScrobbles(creds["LASTFM_USERNAME"], null, null, true, 1, 100);
+        }
+
+        public async Task<bool> SetNowPlaying(Song song)
+        {
+            if (!(await CheckOrRetrySetup())) return false;
+
+            Scrobble scrobble = new Scrobble(song.AlbumArtist, song.Album, song.Title, DateTimeOffset.Now);            
+
+            var response = await client.Track.UpdateNowPlayingAsync(scrobble);
+
+            return response.Success;
         }
     }
 }

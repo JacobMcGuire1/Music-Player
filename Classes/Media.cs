@@ -135,6 +135,10 @@ namespace Music_thing
 
         private void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
         {
+            if (sender.PlaybackSession.PlaybackState == MediaPlaybackState.Playing)
+            {
+                SongLog.UpdateNowPlayingLastFm(SongListStorage.GetCurrentSong());
+            }
         }
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
@@ -219,7 +223,9 @@ namespace Music_thing
             {
                 initialload = false;
             }
-            
+
+            SongLog.UpdateNowPlayingLastFm(SongListStorage.GetCurrentSong());
+
             await UpdateNowPlaying();
         }
 

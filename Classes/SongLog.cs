@@ -96,6 +96,14 @@ namespace Music_thing.Classes
             }
         }
 
+        public async static void UpdateNowPlayingLastFm(Song song)
+        {
+            if (lastFmClient != null)
+            {
+                await lastFmClient?.SetNowPlaying(song);
+            }
+        }
+
         private static bool CheckIfSongExists(string songid)
         {
             List<String> entries = new List<string>();
